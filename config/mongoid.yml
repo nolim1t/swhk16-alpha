@@ -129,3 +129,8 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+production:
+  sessions:
+    default:
+      url: ENV['MONGOLAB_URI']
