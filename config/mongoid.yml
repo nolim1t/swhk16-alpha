@@ -20,4 +20,9 @@ test:
 production:
   clients:
     default:
-      uri: <%=  ENV['MONGOLAB_URI'] =>
+      database: heroku_hxlb7hkx
+      hosts:
+        - ds031972.mongolab.com:31972
+      options:
+        user: heroku_hxlb7hkx
+        password: kq64gkb1rbv51vp3vhecr3u42p
