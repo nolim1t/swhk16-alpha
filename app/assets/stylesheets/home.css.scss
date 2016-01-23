@@ -25,6 +25,28 @@ body {
   background-color: #440e62;
   border-color: #440e62;
 }
+.btn-landing:hover,
+.btn-landing:focus,
+.btn-landing:active,
+.btn-landing.active {
+  background-color: #440e62;
+  border-color: #440e62;
+}
+.btn-landing.disabled:hover,
+.btn-landing.disabled:focus,
+.btn-landing.disabled:active,
+.btn-landing.disabled.active,
+.btn-landing[disabled]:hover,
+.btn-landing[disabled]:focus,
+.btn-landing[disabled]:active,
+.btn-landing[disabled].active,
+fieldset[disabled] .my-btn:hover,
+fieldset[disabled] .my-btn:focus,
+fieldset[disabled] .my-btn:active,
+fieldset[disabled] .my-btn.active {
+  background-color: white;
+  border-color: #440e62;
+}
 
 .my-btn {
   color: #440e62;
