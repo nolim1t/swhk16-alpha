@@ -133,4 +133,4 @@ test:
 production:
   sessions:
     default:
-      url: ENV['MONGOLAB_URI']
+      url: <%=  ENV['MONGOLAB_URI'] =>
