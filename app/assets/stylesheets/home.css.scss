@@ -3,9 +3,53 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  padding-top: 60px;
+  padding-top: 100px;
 }
 
-image-container	{
+.image-container	{
 	text-align: center;
+}
+
+.navbar{
+	background-color: #440e62;
+}
+
+.navbar-brand
+{
+    padding-top: 5px;
+    padding-bottom: 0;
+}
+
+.btn-landing{
+  color: white;
+  background-color: #440e62;
+  border-color: #440e62;
+}
+
+.my-btn {
+  color: #440e62;
+  background-color: white;
+  border-color: #440e62;
+}
+.my-btn:hover,
+.my-btn:focus,
+.my-btn:active,
+.my-btn.active {
+  background-color: #440e62;
+  border-color: #440e62;
+}
+.my-btn.disabled:hover,
+.my-btn.disabled:focus,
+.my-btn.disabled:active,
+.my-btn.disabled.active,
+.my-btn[disabled]:hover,
+.my-btn[disabled]:focus,
+.my-btn[disabled]:active,
+.my-btn[disabled].active,
+fieldset[disabled] .my-btn:hover,
+fieldset[disabled] .my-btn:focus,
+fieldset[disabled] .my-btn:active,
+fieldset[disabled] .my-btn.active {
+  background-color: white;
+  border-color: #440e62;
 }
