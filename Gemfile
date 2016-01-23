@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 gem 'mongoid', '~> 5.0', '>= 5.0.2'
+gem 'bson', '~> 4.0'
 
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
