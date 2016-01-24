@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get '/cards/tracking' => 'cards/tracking', as: :cards_tracking
   
   match '/login' => 'login#login', :via => [:post]
+  get '/sign_up' => 'login#logup', as: :logup
 end

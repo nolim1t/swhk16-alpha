@@ -7,4 +7,8 @@ class LoginController < ActionController::Base
     
     render :text => "Hi"
   end
+
+  def logup
+  	
+  end
 end
