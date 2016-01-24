@@ -12,20 +12,20 @@
 	.col-sm-6
 		.h2 Khalni Hydra
 		.h3 Magic the Gathering
-		<b>Uploaded:</b> 2016-01-23
+		<b>Uploaded:</b> 2015-01-23
 		%br
 		<b>Owner:</b> Sophie
 		%br
 		%br
 		%th= image_tag('verified.png')
-%br
-.row.tracking
-	.table-responsive
-		%table
-			%tbody
-				%tr
-					%th= image_tag('front_1.jpg', width: "50")
-					%th= image_tag('back_1.jpg', width: "50")
+.row
+	.col-sm-6
+		.table-responsive
+			%table
+				%tbody
+					%tr
+						%th= image_tag('front_1.jpg', width: "50")
+						%th= image_tag('back_1.jpg', width: "50")
 .row
 	%h3 future Owner
 	%input.form-control{:placeholder => "Email", style: "width: 150px;", :type => "name"}
