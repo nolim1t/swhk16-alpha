@@ -3,7 +3,7 @@ development:
     default:
       database: vaultron_development
       hosts:
-        - localhost:27017
+        - 192.168.59.103:27017
       options:
 
 test:
@@ -11,7 +11,7 @@ test:
     default:
       database: vaultron_test
       hosts:
-        - localhost:27017
+        - 192.168.59.103:27017
       options:
         read:
           mode: :primary
