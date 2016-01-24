@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vaultron</title>
+    <%= stylesheet_link_tag    "landing", media: "all", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar">
+          <div class="nav-header">
+            <a href= "#" class="navbar-brand">
+              <%= image_tag('Logo.png', width: "50") %>
+            </a>
+          </div>
+        
+          <div class="collapse navbar-collapse authenticated">
+            <button type="submit" class="btn btn-success my-btn pull-right">Sign Out</button>
+            <button type="submit" class="btn btn-success my-btn pull-right">Settings</button>
+          </div><!-- /.nav-collapse -->
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+    <div class="container">
+      <%= yield %>
+
+     
+
+    </div><!--/.container-->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
