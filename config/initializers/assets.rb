@@ -8,6 +8,8 @@ Rails.application.config.assets.precompile += %w( front.jpg )
 Rails.application.config.assets.precompile += %w( back.jpg )
 Rails.application.config.assets.precompile += %w( front_1.jpg )
 Rails.application.config.assets.precompile += %w( back_1.jpg )
+Rails.application.config.assets.precompile += %w( background_copy.jpg )
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 
