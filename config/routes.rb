@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   match '/login' => 'login#login', :via => [:post]
+  post '/login1' => 'login#login'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
