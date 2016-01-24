@@ -28,9 +28,9 @@
 						%th= image_tag('back_1.jpg', width: "50")
 .row
 	%h3 future Owner
-	%input.form-control{:placeholder => "Email", style: "width: 150px;", :type => "name"}
+	%input.form-control{:placeholder => "Email", style: "width: 150px;", :type => "email", :value => "barry.teoh@gmail.com"}
 	%br
-	%input.form-control{:placeholder => "Name", style: "width: 150px;", :type => "name"}
+	%input.form-control{:placeholder => "Name", style: "width: 150px;", :type => "name", :value => "Barry"}
 
 .row.validate_btn
 	=link_to "Transfer", cards_transferred_path, class: "btn btn-primary btn-landing btn_up"
