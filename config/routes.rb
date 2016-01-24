@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get '/cards/index' => 'cards#index', as: :cards_index
   get '/cards/new' => 'cards#new', as: :cards_new
   get '/cards/detail' => 'carddetail#index', as: :carddetail_index
-  get '/cards/tracking' => 'cards/tracking', as: :cards_tracking
+  get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
+  get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
   
   match '/login' => 'login#login', :via => [:post]
   get '/sign_up' => 'login#logup', as: :logup

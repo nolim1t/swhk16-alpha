@@ -1,7 +1,7 @@
 %br
 %br
 .col-sm-6
-	.h1 Sophie
+	.h1 Barry
 .col-sm-6
 	=link_to "Add A Card", cards_new_path, class: 'btn btn-primary btn-landing'
 %br
@@ -21,24 +21,3 @@
 		.h2 Khalni Hydra
 		%br
 		<div class="btn btn-primary my-btn" onclick="document.location.href='/cards/detail'">Details</div>
-
-
-%br
-%br
-.row
-	.col-sm-6
-		.table-responsive
-			%table
-				%tbody
-					%tr
-						%th= image_tag('front.jpg', width: "200")
-						%th= image_tag('back.jpg', width: "200")
-						%th{colspan:'2'}
-	.col-sm-6
-		.h2 Progenitus
-		%br
-		.btn.btn-primary.my-btn Details
-%br
-%br
-%br
-%br

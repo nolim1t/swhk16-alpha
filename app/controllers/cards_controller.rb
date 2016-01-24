@@ -9,7 +9,11 @@ class CardsController < ApplicationController
 		
 	end
 
-	def tracking
+	def transfer
+		
+	end
+
+	def transferred
 		
 	end
 end
