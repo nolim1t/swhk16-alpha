@@ -1,0 +1,9 @@
+.row
+	%h3.panel-title Please Sign up
+	%input.form-control{:placeholder => "Name", :type => "name"}
+	%br
+	%input.form-control{:placeholder => "Email", :type => "text"}
+	%br
+	%input.form-control{:placeholder => "Password", :type => "password"}
+	.row
+		=link_to "Submit", cards_new_path, class: 'btn btn-primary btn-landing'
