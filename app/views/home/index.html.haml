@@ -2,8 +2,11 @@
   %p.pull-right.visible-xs
     %button.btn.btn-primary.btn-xs{"data-toggle" => "offcanvas", :type => "button"} Toggle nav
   .jumbotron
-    %h1 Vaultron
-    %p Secure the value of your collection cards!
+    .col-sm-6
+      %h1 Vaultron
+      %p Secure the value of your collection cards!
+    .col-sm-6
+      =image_tag('background_copy.png', width: "400")
     %p
       %a.btn.btn-primary.btn-lg.btn-landing{ href: "#", role: "button"} Sign Up &raquo;
 %br
@@ -12,21 +15,21 @@
   .col-lg-4
     %h2 Casual 
     %p Store up to 10 cards
-    %br
+    %p Secure a few valuable cards of your collection
     %h4 Free
     %p
       %a.btn.btn-primary.btn-landing{:href => "#", :role => "button"} View details &raquo;
   .col-lg-4
     %h2 Regular
     %p Store up to 100 cards
-    %br
+    %p Secure most of the valuable cards of your collection
     %h4 20 USD / Annual
     %p
       %a.btn.btn-primary.btn-landing{:href => "#", :role => "button"} View details &raquo;
   .col-lg-4
     %h2 Power
     %p Store up to 100+ cards
-    %br
+    %p Secure all your valuable cards of your collection
     %h4 50 USD / Annual
     %p
       %a.btn.btn-primary.btn-landing{:href => "#", :role => "button"} View details &raquo;
