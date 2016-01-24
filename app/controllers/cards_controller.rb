@@ -8,4 +8,8 @@ class CardsController < ApplicationController
 	def new
 		
 	end
+
+	def tracking
+		
+	end
 end
