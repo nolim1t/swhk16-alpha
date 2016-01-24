@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root to: "home#index"
+
+  #root to: "home#index"
+  match '/', :to 'home#index', :via => [:get]
   match '/login', :to 'home#login', :via => [:post]
 
   # Example of regular route:
