@@ -4,9 +4,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
   root to: "home#index"
 
   get '/cards/index' => 'cards#index', as: :cards_index
+
+  match '/login' => 'login#login', :via => [:post]
+  post '/login1' => 'login#login'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

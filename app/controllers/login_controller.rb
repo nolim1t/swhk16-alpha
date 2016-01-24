@@ -1,10 +1,4 @@
-class HomeController < ActionController::Base
- 	layout 'landing'
-
-	def index
-
-	end
-
+class LoginController < ActionController::Base
   def login
     username = params['username']
     password = params['password']
