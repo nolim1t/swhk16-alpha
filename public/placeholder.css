@@ -1,0 +1,23 @@
+#container{width:100%;}
+#left{float:left;width:200px;}
+#right{float:right;width:200px;}
+#center{margin:0 auto;width:200px;}
+
+/* Custom Font */
+@font-face {
+  font-family: lato_font;
+  src: url('/Lato-Bold.ttf');
+}
+
+body {background-image: url(placeholder-bg.jpg); }
+p {font-family: lato_font; color: #ffffff; text-align: center;}
+.text {align: "center"}
+
+.button-link {
+    padding: 10px 15px;
+    background: #FFF;
+    color: #440e62;
+    font-family: lato_font;
+    text-align: center;
+    text-decoration: none;
+}
