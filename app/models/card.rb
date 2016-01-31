@@ -1,10 +1,9 @@
-class User
+class Card
   include Mongoid::Document
-  store_in collection: "users"
+  store_in collection: "cards"
+  field :description, type: String
 
-  field :name, type: String
-  field :email, type: String
-  field :facebook_token, type: String
+  field :owner_id, type: BSON::ObjectId # Store it as a BSON Object
 
   # Types of fields
   # Array
