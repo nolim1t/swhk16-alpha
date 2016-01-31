@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/cards/detail' => 'carddetail#index', as: :carddetail_index
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
+  get '/swhome' => 'home#index'
 
   match '/old/login' => 'login#login', :via => [:post]
   get '/old/sign_up' => 'login#logup', as: :logup
