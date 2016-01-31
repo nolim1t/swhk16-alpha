@@ -12,3 +12,5 @@
  *= require bootstrap
  *= require home
  */
+ .error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;border-color:#c6d880;}
+ .success {background:#e6efc2;color:#264409;border-color:#c6d880;}
