@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", :edit => "settings" }
+
   root to: "home#index"
 
   get '/cards/index' => 'cards#index', as: :cards_index
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
   get '/cards/detail' => 'carddetail#index', as: :carddetail_index
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
-  
+
   match '/login' => 'login#login', :via => [:post]
   get '/sign_up' => 'login#logup', as: :logup
 end
