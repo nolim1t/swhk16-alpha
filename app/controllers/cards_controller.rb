@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+	before_action :authenticate_user!
 	layout 'authenticated_header'
 
 	def index
@@ -6,14 +7,14 @@ class CardsController < ApplicationController
 	end
 
 	def new
-		
+
 	end
 
 	def transfer
-		
+
 	end
 
 	def transferred
-		
+
 	end
 end
