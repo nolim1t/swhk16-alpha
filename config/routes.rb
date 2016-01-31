@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
 
-  match '/login' => 'login#login', :via => [:post]
-  get '/sign_up' => 'login#logup', as: :logup
+  match '/old/login' => 'login#login', :via => [:post]
+  get '/old/sign_up' => 'login#logup', as: :logup
 end

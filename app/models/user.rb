@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   store_in collection: "users"
+  attr_accessor :invite_code
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -58,4 +59,8 @@ class User
   # Symbol
   # Time
   # TimeWithZone
+  validates_each :invite_code, :on => :create do |record, attr, value|
+      record.errors.add attr, "Please enter correct invite code" unless
+        value && value == "12345"
+  end
 end
