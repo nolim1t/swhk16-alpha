@@ -25,10 +25,12 @@
     <%= f.label :invite_code %><br />
     <%= f.text_field :invite_code, autofocus: true, required: true %>
   </div>
-
+  <br />
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-primary btn-lg btn-landing" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<br />
+<%= link_to "Already Registered? Sign in here", user_session_path %><br />
+<%= link_to "Didn't receive confirmation email?", new_user_confirmation_path %><br />
+<br />
