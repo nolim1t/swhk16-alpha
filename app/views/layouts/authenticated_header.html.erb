@@ -18,7 +18,7 @@
 
           <div class="collapse navbar-collapse authenticated">
             <%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-success my-btn pull-right" %>
-            <button type="submit" class="btn btn-success my-btn pull-right">Settings</button>
+            <%= link_to "Settings", edit_user_registration_path, class: "btn btn-success my-btn pull-right" %>
           </div><!-- /.nav-collapse -->
         </div>
       </div><!-- /.container -->
