@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Custom pathnames
   devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", :edit => "settings" }, :controllers => {:registrations => "registrations"}
 
-  root to: "home#index"
+  root to: "cards#index"
 
   get '/cards/index' => 'cards#index', as: :cards_index
   get '/cards/new' => 'cards#new', as: :cards_new_url

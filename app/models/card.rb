@@ -1,7 +1,7 @@
 class Card
   include Mongoid::Document
   store_in collection: "cards"
-  attr_accessible :image
+  #attr_accessible :image
 
   field :description, type: String
 
