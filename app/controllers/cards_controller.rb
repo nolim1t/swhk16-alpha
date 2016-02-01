@@ -6,6 +6,13 @@ class CardsController < ApplicationController
 		# @cards = Card.all
 	end
 
+	# POST /cards/new
+	def newform
+		puts "new card"
+		puts params[:cards].inspect
+		redirect_to :cards_index
+	end
+	# GET /cards/new
 	def new
 
 	end
@@ -17,4 +24,5 @@ class CardsController < ApplicationController
 	def transferred
 
 	end
+
 end
