@@ -1,13 +1,12 @@
-%br
-%br
-.row
+= form_for :cards, url: cards_new_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
+	.row
 	.col-sm-6
 		.table-responsive
 			%table
 				%tbody
 					%tr
 						.jumbotron.cardupload
-							.btn.btn-primary.btn-landing.btn_up Upload Picture
+							= f.file_field "Upload Picture", class: "btn btn-primary btn-landing btn_up"
 	.col-sm-6
 		%br
 		%br
@@ -15,17 +14,10 @@
 		%br
 		%br
 		%br
-		%input.form-control{:placeholder => "Edit Name of Card", :type => "name"}
+		= f.text_field :name, placeholder: "Edit Name of Card", class: "form-control"
 		%br
-		%input.form-control{:placeholder => "Edit Game", :type => "game"}
+		= f.text_field :game, placeholder: "Edit Game", class: "form-control"
 		%br
-		%input.form-control{:placeholder => "Edit Collection", :type => "collection"}
-.row.validate_btn
-	<div id="btn.btn-primary.btn-landing.btn_up" onClick="document.location.href='/cards/detail';">
-	.btn.btn-primary.btn-landing.btn_up Validate
-	</div>
-
-%br
-%br
-%br
-%br
+		= f.text_field :collection, placeholder: "Edit Collection", class: "form-control"
+		%br
+		= f.submit "Validate/Submit card", class: "btn btn-primary btn-landing btn_up"

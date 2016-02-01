@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   root to: "cards#index"
 
   get '/cards/index' => 'cards#index', as: :cards_index
-  get '/cards/new' => 'cards#new', as: :cards_new
+  get '/cards/new' => 'cards#new', as: :cards_new_url
+  post '/cards/new' => 'cards#newform', as: :cards_post_url
   get '/cards/detail' => 'carddetail#index', as: :carddetail_index
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
