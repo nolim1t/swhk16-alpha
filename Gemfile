@@ -7,6 +7,8 @@ gem 'rails', '4.2.5'
 gem 'mongoid', '~> 5.0', '>= 5.0.2'
 gem 'bson', '~> 4.0'
 gem 'devise'
+gem 'carrierwave' # For image uploads
+gem "fog-aws" # Store images in Amazon S3
 
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
