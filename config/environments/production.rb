@@ -69,5 +69,5 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = {host: "www.vaultron.co"}
-  config.action_controller.relative_url_root  = "https://vaultron.co"
+  #config.action_controller.relative_url_root  = "https://vaultron.co"
 end
