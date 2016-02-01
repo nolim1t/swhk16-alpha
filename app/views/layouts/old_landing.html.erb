@@ -2,20 +2,33 @@
 <html>
   <head>
     <title>Vaultron</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%= stylesheet_link_tag    "landing", media: "all", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar">
           <div class="nav-header">
+<<<<<<< HEAD:app/views/layouts/old_landing.html.erb
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a href= "#" class="navbar-brand navbar-logo">
+=======
             <a href= "/" class="navbar-brand">
+>>>>>>> master:app/views/layouts/authenticated_header.html.erb
               <%= image_tag('Logo.png', width: "50") %>
             </a>
           </div>
+          <% if user_signed_in? %>
+            <%= render "layouts/authenticated_header" %>
+          <% else %>
+            <%= render "layouts/unauthenticated_header" %>
+          <% end %>
         </div>
       </div><!-- /.container -->
     </div><!-- /.navbar -->
@@ -23,10 +36,7 @@
     <div class="container">
       <%= yield %>
 
-    <footer>
-        <p>&copy; Vaultron 2016. All card images are the property of Wizards of the Coast</p>
-      </footer>
-
+      <%= render "layouts/footer" %>
     </div><!--/.container-->
 
     <!-- Bootstrap core JavaScript
