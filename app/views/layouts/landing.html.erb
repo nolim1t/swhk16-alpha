@@ -11,22 +11,15 @@
       <div class="container">
         <div class="navbar">
           <div class="nav-header">
-            <a href= "#" class="navbar-brand">
+            <a href= "#" class="navbar-brand navbar-logo">
               <%= image_tag('Logo.png', width: "50") %>
             </a>
           </div>
-
-          <div class="collapse navbar-collapse nav-signin">
-            <%= form_for(:user, :url => session_path(:user), :html => {:class => "navbar-form navbar-right"}) do |f| %>
-              <div class="form-group">
-                <%= f.text_field :email, class: "form-control", placeholder: "Email Address", value: "" %>
-              </div>
-              <div class="form-group">
-                <%= f.password_field :password, class: "form-control", placeholder: "Password", value: "" %>
-              </div>
-              <%= f.submit 'Sign in', class: "btn btn-success my-btn" %>
-            <% end %>
-          </div><!-- /.nav-collapse -->
+          <% if user_signed_in? %>
+            <%= render "layouts/authenticated_header" %>
+          <% else %>
+            <%= render "layouts/unauthenticated_header" %>
+          <% end %>
         </div>
       </div><!-- /.container -->
     </div><!-- /.navbar -->
@@ -34,10 +27,7 @@
     <div class="container">
       <%= yield %>
 
-      <footer>
-        <p>&copy; Vaultron 2016. All card images are the property of Wizards of the Coast</p>
-      </footer>
-
+      <%= render "layouts/footer" %>
     </div><!--/.container-->
 
     <!-- Bootstrap core JavaScript
