@@ -1,5 +1,5 @@
-<div class="collapse navbar-collapse authentication">
-  <%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-success btn-authentication pull-right" %>
-  <%= link_to "Settings", edit_user_registration_path, class: "btn btn-success btn-authentication pull-right" %>
-</div><!-- /.nav-collapse -->
+<ul class="nav navbar-nav navbar-right">
+  <li><a href="/logout"> <button class="btn btn-success btn-authentication"> Log Out </button></a></li>
+  <li><a href="/settings">  <button class="btn btn-success btn-authentication"> Settings </button></a></li>
+</ul><!-- /.nav-collapse -->
 

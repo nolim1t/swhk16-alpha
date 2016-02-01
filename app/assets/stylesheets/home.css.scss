@@ -18,8 +18,8 @@ body {
     text-align: center;
 }
 
-.navbar{
-	background-color: #440e62;
+.navbar-custom {
+  background-color: #440e62;
 }
 
 .navbar-logo
@@ -28,9 +28,13 @@ body {
   padding-bottom: 0;
 }
 
-.authentication{
-  padding-top: 20px;
-  padding-bottom: 0;
+.navbar-toggle{
+  margin-top: 20px;
+}
+
+.authentication {
+  margin-top: 20px;
+  margin-right: 100px;
 }
 
 .btn-authentication {
@@ -40,23 +44,8 @@ body {
 }
 .btn-authentication:hover,
 .btn-authentication:focus,
-.btn-authentication:active,
-.btn-authentication.active {
-  background-color: rgba(0,0,0,0.2);
-  border-color: #440e62;
-}
-.btn-authentication.disabled:hover,
-.btn-authentication.disabled:focus,
-.btn-authentication.disabled:active,
-.btn-authentication.disabled.active,
-.btn-authentication[disabled]:hover,
-.btn-authentication[disabled]:focus,
-.btn-authentication[disabled]:active,
-.btn-authentication[disabled].active,
-fieldset[disabled] .btn-authentication:hover,
-fieldset[disabled] .btn-authentication:focus,
-fieldset[disabled] .btn-authentication:active,
-fieldset[disabled] .btn-authentication.active {
+.btn-authentication:active {
+  color: white;
   background-color: rgba(0,0,0,0.2);
   border-color: #440e62;
 }
