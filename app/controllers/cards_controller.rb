@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
 	before_action :authenticate_user!
-	layout 'authenticated_header'
+	layout 'application'
 
 	def index
 		# @cards = Card.all

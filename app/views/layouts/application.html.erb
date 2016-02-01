@@ -10,36 +10,37 @@
   </head>
 
   <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container">
-        <div class="navbar">
-          <div class="nav-header">
-            <a href= "#" class="navbar-brand">
-              <%= image_tag('Logo.png', width: "50") %>
-            </a>
-          </div>
-        </div>
-      </div><!-- /.container -->
-    </div><!-- /.navbar -->
+    <nav class="navbar navbar-fixed-top navbar-inverse navbar-custom" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a href= "#" class="navbar-brand navbar-logo">
+          <%= image_tag('logolight.png', width: "50") %>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+  <!--       <ul class="nav navbar-nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul> -->
+        <% if user_signed_in? %>
+          <%= render "layouts/authenticated_header" %>
+        <% else %>
+          <%= render "layouts/unauthenticated_header" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+    
+  <div class="container">
+    <%= yield %>
 
-    <div class="container">
-      <% if notice then %>
-      <p class="notice"><%= notice %></p>
-      <% end %>
-      <% if alert then %>
-      <p class="alert"><%= alert %></p>
-      <% end %>
-      <%= yield %>
-
-      <footer>
-        <p>&copy; Vaultron 2016. All card images are the property of Wizards of the Coast</p>
-      </footer>
-
-    </div><!--/.container-->
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= render "layouts/footer" %>
+  </div><!--/.container-->
   </body>
 </html>
