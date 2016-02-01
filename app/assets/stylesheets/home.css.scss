@@ -6,15 +6,11 @@ body {
   padding-top: 100px;
 }
 
-.signup{
-  text-align: center;
-}
-
 .cardupload{
   padding-top: 400px;
 }
 
-.cardupload .btn_up{
+.btn_up{
   position: relative;
 }
 
@@ -22,87 +18,45 @@ body {
     text-align: center;
 }
 
-.tracking {
-  padding-left: 60px;
-}
-
-.image-container	{
-	text-align: center;
-}
-
 .navbar{
 	background-color: #440e62;
 }
 
-.navbar-brand
+.navbar-logo
 {
-    padding-top: 15px;
-    padding-bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 0;
 }
 
-.nav-signin
-{
-    padding-top: 15px;
-    padding-bottom: 0;
-}
-
-
-.authenticated{
+.authentication{
   padding-top: 20px;
+  padding-bottom: 0;
 }
 
-.btn-landing{
+.btn-authentication {
   color: white;
   background-color: #440e62;
   border-color: #440e62;
 }
-.btn-landing:hover,
-.btn-landing:focus,
-.btn-landing:active,
-.btn-landing.active {
-  background-color: #440e62;
+.btn-authentication:hover,
+.btn-authentication:focus,
+.btn-authentication:active,
+.btn-authentication.active {
+  background-color: rgba(0,0,0,0.2);
   border-color: #440e62;
 }
-.btn-landing.disabled:hover,
-.btn-landing.disabled:focus,
-.btn-landing.disabled:active,
-.btn-landing.disabled.active,
-.btn-landing[disabled]:hover,
-.btn-landing[disabled]:focus,
-.btn-landing[disabled]:active,
-.btn-landing[disabled].active,
-fieldset[disabled] .my-btn:hover,
-fieldset[disabled] .my-btn:focus,
-fieldset[disabled] .my-btn:active,
-fieldset[disabled] .my-btn.active {
-  background-color: white;
-  border-color: #440e62;
-}
-
-.my-btn {
-  color: #440e62;
-  background-color: white;
-  border-color: #440e62;
-}
-.my-btn:hover,
-.my-btn:focus,
-.my-btn:active,
-.my-btn.active {
-  background-color: #440e62;
-  border-color: #440e62;
-}
-.my-btn.disabled:hover,
-.my-btn.disabled:focus,
-.my-btn.disabled:active,
-.my-btn.disabled.active,
-.my-btn[disabled]:hover,
-.my-btn[disabled]:focus,
-.my-btn[disabled]:active,
-.my-btn[disabled].active,
-fieldset[disabled] .my-btn:hover,
-fieldset[disabled] .my-btn:focus,
-fieldset[disabled] .my-btn:active,
-fieldset[disabled] .my-btn.active {
-  background-color: white;
+.btn-authentication.disabled:hover,
+.btn-authentication.disabled:focus,
+.btn-authentication.disabled:active,
+.btn-authentication.disabled.active,
+.btn-authentication[disabled]:hover,
+.btn-authentication[disabled]:focus,
+.btn-authentication[disabled]:active,
+.btn-authentication[disabled].active,
+fieldset[disabled] .btn-authentication:hover,
+fieldset[disabled] .btn-authentication:focus,
+fieldset[disabled] .btn-authentication:active,
+fieldset[disabled] .btn-authentication.active {
+  background-color: rgba(0,0,0,0.2);
   border-color: #440e62;
 }
