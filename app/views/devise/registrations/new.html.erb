@@ -2,6 +2,11 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+  <div class="field">
+    <%= radio_button_tag(:signup_account_type, "standard", default: true) %> &nbsp; <%= label_tag(:signup_account_type, "I am a collector") %>
+    <br />
+    <%= radio_button_tag(:signup_account_type, "vendor") %> &nbsp;<%= label_tag(:signup_account_type, "I am a shopkeeper") %>
+  </div>
 
   <div class="field">
     <%= f.label :name %><br />

@@ -1,12 +1,12 @@
 class User
   include Mongoid::Document
   store_in collection: "users"
-  attr_accessor :invite_code
+  attr_accessor :invite_code, :signup_account_type
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -40,6 +40,7 @@ class User
 
   field :name, type: String
   field :identity_verified, type: Integer # 1 if user identity is verified (for later implementations)
+  field :user_type, type: String # 'standard' or 'vendor'
   field :create_date, type: Date # For working out when the next billing day is
 
   # Types of fields
@@ -59,7 +60,12 @@ class User
   # Symbol
   # Time
   # TimeWithZone
+  validates_each :signup_account_type, :on => :create do |record, attr, value|
+    puts "#{attr}=\"#{value}\""
+  end
+
   validates_each :invite_code, :on => :create do |record, attr, value|
+      puts "#{attr}=\"#{value}\""
       record.errors.add attr, "Please enter correct invite code" unless
         value && value == "12345"
   end

@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   protected
   # Make sure that all the parameters are accepted  for sign up
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :invite_code) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :invite_code, :signup_account_type) }
   end
 end
