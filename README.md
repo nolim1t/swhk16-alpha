@@ -13,3 +13,8 @@ This is the site (and application for vaultron.co)
 * Add entry for **localdb** (for example: 192.168.59.103 or 127.0.0.1)
 * Save file
 * Run **rails s**
+
+## Auto-review apps
+* The format for pull request review apps is: *https://vaultronvault-pr-XX.herokuapp.com/* (where *XX* is the pull request number)
+* Auto-provisioning takes time
+* Settings for auto-provisioning is in *app.json*
