@@ -8,8 +8,10 @@ gem 'mongoid', '~> 5.0', '>= 5.0.2'
 gem 'bson', '~> 4.0'
 gem 'devise'
 gem 'carrierwave' # For image uploads
-#gem "fog-aws" # Store images in Amazon S3
-#gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid' # MongoID carrierwave
+gem 'fog'
+gem "fog-aws" # Store images in Amazon S3
+gem 'rmagick' # for image resizing
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid' # MongoID carrierwave
 
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'

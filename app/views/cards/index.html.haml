@@ -7,19 +7,18 @@
 .row
 	.col-lg-3.col-md-6.col-sm-6.frame_import
 		.inner_frame
+
 			.row
-				%a{ href: '#', class: "plus"}
+				%a{ href: '/cards/new', class: "plus"}
 					%i.glyphicon.glyphicon-plus.plus-icon
 			.row.add_card
 				Add Card
 	-@cards.each do |card|
 		.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
-			/ %img{:src => ""}
-			/ ="#{card.description}"
-			The Card
+			%a{:href => "/cards/detail/#{card.id}"}
+				%img{:src => card.photo.thumb.url, :onclick=>"/cards/detail/#{card.id}"}
 
 .row
 	.col-sm-6
 
 	.col-sm-6
-

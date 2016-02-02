@@ -4,5 +4,5 @@ class Cardnote
   field :text, type: String
   field :create_date, type: Date
 
-  field :card_id, type: BSON::ObjectId
+  field :card_id, type: String
 end

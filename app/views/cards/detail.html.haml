@@ -1,0 +1,51 @@
+.row
+	.col-sm-6
+		.table-responsive
+			%table
+				%tbody
+					%tr
+						images go here
+						%th{colspan:'2'}
+	.col-sm-6
+		.h2 #{@card.cardname}
+		.h3 #{@card.cardgame}
+		<b>Uploaded:</b> #{@card.create_date.to_s}
+		%br
+		<b>Owner:</b> #{current_user.name}
+		%br
+		%br
+		Verified tag
+.row
+	.col-sm-6
+		.table-responsive
+			%table
+				%tbody
+					%tr
+						Front image clickable
+						Back image clickable
+
+.row
+	.col-sm-6
+		.table-responsive
+			%table
+				%tbody
+					%tr
+						%br
+						.btn.btn-primary.my-btn Add Record
+						.btn.btn-primary.my-btn Edit Notes
+						=link_to "Transfer", cards_transfer_path, class: 'btn btn-primary btn-landing'
+						%br
+						%br
+						.h3 Notes
+						%p
+						-if @cardnote.length == 0 then
+							No notes on this card found
+						-else
+							-@cardnote.each do |cardnote|
+								#{cardnote.create_date}
+								%br
+								#{cardnote.text}
+								%br
+
+%br
+%br
