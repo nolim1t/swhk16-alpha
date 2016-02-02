@@ -28,19 +28,19 @@
           <li><a href="#">FAQ</a></li>
           <li><a href="#">Pricing</a></li>
         </ul> -->
-        <% if user_signed_in? %>
-          <%= render "layouts/authenticated_header" %>
-        <% else %>
-          <%= render "layouts/unauthenticated_header" %>
-        <% end %>
+          <% if user_signed_in? %>
+            <%= render "layouts/authenticated_header" %>
+          <% else %>
+            <%= render "layouts/unauthenticated_header" %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </nav>
-    
-  <div class="container">
-    <%= yield %>
+    </nav>
+      
+    <div class="container">
+      <%= yield %>
+    </div><!--/.container-->
 
     <%= render "layouts/footer" %>
-  </div><!--/.container-->
   </body>
 </html>
