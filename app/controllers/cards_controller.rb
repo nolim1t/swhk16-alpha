@@ -3,15 +3,20 @@ class CardsController < ApplicationController
 	layout 'application'
 
 	def index
-		@cards = Card.order_by([:updated_at, :asc]).limit(6)
+		@cards = Card.where(:owner_id => current_user.id.to_s).order_by([:updated_at, :asc]).limit(6)
 	end
 
 	# POST /cards/new
 	def newform
 		puts "new card"
-		if params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
+		if params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			if params[:cards]["Upload Picture"] then
-				puts params[:cards].inspect
+				Card.create(
+					cardname: params[:cards]["name"].to_s,
+					cardgame: params[:cards]["game"].to_s,
+					cardcollection: params[:cards]["collection"].to_s,
+					owner_id: params[:cards]["userid"].to_s
+				)
 				redirect_to :cards_index
 			else
 				puts "Need a picture"

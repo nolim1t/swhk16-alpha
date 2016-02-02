@@ -3,6 +3,7 @@
 = @errormsg
 
 = form_for :cards, url: cards_new_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
+	= f.hidden_field "userid", value: current_user.id
 	.row
 	.col-sm-6
 		.table-responsive

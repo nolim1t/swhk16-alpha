@@ -4,8 +4,10 @@ class Card
   #attr_accessible :image
 
   field :description, type: String
-
-  field :owner_id, type: BSON::ObjectId # Store it as a BSON Object
+  field :cardname, type: String
+  field :cardgame, type: String
+  field :cardcollection, type: String
+  field :owner_id, type: String
 
   # Types of fields
   # Array
