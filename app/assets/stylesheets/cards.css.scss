@@ -12,13 +12,29 @@
     margin-bottom: 10px;
 }
 
+.frame_import{
+	border: 0;
+}
+
+.inner_frame{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px; 
+  height: 330px;
+  border: 1px dashed black;
+}
+
 .row .thumbnail{
   border:0;
   box-shadow:0;
   border-radius:0;
 }
 
-.row .img{
-	height: 350px;
-	width: 20px;
+.row img{
+	position: absolute;
+	top: 10px;
+  left: 10px;
+  right: 10px; 
+  height: 330px;
 }
