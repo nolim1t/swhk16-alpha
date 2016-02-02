@@ -9,6 +9,9 @@ class CardsController < ApplicationController
 	# POST /cards/new
 	def newform
 		puts "new card"
+		@prefilled_name = params[:cards]["name"]
+		@prefilled_game = params[:cards]["game"]
+		@prefilled_collection = params[:cards]["collection"]		
 		if params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			if params[:cards]["Upload Picture"] then
 				Card.create(
@@ -21,9 +24,6 @@ class CardsController < ApplicationController
 			else
 				puts "Need a picture"
 				@errormsg = "A card requires a photo"
-				@prefilled_name = params[:cards]["name"]
-				@prefilled_game = params[:cards]["game"]
-				@prefilled_collection = params[:cards]["collection"]
 				render :template => "cards/new"
 			end
 		else
