@@ -1,3 +1,7 @@
+.row
+.col-sm-6
+= @errormsg
+
 = form_for :cards, url: cards_new_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
 	.row
 	.col-sm-6
@@ -14,10 +18,10 @@
 		%br
 		%br
 		%br
-		= f.text_field :name, placeholder: "Edit Name of Card", class: "form-control"
+		= f.text_field :name, placeholder: "Edit Name of Card", class: "form-control", value: @prefilled_name
 		%br
-		= f.text_field :game, placeholder: "Edit Game", class: "form-control"
+		= f.text_field :game, placeholder: "Edit Game", class: "form-control", value: @prefilled_game
 		%br
-		= f.text_field :collection, placeholder: "Edit Collection", class: "form-control"
+		= f.text_field :collection, placeholder: "Edit Collection", class: "form-control", value: @prefilled_collection
 		%br
 		= f.submit "Validate/Submit card", class: "btn btn-primary btn-landing btn_up"
