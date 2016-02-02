@@ -4,6 +4,11 @@ class CardsController < ApplicationController
 
 	def index
 		@cards = Card.where(:owner_id => current_user.id.to_s).order_by([:updated_at, :asc]).limit(6)
+		puts @cards.length
+		@cards.each{|card|
+			puts card.photo.url
+			puts card.photo.thumb.url
+		}
 	end
 
 	# POST /cards/new
@@ -11,14 +16,16 @@ class CardsController < ApplicationController
 		puts "new card"
 		@prefilled_name = params[:cards]["name"]
 		@prefilled_game = params[:cards]["game"]
-		@prefilled_collection = params[:cards]["collection"]		
+		@prefilled_collection = params[:cards]["collection"]
 		if params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			if params[:cards]["Upload Picture"] then
+				puts params[:cards]["Upload Picture"]
 				Card.create(
 					cardname: params[:cards]["name"].to_s,
 					cardgame: params[:cards]["game"].to_s,
 					cardcollection: params[:cards]["collection"].to_s,
-					owner_id: params[:cards]["userid"].to_s
+					owner_id: params[:cards]["userid"].to_s,
+					photo: params[:cards]["Upload Picture"]
 				)
 				redirect_to :cards_index
 			else

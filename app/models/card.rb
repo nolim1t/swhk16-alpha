@@ -27,5 +27,5 @@ class Card
   # Time
   # TimeWithZone
 
-  #mount_uploader :avatar, CarduploaderUploader
+  mount_uploader :photo, CarduploaderUploader
 end
