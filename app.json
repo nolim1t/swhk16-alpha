@@ -23,6 +23,9 @@
     },
     "AWS_SECRET_KEY": {
       "required": true
+    },
+    "S3_BUCKET_NAME": {
+      "required": true
     }
   },
   "addons": [
