@@ -50,7 +50,21 @@ class CardsController < ApplicationController
 
 	def detail
 		puts "ID: #{params[:id]}"
-		render :template => "cards/detail.haml"
+		cards = Card.where(:id => params[:id].to_s)
+		if cards.length == 1 then
+			@card = cards[0]
+			@cardnote = Cardnote.where(:id => @card._id.to_s)
+			puts @card.inspect
+			puts current_user.name
+			# Check if owner matches the database
+			if @card.owner_id == current_user._id.to_s then
+				render :template => "cards/detail"
+			else
+				redirect_to '/'
+			end
+		else
+			redirect_to '/'
+		end
 	end
 
 	def transfer
