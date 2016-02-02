@@ -11,6 +11,7 @@ class CardsController < ApplicationController
 			puts card.photo.url
 			puts card.photo.thumb.url
 		}
+		@cards_search = Cardnote.where({name: /#{params[:search_text]}/})
 	end
 
 	# POST /cards/new

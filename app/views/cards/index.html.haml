@@ -2,7 +2,9 @@
 	.col-lg-6.col-md-12
 		.h1 My Cards
 	.col-lg-6.col-md-12
-		.h1 Search Input
+		%form{ method: "get" }
+			%input{name: "search_text", size: "30", type: "text", value: @query}
+			%input{type: "submit", value: "Search"}
 
 .row
 	.col-lg-3.col-md-6.col-sm-6.frame_import
