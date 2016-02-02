@@ -4,7 +4,9 @@ class CardsController < ApplicationController
 
 	def index
 		@cards = Card.where(:owner_id => current_user.id.to_s).order_by([:updated_at, :asc]).limit(6)
-		puts @cards.length
+		if @cards.length == 0 then
+			redirect_to :cards_new_url
+		end
 		@cards.each{|card|
 			puts card.photo.url
 			puts card.photo.thumb.url
@@ -13,7 +15,6 @@ class CardsController < ApplicationController
 
 	# POST /cards/new
 	def newform
-		puts "new card"
 		@prefilled_name = params[:cards]["name"]
 		@prefilled_game = params[:cards]["game"]
 		@prefilled_collection = params[:cards]["collection"]
@@ -45,6 +46,9 @@ class CardsController < ApplicationController
 		@prefilled_game = ""
 		@prefilled_collection = ""
 		render :template => "cards/new"
+	end
+
+	def detail
 	end
 
 	def transfer
