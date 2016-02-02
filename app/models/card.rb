@@ -7,6 +7,8 @@ class Card
   field :cardname, type: String
   field :cardgame, type: String
   field :cardcollection, type: String
+  field :create_date, type: Date
+  field :update_date, type: Date
   field :owner_id, type: String
 
   # Types of fields

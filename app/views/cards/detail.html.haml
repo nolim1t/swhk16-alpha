@@ -9,7 +9,7 @@
 	.col-sm-6
 		.h2 #{@card.cardname}
 		.h3 #{@card.cardgame}
-		<b>Uploaded:</b> 2015-01-23
+		<b>Uploaded:</b> #{@card.create_date.to_s}
 		%br
 		<b>Owner:</b> #{current_user.name}
 		%br
