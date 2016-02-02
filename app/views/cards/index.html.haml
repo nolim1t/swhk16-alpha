@@ -1,44 +1,21 @@
-%br
-%br
-.col-sm-6
-	.h1 Sophie
-.col-sm-6
-	=link_to "Add A Card", cards_post_url_path, class: 'btn btn-primary btn-landing'
-%br
-%br
-%br
-%br
 .row
-	.col-sm-6
-		.table-responsive
-			%table
-				%tbody
-					%tr
-						%th= image_tag('front_2.jpg', width: "200")
-						%th= image_tag('back_2.jpg', width: "200")
-						%th{colspan:'2'}
-	.col-sm-6
-		.h2 Swell of Growth
-		%br
-		<div class="btn btn-primary my-btn" onclick="document.location.href='/cards/detail'">Details</div>
+	.col-lg-6.col-md-12
+		.h1 My Cards
+	.col-lg-6.col-md-12
+		.h1 Search Input
+
+.row
+	.col-lg-3.col-md-6.col-sm-6.frame_import
+		.inner_frame
+			= link_to 'cards/new' do
+				.glyphicon.glyphicon-plus
+	-@cards.each do |card|
+		.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
+			%img{:src => card.photo.thumb.url, :onclick=>"/cards/detail"}
+			/ ="#{card.description}"
 
 
-%br
-%br
 .row
 	.col-sm-6
-		.table-responsive
-			%table
-				%tbody
-					%tr
-						%th= image_tag('front.jpg', width: "200")
-						%th= image_tag('back.jpg', width: "200")
-						%th{colspan:'2'}
+
 	.col-sm-6
-		.h2 Progenitus
-		%br
-		.btn.btn-primary.my-btn Details
-%br
-%br
-%br
-%br

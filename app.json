@@ -19,6 +19,9 @@
       "required": true
     }
   },
+  "env": {
+    "DONT_INHERIT_THIS_CONFIG_VAR": "S3_BUCKET_NAME"    
+  },
   "addons": [
     "cloudinary",
     "mailgun",

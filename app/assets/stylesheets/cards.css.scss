@@ -1,0 +1,40 @@
+// Place all the styles related to the cards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.frame, .frame_import{
+    position: absolute;
+    top: 45px;
+    left: 10px; 
+    width: 30px;
+    height: 350px;
+    border: 1px dashed black;
+    margin-bottom: 10px;
+}
+
+.frame_import{
+	border: 0;
+}
+
+.inner_frame{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px; 
+  height: 330px;
+  border: 1px dashed black;
+}
+
+.row .thumbnail{
+  border:0;
+  box-shadow:0;
+  border-radius:0;
+}
+
+.row img{
+	position: absolute;
+	top: 10px;
+  left: 10px;
+  right: 10px; 
+  height: 330px;
+}
