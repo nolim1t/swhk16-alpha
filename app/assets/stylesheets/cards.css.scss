@@ -6,7 +6,7 @@
     position: absolute;
     top: 45px;
     left: 10px; 
-    width: 30px;
+    width: 280px;
     height: 350px;
     border: 1px dashed black;
     margin-bottom: 10px;
@@ -21,6 +21,7 @@
   top: 10px;
   left: 5px;
   right: 5px; 
+  width: 270px;
   height: 330px;
   border: 1px dashed black;
 }
@@ -36,5 +37,22 @@
 	top: 10px;
   left: 5px;
   right: 5px; 
+  width: 280px;
   height: 330px;
+}
+
+.plus{
+	margin-top: 100px;
+	padding-left: 125px;
+}
+
+.plus-icon{
+	font-size: 100px;
+	color: #5f3d72;
+}
+
+.add_card{
+	padding-top: 60px;
+	color: #5f3d72;
+	text-align: center;
 }
