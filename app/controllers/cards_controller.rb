@@ -49,6 +49,8 @@ class CardsController < ApplicationController
 	end
 
 	def detail
+		puts "ID: #{params[:id]}"
+		render :template => "cards/detail.haml"
 	end
 
 	def transfer
