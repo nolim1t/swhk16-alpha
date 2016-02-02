@@ -11,7 +11,7 @@
 				%a{ href: '/cards/new', class: "plus"}
 					%i.glyphicon.glyphicon-plus.plus-icon
 			.row.add_card
-				Add Card
+				.h2 Add Card
 	-@cards.each do |card|
 		.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
 			%a{:href => "/cards/detail/#{card.id}"}
