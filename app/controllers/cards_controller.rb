@@ -3,7 +3,7 @@ class CardsController < ApplicationController
 	layout 'application'
 
 	def index
-		@cards = Card.order_by([:updated_at, :asc]).limit(6)
+		@cards = Card.order_by([:updated_at, :asc]).limit(7)
 	end
 
 	# POST /cards/new
