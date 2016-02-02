@@ -20,13 +20,19 @@ class CardsController < ApplicationController
 		@prefilled_collection = params[:cards]["collection"]
 		if params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			if params[:cards]["Upload Picture"] then
-				puts params[:cards]["Upload Picture"]
-				Card.create(
+				card_created = Card.create(
 					cardname: params[:cards]["name"].to_s,
 					cardgame: params[:cards]["game"].to_s,
 					cardcollection: params[:cards]["collection"].to_s,
+					create_date: Time.new(),
+					update_date: Time.new(),
 					owner_id: params[:cards]["userid"].to_s,
 					photo: params[:cards]["Upload Picture"]
+				)
+				Cardnote.create(
+					text: "Card initial upload complete",
+					create_date: Time.new(),
+					card_id: card_created._id.to_s
 				)
 				redirect_to :cards_index
 			else
@@ -49,6 +55,22 @@ class CardsController < ApplicationController
 	end
 
 	def detail
+		puts "ID: #{params[:id]}"
+		cards = Card.where(:id => params[:id].to_s)
+		if cards.length == 1 then
+			@card = cards[0]
+			@cardnote = Cardnote.where(:card_id => @card._id.to_s)
+			puts @card.inspect
+			puts current_user.name
+			# Check if owner matches the database
+			if @card.owner_id == current_user._id.to_s then
+				render :template => "cards/detail"
+			else
+				redirect_to '/'
+			end
+		else
+			redirect_to '/'
+		end
 	end
 
 	def transfer
