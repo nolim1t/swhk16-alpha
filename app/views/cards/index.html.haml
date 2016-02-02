@@ -7,10 +7,11 @@
 .row
 	.col-lg-3.col-md-6.col-sm-6.frame_import
 		.inner_frame
-			.glyphicon.glyphicon-plus
+			= link_to 'cards/new' do
+				.glyphicon.glyphicon-plus
 	-@cards.each do |card|
 		.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
-			%img{:src => card.photo.thumb.url}
+			%img{:src => card.photo.thumb.url, :onclick=>"/cards/detail"}
 			/ ="#{card.description}"
 
 
