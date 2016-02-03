@@ -92,11 +92,16 @@ class CardsController < ApplicationController
 			puts current_user.name
 			# Check if owner matches the database
 			if @card.owner_id == current_user._id.to_s then
+				@method = env['REQUEST_METHOD']
 				if env['REQUEST_METHOD'] == "GET" then
 					render :template => "cards/detail"
 				else
 					puts "POST detected"
-					puts "Params: #{params.inspect}"
+					notes_type = 1
+					if params[:cards]['front_image'] != nil then
+						notes_type = 2
+					end
+					puts "Params: card_id=#{params[:id]}, notes_type=#{notes_type}, notes_text=#{params[:cards]['notes_text']}"
 					render :template => "cards/detail"
 				end
 			else
