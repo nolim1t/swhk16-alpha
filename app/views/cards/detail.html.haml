@@ -36,21 +36,16 @@
 				%tbody
 					%tr
 						%br
-						.btn.btn-primary.my-btn Add New Image/Notes
+						=link_to "Add new Image / Note", request.original_fullpath + "?add_note=1", class: 'btn btn-primary btn-landing'
 						&nbsp;
 						=link_to "Transfer", cards_transfer_path, class: 'btn btn-primary btn-landing'
 						%br
+						-if @can_hide_notes == "no"
+							%br
+							=render "addnote"
+							%br
 						%br
 						.h3 Notes
-						%p
-						-if @cardnote.length == 0 then
-							No notes on this card found
-						-else
-							-@cardnote.each do |cardnote|
-								#{cardnote.create_date}
-								%br
-								#{cardnote.text}
-								%br
-
+						=render "listnote"
 %br
 %br
