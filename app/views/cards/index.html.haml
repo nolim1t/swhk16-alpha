@@ -7,7 +7,7 @@
 			%input{type: "submit", value: "Search"}
 
 .row
-	.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
+	.col-lg-3.col-md-4.col-sm-6.thumbnail.frame
 		.inner_frame
 			.row
 				%a{ href: '/cards/new', class: "plus"}
@@ -15,7 +15,7 @@
 			.row.add_card
 				.h2 Add Card
 	-@cards.each do |card|
-		.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
+		.col-lg-3.col-md-4.col-sm-6.thumbnail.frame
 			%a{:href => "/cards/detail/#{card.id}"}
 				%img{:src => card.photo.thumb.url, :onclick=>"/cards/detail/#{card.id}", class: "img-responsive"}
 
