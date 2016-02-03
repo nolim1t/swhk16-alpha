@@ -92,15 +92,10 @@ class CardsController < ApplicationController
 			puts current_user.name
 			# Check if owner matches the database
 			if @card.owner_id == current_user._id.to_s then
-				@can_hide_notes = "yes"
 				if env['REQUEST_METHOD'] == "GET" then
-					if params[:add_note] == "1" then
-						@can_hide_notes = "no"
-					end
 					render :template => "cards/detail"
 				else
 					puts "POST detected"
-					@can_hide_notes = "yes"
 					puts "Params: #{params.inspect}"
 					render :template => "cards/detail"
 				end
