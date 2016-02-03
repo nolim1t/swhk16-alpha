@@ -52,3 +52,18 @@
 	color: #5f3d72;
 	text-align: center;
 }
+
+.row .btn-purple{
+	color: white;
+	border-color: #5f3d72;
+	background-color:  #5f3d72;
+}
+.row .btn-purple:hover,
+.row .btn-purple:focus, 
+.row .btn-purple:active {
+  color: white;
+  background-color: #553666;
+  border-color: #5f3d72;
+}
+
+.top-buffer { margin-top: 40px; }
