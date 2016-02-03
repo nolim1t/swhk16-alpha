@@ -39,6 +39,7 @@ class User
 
 
   field :name, type: String
+  field :timezone, type: String
   field :identity_verified, type: Integer # 1 if user identity is verified (for later implementations)
   field :user_type, type: String # 'standard' or 'vendor'
   field :create_date, type: Date # For working out when the next billing day is

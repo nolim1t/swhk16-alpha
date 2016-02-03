@@ -93,6 +93,11 @@ class CardsController < ApplicationController
 			# Check if owner matches the database
 			if @card.owner_id == current_user._id.to_s then
 				@method = env['REQUEST_METHOD']
+				if current_user.timezone == '' or current_user.timezone == nil then
+					@timezone = Time.zone.name
+				else
+					@timezone = current_user.timezone
+				end
 				if env['REQUEST_METHOD'] == "GET" then
 					render :template => "cards/detail"
 				else
@@ -102,6 +107,14 @@ class CardsController < ApplicationController
 						notes_type = 2
 					end
 					puts "Params: card_id=#{params[:id]}, notes_type=#{notes_type}, notes_text=#{params[:cards]['notes_text']}"
+					if notes_type == 1
+						# Standard note
+						Cardnote.create(
+							text: params[:cards]['notes_text'].to_s,
+							create_date: Time.new(),
+							card_id: params[:id].to_s
+						)
+					end
 					render :template => "cards/detail"
 				end
 			else
