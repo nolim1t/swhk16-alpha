@@ -4,7 +4,12 @@
 			%table
 				%tbody
 					%tr
-						images go here
+						-if @cardimages.length == 0 then
+							No images found
+						-else
+							-@cardimages.each do |cardimage|
+								%img{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}", class: "img-responsive"}
+								%br
 						%th{colspan:'2'}
 	.col-sm-6
 		.h2 #{@card.cardname}
@@ -31,8 +36,8 @@
 				%tbody
 					%tr
 						%br
-						.btn.btn-primary.my-btn Add Record
-						.btn.btn-primary.my-btn Edit Notes
+						.btn.btn-primary.my-btn Add New Image
+						&nbsp;
 						=link_to "Transfer", cards_transfer_path, class: 'btn btn-primary btn-landing'
 						%br
 						%br
