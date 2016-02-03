@@ -18,8 +18,9 @@
 		.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
 			%a{:href => "/cards/detail/#{card.id}"}
 				-@cardimages.each do |cardimage|
-					-if cardimage.image_type == "front" then
-						%img{:src => "#{cardimage.photo.thumb.url}", :onclick=>"/cards/detail/#{card.id}", class: "img-responsive"}
+					-if cardimage.card_id == card.id
+						-if cardimage.image_type == "front" then
+							%img{:src => "#{cardimage.photo.thumb.url}", :onclick=>"/cards/detail/#{card.id}", class: "img-responsive"}
 
 .row
 	.col-sm-6

@@ -2,7 +2,7 @@ class Cardimage
   include Mongoid::Document
   store_in collection: "cardimages"
 
-  field :create_date, type: Date
+  field :create_date, type: DateTime
   field :card_id, type: BSON::ObjectId
   field :image_type, type: String # Enforce in app as 'front' or 'back'
   field :image_note, type: String
