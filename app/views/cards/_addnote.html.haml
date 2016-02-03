@@ -1,5 +1,4 @@
 = form_for :cards, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
-  %b Notes text:
   %br
   = f.text_area :notes_text, placeholder: "Enter some notes here"
   %br
