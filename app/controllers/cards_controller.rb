@@ -12,7 +12,7 @@ class CardsController < ApplicationController
 			puts card.photo.url
 			puts card.photo.thumb.url
 
-			cardimages_result = Cardimage.where(:card_id => card._id.to_s).order_by([:create_date, :desc]).limit(2)
+			cardimages_result = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc]).limit(2)
 			cardimages_result.each{|cardimage_result|
 				@cardimages << cardimage_result
 			}
@@ -138,7 +138,7 @@ class CardsController < ApplicationController
 						redirect_to request.original_fullpath
 					else
 						flash[:error] = "Must include a comment"
-						redirect_to request.original_fullpath						
+						redirect_to request.original_fullpath
 					end # END: Check presence of notes text
 				end # END: check if get or post
 			else
