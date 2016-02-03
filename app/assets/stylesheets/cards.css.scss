@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.frame, .frame_import{
+.frame{
     position: absolute;
     top: 45px;
     left: 10px; 
@@ -10,10 +10,6 @@
     height: 350px;
     border: 1px dashed black;
     margin-bottom: 10px;
-}
-
-.frame_import{
-	border: 0;
 }
 
 .inner_frame{
@@ -46,6 +42,7 @@
 }
 
 .plus-icon{
+	top: 44px;
 	font-size: 100px;
 	color: #5f3d72;
 }
