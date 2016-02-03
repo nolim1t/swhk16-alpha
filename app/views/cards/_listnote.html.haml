@@ -1,0 +1,9 @@
+%p
+-if @cardnote.length == 0 then
+  No notes on this card found
+-else
+  -@cardnote.each do |cardnote|
+    #{cardnote.create_date}
+    %br
+    #{cardnote.text}
+    %br

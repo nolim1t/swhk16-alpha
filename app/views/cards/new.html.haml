@@ -8,6 +8,12 @@
 	= form_for :cards, url: cards_new_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
 		= f.hidden_field "userid", value: current_user.id
 		.col-lg-6.col-md-6
+			Front Image
+			%br
+			= f.file_field "front_image", class: "btn btn-primary btn-purple"
+			%br
+			Back Image
+			%br
 			= f.file_field "Upload Picture", class: "btn btn-primary btn-purple "
 			%br
 		.col-lg-6.col-md-6
@@ -18,3 +24,4 @@
 			= f.text_field :collection, placeholder: "Collection", class: "form-control", value: @prefilled_collection
 			%br
 			= f.submit "Validate/Submit Card", class: "btn btn-primary btn-purple"
+
