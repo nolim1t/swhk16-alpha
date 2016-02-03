@@ -1,0 +1,14 @@
+= form_for :cards, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
+  %b Note type:
+  = f.select :notes_type, options_for_select([['Note', 1], ['Image', 2]])
+  %br
+  %b Notes text:
+  %br
+  = f.text_area :notes_text
+  %br
+  %b Front of image:
+  = f.file_field "front_image", class: "btn btn-primary btn-landing btn_up"
+  %b Back of image:
+  = f.file_field "back_image", class: "btn btn-primary btn-landing btn_up"
+  %br
+  = f.submit "Add Entry", class: "btn btn-primary btn-landing btn_up"

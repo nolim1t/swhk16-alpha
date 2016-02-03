@@ -11,7 +11,13 @@
 				%tbody
 					%tr
 						.jumbotron.cardupload
-							= f.file_field "Upload Picture", class: "btn btn-primary btn-landing btn_up"
+							Front Image
+							%br
+							= f.file_field "front_image", class: "btn btn-primary btn-landing btn_up"
+							%br
+							Back Photo
+							%br
+							= f.file_field "back_image", class: "btn btn-primary btn-landing btn_up"
 	.col-sm-6
 		%br
 		%br
