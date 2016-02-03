@@ -12,9 +12,9 @@ class CardsController < ApplicationController
 			puts card.photo.url
 			puts card.photo.thumb.url
 
-			cardimages_result = Cardimage.where(:card_id => card._id.to_s)
+			cardimages_result = Cardimage.where(:card_id => card._id.to_s).order_by([:create_date, :desc]).limit(2)
 			cardimages_result.each{|cardimage_result|
-				@cardimages << cardimage_result				
+				@cardimages << cardimage_result
 			}
 		}
 		@cards_search = Cardnote.where({name: /#{params[:search_text]}/})
@@ -86,7 +86,7 @@ class CardsController < ApplicationController
 		if cards.length == 1 then
 			@card = cards[0]
 			@cardnote = Cardnote.where(:card_id => @card._id.to_s)
-			@cardimages = Cardimage.where(:card_id => @card._id.to_s)
+			@cardimages = Cardimage.where(:card_id => @card._id.to_s).order_by([:image_type, :desc],[:create_date, :desc]).limit(2)
 			puts @card.inspect
 			puts @cardimages.inspect
 			puts current_user.name

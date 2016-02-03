@@ -39,3 +39,19 @@ Please set the following **before** you run the app. Heroku is configured alread
 * cardgame - game where the card belongs to (string)
 * photo.url - URL to the original image
 * photo.thumb.url - URL to the thumbnail (defined in app/uploaders/cardupload_upload.rb)
+
+### Related to cards
+Each card maintains a history of notes and new images.
+
+The idea is images have a history (not visible)
+
+#### Cardnotes model
+* text -  General text notes added by the user
+* create_date - When the image was created
+
+#### Cardimages model
+* image_type - Either 'front' or 'back'
+* photo.url - URL to original image (beware might be large)
+* photo.thumb.url - URL to the thumbnail (recommended)
+* image_note -  General notes about the image
+* create_date - When the image was created
