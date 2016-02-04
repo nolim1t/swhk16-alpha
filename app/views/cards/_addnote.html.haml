@@ -4,12 +4,12 @@
       -if key == "error"
         %li #{key.capitalize}: #{value}
 = form_for :cards, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
-  %br
-  = f.text_area :notes_text, placeholder: "Enter some notes here"
-  %br
-  %b Front of image (Optional*):
-  = f.file_field "front_image", class: "btn btn-primary btn-landing btn_up"
-  %b Back of image (Optional*):
-  = f.file_field "back_image", class: "btn btn-primary btn-landing btn_up"
-  %br
-  = f.submit "Add Entry", class: "btn btn-primary btn-landing btn_up"
+  .row
+    .col-lg-4.col-sm-4
+      %b Front of image (Optional*):
+      = f.file_field "front_image", class: "btn btn-primary btn-purple"
+    .col-lg-4.col-sm-4
+      %b Back of image (Optional*):
+      = f.file_field "back_image", class: "btn btn-primary btn-purple"
+  .top-buffer
+  = f.submit "Submit", class: "btn btn-primary btn-purple"

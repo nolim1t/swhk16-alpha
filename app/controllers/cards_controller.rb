@@ -21,6 +21,10 @@ class CardsController < ApplicationController
 		@cards_search = Cardnote.where({name: /#{params[:search_text]}/})
 	end
 
+	def edit
+		@card = Card.where(:id => params[:id].to_s)[0]
+	end
+
 	# POST /cards/new
 	def newform
 		@prefilled_name = params[:cards]["name"]
@@ -108,40 +112,42 @@ class CardsController < ApplicationController
 					render :template => "cards/detail"
 				else
 					puts "POST detected"
-					puts "Params: card_id=#{params[:id]}, notes_text=#{params[:cards]['notes_text']}"
-					puts "Full cards params: #{params[:cards].inspect}"
-					if params[:cards]['notes_text'] != '' then
-						Cardnote.create(
-							text: params[:cards]['notes_text'].to_s,
-							create_date: Time.new(),
-							card_id: params[:id].to_s
-						)
-						# Check images
-						if params[:cards]['front_image'] != nil then
-							Cardimage.create(
+					if params[:cards].present?
+						puts "Params: card_id=#{params[:id]}, notes_text=#{params[:cards]['notes_text']}"
+						puts "Full cards params: #{params[:cards].inspect}"
+						if params[:cards]['notes_text'] != '' then
+							Cardnote.create(
+								text: params[:cards]['notes_text'].to_s,
 								create_date: Time.new(),
-								photo: params[:cards]['front_image'],
-								image_type: "front",
-								image_note: "front image uploaded",
 								card_id: params[:id].to_s
 							)
-						end # END: Check front image
-						if params[:cards]['back_image'] != nil then
-							# if a new back image is specified
-							Cardimage.create(
-								create_date: Time.new(),
-								photo: params[:cards]["back_image"],
-								image_type: "back",
-								image_note: "Back image uploaded",
-								card_id: params[:id].to_s
-							)
-						end # END: Check back image
-						redirect_to request.original_fullpath
-					else
-						flash[:error] = "Must include a comment"
-						redirect_to request.original_fullpath
-					end # END: Check presence of notes text
-				end # END: check if get or post
+							# Check images
+							if params[:cards]['front_image'] != nil then
+								Cardimage.create(
+									create_date: Time.new(),
+									photo: params[:cards]['front_image'],
+									image_type: "front",
+									image_note: "front image uploaded",
+									card_id: params[:id].to_s
+								)
+							end # END: Check front image
+							if params[:cards]['back_image'] != nil then
+								# if a new back image is specified
+								Cardimage.create(
+									create_date: Time.new(),
+									photo: params[:cards]["back_image"],
+									image_type: "back",
+									image_note: "Back image uploaded",
+									card_id: params[:id].to_s
+								)
+								end # END: Check back image
+								redirect_to request.original_fullpath
+							else
+								flash[:error] = "Must include a comment"
+								redirect_to request.original_fullpath
+							end # END: Check presence of notes text
+						end # END: check if get or post
+					end
 			else
 				redirect_to '/'
 			end
