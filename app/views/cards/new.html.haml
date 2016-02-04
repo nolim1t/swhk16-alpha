@@ -1,34 +1,27 @@
 .row
-.col-sm-6
-= @errormsg
+	.col-lg-6.col-md-6
+		%span{style: "color: #5f3d72"}
+			.h1 Add Card
+		= @errormsg
 
-= form_for :cards, url: cards_new_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
-	= f.hidden_field "userid", value: current_user.id
-	.row
-	.col-sm-6
-		.table-responsive
-			%table
-				%tbody
-					%tr
-						.jumbotron.cardupload
-							Front Image
-							%br
-							= f.file_field "front_image", class: "btn btn-primary btn-landing btn_up"
-							%br
-							Back Photo
-							%br
-							= f.file_field "back_image", class: "btn btn-primary btn-landing btn_up"
-	.col-sm-6
-		%br
-		%br
-		%br
-		%br
-		%br
-		%br
-		= f.text_field :name, placeholder: "Edit Name of Card", class: "form-control", value: @prefilled_name
-		%br
-		= f.text_field :game, placeholder: "Edit Game", class: "form-control", value: @prefilled_game
-		%br
-		= f.text_field :collection, placeholder: "Edit Collection", class: "form-control", value: @prefilled_collection
-		%br
-		= f.submit "Validate/Submit card", class: "btn btn-primary btn-landing btn_up"
+.row.top-buffer
+	= form_for :cards, url: cards_new_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
+		= f.hidden_field "userid", value: current_user.id
+		.col-lg-6.col-md-6
+			Front Image
+			%br
+			= f.file_field "front_image", class: "btn btn-primary btn-purple"
+			%br
+			Back Image
+			%br
+			= f.file_field "back_image", class: "btn btn-primary btn-purple "
+			%br
+		.col-lg-6.col-md-6
+			= f.text_field :name, placeholder: "Name of Card", class: "form-control", value: @prefilled_name
+			%br
+			= f.text_field :game, placeholder: "Game", class: "form-control", value: @prefilled_game
+			%br
+			= f.text_field :collection, placeholder: "Collection", class: "form-control", value: @prefilled_collection
+			%br
+			= f.submit "Validate/Submit Card", class: "btn btn-primary btn-purple"
+

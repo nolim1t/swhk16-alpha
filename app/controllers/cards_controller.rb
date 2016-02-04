@@ -3,7 +3,7 @@ class CardsController < ApplicationController
 	layout 'application'
 
 	def index
-		@cards = Card.where(:owner_id => current_user.id.to_s).order_by([:updated_at, :asc]).limit(6)
+		@cards = Card.where(:owner_id => current_user.id.to_s).order_by([:updated_at, :asc]).limit(7)
 		if @cards.length == 0 then
 			redirect_to :cards_new_url
 		end
@@ -17,6 +17,7 @@ class CardsController < ApplicationController
 				@cardimages << cardimage_result
 			}
 		}
+		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
 		@cards_search = Cardnote.where({name: /#{params[:search_text]}/})
 	end
 

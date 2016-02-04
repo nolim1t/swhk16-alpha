@@ -1,28 +1,39 @@
-.row
-	.col-lg-6.col-md-12
-		.h1 My Cards
-	.col-lg-6.col-md-12
-		%form{ method: "get" }
-			%input{name: "search_text", size: "30", type: "text", value: @query}
-			%input{type: "submit", value: "Search"}
+/ .row
+/ 	.col-lg-6.col-md-12
+/ 		%h5 My Cards
+/ 	.col-lg-6.col-md-12.text-center
+/ 		%form{method: 'get'}
+/ 			%input{name: "search_text", size: "40", type: "text", value: @query}
+/ 			%input{type: "submit", value: "Search", class: "btn btn-success btn-purple"}
+.container-fluid
+	.row
+		.col-lg-3.col-md-4.col-xs-6.thumb
+			%a.thumbnail{:href => '/cards/new'}
+				%img.img-responsive{ :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
 
-.row
-	.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
-		.inner_frame
-			.row
-				%a{ href: '/cards/new', class: "plus"}
-					%i.glyphicon.glyphicon-plus.plus-icon
-			.row.add_card
-				.h2 Add Card
-	-@cards.each do |card|
-		.col-lg-3.col-md-6.col-sm-6.thumbnail.frame
-			%a{:href => "/cards/detail/#{card.id}"}
-				-@cardimages.each do |cardimage|
-					-if cardimage.card_id == card.id
-						-if cardimage.image_type == "front" then
-							%img{:src => "#{cardimage.photo.thumb.url}", class: "img-responsive"}
-
-.row
-	.col-sm-6
-
-	.col-sm-6
+		-@cards_and_images.each do |card, cardimage|
+			.col-lg-3.col-md-4.col-xs-6.thumb
+				%a.thumbnail{:href => "/cards/detail/#{card.id}"}
+					-if cardimage.image_type == "front" then
+						%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", :onclick=>"/cards/detail/#{card.id}"}
