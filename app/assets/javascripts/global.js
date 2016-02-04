@@ -1,7 +1,7 @@
-$(document).ready(function(){
-	var dismiss_popover = function(selector){
-		$(selector).click();
-	}
+// $(document).ready(function(){
+// 	var dismiss_popover = function(selector){
+// 		$(selector).click();
+// 	}
 
-	$('[data-toggle="popover"]').popover({ html: true });
-}
+// 	$('[data-toggle="popover"]').popover({ html: true });
+// }
