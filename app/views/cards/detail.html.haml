@@ -16,6 +16,8 @@
 		%br
 		%br
 		Verified tag
+		%br
+		=render "listnote"
 		.top-buffer
 		=link_to "Edit", cards_edit_path(@card), class: "btn btn-primary btn-purple"
 
@@ -27,8 +29,6 @@
 		.h3 Card History
 		/# =link_to "Transfer Ownership", cards_transfer_path, class: 'btn btn-primary btn-purple'
 		=render "addnote"
-		%br
-		=render "listnote"
 
 %br
 %br
