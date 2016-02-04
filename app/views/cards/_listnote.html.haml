@@ -3,7 +3,8 @@
   No notes on this card found
 -else
   -@cardnote.each do |cardnote|
-    #{cardnote.create_date}
+    %br
+    #{Time.at(cardnote.create_date).in_time_zone(@timezone).strftime "%a, %e %b %Y %H:%M:%S %z"}
     %br
     #{cardnote.text}
     %br
