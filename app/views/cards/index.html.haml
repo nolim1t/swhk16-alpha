@@ -1,11 +1,12 @@
-/ .row
-/ 	.col-lg-6.col-md-12
-/ 		%h5 My Cards
-/ 	.col-lg-6.col-md-12.text-center
-/ 		%form{method: 'get'}
-/ 			%input{name: "search_text", size: "40", type: "text", value: @query}
-/ 			%input{type: "submit", value: "Search", class: "btn btn-success btn-purple"}
 .row
+	.col-lg-6.col-md-12
+		%h2{style:"color:#5f3d72"} My Cards
+	.col-lg-6.col-md-12.search
+		%form{method: 'get'}
+			%input{name: "search_text", size: "40", type: "text", value: @query}
+			%input{type: "submit", value: "Search", class: "btn btn-success btn-purple"}
+
+.row.top-buffer
 	.col-lg-3.col-md-4.col-xs-6.thumb
 		%a.thumbnail{:href => '/cards/new'}
 			.row
