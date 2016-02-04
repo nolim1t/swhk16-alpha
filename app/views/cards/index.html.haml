@@ -20,7 +20,7 @@
 				-@cardimages.each do |cardimage|
 					-if cardimage.card_id == card.id
 						-if cardimage.image_type == "front" then
-							%img{:src => "#{cardimage.photo.thumb.url}", :onclick=>"/cards/detail/#{card.id}", class: "img-responsive"}
+							%img{:src => "#{cardimage.photo.thumb.url}", class: "img-responsive"}
 
 .row
 	.col-sm-6
