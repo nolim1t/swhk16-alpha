@@ -21,4 +21,8 @@
 				-if cardimage.image_type == "front" then
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
 		-if i == 3
-			.clearfix
+			.clearfix.visible-lg
+		-elsif i == 2
+			.clearfix.visible-md
+		-elsif i == 1
+			.clearfix.visible-xs
