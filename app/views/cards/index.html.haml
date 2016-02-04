@@ -5,37 +5,38 @@
 / 		%form{method: 'get'}
 / 			%input{name: "search_text", size: "40", type: "text", value: @query}
 / 			%input{type: "submit", value: "Search", class: "btn btn-success btn-purple"}
-.row
-	.col-lg-3.col-md-4.col-xs-6.thumb
-		%a.thumbnail{:href => '/cards/new'}
-			%img.img-responsive{ :src => "http://placehold.it/400x300"}
-	/ .col-lg-3.col-md-4.col-xs-6.thumb
-	/ 	%a.thumbnail{:href => "#"}
-	/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
-	/ .col-lg-3.col-md-4.col-xs-6.thumb
-	/ 	%a.thumbnail{:href => "#"}
-	/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
-	/ .col-lg-3.col-md-4.col-xs-6.thumb
-	/ 	%a.thumbnail{:href => "#"}
-	/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
-	/ .col-lg-3.col-md-4.col-xs-6.thumb
-	/ 	%a.thumbnail{:href => "#"}
-	/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
-	/ .col-lg-3.col-md-4.col-xs-6.thumb
-	/ 	%a.thumbnail{:href => "#"}
-	/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
-	/ .col-lg-3.col-md-4.col-xs-6.thumb
-	/ 	%a.thumbnail{:href => "#"}
-	/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
-	/ .col-lg-3.col-md-4.col-xs-6.thumb
-	/ 	%a.thumbnail{:href => "#"}
-	/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
-
-	-@cards_and_images.each do |card, cardimage|
+.container-fluid
+	.row
 		.col-lg-3.col-md-4.col-xs-6.thumb
-			%a.thumbnail{:href => "/cards/detail/#{card.id}"}
-				-if cardimage.image_type == "front" then
-					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", :onclick=>"/cards/detail/#{card.id}"}
+			%a.thumbnail{:href => '/cards/new'}
+				%img.img-responsive{ :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+		/ .col-lg-3.col-md-4.col-xs-6.thumb
+		/ 	%a.thumbnail{:href => "#"}
+		/ 		%img.img-responsive{:alt => "", :src => "http://placehold.it/400x300"}
+
+		-@cards_and_images.each do |card, cardimage|
+			.col-lg-3.col-md-4.col-xs-6.thumb
+				%a.thumbnail{:href => "/cards/detail/#{card.id}"}
+					-if cardimage.image_type == "front" then
+						%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", :onclick=>"/cards/detail/#{card.id}"}
 
 
 
