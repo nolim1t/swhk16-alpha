@@ -1,0 +1,8 @@
+<% if @success == true  %>
+	dismiss_popover('#pop_up_btn');
+	window.location.reload();
+<% else %>
+	$('#c_form').parent().html("<%= escape_javascript(render :partial => 'add_picture_form', locals:{ card: @card }) %>")
+         .css({ backgroundColor: '#ffff99' });
+    notify_msg('#add_zone_btn', "<%=@card.errors.full_messages.join('\\n').html_safe %>", "error", "bottom right")
+<% end %>

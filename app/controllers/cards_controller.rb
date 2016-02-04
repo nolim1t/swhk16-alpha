@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :set_card_form, only: [:detail]
 	layout 'application'
 
 	def index
@@ -163,5 +164,16 @@ class CardsController < ApplicationController
 	def transferred
 
 	end
+
+
+  def set_card_form
+    @card = Card.where(:id => params[:id].to_s)[0]
+    @card_form = render_to_string(
+            :partial => '/cards/add_picture_form',
+            # :locals => {
+            #   :card => @card
+            # }
+          )
+    end
 
 end

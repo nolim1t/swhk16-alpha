@@ -19,16 +19,15 @@
 		%br
 		=render "listnote"
 		.top-buffer
-		=link_to "Edit", cards_edit_path(@card), class: "btn btn-primary btn-purple"
+		=link_to "Edit Notes", cards_edit_path(@card), class: "btn btn-primary btn-purple"
 
-.row
+.row.top-buffer
 	.col-lg-12.col-md-12.col-sm-12
-		Placeholder for small images to go here
-.row
-	.col-lg-12.col-md-12.col-sm-12
-		.h3 Card History
-		/# =link_to "Transfer Ownership", cards_transfer_path, class: 'btn btn-primary btn-purple'
-		=render "addnote"
+		%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "hey", toggle: "popover", placement: "right"} } Add Pictures
+		%button.btn.btn-lg.btn-danger{"data-content" => "And here's some amazing content. It's very engaging. Right?", "data-toggle" => "popover", :title => "Popover title", :type => "button"} Click to toggle popover
+		=link_to "Transfer Ownership", cards_transfer_path, class: 'btn btn-primary btn-purple'
+		=link_to "Ask For Shop Validation", cards_transfer_path, class: 'btn btn-primary btn-purple'
+		/ =render "addnote"
 
 %br
 %br
