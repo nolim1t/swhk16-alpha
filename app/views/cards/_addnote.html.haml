@@ -1,3 +1,8 @@
+-if flash
+  %ul
+    -flash.each do |key, value|
+      -if key == "error"
+        %li #{key.capitalize}: #{value}
 = form_for :cards, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
   %br
   = f.text_area :notes_text, placeholder: "Enter some notes here"
