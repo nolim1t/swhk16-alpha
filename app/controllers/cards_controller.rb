@@ -84,6 +84,10 @@ class CardsController < ApplicationController
 		@prefilled_name = ""
 		@prefilled_game = ""
 		@prefilled_collection = ""
+		@cardcollection = []
+		@gamelist = []
+		Cardgame.each{|game| @gamelist << game.gamename }
+		Cardcollection.each{|coll| @cardcollection << coll.collectionname}
 		render :template => "cards/new"
 	end
 
