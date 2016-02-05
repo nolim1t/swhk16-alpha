@@ -24,8 +24,8 @@
 .row.top-buffer
 	.col-lg-12.col-md-12.col-sm-12
 		%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "top", title: "Add Pictures"} } Add Pictures
-		=link_to "Transfer Ownership", cards_transfer_path, class: 'btn btn-primary btn-purple'
-		=link_to "Ask For Shop Validation", cards_transfer_path, class: 'btn btn-primary btn-purple'
+		%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "top", title: "Future Owner"} } Transfer Ownership
+		=link_to "Ask For Shop Validation", '#', class: 'btn btn-primary btn-purple'
 		/ =render "addnote"
 
 %br

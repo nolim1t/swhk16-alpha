@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_card_form, only: [:detail]
+	before_action :set_find_owner_form, only: [:detail]
 	layout 'application'
 
 	def index
@@ -174,6 +175,10 @@ class CardsController < ApplicationController
               :card => @card
             }
           )
-    end
+  end
+
+  def set_find_owner_form
+  	@find_owner_form = render_to_string(:partial => '/cards/find_owner_form')
+  end
 
 end
