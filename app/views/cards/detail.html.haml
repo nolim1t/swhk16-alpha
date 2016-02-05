@@ -8,11 +8,21 @@
 				%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
 				%br
 	.col-lg-4.col-sm-4
-		.h2 #{@card.cardname}
-		.h3 #{@card.cardgame}
-		<b>Uploaded:</b> #{@card.create_date.to_s}
-		%br
-		<b>Owner:</b> #{current_user.name}
+		.table-responsive
+			%table{width: "50%"}
+				%tbody
+					%tr
+						%th Card Name:
+						%td #{@card.cardname}
+					%tr
+						%th Card Game:
+						%td #{@card.cardgame}
+					%tr
+						%th Create Date:
+						%td #{@card.create_date.to_s}
+					%tr
+						%th Owner:
+						%td #{current_user.name}
 		%br
 		%br
 		Verified tag
