@@ -15,7 +15,7 @@ gem 'fog'
 gem "fog-aws" # Store images in Amazon S3
 gem 'rmagick' # for image resizing
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid' # MongoID carrierwave
-
+gem 'will_paginate', '~> 3.0.6' #pagination BE gem
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 #gem 'pg'
@@ -52,6 +52,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'better_errors'
 end
 
 group :development do
