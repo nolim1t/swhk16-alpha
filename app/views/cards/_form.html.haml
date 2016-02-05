@@ -19,7 +19,13 @@
 			// %br
 			%br
 			%b Card condition:
-			= f.text_field :card_condition, placeholder: "Condition", class: "form-control"
+			%br
+			= f.select :card_condition, ["Mint", "Slightly Worn", "Worn", "Damaged"], selected: "Slightly Worn", class: "form-control"
+			%br
+			%br
+			%b As the condition you set is irreversible, please confirm the card condition by typing the name:
+			%br
+				= f.text_field :card_condition, placeholder: "Type in the card condition above to confirm the change", class: "form-control"
 			%br
 			%b Notes (Required*):
 			%br

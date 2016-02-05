@@ -128,19 +128,18 @@ class CardsController < ApplicationController
 						end
 						if notes_text != '' then
 							if params[:cards]['card_condition'] != '' then
-								Cardnote.create(
-									text: notes_text.to_s,
-									card_condition: params[:cards]['card_condition'].to_s,
-									create_date: Time.new(),
-									card_id: params[:id].to_s
-								)
-							else
-								Cardnote.create(
-									text: notes_text.to_s,
-									create_date: Time.new(),
-									card_id: params[:id].to_s
-								)
+								# placeholder for card condition update
+								# Rules:
+								# If it is Mint, it can be set to any value.
+								# Slight worn, can't be set to Mint
+								# Worn, can't be set to Slightly Worn or Mint
+								# Damaged, can't be changed to any status
 							end
+							Cardnote.create(
+								text: notes_text.to_s,
+								create_date: Time.new(),
+								card_id: params[:id].to_s
+							)
 							# Check images
 							if params[:cards]['front_image'] != nil then
 								Cardimage.create(
