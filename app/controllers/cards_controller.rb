@@ -117,9 +117,14 @@ class CardsController < ApplicationController
 					if params[:cards].present?
 						puts "Params: card_id=#{params[:id]}, notes_text=#{params[:cards]['notes_text']}"
 						puts "Full cards params: #{params[:cards].inspect}"
-						if params[:cards]['notes_text'] != '' then
+						if params[:cards]['image_only_upload'] == 'true' then
+							notes_text = 'Replace card image'
+						else
+							notes_text = params[:cards]['notes_text']
+						end
+						if notes_text != '' then
 							Cardnote.create(
-								text: params[:cards]['notes_text'].to_s,
+								text: notes_text.to_s,
 								create_date: Time.new(),
 								card_id: params[:id].to_s
 							)
@@ -143,8 +148,10 @@ class CardsController < ApplicationController
 									card_id: params[:id].to_s
 								)
 								end # END: Check back image
-								redirect_to request.original_fullpath
+								redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
 							else
+								# Or display an error
+								puts "Error encountered. Redirect back to #{request.original_fullpath}"
 								flash[:error] = "Must include a comment"
 								redirect_to request.original_fullpath
 							end # END: Check presence of notes text

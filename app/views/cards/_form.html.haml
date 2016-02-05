@@ -2,19 +2,32 @@
 	.col-lg-6.col-md-6
 		%span{style: "color: #5f3d72"}
 			.h1 Edit Card Info
-		= @errormsg
+		-if flash
+			%ul
+				-flash.each do |key, value|
+					-if key == "error"
+						%li #{key.capitalize}: #{value}
 
 .row.top-buffer
-	= form_for @card, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
-		= f.hidden_field "userid", value: current_user.id
+	= form_for :cards, url: cards_edit_post_url_url, method: :post, role: "form", class: "form-horizontal" do |f|
 		.col-lg-6.col-md-6
-			= f.text_field :cardname, placeholder: "Name of Card", class: "form-control"
+			// = f.text_field :cardname, placeholder: "Name of Card", class: "form-control"
+			// %br
+			// = f.text_field :cardgame, placeholder: "Game", class: "form-control"
+			// %br
+			// = f.text_field :cardcollection, placeholder: "Set", class: "form-control"
+			// %br
 			%br
-			= f.text_field :cardgame, placeholder: "Game", class: "form-control"
-			%br
-			= f.text_field :cardcollection, placeholder: "Set", class: "form-control"
-			%br
+			%b Card condition:
 			= f.text_field :card_condition, placeholder: "Condition", class: "form-control"
+			%br
+			%b Notes (Required*):
+			%br
+			= f.text_field :notes_text, placeholder: "Enter some notes", class: "form-control"
+			%br
 			.top-buffer
-			= f.submit "Validate/Submit Card", class: "btn btn-primary btn-purple"
-
+			= f.submit "Add comment to Card", class: "btn btn-primary btn-purple"
+			%br
+			%br
+			%br
+			%br
