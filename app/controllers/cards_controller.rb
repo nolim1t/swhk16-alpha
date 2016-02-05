@@ -170,9 +170,9 @@ class CardsController < ApplicationController
     @card = Card.where(:id => params[:id].to_s)[0]
     @card_form = render_to_string(
             :partial => '/cards/add_picture_form',
-            # :locals => {
-            #   :card => @card
-            # }
+            :locals => {
+              :card => @card
+            }
           )
     end
 
