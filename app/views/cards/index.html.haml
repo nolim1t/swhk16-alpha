@@ -15,16 +15,15 @@
 				.h3 Add Card
 	-i = 0
 	-@cards_and_images.each do |card, cardimage|
-		-if card._id == cardimage.card_id
-			-i += 1
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				%a.thumbnail{:href => "/cards/detail/#{card.id}"}
-					-if cardimage.image_type == "front" then
-						%img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
-			-if i == 3
-				.clearfix.visible-lg
-				.clearfix.visible-xs
-			-elsif i == 2
-				.clearfix.visible-md
-			-elsif i == 1
-				.clearfix.visible-xs
+		-i += 1
+		.col-lg-3.col-md-4.col-xs-6.thumb
+			%a.thumbnail{:href => "/cards/detail/#{card.id}"}
+				-if cardimage.image_type == "front" then
+					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
+		-if i == 3
+			.clearfix.visible-lg
+			.clearfix.visible-xs
+		-elsif i == 2
+			.clearfix.visible-md
+		-elsif i == 1
+			.clearfix.visible-xs
