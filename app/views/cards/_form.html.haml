@@ -5,15 +5,21 @@
 		= @errormsg
 
 .row.top-buffer
-	= form_for @card, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
+	= form_for :cards, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
 		.col-lg-6.col-md-6
-			= f.text_field :cardname, placeholder: "Name of Card", class: "form-control"
+			// = f.text_field :cardname, placeholder: "Name of Card", class: "form-control"
+			// %br
+			// = f.text_field :cardgame, placeholder: "Game", class: "form-control"
+			// %br
+			// = f.text_field :cardcollection, placeholder: "Set", class: "form-control"
+			// %br
 			%br
-			= f.text_field :cardgame, placeholder: "Game", class: "form-control"
-			%br
-			= f.text_field :cardcollection, placeholder: "Set", class: "form-control"
-			%br
+			%b Card condition:			
 			= f.text_field :card_condition, placeholder: "Condition", class: "form-control"
+			%br
+			%b Notes:
+			%br
+			= f.text_field :notes_text, placeholder: "Enter some notes", class: "form-control"
 			%br
 			%b Front of card (Optional*):
 			%br
