@@ -73,3 +73,16 @@ In either **rails console** or **heroku run rails console** do the following
 ```ruby
 Cardcollection.create(collectionname: "Default collection")
 ```
+
+
+#### Cardcondition model
+* condition
+
+##### How to create
+In either **rails console** or **heroku run rails console** do the following
+```ruby
+Cardcondition.create(condition: "Mint")
+Cardcondition.create(condition: "Slightly Worn")
+Cardcondition.create(condition: "Worn")
+Cardcondition.create(condition: "Damaged")
+```
