@@ -3,7 +3,8 @@
     -flash.each do |key, value|
       -if key == "error"
         %li #{key.capitalize}: #{value}
-= form_for @card, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal add_picture_form" do |f|
+= form_for :cards, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal add_picture_form" do |f|
+  = f.hidden_field :image_only_upload, value: "true"
   %b Front of image (Required*):
   %br
   = f.file_field "front_image", class: "btn btn-primary btn-purple btn-upload"

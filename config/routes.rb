@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # Real Pages
   get '/cards/index' => 'cards#index', as: :cards_index
   get '/cards/edit/:id' => 'cards#edit', as: :cards_edit
+  post '/cards/edit/:id' => 'cards#detail', as: :cards_edit_post_url
   get '/cards/new' => 'cards#new', as: :cards_new_url
   post '/cards/new' => 'cards#newform', as: :cards_post_url
   get '/cards/detail/:id' => 'cards#detail', as: :cards_detail_url

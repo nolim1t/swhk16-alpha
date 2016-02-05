@@ -17,7 +17,7 @@
 	-@cards.each do |card|
 		-i += 1
 		.col-lg-3.col-md-4.col-xs-6.thumb
-			%a.thumbnail{:href => "/cards/detail/#{card.id}"}
+			%a.thumbnail{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
 				-card_image_count = 0
 				- @cardimages.each do |cardimage|
 					-if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
