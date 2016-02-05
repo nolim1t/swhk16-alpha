@@ -6,7 +6,6 @@
 
 .row.top-buffer
 	= form_for @card, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
-		= f.hidden_field "userid", value: current_user.id
 		.col-lg-6.col-md-6
 			= f.text_field :cardname, placeholder: "Name of Card", class: "form-control"
 			%br
@@ -15,6 +14,13 @@
 			= f.text_field :cardcollection, placeholder: "Set", class: "form-control"
 			%br
 			= f.text_field :card_condition, placeholder: "Condition", class: "form-control"
+			%br
+			%b Front of card (Optional*):
+			%br
+			= f.file_field "front_image", class: "btn btn-primary btn-purple"
+			%br
+			%b Back of card (Optional*):
+			%br
+			= f.file_field "back_image", class: "btn btn-primary btn-purple"
 			.top-buffer
 			= f.submit "Validate/Submit Card", class: "btn btn-primary btn-purple"
-
