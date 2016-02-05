@@ -127,11 +127,20 @@ class CardsController < ApplicationController
 							notes_text = params[:cards]['notes_text']
 						end
 						if notes_text != '' then
-							Cardnote.create(
-								text: notes_text.to_s,
-								create_date: Time.new(),
-								card_id: params[:id].to_s
-							)
+							if params[:cards]['card_condition'] != '' then
+								Cardnote.create(
+									text: notes_text.to_s,
+									card_condition: params[:cards]['card_condition'].to_s,
+									create_date: Time.new(),
+									card_id: params[:id].to_s
+								)
+							else
+								Cardnote.create(
+									text: notes_text.to_s,
+									create_date: Time.new(),
+									card_id: params[:id].to_s
+								)
+							end
 							# Check images
 							if params[:cards]['front_image'] != nil then
 								Cardimage.create(
