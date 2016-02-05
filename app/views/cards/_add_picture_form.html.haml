@@ -5,11 +5,11 @@
         %li #{key.capitalize}: #{value}
 = form_for :cards, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal add_picture_form" do |f|
   = f.hidden_field :image_only_upload, value: "true"
-  %b Front of image (Required*):
+  %b Front of card (Optional: if already have back image):
   %br
   = f.file_field "front_image", class: "btn btn-primary btn-purple btn-upload"
   .top-buffer
-  %b Back of image (Optional*):
+  %b Back of card (Optional: if already have front image):
   %br
   = f.file_field "back_image", class: "btn btn-primary btn-purple btn-upload"
   %br

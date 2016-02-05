@@ -21,15 +21,9 @@
 			%b Card condition:
 			= f.text_field :card_condition, placeholder: "Condition", class: "form-control"
 			%br
-			%b Notes:
+			%b Notes (Required*):
 			%br
 			= f.text_field :notes_text, placeholder: "Enter some notes", class: "form-control"
-			%br
-			%b Front of card (Optional*):
-			%br
-			= f.file_field "front_image", class: "btn btn-primary btn-purple"
-			%br
-			%b Back of card (Optional*):
 			%br
 			= f.file_field "back_image", class: "btn btn-primary btn-purple"
 			.top-buffer
