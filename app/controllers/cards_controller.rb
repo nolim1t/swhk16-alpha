@@ -84,6 +84,10 @@ class CardsController < ApplicationController
 		@prefilled_name = ""
 		@prefilled_game = ""
 		@prefilled_collection = ""
+		@cardcollection = []
+		@gamelist = []
+		Cardgame.each{|game| @gamelist << game.gamename }
+		Cardcollection.each{|coll| @cardcollection << coll.collectionname}
 		render :template => "cards/new"
 	end
 
@@ -123,6 +127,14 @@ class CardsController < ApplicationController
 							notes_text = params[:cards]['notes_text']
 						end
 						if notes_text != '' then
+							if params[:cards]['card_condition'] != '' then
+								# placeholder for card condition update
+								# Rules:
+								# If it is Mint, it can be set to any value.
+								# Slight worn, can't be set to Mint
+								# Worn, can't be set to Slightly Worn or Mint
+								# Damaged, can't be changed to any status
+							end
 							Cardnote.create(
 								text: notes_text.to_s,
 								create_date: Time.new(),
