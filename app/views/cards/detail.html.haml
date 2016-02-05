@@ -8,11 +8,21 @@
 				%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
 				%br
 	.col-lg-4.col-sm-4
-		.h2 #{@card.cardname}
-		.h3 #{@card.cardgame}
-		<b>Uploaded:</b> #{@card.create_date.to_s}
-		%br
-		<b>Owner:</b> #{current_user.name}
+		.table-responsive
+			%table{width: "50%"}
+				%tbody
+					%tr
+						%th Card Name:
+						%td #{@card.cardname}
+					%tr
+						%th Card Game:
+						%td #{@card.cardgame}
+					%tr
+						%th Create Date:
+						%td #{@card.create_date.to_s}
+					%tr
+						%th Owner:
+						%td #{current_user.name}
 		%br
 		%br
 		Verified tag
@@ -23,10 +33,9 @@
 
 .row.top-buffer
 	.col-lg-12.col-md-12.col-sm-12
-		%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "hey", toggle: "popover", placement: "right"} } Add Pictures
-		%button.btn.btn-lg.btn-danger{"data-content" => "And here's some amazing content. It's very engaging. Right?", "data-toggle" => "popover", :title => "Popover title", :type => "button"} Click to toggle popover
-		=link_to "Transfer Ownership", cards_transfer_path, class: 'btn btn-primary btn-purple'
-		=link_to "Ask For Shop Validation", cards_transfer_path, class: 'btn btn-primary btn-purple'
+		%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "top", title: "Add Pictures"} } Add Pictures
+		%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "top", title: "Future Owner"} } Transfer Ownership
+		=link_to "Ask For Shop Validation", '#', class: 'btn btn-primary btn-purple'
 		/ =render "addnote"
 
 %br

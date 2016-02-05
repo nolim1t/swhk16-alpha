@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_card_form, only: [:detail]
+	before_action :set_find_owner_form, only: [:detail]
 	layout 'application'
 
 	def index
@@ -170,10 +171,14 @@ class CardsController < ApplicationController
     @card = Card.where(:id => params[:id].to_s)[0]
     @card_form = render_to_string(
             :partial => '/cards/add_picture_form',
-            # :locals => {
-            #   :card => @card
-            # }
+            :locals => {
+              :card => @card
+            }
           )
-    end
+  end
+
+  def set_find_owner_form
+  	@find_owner_form = render_to_string(:partial => '/cards/find_owner_form')
+  end
 
 end

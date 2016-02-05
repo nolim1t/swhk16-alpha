@@ -1,10 +1,18 @@
 %p
 -if @cardnote.length == 0 then
-  No notes on this card found
+	No notes on this card found
 -else
-  -@cardnote.each do |cardnote|
-    %br
-    #{Time.at(cardnote.create_date).in_time_zone(@timezone).strftime "%a, %e %b %Y %H:%M:%S %z"}
-    %br
-    #{cardnote.text}
-    %br
+	.table-responsive
+		%table{width: "100%"}
+			%thead 
+				%tr
+					%th{colspan: 2} Card Note Info
+			%tbody
+			-@cardnote.each do |cardnote|
+				%tr
+					%th Card Note Time:
+					%td= "#{Time.at(cardnote.create_date).in_time_zone(@timezone).strftime "%a, %e %b %Y %H:%M:%S %z"}"
+				%tr
+					%th Card Note:
+					%td= "#{cardnote.text}"
+				%br

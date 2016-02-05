@@ -3,13 +3,14 @@
     -flash.each do |key, value|
       -if key == "error"
         %li #{key.capitalize}: #{value}
-= form_for :cards, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
-  .row
-    .col-lg-4.col-sm-4
-      %b Front of image (Required*):
-      = f.file_field "front_image", class: "btn btn-primary btn-purple"
-    .col-lg-4.col-sm-4
-      %b Back of image (Optional*):
-      = f.file_field "back_image", class: "btn btn-primary btn-purple"
+= form_for @card, url: cards_detail_post_url_path, method: :post, role: "form", class: "form-horizontal add_picture_form" do |f|
+  %b Front of image (Required*):
+  %br
+  = f.file_field "front_image", class: "btn btn-primary btn-purple btn-upload"
+  .top-buffer
+  %b Back of image (Optional*):
+  %br
+  = f.file_field "back_image", class: "btn btn-primary btn-purple btn-upload"
+  %br
   .top-buffer
   = f.submit "Submit", class: "btn btn-primary btn-purple"
