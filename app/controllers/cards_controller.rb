@@ -70,13 +70,13 @@ class CardsController < ApplicationController
 				redirect_to :cards_index
 			else
 				puts "Need a picture"
-				@errormsg = "A card requires a photo"
-				render :template => "cards/new"
+				flash[:error] = "A card must require a front image"
+				redirect_to request.original_fullpath
 			end
 		else
 			puts "Invalid parameters"
-			@errormsg = "Please complete the entire form"
-			render :template => "cards/new"
+			flash[:error] = "The form must be completed before continuing"
+			redirect_to request.original_fullpath
 		end
 	end
 	# GET /cards/new
@@ -84,6 +84,7 @@ class CardsController < ApplicationController
 		@prefilled_name = ""
 		@prefilled_game = ""
 		@prefilled_collection = ""
+		# Populate dropdowns
 		@cardcollection = []
 		@gamelist = []
 		Cardgame.each{|game| @gamelist << game.gamename }

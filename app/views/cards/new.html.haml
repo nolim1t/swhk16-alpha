@@ -2,7 +2,11 @@
 	.col-lg-6.col-md-6
 		%span{style: "color: #5f3d72"}
 			.h1 Add Card
-		= @errormsg
+		-if flash
+			%ul
+				-flash.each do |key, value|
+					-if key == "error"
+						%li #{key.capitalize}: #{value}
 
 .row.top-buffer
 	= form_for :cards, url: cards_new_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
