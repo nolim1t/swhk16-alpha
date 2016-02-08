@@ -4,12 +4,30 @@ class RegistrationsController < Devise::RegistrationsController
   end
   def create
     super
+    @accounttype = params[:accounttype]
   end
   def update
     super
   end
+  def sign_up(resource_name, resource)
+    # resource is savable
+    puts "Params: #{params.inspect}"
+    puts "SIGNUP (before modification):\nResource name: #{resource_name}\nResource: #{resource.inspect} "
+    resource.timezone = "Asia/Hong_Kong"
+    if params[:accounttype] != nil then
+      if params[:accounttype] == "vendor" or params[:accounttype] == "standard" then
+        resource.accounttype = params[:accounttype]        
+      end
+    end
+    resource.identity_verified = "false"
+    resource.save
+
+    # Continue the process
+    super
+  end
+
   def sign_up_params
-     params.require(:user).permit(:email, :password, :password_confirmation, :name, :invite_code, :signup_account_type)
+     params.require(:user).permit(:email, :password, :password_confirmation, :name, :invite_code, :accounttype)
   end
   def account_update_params
      params.require(:user).permit(:name, :email, :current_password, :password, :password_confirmation)
