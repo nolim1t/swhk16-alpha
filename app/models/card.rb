@@ -31,4 +31,23 @@ class Card
   # TimeWithZone
 
   mount_uploader :photo, CarduploaderUploader
+  #don't delete yet
+  # def self.find_with_pagination(params = {}, filters = {})
+  #   WillPaginate::Collection.create(params[:page].to_i < 1 ? 1 : params[:page], per_page_for_page(params[:page])) do |pager|
+  #     result = Card.all.limit(pager.per_page).offset(offset_for_page(params[:page])).where(filters)
+  #     pager.replace result
+  #     unless pager.total_entries
+  #       # the pager didn't manage to guess the total count, do it manually
+  #       pager.total_entries = self.count
+  #     end
+  #   end
+  # end
+
+  # def self.offset_for_page(page_number)
+  #   page_number.to_i > 1 ? ((page_number.to_i - 2) * 8 + 7) : 0
+  # end
+
+  # def self.per_page_for_page(page_number)
+  #   page_number.to_i > 1 ? 8 : 7
+  # end
 end
