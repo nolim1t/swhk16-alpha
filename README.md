@@ -55,3 +55,34 @@ The idea is images have a history (not visible)
 * photo.thumb.url - URL to the thumbnail (recommended)
 * image_note -  General notes about the image
 * create_date - When the image was created
+
+#### Cardgame model
+* gamename
+
+##### How to create
+In either **rails console** or **heroku run rails console** do the following
+```ruby
+Cardgame.create(gamename: "Magic: The Gathering")
+```
+
+#### Cardcollection model
+* collectname
+
+##### How to create
+In either **rails console** or **heroku run rails console** do the following
+```ruby
+Cardcollection.create(collectionname: "Default collection")
+```
+
+
+#### Cardcondition model
+* condition
+
+##### How to create
+In either **rails console** or **heroku run rails console** do the following
+```ruby
+Cardcondition.create(condition: "Mint")
+Cardcondition.create(condition: "Slightly Worn")
+Cardcondition.create(condition: "Worn")
+Cardcondition.create(condition: "Damaged")
+```
