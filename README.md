@@ -1,4 +1,9 @@
 # Vaultron.co
+## Wiki pages
+* [Installation](https://github.com/nolim1t/swhk16-alpha/wiki/Installation)
+* [Database documentation](https://github.com/nolim1t/swhk16-alpha/wiki/Database-Model)
+* [Template variables](https://github.com/nolim1t/swhk16-alpha/wiki/Variables-for-creating-certain-pages)
+
 ## What
 This is the site (and application for vaultron.co)
 
