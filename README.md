@@ -25,6 +25,17 @@ This is the site (and application for vaultron.co)
 ## Development Notes
 This is some notes on what sort of things you can use.
 
+### Templating variables
+#### Getting the current user
+**current_user.accounttype**
+This gets the current account type which can be:
+* standard - standard user for collector
+* vendor - standard user for shopkeepers (and other B2B type users)
+* admin - can't be signed up with. This will come at a later date. For now we just edit the database.
+
+**current_user.identity_verified**
+This shows the verification status for the user. They are either verified or not verified.
+
 ### Environment variables
 Please set the following **before** you run the app. Heroku is configured already.
 
@@ -67,6 +78,8 @@ Cardgame.create(gamename: "Magic: The Gathering")
 
 #### Cardcollection model
 * collectname
+##### About
+This is currently not in use, but eventually we will use this
 
 ##### How to create
 In either **rails console** or **heroku run rails console** do the following
