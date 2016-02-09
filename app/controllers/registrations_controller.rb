@@ -11,12 +11,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
   def sign_up(resource_name, resource)
     # resource is savable
-    puts "Params: #{params.inspect}"
     puts "SIGNUP (before modification):\nResource name: #{resource_name}\nResource: #{resource.inspect} "
+    # Lets change the values below with our custom fields
     resource.timezone = "Asia/Hong_Kong"
     if params[:accounttype] != nil then
       if params[:accounttype] == "vendor" or params[:accounttype] == "standard" then
-        resource.accounttype = params[:accounttype]        
+        resource.accounttype = params[:accounttype]
       end
     end
     resource.identity_verified = "false"
