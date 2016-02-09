@@ -1,15 +1,25 @@
 .row
+	.col-lg-6.col-md-12.detail
+		%h2{style:"color:#5f3d72"} Cards Detail
+.row.top-buffer
 	-if @cardimages.length == 0 then
 		No images found
 	-else
+		-size = @cardimages.size
 		-@cardimages.each do |cardimage|
-			.col-lg-4.col-sm-4
-				/ %h4 #{cardimage.image_type.capitalize} of card
-				%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
-				%br
+			-if size == 1
+				.col-lg-8.col-sm-8
+					/ %h4 #{cardimage.image_type.capitalize} of card
+					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
+					%br
+			-else
+				.col-lg-4.col-sm-4
+					/ %h4 #{cardimage.image_type.capitalize} of card
+					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
+		%br
 	.col-lg-4.col-sm-4
 		.table-responsive
-			%table{width: "50%"}
+			%table{width: "70%"}
 				%tbody
 					%tr
 						%th Card Name:
@@ -23,10 +33,9 @@
 					%tr
 						%th Owner:
 						%td #{current_user.name}
-		%br
-		%br
+		
+		.top-buffer
 		Verified tag
-		%br
 		=render "listnote"
 		.top-buffer
 		=link_to "Edit Notes", cards_edit_path(@card), class: "btn btn-primary btn-purple"
