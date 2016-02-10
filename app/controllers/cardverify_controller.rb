@@ -27,4 +27,52 @@ class CardverifyController < ApplicationController
       redirect_to "/"
     end
   end
+
+  def rejectcard
+    if current_user.accounttype == "vendor" then
+      self.reject_or_approve("reject", params[:id])
+      self.redirection
+    else
+      redirect_to "/"
+    end
+  end
+
+  def acceptcard
+    if current_user.accounttype == "vendor" then
+      self.reject_or_approve("approve", params[:id])
+      self.redirection
+    else
+      redirect_to "/"
+    end
+  end
+
+  # Helper functions
+  def redirection
+    if request.referer != nil then
+      redirect_to request.referer
+    else
+      redirect_to '/vendor'
+    end
+  end
+
+  def reject_or_approve(type, id)
+    verb = "rejected"
+    card_new_status = 0
+    if type == "approve" then
+      verb = "approved"
+      card_new_status = 2
+    end
+
+    validation_queue = Validationqueue.where(:card_id => id)
+    if validation_queue.length > 0 then
+      card = Card.find(id)
+      Cardnote.create(
+        text: "Shopkeeper #{verb} card",
+        create_date: Time.new(),
+        card_id: id.to_s
+      )
+      validation_queue.delete
+      card.update_attributes(validation_status: card_new_status)
+    end
+  end
 end
