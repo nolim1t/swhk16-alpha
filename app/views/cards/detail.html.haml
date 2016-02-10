@@ -31,6 +31,17 @@
 						%th Card Condition:
 						%td #{@card.card_condition.to_s.capitalize}
 					%tr
+						%th Validation status:
+						-case @card.validation_status
+							-when 0
+								%td Unverified
+							-when 1
+								%td Awaiting Store Validation
+							-when 2
+								%td Verified
+							-else
+								%td Unknown Validation Status
+					%tr
 						%th Create Date:
 						%td #{@card.create_date.to_s}
 					%tr
@@ -38,7 +49,6 @@
 						%td #{current_user.name}
 
 		.top-buffer
-		Verified tag
 		=render "listnote"
 		.top-buffer
 		=link_to "Edit Notes", cards_edit_path(@card), class: "btn btn-primary btn-purple"
