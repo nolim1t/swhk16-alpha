@@ -9,7 +9,7 @@ class Card
   field :cardcollection, type: String
   field :create_date, type: Date
   field :update_date, type: Date
-  field :card_condition, type: String # Should be either 'mint', 'slightly worn', 'damaged'
+  field :card_condition, type: String, default: 'mint' # Should be either 'mint', 'slightly worn', 'damaged'
   field :owner_id, type: String
 
   # Types of fields

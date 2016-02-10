@@ -32,16 +32,19 @@ class CardsController < ApplicationController
 
 	# POST /cards/new
 	def newform
-		@prefilled_name = params[:cards]["name"]
-		@prefilled_game = params[:cards]["game"]
-		@prefilled_collection = params[:cards]["collection"]
-		if params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
+		flash[:info] = {}
+		flash[:info][:cardname] = params[:cards]["name"]
+		flash[:info][:cardgame] = params[:cards]["game"]
+		flash[:info][:cardcollection] = params[:cards]["collection"]
+		flash[:info][:card_condition] = params[:cards]["card_condition"].to_s.capitalize
+		if CardsHelper::ValidateCardCondition.valid_condition(params[:cards]["card_condition"].to_s.downcase) and params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			# Front image is required
 			if params[:cards]["front_image"] then
 				card_created = Card.create(
 					cardname: params[:cards]["name"].to_s,
 					cardgame: params[:cards]["game"].to_s,
 					cardcollection: params[:cards]["collection"].to_s,
+					card_condition: params[:cards]["card_condition"].to_s.downcase,
 					create_date: Time.new(),
 					update_date: Time.new(),
 					owner_id: params[:cards]["userid"].to_s
@@ -84,9 +87,14 @@ class CardsController < ApplicationController
 	end
 	# GET /cards/new
 	def new
-		@prefilled_name = ""
-		@prefilled_game = ""
-		@prefilled_collection = ""
+		if flash[:info] == nil then
+			flash[:info] = {}
+			flash[:info][:cardname] = ""
+			flash[:info][:cardgame] = "Magic: The Gathering"
+			flash[:info][:cardcollection] = "Default collection"
+			flash[:info][:card_condition] = "Mint"
+		end
+		puts flash.inspect
 		# Populate dropdowns
 		@cardcollection = []
 		@gamelist = []
@@ -131,14 +139,7 @@ class CardsController < ApplicationController
 							notes_text = params[:cards]['notes_text']
 						end
 						if notes_text != '' then
-							if params[:cards]['card_condition'] != '' then
-								# placeholder for card condition update
-								# Rules:
-								# If it is Mint, it can be set to any value.
-								# Slight worn, can't be set to Mint
-								# Worn, can't be set to Slightly Worn or Mint
-								# Damaged, can't be changed to any status
-							end
+							# Create a card note
 							Cardnote.create(
 								text: notes_text.to_s,
 								create_date: Time.new(),
@@ -155,7 +156,7 @@ class CardsController < ApplicationController
 								)
 							end # END: Check front image
 							if params[:cards]['back_image'] != nil then
-								# if a new back image is specified
+							# if a new back image is specified
 								Cardimage.create(
 									create_date: Time.new(),
 									photo: params[:cards]["back_image"],
@@ -163,16 +164,43 @@ class CardsController < ApplicationController
 									image_note: "Back image uploaded",
 									card_id: params[:id].to_s
 								)
-								end # END: Check back image
-								redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
+							end # END: Check back image
+							# If card condition not set
+							if params[:cards]['card_condition'] then
+								if params[:cards]['card_condition'].to_s.downcase != @card.card_condition.to_s.downcase then
+									if params[:cards]['card_condition'].to_s.downcase == params[:cards]['card_condition_verify'].to_s.downcase then
+										if CardsHelper::ValidateCardCondition.change_condition(@card.card_condition.downcase, params[:cards]['card_condition'].downcase) then
+											puts "Lets update card id=#{@card._id}"
+											update_card = Card.find(@card._id)
+											update_card.update_attributes(card_condition: params[:cards]['card_condition'].downcase)
+											# Redirect on success
+											redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
+										else
+											flash[:error] = "Card condition not allowed to go from #{@card.card_condition.downcase} to #{params[:cards]['card_condition'].downcase}"
+											puts flash[:error]
+											redirect_to request.original_fullpath
+										end
+									else
+										# Doesn't match
+										flash[:error] = "Please type out the card condition name in the text box in order to change the condition"
+										puts flash[:error]
+										redirect_to request.original_fullpath
+									end
+								else
+									# Nothing to change
+									redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
+								end
 							else
-								# Or display an error
-								puts "Error encountered. Redirect back to #{request.original_fullpath}"
-								flash[:error] = "Must include a comment"
-								redirect_to request.original_fullpath
-							end # END: Check presence of notes text
-						end # END: check if get or post
-					end
+								redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
+							end
+						else
+							# Or display an error
+							puts "Error encountered. Redirect back to #{request.original_fullpath}"
+							flash[:error] = "Must include a comment"
+							redirect_to request.original_fullpath
+						end # END: Check presence of notes text
+					end # End: check if card is present
+				end # END: check if get or post
 			else
 				redirect_to '/'
 			end

@@ -28,12 +28,15 @@
 						%th Card Game:
 						%td #{@card.cardgame}
 					%tr
+						%th Card Condition:
+						%td #{@card.card_condition.to_s.capitalize}
+					%tr
 						%th Create Date:
 						%td #{@card.create_date.to_s}
 					%tr
 						%th Owner:
 						%td #{current_user.name}
-		
+
 		.top-buffer
 		Verified tag
 		=render "listnote"
