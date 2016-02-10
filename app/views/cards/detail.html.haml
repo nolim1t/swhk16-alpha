@@ -12,10 +12,16 @@
 					/ %h4 #{cardimage.image_type.capitalize} of card
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
 					%br
+					-if current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s
+						%a{:href => "#{cardimage.photo.url}"} Download original card
+						%br
 			-else
 				.col-lg-4.col-sm-4
 					/ %h4 #{cardimage.image_type.capitalize} of card
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
+					-if current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s
+						%a{:href => "#{cardimage.photo.url}"} Download original card
+						%br
 		%br
 	.col-lg-4.col-sm-4
 		.table-responsive
@@ -65,7 +71,7 @@
 				%button.btn.btn-primary.btn-purple{title: "Shop Validation Request Pending"} Shop Validation Request Pending
 			/ =render "addnote"
 		-elsif current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s
-			=link_to "Approve Card 👍", "/vendor/approve/#{@card.id}", class: 'btn btn-primary btn-purple'
+			=link_to "Approve Card 👍", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
 			=link_to "Reject Card 👎", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
 
 %br

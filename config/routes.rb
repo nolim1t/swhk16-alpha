@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   # Vendor/Shopkeeper functionality
   get '/vendor' => 'cardverify#menu', as: :cardverify_menu
   get '/vendor/verify' => 'cardverify#index', as: :cardverify_index
+  get '/vendor/reject/:id' => 'cardverify#rejectcard', as: :cardverify_reject
+  get '/vendor/accept/:id' => 'cardverify#acceptcard', as: :cardverify_accept
 
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
