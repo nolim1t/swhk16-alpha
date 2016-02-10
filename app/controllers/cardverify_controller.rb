@@ -1,7 +1,7 @@
 class CardverifyController < ApplicationController
   def index
 		if current_user.accounttype == "vendor" then
-      @cardlist = []      
+      @cardlist = []
       if params[:cardverify] != nil then
         if params[:cardverify][:email] != nil then
           check_cards = Validationqueue.where(:requestor_email_address => params[:cardverify][:email])
@@ -19,4 +19,12 @@ class CardverifyController < ApplicationController
 			redirect_to "/"
 		end
 	end
+
+  def menu
+    if current_user.accounttype == "vendor" then
+      render :template => "cardverify/menu"
+    else
+      redirect_to "/"
+    end
+  end
 end

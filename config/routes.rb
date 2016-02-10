@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/cards/validate/:id' => 'cards#request_validation', as: :cards_validation_get_url
 
   # Vendor/Shopkeeper functionality
+  get '/vendor' => 'cardverify#menu', as: :cardverify_menu
   get '/vendor/verify' => 'cardverify#index', as: :cardverify_index
 
   # Fake pages
