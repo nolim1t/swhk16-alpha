@@ -34,11 +34,11 @@
 						%th Validation status:
 						-case @card.validation_status
 							-when 0
-								%td Unverified
+								%td Unverified ⚠️
 							-when 1
-								%td Awaiting Store Validation
+								%td Awaiting Store Validation ⏳
 							-when 2
-								%td Verified
+								%td Verified ✅
 							-else
 								%td Unknown Validation Status
 					%tr
@@ -65,8 +65,8 @@
 				%button.btn.btn-primary.btn-purple{title: "Shop Validation Request Pending"} Shop Validation Request Pending
 			/ =render "addnote"
 		-elsif current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s
-			=link_to "Validate Card", "/vendor/validate/#{@card.id}", class: 'btn btn-primary btn-purple'
-			=link_to "Reject Card", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
+			=link_to "Approve Card 👍", "/vendor/approve/#{@card.id}", class: 'btn btn-primary btn-purple'
+			=link_to "Reject Card 👎", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
 
 %br
 %br
