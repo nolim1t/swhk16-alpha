@@ -167,7 +167,7 @@ class CardsController < ApplicationController
 							end # END: Check back image
 							# If card condition not set
 							if params[:cards]['card_condition'] then
-								if params[:cards]['card_condition'] != @card.card_condition then
+								if params[:cards]['card_condition'].to_s.downcase != @card.card_condition.to_s.downcase then
 									if params[:cards]['card_condition'].to_s.downcase == params[:cards]['card_condition_verify'].to_s.downcase then
 										if CardsHelper::ValidateCardCondition.change_condition(@card.card_condition.downcase, params[:cards]['card_condition'].downcase) then
 											puts "Lets update card id=#{@card._id}"
