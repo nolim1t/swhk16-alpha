@@ -32,16 +32,19 @@ class CardsController < ApplicationController
 
 	# POST /cards/new
 	def newform
-		@prefilled_name = params[:cards]["name"]
-		@prefilled_game = params[:cards]["game"]
-		@prefilled_collection = params[:cards]["collection"]
-		if params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
+		flash[:info] = {}
+		flash[:info][:cardname] = params[:cards]["name"]
+		flash[:info][:cardgame] = params[:cards]["game"]
+		flash[:info][:cardcollection] = params[:cards]["collection"]
+		flash[:info][:card_condition] = params[:cards]["card_condition"].to_s.capitalize
+		if CardsHelper::ValidateCardCondition.valid_condition(params[:cards]["card_condition"].to_s.downcase) and params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			# Front image is required
 			if params[:cards]["front_image"] then
 				card_created = Card.create(
 					cardname: params[:cards]["name"].to_s,
 					cardgame: params[:cards]["game"].to_s,
 					cardcollection: params[:cards]["collection"].to_s,
+					card_condition: params[:cards]["card_condition"].to_s.downcase,
 					create_date: Time.new(),
 					update_date: Time.new(),
 					owner_id: params[:cards]["userid"].to_s
@@ -84,9 +87,14 @@ class CardsController < ApplicationController
 	end
 	# GET /cards/new
 	def new
-		@prefilled_name = ""
-		@prefilled_game = ""
-		@prefilled_collection = ""
+		if flash[:info] == nil then
+			flash[:info] = {}
+			flash[:info][:cardname] = ""
+			flash[:info][:cardgame] = "Magic: The Gathering"
+			flash[:info][:cardcollection] = "Default collection"
+			flash[:info][:card_condition] = "Mint"
+		end
+		puts flash.inspect
 		# Populate dropdowns
 		@cardcollection = []
 		@gamelist = []
