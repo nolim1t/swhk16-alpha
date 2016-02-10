@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post '/cards/new' => 'cards#newform', as: :cards_post_url
   get '/cards/detail/:id' => 'cards#detail', as: :cards_detail_url
   post '/cards/detail/:id' => 'cards#detail', as: :cards_detail_post_url
+  get '/cards/validate/:id' => 'cards#request_validation', as: :cards_validation_get_url
+
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
