@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   post '/cards/detail/:id' => 'cards#detail', as: :cards_detail_post_url
   get '/cards/validate/:id' => 'cards#request_validation', as: :cards_validation_get_url
 
+  # Vendor/Shopkeeper functionality
+  get '/vendor/verify' => 'cardverify#index', as: :cardverify_index
+
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
