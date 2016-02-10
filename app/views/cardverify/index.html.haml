@@ -8,9 +8,9 @@
   %br
   = form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f|
     .col-lg-6.col-md-6
-      %b Email Address
+      %b Customer's Email Address
       %br
-      = f.text_field :email, placeholder: "Enter email address", size: 20, class: "form-control"
+      = f.text_field :email, placeholder: "Enter email address here", size: 20, class: "form-control"
       %br
       = f.submit "Show list of cards", class: "btn btn-primary btn-purple"
       %br
