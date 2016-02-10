@@ -13,6 +13,14 @@ Rails.application.routes.draw do
   post '/cards/new' => 'cards#newform', as: :cards_post_url
   get '/cards/detail/:id' => 'cards#detail', as: :cards_detail_url
   post '/cards/detail/:id' => 'cards#detail', as: :cards_detail_post_url
+  get '/cards/validate/:id' => 'cards#request_validation', as: :cards_validation_get_url
+
+  # Vendor/Shopkeeper functionality
+  get '/vendor' => 'cardverify#menu', as: :cardverify_menu
+  get '/vendor/verify' => 'cardverify#index', as: :cardverify_index
+  get '/vendor/reject/:id' => 'cardverify#rejectcard', as: :cardverify_reject
+  get '/vendor/accept/:id' => 'cardverify#acceptcard', as: :cardverify_accept
+
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred

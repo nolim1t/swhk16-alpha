@@ -10,6 +10,7 @@ class Card
   field :create_date, type: Date
   field :update_date, type: Date
   field :card_condition, type: String, default: 'mint' # Should be either 'mint', 'slightly worn', 'damaged'
+  field :validation_status, type: Integer, default: 0 # 0 = Unverified, 1 = Pending, 2 = Validated
   field :owner_id, type: String
 
   # Types of fields
