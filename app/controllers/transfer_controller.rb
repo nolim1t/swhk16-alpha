@@ -12,7 +12,7 @@ class TransferController < ActionController::Base
                 flash[:error] = transfer_info_msg[:error]
                 self.goback
               else
-                puts "Transfer request: Card ID=#{params[:transfer][:cardid]} / Name of card: #{params[:transfer][:cardname]}/ To: #{params[:transfer][:email]} / Agreed: #{params[:transfer][:agree]} (Result: #{transfer_info_msg[:info]})"                
+                puts "Transfer request: Card ID=#{params[:transfer][:cardid]} / Name of card: #{params[:transfer][:cardname]}/ To: #{params[:transfer][:email]} / Agreed: #{params[:transfer][:agree]} (Result: #{transfer_info_msg[:info]})"
               end
             else
               flash[:error] = "You must accept the terms before you can transfer this card"
@@ -20,6 +20,7 @@ class TransferController < ActionController::Base
             end
           else
             flash[:error] = "Card is currently being transferred"
+            self.goback
           end
         else
           flash[:error] = "You must type in the name of the card before you can transfer it"
