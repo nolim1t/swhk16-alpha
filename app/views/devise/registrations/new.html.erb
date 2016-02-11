@@ -31,12 +31,11 @@
           <div class="field devise_form">
             <%= f.text_field :invite_code, class: "form-control", placeholder: "Invite Code",  autofocus: true, required: true %>
           </div>
-          <br />
+
           <div class="actions devise_form">
             <%= f.submit "Sign up", class: "btn btn-primary btn-lg btn-purple btn-devise" %>
           </div>
         <% end %>
-        <br />
         <div class="devise_form">
           <%= link_to "Already Registered? Sign in here", user_session_path %><br />
         </div>
