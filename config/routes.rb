@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get '/vendor/reject/:id' => 'cardverify#rejectcard', as: :cardverify_reject
   get '/vendor/accept/:id' => 'cardverify#acceptcard', as: :cardverify_accept
 
+  # Transfer functionality
+  post '/cards/transfer' => 'transfer#outbound', as: :cardtransfer_outbound
+
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
