@@ -5,6 +5,7 @@
 .row.top-buffer
 .col-lg-6.col-md-6
   %p Enter in the person's email to get a list of cards which they have requested a shopkeeper to verify.
+  %p Only cards which are not in the transfer process can be verified. So the receiver needs to either take possession of the card in the system or reject it.
   %br
   = form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f|
     .col-lg-6.col-md-6
@@ -27,3 +28,6 @@
                   %a(href="/vendor/accept/#{i[:_id]}") Validate
                   |
                   %a(href="/vendor/reject/#{i[:_id]}") Reject
+      -elsif @cardlist.length == 0 and params[:cardverify]
+        -if params[:cardverify][:email]
+          %p There are no cards needing validation found for <b>#{params[:cardverify][:email]}</b>
