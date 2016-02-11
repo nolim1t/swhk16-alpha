@@ -46,7 +46,10 @@ class TransferController < ActionController::Base
   end
 
   def rejecttransfer
-    puts "processing transfer id #{params[:id]}"
+    puts "Processing transfer id #{params[:id]}"
+    transfer_reject_status = TransferHelper::Outgoing.reject(params[:id])
+    puts transfer_reject_status.inspect
+    # Maybe handle the error message
     # Redirect to cards
     redirect_to "/"
   end

@@ -54,14 +54,21 @@ module TransferHelper
       end
       if transfer != nil
         sender = User.where(email: transfer.sender_email)
+        puts "Transfer: #{transfer.inspect}"
         begin
-          card = Card.find(transfer.assetid)
+          card = Card.find(transfer.asset_id)
         rescue
           card = nil
         end
         if card != nil then
           if sender.count == 1 then
             card.update_attributes(transfer_status: 0, owner_id: sender[0][:_id].to_s)
+            # Create a note
+            Cardnote.create(
+              text: "Transfer of card has been rejected",
+              create_date: Time.new(),
+              card_id: transfer.asset_id.to_s
+            )
             result[:info] = "Transfer has been rejected"
             result
           else
