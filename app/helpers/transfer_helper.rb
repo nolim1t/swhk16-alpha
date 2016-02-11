@@ -17,6 +17,12 @@ module TransferHelper
             puts "Card=#{card.inspect} Sender=#{sender[0]}"
             if card.owner_id.to_s == sender[0][:_id].to_s then
               transfer = Transfer.create(asset_id: assetid, asset_type: assettype, sender_email: from, receiver_email: to, arbiter_email: "info@vaultron.co", create_date: Time.now())
+              # Create a note
+              Cardnote.create(
+              	text: "Transfer of card to #{to} has been started",
+              	create_date: Time.new(),
+              	card_id: assetid.to_s
+              )
               result[:info] = "#{transfer._id.to_s}"
               result
             else
