@@ -1,4 +1,4 @@
-class Assettransfer
+class Transfer
   include Mongoid::Document
   store_in collection: "assettransfers"
 
