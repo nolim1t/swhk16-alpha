@@ -1,29 +1,33 @@
 .row
-.col-lg-6.col-md-6
-  %h2{style:"color:#5f3d72"} Verify cards
+  .col-lg-6.col-md-6
+    %h2{style:"color:#5f3d72"} Verify cards
 
 .row.top-buffer
-.col-lg-6.col-md-6
-  %p Enter in the person's email to get a list of cards which they have requested a shopkeeper to verify.
-  %br
-  = form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f|
-    .col-lg-6.col-md-6
-      %b Customer's Email Address
-      %br
-      = f.text_field :email, placeholder: "Enter email address here", size: 20, class: "form-control"
+  .col-lg-6.col-md-6
+    %p Enter in the person's email to get a list of cards which they have requested a shopkeeper to verify.
+    %br
+    = form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f|
+      =f.label "Customer's Email Address"
+      = f.text_field :email, placeholder: "Enter email address here", class: "form-control"
       %br
       = f.submit "Show list of cards", class: "btn btn-primary btn-purple"
       %br
       %br
-      -if @cardlist.length > 0
-        %p Here are a list of cards related to the email address <b>#{params[:cardverify][:email]}</b>
-        %ul
+  .col-lg-6.col-md-6
+    -if @cardlist.length > 0
+      -user = User.where(email: params[:cardverify][:email])[0]
+      %p Here are a list of cards related to <b>#{user.class.human_attribute_name(user.name)} (#{params[:cardverify][:email]})</b>
+      %table{width: "80%"}
+        %thead
+          %tr
+            %th Card Name
+            %th Actions
+        %tbody
           -@cardlist.each do |i|
-            %li
-              %a(href="/cards/detail/#{i[:_id]}") #{i[:cardname]}
-              %ul
-                %li
-                  Options:
-                  %a(href="/vendor/accept/#{i[:_id]}") Validate
-                  |
-                  %a(href="/vendor/reject/#{i[:_id]}") Reject
+            %tr
+              %td
+                %a(href="/cards/detail/#{i[:_id]}") #{i[:cardname]}
+              %td
+                %a(href="/vendor/accept/#{i[:_id]}") Approve
+                |
+                %a(href="/vendor/reject/#{i[:_id]}") Reject
