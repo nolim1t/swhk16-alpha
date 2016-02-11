@@ -1,5 +1,6 @@
 %h3 Transfer Card
 = form_for :transfer, url: "/cards/transfer", method: :post, role: "form", class: "form-horizontal" do |f|
+  = f.hidden_field :cardid, value: "#{params[:id]}"
   = f.text_field :email, placeholder: "Recipient Email", class: "form-control"
   %br
   %b To facilitate the transfer, please type in the name of the card that you wish to transfer
