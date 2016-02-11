@@ -23,6 +23,8 @@ module TransferHelper
               	create_date: Time.new(),
               	card_id: assetid.to_s
               )
+              # Set transfer to bending
+              card.update_attributes(transfer_status: 1, owner_id: recipient[0][:_id])
               result[:info] = "#{transfer._id.to_s}"
               result
             else
@@ -39,6 +41,39 @@ module TransferHelper
         end
       else
         result[:error] = "Invalid asset type"
+        result
+      end
+    end
+
+    def self.reject(transfer_id)
+      result = {:info => "", :error => ""}
+      begin
+        transfer = Transfer.find(transfer_id)
+      rescue
+        transfer = nil
+      end
+      if transfer != nil
+        sender = User.where(email: transfer.sender_email)
+        begin
+          card = Card.find(transfer.assetid)
+        rescue
+          card = nil
+        end
+        if card != nil then
+          if sender.count == 1 then
+            card.update_attributes(transfer_status: 0, owner_id: sender[0][:_id].to_s)
+            result[:info] = "Transfer has been rejected"
+            result
+          else
+            result[:error] = "Can't find transfer"
+            result
+          end
+        else
+          result[:error] = "Can't find card to update"
+          result
+        end
+      else
+        result[:error] = "Invalid transfer to reject"
         result
       end
     end
