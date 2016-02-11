@@ -20,7 +20,6 @@ class TransferController < ActionController::Base
               else
                 puts "Transfer request: Card ID=#{params[:transfer][:cardid]} / Name of card: #{params[:transfer][:cardname]}/ To: #{params[:transfer][:email]} / Agreed: #{params[:transfer][:agree]}"
                 @transfer_id = transfer_info_msg[:info]
-                # Set new owner
               end
             else
               flash[:error] = "You must accept the terms before you can transfer this card"
@@ -47,6 +46,9 @@ class TransferController < ActionController::Base
   end
 
   def rejecttransfer
+    puts "processing transfer id #{params[:id]}"
+    # Redirect to cards
+    redirect_to "/"
   end
 
   def acceptransfer
