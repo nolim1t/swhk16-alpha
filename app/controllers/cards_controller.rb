@@ -119,7 +119,7 @@ class CardsController < ApplicationController
 				@cardimages << card_2
 			}
 			# Check if owner matches the database
-			if @card.owner_id == current_user._id.to_s then
+			if (@card.owner_id == current_user._id.to_s) or (current_user.accounttype == "vendor") then
 				@method = env['REQUEST_METHOD']
 				if current_user.timezone == '' or current_user.timezone == nil then
 					@timezone = current_user.timezone
@@ -232,4 +232,33 @@ class CardsController < ApplicationController
   	@find_owner_form = render_to_string(:partial => '/cards/find_owner_form')
   end
 
+	def request_validation
+		puts "ID: #{params[:id]}"
+		cards = Card.where(:id => params[:id].to_s)
+		if cards.length == 1 then
+			@card = cards[0]
+			if @card.owner_id == current_user._id.to_s then
+				check_queue = Validationqueue.where(:requestor_email_address => current_user.email, :card_id => @card._id.to_s)
+				if check_queue.length == 0 then
+					Cardnote.create(
+						text: "Requested validation by shopkeeper or verified user",
+						create_date: Time.new(),
+						card_id: params[:id].to_s
+					)
+					# Check if this card is in the validation queue
+					Validationqueue.create(
+						entry_date: Time.new(),
+						card_id: @card._id.to_s,
+						requestor_email_address: current_user.email
+					)
+					# Update validation status
+					update_card = Card.find(@card._id)
+					update_card.update_attributes(validation_status: 1)
+				end
+			end
+			redirect_to cards_detail_url_path(@card)
+		else
+			redirect_to cards_detail_url_path(@card)
+		end
+	end
 end
