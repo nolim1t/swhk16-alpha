@@ -4,6 +4,8 @@ module TransferHelper
       result = {:info => "", :error => ""}
       if assettype == "card" then
         recipient = User.where(email: to)
+        sender = User.where(email: from)
+        puts "Sender: #{sender[0].inspect}"
         if recipient.count == 1 then
           puts "Recipient: #{recipient[0][:email]}"
           begin
@@ -12,9 +14,15 @@ module TransferHelper
             card = nil
           end
           if card != nil
-            puts "#{card}"
-            result[:info] = "Sending Asset #{assetid} to #{to} (originator: #{from})"
-            result
+            puts "Card=#{card.inspect} Sender=#{sender[0]}"
+            if card.owner_id.to_s == sender[0][:_id].to_s then
+              transfer = Transfer.create(asset_id: assetid, asset_type: assettype, sender_email: from, receiver_email: to, arbiter_email: "info@vaultron.co", create_date: Time.now())
+              result[:info] = "#{transfer._id.to_s}"
+              result
+            else
+              result[:error] = "Card is no longer owned by you"
+              result
+            end
           else
             result[:error] = "Card doesn't exist"
             result
