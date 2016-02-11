@@ -7,8 +7,8 @@ class TransferController < ActionController::Base
         if card[:cardname].downcase == params[:transfer][:cardname].downcase then
           if card[:transfer_status] != 1 then
             if params[:transfer][:agree] == "1" then
-              puts "Transfer request: Card ID=#{params[:transfer][:cardid]} / Name of card: #{params[:transfer][:cardname]}/ To: #{params[:transfer][:email]} / Agreed: #{params[:transfer][:agree]}"
-              # TODO: Set up another ruby helper to facilitate this transfer
+              transfer_info_msg = TransferHelper::Outgoing.send(current_user.email, params[:transfer][:email].to_s, params[:transfer][:cardid].to_s, "card")
+              puts "Transfer request: Card ID=#{params[:transfer][:cardid]} / Name of card: #{params[:transfer][:cardname]}/ To: #{params[:transfer][:email]} / Agreed: #{params[:transfer][:agree]} (Result: #{transfer_info_msg})"              
             else
               flash[:error] = "You must accept the terms before you can transfer this card"
               self.goback
