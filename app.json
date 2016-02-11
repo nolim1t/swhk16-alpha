@@ -29,7 +29,6 @@
     }
   },
   "addons": [
-    "cloudinary",
     "mailgun",
     "mongolab",
     "heroku-postgresql"
