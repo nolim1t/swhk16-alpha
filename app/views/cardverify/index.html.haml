@@ -3,12 +3,15 @@
     %h2{style:"color:#5f3d72"} Verify cards
 
 .row.top-buffer
-  .col-lg-6.col-md-6
-    %p Enter in the person's email to get a list of cards which they have requested a shopkeeper to verify.
-    %br
-    = form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f|
-      =f.label "Customer's Email Address"
-      = f.text_field :email, placeholder: "Enter email address here", class: "form-control"
+.col-lg-6.col-md-6
+  %p Enter in the person's email to get a list of cards which they have requested a shopkeeper to verify.
+  %p Only cards which are not in the transfer process can be verified. So the receiver needs to either take possession of the card in the system or reject it.
+  %br
+  = form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f|
+    .col-lg-6.col-md-6
+      %b Customer's Email Address
+      %br
+      = f.text_field :email, placeholder: "Enter email address here", size: 20, class: "form-control"
       %br
       = f.submit "Show list of cards", class: "btn btn-primary btn-purple"
       %br
@@ -23,6 +26,7 @@
             %th Card Name
             %th Actions
         %tbody
+
           -@cardlist.each do |i|
             %tr
               %td
@@ -31,3 +35,10 @@
                 %a(href="/vendor/accept/#{i[:_id]}") Approve
                 |
                 %a(href="/vendor/reject/#{i[:_id]}") Reject
+
+    -elsif @cardlist.length == 0 and params[:cardverify]
+      -if params[:cardverify][:email]
+        %table{width: "80%"}
+          %tr
+            %td
+              %p There are no cards needing validation found for <b>#{params[:cardverify][:email]}</b>

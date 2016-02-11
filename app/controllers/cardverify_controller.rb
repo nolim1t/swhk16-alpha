@@ -1,6 +1,6 @@
 class CardverifyController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
 		if current_user.accounttype == "vendor" then
       @cardlist = []
@@ -10,7 +10,9 @@ class CardverifyController < ApplicationController
           if check_cards.count > 0 then
             check_cards.each {|pc|
               rc = Card.find(pc.card_id)
-              @cardlist << {:cardname => rc.cardname, :_id => rc._id}
+              if rc.transfer_status == 0 then
+                @cardlist << {:cardname => rc.cardname, :_id => rc._id}                
+              end
             }
           end
         end
