@@ -1,3 +1,9 @@
+-if flash
+	.row
+		%ul
+			-flash.each do |key, value|
+				-if key == "error"
+					%li #{key.capitalize}: #{value}
 .row
 	.col-lg-6.col-md-12.detail
 		%h2{style:"color:#5f3d72"} Cards Detail
