@@ -1,10 +1,13 @@
 module TransferHelper
   class Outgoing
     def self.send(from, to, assetid, assettype)
+      result = {:info => "", :error => ""}
       if assettype == "card" then
-        "Sending Asset #{assetid} to #{to} (originator: #{from})"
+        result[:info] = "Sending Asset #{assetid} to #{to} (originator: #{from})"
+        result
       else
-        "Invalid asset type"
+        result[:error] = "Invalid asset type"
+        result
       end
     end
   end

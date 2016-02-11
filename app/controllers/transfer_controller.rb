@@ -8,7 +8,12 @@ class TransferController < ActionController::Base
           if card[:transfer_status] != 1 then
             if params[:transfer][:agree] == "1" then
               transfer_info_msg = TransferHelper::Outgoing.send(current_user.email, params[:transfer][:email].to_s, params[:transfer][:cardid].to_s, "card")
-              puts "Transfer request: Card ID=#{params[:transfer][:cardid]} / Name of card: #{params[:transfer][:cardname]}/ To: #{params[:transfer][:email]} / Agreed: #{params[:transfer][:agree]} (Result: #{transfer_info_msg})"              
+              if transfer_info_msg[:error] != ""
+                flash[:error] = transfer_info_msg[:error]
+                self.goback
+              else
+                puts "Transfer request: Card ID=#{params[:transfer][:cardid]} / Name of card: #{params[:transfer][:cardname]}/ To: #{params[:transfer][:email]} / Agreed: #{params[:transfer][:agree]} (Result: #{transfer_info_msg[:info]})"                
+              end
             else
               flash[:error] = "You must accept the terms before you can transfer this card"
               self.goback
