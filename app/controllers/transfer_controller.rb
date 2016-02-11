@@ -1,5 +1,7 @@
 class TransferController < ActionController::Base
   before_action :authenticate_user!
+  layout 'application'
+  
   def outbound
     if params[:transfer] then
       begin
