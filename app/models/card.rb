@@ -11,6 +11,7 @@ class Card
   field :update_date, type: Date
   field :card_condition, type: String, default: 'mint' # Should be either 'mint', 'slightly worn', 'damaged'
   field :validation_status, type: Integer, default: 0 # 0 = Unverified, 1 = Pending, 2 = Validated
+  field :transfer_status, type: Integer, default: 0 # 0 = not being transferred, 1 = Pending (lets filter by this)
   field :owner_id, type: String
 
   # Types of fields
