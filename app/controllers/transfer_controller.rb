@@ -2,7 +2,11 @@ class TransferController < ActionController::Base
   before_action :authenticate_user!
   def outbound
     if params[:transfer] then
-      card = Card.find(params[:transfer][:cardid])
+      begin
+        card = Card.find(params[:transfer][:cardid])
+      rescue
+        card = nil
+      end
       if card[:cardname] then
         if card[:cardname].downcase == params[:transfer][:cardname].downcase then
           if card[:transfer_status] != 1 then
