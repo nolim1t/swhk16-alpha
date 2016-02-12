@@ -129,4 +129,10 @@ module TransferHelper
       end
     end
   end
+
+  class Emailbot
+    def self.send(from, to, subject, body)
+      ActionMailer::Base.mail(from: from, to: to, subject: subject, body: body).deliver_now
+    end
+  end
 end
