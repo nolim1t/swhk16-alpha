@@ -9,8 +9,12 @@ class CardsController < ApplicationController
 		@cards = params[:search_text].present? ? @owner_cards.where(cardname:  /#{Regexp.escape(params[:search_text].to_s)}/).paginate(:page => params[:page], :per_page => 7) : @owner_cards.paginate(:page => params[:page], :per_page => 7)
 		# raise params[:search_text].inspect
 		# .order_by([:updated_at, :asc])
-		if @cards.length == 0 then
+		# If no cards, show new card url
+		# If no cards and shopkeeper, show vendor url
+		if @cards.length == 0 and current_user.accounttype == "standard" then
 			redirect_to :cards_new_url
+		elsif current_user.accounttype == "vendor" and @cards.length == 0 then
+			redirect_to "/vendor"
 		end
 		@cardimages = []
 		@cards.each{|card|
