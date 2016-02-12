@@ -55,6 +55,13 @@ class TransferController < ActionController::Base
   end
 
   def acceptransfer
+    puts "Processing transfer id #{params[:id]}"
+    transfer_accept_status = TransferHelper::Incoming.accept(current_user._id.to_s, params[:id])
+    redirect_to "/"
+  end
+
+  def inbound
+    @list = Transfer.where(receiver_email: current_user.email)
   end
 
   # Helpers
