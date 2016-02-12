@@ -55,7 +55,7 @@
 								%td Unknown Validation Status
 					%tr
 						%th Create Date:
-						%td #{@card.create_date.to_s}
+						%td #{Time.at(@card.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
 					%tr
 						%th Owner:
 						%td #{current_user.name}
