@@ -69,6 +69,7 @@ module TransferHelper
               create_date: Time.new(),
               card_id: transfer.asset_id.to_s
             )
+            transfer.destroy
             result[:info] = "Transfer has been rejected"
             result
           else
