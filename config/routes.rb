@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   post '/cards/transfer' => 'transfer#outbound', as: :cardtransfer_outbound
   get '/cards/transfer/reject/:id' => 'transfer#rejecttransfer', as: :cardtransfer_reject
   get '/cards/transfer/accept/:id' => 'transfer#acceptransfer', as: :cardtransfer_accept
-
+  get '/cards/transfer/incoming' => 'transfer#inbound', as: :cardtransfer_inbound
+  
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred

@@ -69,8 +69,9 @@
 .row.top-buffer
 	.col-lg-12.col-md-12.col-sm-12
 		-if @card.owner_id == current_user._id.to_s
-			%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "top", title: "Add Pictures"} } Add Pictures
-			%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "top", title: "Future Owner"} } Transfer Ownership
+			-if @card.transfer_status != 1
+				%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "top", title: "Add Pictures"} } Add Pictures
+				%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "top", title: "Future Owner"} } Transfer Ownership
 			-if @card.validation_status == 0
 				=link_to "Ask For Shop Validation", cards_validation_get_url_path(@card), class: 'btn btn-primary btn-purple', id: "link-validation"
 			-elsif @card.validation_status == 1
