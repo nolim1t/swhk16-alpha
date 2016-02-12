@@ -55,6 +55,14 @@ class TransferController < ActionController::Base
   end
 
   def acceptransfer
+    puts "Processing transfer id #{params[:id]}"
+    transfer_accept_status = TransferHelper::Incoming.accept(current_user._id.to_s, params[:id])
+    puts transfer_accept_status.inspect
+    if transfer_accept_status[:asset] != "" then
+      redirect_to "/cards/detail/#{transfer_accept_status[:asset]}"
+    else
+      redirect_to "/"
+    end
   end
 
   # Helpers

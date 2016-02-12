@@ -85,4 +85,47 @@ module TransferHelper
       end
     end
   end
+
+  class Incoming
+    def self.accept(current_userid, transfer_id)
+      result = {:info => "", :error => "", :asset => ""}
+      begin
+        transfer = Transfer.find(transfer_id)
+      rescue
+        transfer = nil
+      end
+      if transfer != nil then
+        begin
+          card = Card.find(transfer.asset_id)
+        rescue
+          card = nil
+        end
+        if card != nil then
+          if (card.owner_id == current_userid) then
+            # Make sure that only the new owner can accept
+            # then take possession of the card
+            transfer.destroy
+            card.update_attributes(transfer_status: 0, owner_id: current_userid.to_s)
+            Cardnote.create(
+              text: "Transfer of card has been completed",
+              create_date: Time.new(),
+              card_id: transfer.asset_id.to_s
+            )
+            result[:info] = "Transfer has completed successfully"
+            result[:asset] = transfer.asset_id
+            result
+          else
+            result[:error] = "You can only accept this transfer if you are the recipient"
+            result
+          end
+        else
+          result[:error] = "Invalid card in transfer due to database inconsistency"
+          result
+        end
+      else
+        result[:error] = "Invalid transfer to accept"
+        result
+      end
+    end
+  end
 end
