@@ -5,3 +5,9 @@
 .row.top-buffer
 .col-lg-6.col-md-6
   %p This page shows a list of cards that you have been sent
+  -if @list.count > 0
+    %ul
+      -@list.each do |item|
+        %li Card from #{item.sender_email} (<a href="/cards/transfer/accept/#{item._id.to_s}">Accept</a> | <a href="/cards/transfer/reject/#{item._id.to_s}">Decline</a> | <a href="/cards/detail/#{item.asset_id.to_s}">View</a>)
+  -else
+    %p You don't have any incoming transfers 😞😭

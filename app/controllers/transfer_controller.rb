@@ -65,6 +65,10 @@ class TransferController < ActionController::Base
     end
   end
 
+  def inbound
+    @list = Transfer.where(receiver_email: current_user.email)
+  end
+
   # Helpers
   def goback
     if request.referer then
