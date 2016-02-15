@@ -33,7 +33,7 @@ class CarduploaderUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-     process :resize_to_fit => [200, 10000]
+     process :resize_to_fit => [10000, 200]
      process convert: 'png'
   end
 
