@@ -27,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
         if find_invite_code[0]['postprocess_instructions'] == "email" then
           # If email, check email and then assign cards to this
           if params[:user][:email] == find_invite_code[0]['email'] then
-            puts "Assign cards to #{resource._id}"
+            puts "Assign cards to userid #{resource._id} which have email #{find_invite_code[0]['email']}"
           else
             puts "No need to assign anything"
           end
