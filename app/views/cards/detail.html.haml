@@ -73,6 +73,7 @@
 				%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "top", title: "Add Pictures"} } Add Pictures
 				%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "top", title: "Future Owner"} } Transfer Ownership
 			-if @card.validation_status == 0
+				%br
 				=link_to "Ask For Shop Validation", cards_validation_get_url_path(@card), class: 'btn btn-primary btn-purple', id: "link-validation"
 			-elsif @card.validation_status == 1
 				%button.btn.btn-primary.btn-purple{title: "Shop Validation Request Pending"} Shop Validation Request Pending
