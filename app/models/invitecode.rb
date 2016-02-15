@@ -7,4 +7,5 @@ class Invitecode
   field :create_date, type: DateTime, default: ->{ Time.new }
 
   field :postprocess_instructions, type: String
+  field :email, type: String
 end

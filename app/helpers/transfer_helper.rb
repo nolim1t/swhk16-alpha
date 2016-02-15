@@ -48,7 +48,7 @@ module TransferHelper
               transfer = Transfer.create(asset_id: assetid, asset_type: assettype, sender_email: from, receiver_email: to, arbiter_email: "info@vaultron.co", create_date: Time.now())
               # Assign to info@vaultron.co
               card.update_attributes(transfer_status: 1, owner_id: custodian_account[0][:_id])
-              invitecode_result = Invitecode.create(postprocess_instructions: "email")
+              invitecode_result = Invitecode.create(postprocess_instructions: "email", email: to)
               Emailbot.send("info@vaultron.co", to, "You have been sent some cards", "Hi!\n\nYou have some cards on vaultron.co waiting for you.\n\nTo claim these cards, please sign up using the email address #{to} (don't worry, you can change this later) and use the invite code: #{invitecode_result.code} (or any previous codes you were sent which should also work)\n\nWhy Vaultron?\n\nVaultron is a platform for securing the value of your collectibles. While we can't prevent past forgeries, we can put a stop for future forgeries. We're currently in closed beta now.")
               result[:info] = "#{transfer._id.to_s}"
               result
