@@ -28,6 +28,24 @@ class RegistrationsController < Devise::RegistrationsController
           # If email, check email and then assign cards to this
           if params[:user][:email] == find_invite_code[0]['email'] then
             puts "Assign cards to userid #{resource._id} which have email #{find_invite_code[0]['email']}"
+            incoming_cards = Transfer.where(receiver_email: params[:user][:email])
+            incoming_cards.each {|incoming_card|
+              puts incoming_card["asset_id"]
+              begin
+                card = Card.find(incoming_card["asset_id"])
+              rescue
+                card = nil
+              end
+              if card != nil
+                card.update_attributes(transfer_status: 0, owner_id: resource._id.to_s)
+                Cardnote.create(
+                	text: "User #{params[:user][:email]} has registered and taken possesion of the card",
+                	create_date: Time.new(),
+                	card_id: incoming_card["asset_id"].to_s
+                )
+              end
+            }
+            incoming_cards.delete
           else
             puts "No need to assign anything"
           end
