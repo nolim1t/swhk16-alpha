@@ -19,6 +19,24 @@ class RegistrationsController < Devise::RegistrationsController
         resource.accounttype = params[:accounttype]
       end
     end
+    # Begin: invite codes
+    if params[:user][:invite_code] != nil then
+      find_invite_code = Invitecode.where(code: params[:user][:invite_code].to_s)
+      if find_invite_code.length == 1 then
+        # Check postprocess_instructions
+        if find_invite_code[0]['postprocess_instructions'] == "email" then
+          # If email, check email and then assign cards to this
+          if params[:user][:email] == find_invite_code[0]['email'] then
+            puts "Assign cards to #{resource._id}"
+          else
+            puts "No need to assign anything"
+          end
+        end
+        # Remove invite code when done with it
+        puts find_invite_code.destroy
+      end
+    end
+    # End: invite codes
     resource.identity_verified = "false"
     resource.save
 
