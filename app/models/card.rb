@@ -7,8 +7,8 @@ class Card
   field :cardname, type: String
   field :cardgame, type: String
   field :cardcollection, type: String
-  field :create_date, type: Date
-  field :update_date, type: Date
+  field :create_date, type: DateTime, default: ->{ Time.new }
+  field :update_date, type: DateTime, default: ->{ Time.new }
   field :card_condition, type: String, default: 'mint' # Should be either 'mint', 'slightly worn', 'damaged'
   field :validation_status, type: Integer, default: 0 # 0 = Unverified, 1 = Pending, 2 = Validated
   field :transfer_status, type: Integer, default: 0 # 0 = not being transferred, 1 = Pending (lets filter by this)
