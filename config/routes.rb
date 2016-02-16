@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   get '/cards/transfer/incoming' => 'transfer#inbound', as: :cardtransfer_inbound
 
   # Admin page
-  get '/admin' = 'adminpage#index', as: :adminpage_index
-  
+  get '/admin' => 'adminpage#index', as: :adminpage_index
+
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred
