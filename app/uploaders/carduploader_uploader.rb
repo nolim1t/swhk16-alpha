@@ -3,8 +3,8 @@
 class CarduploaderUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  #include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   #storage :file
   storage :fog
@@ -30,11 +30,26 @@ class CarduploaderUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-
+  process :stripexif
   # Create different versions of your uploaded files:
   version :thumb do
-     process :resize_to_fit => [400, 400]
-     process convert: 'png'
+     process :resize_to_fit => [300,300]
+  end
+
+  def stripexif
+    manipulate! do |img|
+      puts "IMAGE EXIF: #{img.exif.inspect}"
+      orientation = "default"
+      if img.exif["Orientation"] == "6" then
+        orientation = "portrait"
+      end
+      img.strip
+      if orientation != "default" then
+        img.rotate "90"
+      end
+      img = yield(img) if block_given?
+      img
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
