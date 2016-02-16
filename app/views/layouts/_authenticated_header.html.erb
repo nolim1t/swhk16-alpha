@@ -1,5 +1,5 @@
 <ul class="nav navbar-nav navbar-right authentication">
-	<li><a href="<% if current_user.accounttype == 'vendor' then %>/vendor<% elsif current_user.accounttype == 'admin' then %>/admin<% else %>/settings<% end %>"><button class="btn btn-success btn-authentication"> <%=current_user.accounttype.to_s.gsub('vendor', 'shopkeeper').gsub('standard', 'collector').gsub('admin','Vault Master').capitalize %> User</button></a></li>
+	<li><a href="<% if current_user.accounttype == 'vendor' then %>/vendor<% elsif current_user.accounttype == 'admin' then %>/admin<% else %>/settings<% end %>"><button class="btn btn-success btn-authentication"> <%=current_user.accounttype.to_s.gsub('vendor', 'shopkeeper').gsub('standard', 'collector').gsub('admin','Vaultmaster').capitalize %></button></a></li>
 	<li><a href="/settings">  <button class="btn btn-success btn-authentication"> Settings </button></a></li>
   <li><a href="/logout"> <button class="btn btn-success btn-authentication"> Log Out </button></a></li>
 </ul><!-- /.nav-collapse -->
