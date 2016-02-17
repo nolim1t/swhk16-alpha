@@ -122,7 +122,7 @@ class CardsController < ApplicationController
 				@cardimages << card_2
 			}
 			# Check if owner matches the database
-			if (@card.owner_id == current_user._id.to_s) or (current_user.accounttype == "vendor") then
+			if (@card.owner_id == current_user._id.to_s) or (current_user.accounttype == "vendor" or current_user.accounttype == "admin") then
 				@method = env['REQUEST_METHOD']
 				if current_user.timezone == '' or current_user.timezone == nil then
 					@timezone = current_user.timezone
