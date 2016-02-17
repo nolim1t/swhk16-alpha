@@ -10,6 +10,6 @@
 		-if @userlist.count > 0
 			%ul
 				-@userlist.each do |user|
-					%li #{user[:email]} (Type: #{user[:accounttype]}) | Cards Owned: #{user[:cards].count}
+					%li Name: #{user[:name]} Email: #{user[:email]} Verified: #{user[:identity_verified]} (Type: #{user[:accounttype]}) | Cards Owned: #{user[:cards].count}
 		-else
 			%p No users found

@@ -28,7 +28,11 @@ class AdminpageController < ApplicationController
       userlist = User.all
       @userlist = []
       userlist.each {|user|
-        @userlist << {:email => user[:email], :accounttype => user[:accounttype], :cards => Card.where(owner_id: user[:_id].to_s)}
+        verified = "no"
+        if user[:identity_verified] == 1 then
+          verified = "yes"
+        end
+        @userlist << {:name => user[:name], :email => user[:email], :accounttype => user[:accounttype], :identity_verified => verified, :cards => Card.where(owner_id: user[:_id].to_s)}
       }
     else
       redirect_to "/"
