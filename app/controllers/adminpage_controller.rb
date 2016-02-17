@@ -45,7 +45,7 @@ class AdminpageController < ApplicationController
       transferlist = Transfer.all
       @transferlist = []
       transferlist.each {|transfer|
-        @transferlist << {:id => transfer[:_id], :sender => User.where(:email => transfer[:sender_email]), :receiver => User.where(:email => transfer[:receiver_email])}
+        @transferlist << {:id => transfer[:_id], :asset_id => transfer[:asset_id], :asset_desc => Card.find(transfer[:asset_id]), :sender => User.where(:email => transfer[:sender_email]), :receiver => User.where(:email => transfer[:receiver_email])}
       }
     else
       redirect_to "/"
