@@ -21,4 +21,17 @@ class AdminpageController < ApplicationController
       redirect_to "/"
     end
   end
+
+  # Show user list
+  def userlist
+    if current_user.accounttype == "admin" then
+      userlist = User.all
+      @userlist = []
+      userlist.each {|user|
+        @userlist << {:email => user[:email], :accounttype => user[:accounttype], :cards => Card.where(owner_id: user[:_id].to_s)}
+      }
+    else
+      redirect_to "/"
+    end
+  end
 end
