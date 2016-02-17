@@ -38,4 +38,17 @@ class AdminpageController < ApplicationController
       redirect_to "/"
     end
   end
+
+  # Show transfer list
+  def transferlist
+    if current_user.accounttype == "admin" then
+      transferlist = Transfer.all
+      @transferlist = []
+      transferlist.each {|transfer|
+        @transferlist << {:id => transfer[:_id], :sender => User.where(:email => transfer[:sender_email]), :receiver => User.where(:email => transfer[:receiver_email])}
+      }
+    else
+      redirect_to "/"
+    end
+  end
 end
