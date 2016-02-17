@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 
   # Admin page
   get '/admin' => 'adminpage#index', as: :adminpage_index
-
+  get '/admin/generateinvite' => 'adminpage#generateinvite', as: :adminpage_generateinvite
+  
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred

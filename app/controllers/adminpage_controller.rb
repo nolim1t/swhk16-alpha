@@ -8,4 +8,17 @@ class AdminpageController < ApplicationController
       redirect_to "/"
     end
   end
+
+  # Generate invite code
+  def generateinvite
+    if current_user.accounttype == "admin" then
+      if params[:generateinvite] then
+        if params[:generateinvite][:invitecode] == "yes" then
+          @invitecode = Invitecode.create["code"]
+        end
+      end
+    else
+      redirect_to "/"
+    end
+  end
 end
