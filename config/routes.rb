@@ -26,7 +26,13 @@ Rails.application.routes.draw do
   get '/cards/transfer/reject/:id' => 'transfer#rejecttransfer', as: :cardtransfer_reject
   get '/cards/transfer/accept/:id' => 'transfer#acceptransfer', as: :cardtransfer_accept
   get '/cards/transfer/incoming' => 'transfer#inbound', as: :cardtransfer_inbound
-  
+
+  # Admin page
+  get '/admin' => 'adminpage#index', as: :adminpage_index
+  get '/admin/generateinvite' => 'adminpage#generateinvite', as: :adminpage_generateinvite
+  get '/admin/users' => 'adminpage#userlist', as: :adminpage_userlist
+  get '/admin/transfers' => 'adminpage#transferlist', as: :adminpage_transferlist
+
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred

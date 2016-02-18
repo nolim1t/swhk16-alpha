@@ -1,0 +1,15 @@
+.row
+	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+		%h2{style:"color:#5f3d72"} Admin tools
+
+.row.top-buffer
+	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+		%p List of active transfers in the system
+.row.top-buffer
+	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+		-if @transferlist.count > 0
+			%ul
+				-@transferlist.each do |transfer|
+					%li Transfer of <a href="#" onclick="document.location.href='/cards/detail/#{transfer[:asset_id]}';">#{transfer[:asset_desc][:cardname]}</a> to #{transfer[:receiver][0][:name]} (#{transfer[:receiver][0][:email]}) from #{transfer[:sender][0][:name]} (#{transfer[:sender][0][:email]}). <a href="/cards/transfer/reject/#{transfer[:id]}">Reject?</a>
+		-else
+			%p No active transfers found
