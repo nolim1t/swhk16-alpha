@@ -38,7 +38,17 @@ html, body {
   padding-left: 50px;
   padding-top: 5px;
   padding-bottom: 0;
-  /* width: 50; */
+   width: 42; 
+}
+
+.navbar-betaband {
+  position: absolute;  
+  z-index: 0; 
+  top: 0; 
+  left: 0; 
+  border: 0;
+  width: 42px;
+  
 }
 
 .navbar-toggle{
