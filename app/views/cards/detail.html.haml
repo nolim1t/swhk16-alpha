@@ -11,7 +11,7 @@
 		.row.top-buffer
 			.col-lg-12.col-md-12.col-sm-12
 				-if @card.owner_id == current_user._id.to_s
-					-if @card.transfer_status != 1 and @card.validation_status == 0
+					-if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
 						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } Add Pictures
 						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } Transfer Ownership
 					/ =render "addnote"
@@ -71,12 +71,12 @@
 						%th Owner:
 						%td #{current_user.name}
 		.top-buffer
-		-if @card.owner_id == current_user._id.to_s and @card.validation_status == 0
+		-if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2)
 			=link_to "Delete Card", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-purple"
 
 %br
 
--if @card.owner_id == current_user._id.to_s and @card.validation_status == 0
+-if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2)
 	=link_to "Edit Notes", cards_edit_path(@card), class: "btn btn-primary btn-purple"
 
 .top-buffer
