@@ -268,17 +268,25 @@ class CardsController < ApplicationController
 
 	def deletecard
 		card_to_update = Card.find(params[:id])
-		puts "ID: #{params[:id]}\n\bInspect info: #{card_to_update.inspect}"
-		card_to_update.update_attributes(deleted_status: 1)
+		if (card_to_update.owner_id.to_s == current_user._id.to_s) or (current_user.accounttype == "vendor" or current_user.accounttype == "admin") then
+			puts "ID: #{params[:id]}\n\bInspect info: #{card_to_update.inspect}"
+			card_to_update.update_attributes(deleted_status: 1)
 
-		redirect_to cards_index_path
+			redirect_to cards_index_path
+		else
+			redirect_to "/"
+		end
 	end
 
 	def undeletecard
 		card_to_update = Card.find(params[:id])
-		puts "ID: #{params[:id]}\n\bInspect info: #{card_to_update.inspect}"
-		card_to_update.update_attributes(deleted_status: 0)
+		if (card_to_update.owner_id.to_s == current_user._id.to_s) or (current_user.accounttype == "vendor" or current_user.accounttype == "admin") then
+			puts "ID: #{params[:id]}\n\bInspect info: #{card_to_update.inspect}"
+			card_to_update.update_attributes(deleted_status: 0)
 
-		redirect_to cards_index_path
+			redirect_to cards_index_path
+		else
+			redirect_to "/"
+		end
 	end
 end
