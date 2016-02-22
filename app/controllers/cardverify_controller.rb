@@ -71,7 +71,7 @@ class CardverifyController < ApplicationController
     if validation_queue.length > 0 then
       card = Card.find(id)
       Cardnote.create(
-        text: "Shopkeeper #{verb} card",
+        text: "Expert user #{verb} card",
         create_date: Time.new(),
         card_id: id.to_s
       )

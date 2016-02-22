@@ -244,7 +244,7 @@ class CardsController < ApplicationController
 				check_queue = Validationqueue.where(:requestor_email_address => current_user.email, :card_id => @card._id.to_s)
 				if check_queue.length == 0 then
 					Cardnote.create(
-						text: "Requested validation by shopkeeper or verified user",
+						text: "Requested validation by expert",
 						create_date: Time.new(),
 						card_id: params[:id].to_s
 					)
