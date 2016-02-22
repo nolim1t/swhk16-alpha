@@ -10,6 +10,6 @@
 		-if @transferlist.count > 0
 			%ul
 				-@transferlist.each do |transfer|
-					%li Transfer of <a href="#" onclick="document.location.href='/cards/detail/#{transfer[:asset_id]}';">#{transfer[:asset_desc][:cardname]}</a> to #{transfer[:receiver_email} from #{transfer[:sender][0][:name]} (#{transfer[:sender][0][:email]}). <a href="/cards/transfer/reject/#{transfer[:id]}">Reject?</a>
+					%li Transfer of <a href="#" onclick="document.location.href='/cards/detail/#{transfer[:asset_id]}';">#{transfer[:asset_desc][:cardname]}</a> to #{transfer[:receiver_email]} from #{transfer[:sender][0][:name]} (#{transfer[:sender][0][:email]}). <a href="/cards/transfer/reject/#{transfer[:id]}">Reject?</a>
 		-else
 			%p No active transfers found
