@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 html, body {
-  padding-top: 50px;
+  padding-top: 42px;
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
@@ -13,14 +13,14 @@ html, body {
   min-height: 100%;
   height: auto;
   /* Negative indent footer by its height */
-  margin: 0 auto -30px;
+  margin: 0 auto -25px;
   /* Pad bottom by footer height */
-  padding: 0 0 60px;
+  padding: 0 0 25px;
 }
 
 
 .footer{
-  height: 30px;
+  height: 25px;
   color: white;
   background-color: #5f3d72;
 }
@@ -29,14 +29,26 @@ html, body {
   background-color: #5f3d72;
   border-color: #5f3d72;
   margin-bottom: -20px;
+  height: 42px
 }
 
 .navbar-logo
 {
   margin-top: 0px;
   padding-left: 50px;
-  padding-top: 10px;
+  padding-top: 5px;
   padding-bottom: 0;
+  height: 42; 
+}
+
+.navbar-betaband {
+  position: absolute;  
+  z-index: 0; 
+  top: 0; 
+  left: 0; 
+  border: 0;
+  height: 42px;
+  
 }
 
 .navbar-toggle{
