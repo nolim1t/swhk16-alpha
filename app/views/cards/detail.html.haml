@@ -57,12 +57,13 @@
 					%tr
 						%th Owner:
 						%td #{current_user.name}
-
-		.top-buffer
-		=render "listnote"
 		.top-buffer
 		-if @card.owner_id == current_user._id.to_s
 			=link_to "Edit Notes", cards_edit_path(@card), class: "btn btn-primary btn-purple"
+			=link_to "Delete Card", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-purple"
+
+		.top-buffer
+			=render "listnote"
 
 .row.top-buffer
 	.col-lg-12.col-md-12.col-sm-12
