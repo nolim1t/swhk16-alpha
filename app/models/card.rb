@@ -14,6 +14,12 @@ class Card
   field :transfer_status, type: Integer, default: 0 # 0 = not being transferred, 1 = Pending (lets filter by this)
   field :owner_id, type: String
 
+  # Deleted
+  field :deleted_status, type: Integer, default: 0 # Not deleted, 1 = deleted
+
+  # Text
+  field :searchable_name, type: String
+
   # Types of fields
   # Array
   # BigDecimal

@@ -12,7 +12,7 @@
 	= form_for :cards, url: cards_new_url_path, method: :post, role: "form", class: "form-horizontal" do |f|
 		= f.hidden_field "userid", value: current_user.id
 		.col-lg-6.col-md-6
-			Front Image
+			Front Image <strong>(*required)</strong>
 			%br
 			= f.file_field "front_image", class: "btn btn-primary btn-purple"
 			%br
@@ -21,6 +21,7 @@
 			= f.file_field "back_image", class: "btn btn-primary btn-purple "
 			%br
 		.col-lg-6.col-md-6
+			%b Name of card: <strong>(*required)</strong>
 			= f.text_field :name, placeholder: "Name of Card", class: "form-control", value: flash[:info]["cardname"]
 			%br
 			%b Card condition:
@@ -40,7 +41,7 @@
 			= f.select :collection, ["Default collection"], class: "form-control", selected: flash[:info]["cardcollection"]
 			%br
 			%br
-			= f.submit "Add Card", class: "btn btn-primary btn-purple"
+			= f.submit "Add Card", class: "btn btn-primary btn-purple", data: {disable_with: "Submitting..."}
 
 			%br
 			%br
