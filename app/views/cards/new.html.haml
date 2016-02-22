@@ -40,7 +40,7 @@
 			= f.select :collection, ["Default collection"], class: "form-control", selected: flash[:info]["cardcollection"]
 			%br
 			%br
-			= f.submit "Add Card", class: "btn btn-primary btn-purple"
+			= f.submit "Add Card", class: "btn btn-primary btn-purple", data: {disable_with: "Submitting..."}
 
 			%br
 			%br
