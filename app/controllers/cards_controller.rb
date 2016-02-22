@@ -5,6 +5,7 @@ class CardsController < ApplicationController
 	layout 'application'
 
 	def index
+		flash[:info] = nil # Remove any info stuff
 		@listincoming = Transfer.where(receiver_email: current_user.email).count # Check i
 		@owner_cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
 		@cards = params[:search_text].present? ? @owner_cards.where(searchable_name:  /#{Regexp.escape(params[:search_text].downcase.to_s)}/).paginate(:page => params[:page], :per_page => 7) : @owner_cards.paginate(:page => params[:page], :per_page => 7)
