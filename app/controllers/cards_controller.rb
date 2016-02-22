@@ -109,7 +109,7 @@ class CardsController < ApplicationController
 
 	def detail
 		puts "ID: #{params[:id]}"
-		cards = Card.where(:id => params[:id].to_s)
+		cards = Card.where(:id => params[:id].to_s, :deleted_status => 0)
 		if cards.length == 1 then
 			@card = cards[0]
 			@cardnote = Cardnote.where(:card_id => @card._id.to_s).order_by([:create_date, :desc]).limit(5)
@@ -264,5 +264,21 @@ class CardsController < ApplicationController
 		else
 			redirect_to cards_detail_url_path(@card)
 		end
+	end
+
+	def deletecard
+		card_to_update = Card.find(params[:id])
+		puts "ID: #{params[:id]}\n\bInspect info: #{card_to_update.inspect}"
+		card_to_update.update_attributes(deleted_status: 1)
+
+		redirect_to cards_index_path
+	end
+
+	def undeletecard
+		card_to_update = Card.find(params[:id])
+		puts "ID: #{params[:id]}\n\bInspect info: #{card_to_update.inspect}"
+		card_to_update.update_attributes(deleted_status: 0)
+
+		redirect_to cards_index_path
 	end
 end

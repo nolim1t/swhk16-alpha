@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get '/cards/detail/:id' => 'cards#detail', as: :cards_detail_url
   post '/cards/detail/:id' => 'cards#detail', as: :cards_detail_post_url
   get '/cards/validate/:id' => 'cards#request_validation', as: :cards_validation_get_url
+  get '/cards/delete/:id' => 'cards#deletecard', as: :cards_delete_url
+  get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
 
   # Vendor/Shopkeeper functionality
   get '/vendor' => 'cardverify#menu', as: :cardverify_menu
