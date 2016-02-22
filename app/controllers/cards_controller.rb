@@ -6,8 +6,8 @@ class CardsController < ApplicationController
 
 	def index
 		@listincoming = Transfer.where(receiver_email: current_user.email).count # Check i
-		@owner_cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0).order_by([:create_date, :desc])
-		@cards = params[:search_text].present? ? @owner_cards.where(cardname:  /#{Regexp.escape(params[:search_text].to_s)}/).paginate(:page => params[:page], :per_page => 7) : @owner_cards.paginate(:page => params[:page], :per_page => 7)
+		@owner_cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
+		@cards = params[:search_text].present? ? @owner_cards.where(searchable_name:  /#{Regexp.escape(params[:search_text].downcase.to_s)}/).paginate(:page => params[:page], :per_page => 7) : @owner_cards.paginate(:page => params[:page], :per_page => 7)
 		# raise params[:search_text].inspect
 		# .order_by([:updated_at, :asc])
 		# If no cards, show new card url
@@ -46,6 +46,7 @@ class CardsController < ApplicationController
 				card_created = Card.create(
 					cardname: params[:cards]["name"].to_s,
 					cardgame: params[:cards]["game"].to_s,
+					searchable_name: params[:cards]["name"].downcase.to_s,
 					cardcollection: params[:cards]["collection"].to_s,
 					card_condition: params[:cards]["card_condition"].to_s.downcase,
 					create_date: Time.new(),
