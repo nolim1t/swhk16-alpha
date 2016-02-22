@@ -1,0 +1,17 @@
+.row
+  .col-lg-6.col-md-6
+    %h2{style:"color:#5f3d72"} Generate Invite code
+
+.row.top-buffer
+.col-lg-6.col-md-6
+  %br
+  = form_for :generateinvite, url: adminpage_generateinvite_path, method: :get, role: "form", class: "form-horizontal" do |f|
+    .col-lg-6.col-md-6
+      = f.hidden_field :invitecode, value: "yes"
+      %br
+      = f.submit "Generate Invite code", class: "btn btn-primary btn-purple"
+      %br
+      %br
+  .col-lg-6.col-md-6
+    -if @invitecode
+      %p You can register with the following invite code: #{@invitecode}

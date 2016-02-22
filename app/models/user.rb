@@ -64,7 +64,9 @@ class User
 
   validates_each :invite_code, :on => :create do |record, attr, value|
       puts "#{attr}=\"#{value}\""
+      codes = Invitecode.where(:code => value)
+
       record.errors.add attr, "Please enter correct invite code" unless
-        value && value == "12345"
+        value && codes.length == 1
   end
 end

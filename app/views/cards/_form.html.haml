@@ -24,7 +24,7 @@
 				= f.select :card_condition, ["Mint", "Slightly worn", "Worn", "Damaged"], selected: @card.card_condition.to_s.capitalize, class: "form-control"
 				%br
 				%br
-				%b As the condition you set is irreversible, please confirm the card condition by typing the name:
+				%b As the condition you set is irreversible, please confirm the card condition by typing the condition name in the textbox below. You do not need to fill in this text field if you are NOT changing the condition:
 				%br
 					= f.text_field :card_condition_verify, placeholder: "Type in the card condition above to confirm the change", class: "form-control"
 				%br

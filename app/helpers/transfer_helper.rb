@@ -36,8 +36,30 @@ module TransferHelper
             result
           end
         else
-          result[:error] = "The user you tried to transfer to doesn't exist. But don't worry, very soon they will get an invite code and you won't see this message"
-          result
+          # Move the card to info@vaultron.co as custodian
+          custodian_account = User.where(email: "info@vaultron.co")
+          begin
+            card = Card.find(assetid)
+          rescue
+            card = nil
+          end
+          if card != nil
+            if card.owner_id.to_s == sender[0][:_id].to_s then
+              transfer = Transfer.create(asset_id: assetid, asset_type: assettype, sender_email: from, receiver_email: to, arbiter_email: "info@vaultron.co", create_date: Time.now())
+              # Assign to info@vaultron.co
+              card.update_attributes(transfer_status: 1, owner_id: custodian_account[0][:_id])
+              invitecode_result = Invitecode.create(postprocess_instructions: "email", email: to)
+              Emailbot.send("info@vaultarch.com", to, "You have been sent some cards", "Hi!\n\nYou have some cards on Vaultarch that is waiting for you.\n\nTo claim these cards, please sign up at https://vaultarch.com/register using the email address #{to} (don't worry, you can change this later) and use the invite code: #{invitecode_result.code} (or any previous codes you were sent which should also work)\n\nWhy Vaultarch?\n\nVaultarch is a secure service for card collectors and players to protect against counterfeiting, theft and loss by registering images of their most valuable cards.\nAccess is available by website on every web browser, and is tailored to offer a great viewing experience and functionality on modern mobile phones.\n\nNote that we are currently in closed beta, only people with invite codes can join.")
+              result[:info] = "#{transfer._id.to_s}"
+              result
+            else
+              result[:error] = "Card isn't owned by you"
+              result
+            end
+          else
+            result[:error] = "Unable to find card to transfer"
+            result
+          end
         end
       else
         result[:error] = "Invalid asset type"
@@ -127,6 +149,12 @@ module TransferHelper
         result[:error] = "Invalid transfer to accept"
         result
       end
+    end
+  end
+
+  class Emailbot
+    def self.send(from, to, subject, body)
+      ActionMailer::Base.mail(from: from, to: to, subject: subject, body: body).deliver_now
     end
   end
 end

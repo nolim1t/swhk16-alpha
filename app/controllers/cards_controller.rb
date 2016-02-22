@@ -6,15 +6,13 @@ class CardsController < ApplicationController
 
 	def index
 		@listincoming = Transfer.where(receiver_email: current_user.email).count # Check i
-		@owner_cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0)
+		@owner_cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0).order_by([:create_date, :desc])
 		@cards = params[:search_text].present? ? @owner_cards.where(cardname:  /#{Regexp.escape(params[:search_text].to_s)}/).paginate(:page => params[:page], :per_page => 7) : @owner_cards.paginate(:page => params[:page], :per_page => 7)
 		# raise params[:search_text].inspect
 		# .order_by([:updated_at, :asc])
 		# If no cards, show new card url
 		# If no cards and shopkeeper, show vendor url
-		if @cards.length == 0 and current_user.accounttype == "standard" then
-			redirect_to :cards_new_url
-		elsif current_user.accounttype == "vendor" and @cards.length == 0 then
+		if current_user.accounttype == "vendor" and @cards.length == 0 then
 			redirect_to "/vendor"
 		end
 		@cardimages = []
@@ -124,7 +122,7 @@ class CardsController < ApplicationController
 				@cardimages << card_2
 			}
 			# Check if owner matches the database
-			if (@card.owner_id == current_user._id.to_s) or (current_user.accounttype == "vendor") then
+			if (@card.owner_id == current_user._id.to_s) or (current_user.accounttype == "vendor" or current_user.accounttype == "admin") then
 				@method = env['REQUEST_METHOD']
 				if current_user.timezone == '' or current_user.timezone == nil then
 					@timezone = current_user.timezone
@@ -246,7 +244,7 @@ class CardsController < ApplicationController
 				check_queue = Validationqueue.where(:requestor_email_address => current_user.email, :card_id => @card._id.to_s)
 				if check_queue.length == 0 then
 					Cardnote.create(
-						text: "Requested validation by shopkeeper or verified user",
+						text: "Requested validation by expert",
 						create_date: Time.new(),
 						card_id: params[:id].to_s
 					)

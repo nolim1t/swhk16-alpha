@@ -2,7 +2,7 @@ class CardverifyController < ApplicationController
   before_action :authenticate_user!
 
   def index
-		if current_user.accounttype == "vendor" then
+		if current_user.accounttype == "vendor" or current_user.accounttype == "admin" then
       @cardlist = []
       if params[:cardverify] != nil then
         if params[:cardverify][:email] != nil then
@@ -11,7 +11,7 @@ class CardverifyController < ApplicationController
             check_cards.each {|pc|
               rc = Card.find(pc.card_id)
               if rc.transfer_status == 0 then
-                @cardlist << {:cardname => rc.cardname, :_id => rc._id}                
+                @cardlist << {:cardname => rc.cardname, :_id => rc._id}
               end
             }
           end
@@ -71,7 +71,7 @@ class CardverifyController < ApplicationController
     if validation_queue.length > 0 then
       card = Card.find(id)
       Cardnote.create(
-        text: "Shopkeeper #{verb} card",
+        text: "Expert user #{verb} card",
         create_date: Time.new(),
         card_id: id.to_s
       )

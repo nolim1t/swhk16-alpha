@@ -104,3 +104,14 @@ Cardcondition.create(condition: "Slightly Worn")
 Cardcondition.create(condition: "Worn")
 Cardcondition.create(condition: "Damaged")
 ```
+
+#### Invitecodes model
+* **code** - the invite code
+* **create_date** - When it was created
+* **postprocess_instructions** - Any instructions to do after we register. For example, assign the following card to a user.
+
+##### How to create a record
+This will generate 10 random invite codes
+```ruby
+10.times {|i| puts Invitecode.create()['code']}
+```
