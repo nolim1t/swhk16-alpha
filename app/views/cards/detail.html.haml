@@ -18,16 +18,14 @@
 					/ %h4 #{cardimage.image_type.capitalize} of card
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
 					%br
-					-if current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s
-						%a{:href => "#{cardimage.photo.url}"} Download original card
-						%br
+					%a{:href => "#{cardimage.photo.url}"} Download original card
+					%br
 			-else
 				.col-lg-4.col-sm-4
 					/ %h4 #{cardimage.image_type.capitalize} of card
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
-					-if current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s
-						%a{:href => "#{cardimage.photo.url}"} Download original card
-						%br
+					%a{:href => "#{cardimage.photo.url}"} Download original card
+					%br
 		%br
 	.col-lg-4.col-sm-4
 		.table-responsive
@@ -43,10 +41,10 @@
 						%th Card Condition:
 						%td #{@card.card_condition.to_s.capitalize}
 					%tr
-						%th Validation status:
+						%th Checking status:
 						-case @card.validation_status
 							-when 0
-								%td Unverified ⚠️
+								%td Unverified ⚠️ (<a href="#{cards_validation_get_url_path(@card)}">Ask for Expert Check</a>)
 							-when 1
 								%td Awaiting Store Validation ⏳
 							-when 2
@@ -54,7 +52,7 @@
 							-else
 								%td Unknown Validation Status
 					%tr
-						%th Create Date:
+						%th Created:
 						%td #{Time.at(@card.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
 					%tr
 						%th Owner:
@@ -69,15 +67,9 @@
 .row.top-buffer
 	.col-lg-12.col-md-12.col-sm-12
 		-if @card.owner_id == current_user._id.to_s
-			-if @card.transfer_status != 1
+			-if @card.transfer_status != 1 and @card.validation_status == 0
 				%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "top", title: "Add Pictures"} } Add Pictures
 				%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "top", title: "Future Owner"} } Transfer Ownership
-			-if @card.validation_status == 0
-				%br
-				%br
-				=link_to "Ask For Shop Validation", cards_validation_get_url_path(@card), class: 'btn btn-primary btn-purple', id: "link-validation"
-			-elsif @card.validation_status == 1
-				%button.btn.btn-primary.btn-purple{title: "Shop Validation Request Pending"} Shop Validation Request Pending
 			/ =render "addnote"
 		-elsif current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s
 			=link_to "Approve Card 👍", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
