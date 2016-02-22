@@ -71,12 +71,12 @@
 						%th Owner:
 						%td #{current_user.name}
 		.top-buffer
-		-if @card.owner_id == current_user._id.to_s
+		-if @card.owner_id == current_user._id.to_s and @card.validation_status == 0
 			=link_to "Delete Card", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-purple"
 
 %br
 
--if @card.owner_id == current_user._id.to_s
+-if @card.owner_id == current_user._id.to_s and @card.validation_status == 0
 	=link_to "Edit Notes", cards_edit_path(@card), class: "btn btn-primary btn-purple"
 
 .top-buffer
