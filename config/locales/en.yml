@@ -37,7 +37,7 @@ en:
   approvebutton: "Approve Card 👍"
   rejectbutton: "Reject Card 👎"
   deletebutton: "Delete card"
-  editnotesbutton: "Edit Notes"
+  editnotesbutton: "Edit Card Detail"
   cardname: "Card Name"
   cardgame: "Card Game"
   cardcondition: "Card Condition"
