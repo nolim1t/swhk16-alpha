@@ -141,10 +141,31 @@ class CardsController < ApplicationController
 					if params[:cards].present?
 						puts "Params: card_id=#{params[:id]}, notes_text=#{params[:cards]['notes_text']}"
 						puts "Full cards params: #{params[:cards].inspect}"
+						notes_text = ''
 						if params[:cards]['image_only_upload'] == 'true' then
 							notes_text = 'Replace card image'
 						else
 							notes_text = params[:cards]['notes_text']
+						end
+						if params[:cards]['cardname'] or params[:cards]['card_condition'] then
+							puts "Lets update card id=#{@card._id}"
+							update_card = Card.find(@card._id)
+							# Check if the entry is different
+							if params[:cards]['cardname'].to_s != update_card['cardname'] then
+								if params[:cards]['cardname'].to_s.length > 0 then
+									notes_text = "Change card name from \"#{update_card['cardname']}\" to \"#{params[:cards]['cardname'].to_s}\" "
+								end
+							end
+							if params[:cards]['card_condition'].to_s != update_card['card_condition'].to_s then
+								if params[:cards]['card_condition'].to_s.length > 0 then
+									notes_text = "#{notes_text}Change card condition from \"#{update_card['card_condition'].to_s}\" to \"#{params[:cards]['card_condition'].to_s}\""
+								end
+							end
+							if params[:cards]['notes_text'] then
+								if params[:cards]['notes_text'].to_s.length > 1 and params[:cards]['notes_text'].to_s.length <= 500 then
+									notes_text = "#{notes_text}. Comment by user \"#{params[:cards]['notes_text']}\""
+								end
+							end
 						end
 						if notes_text != '' then
 							# Create a card note
@@ -173,10 +194,6 @@ class CardsController < ApplicationController
 									card_id: params[:id].to_s
 								)
 							end # END: Check back image
-							if params[:cards]['cardname'] or params[:cards]['card_condition'] then
-								puts "Lets update card id=#{@card._id}"
-								update_card = Card.find(@card._id)
-							end
 							if params[:cards]['cardname'] then
 								if params[:cards]['cardname'].to_s.length > 1 then
 									update_card.update_attributes(cardname: params[:cards]['cardname'])
@@ -186,7 +203,7 @@ class CardsController < ApplicationController
 							if params[:cards]['card_condition'] then
 								# Then update the card condition first
 								if params[:cards]['card_condition'].to_s.length > 1 then
-									update_card.update_attributes(card_condition: params[:cards]['card_condition'])									
+									update_card.update_attributes(card_condition: params[:cards]['card_condition'])
 									# Store Cardcondition so we have a list of what people are entering
 									Cardcondition.create(
 										condition: params[:cards]['card_condition'].downcase
@@ -197,7 +214,7 @@ class CardsController < ApplicationController
 						else
 							# Or display an error
 							puts "Error encountered. Redirect back to #{request.original_fullpath}"
-							flash[:error] = "Must include a comment"
+							flash[:error] = "Must include a comment if you aren't changing the fields"
 							redirect_to request.original_fullpath
 						end # END: Check presence of notes text
 					end # End: check if card is present
