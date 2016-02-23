@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+  standard: "Collector"
+  vendor: "Shopkeeper User"
+  expertuser: "Expert User"
+  adminuser: "Vaultmaster"
+  settings: "Settings"
+  logout: "Logout"
+  login: "Login"
+  register: "Sign up"
