@@ -48,3 +48,7 @@ en:
   statuspending: "Awaiting Expert Validation ⏳"
   statusverified: "Verified ✅"
   statusunknown: "Unknown Status"
+  noimagesfound: "No images found"
+  cardnote: "Card Note"
+  cardnotetime: "Card Note Time"
+  nonotesfound: "No notes on this card found"

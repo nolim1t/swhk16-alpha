@@ -22,7 +22,7 @@
 
 .row.top-buffer
 	-if @cardimages.length == 0 then
-		No images found
+		#{I18n.t('noimagesfound')}
 	-else
 		-size = @cardimages.size
 		-@cardimages.each do |cardimage|
