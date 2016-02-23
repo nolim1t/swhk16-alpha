@@ -11,8 +11,10 @@
 .row.top-buffer
 	= form_for :cards, url: cards_edit_post_url_url, method: :post, role: "form", class: "form-horizontal" do |f|
 		.col-lg-6.col-md-6
-			// = f.text_field :cardname, placeholder: "Name of Card", class: "form-control"
-			// %br
+			%b Card name:
+			%br
+			= f.text_field :cardname, placeholder: "Name of Card", class: "form-control", value: @card.cardname.to_s
+			%br
 			// = f.text_field :cardgame, placeholder: "Game", class: "form-control"
 			// %br
 			// = f.text_field :cardcollection, placeholder: "Set", class: "form-control"

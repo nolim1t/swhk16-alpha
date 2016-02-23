@@ -173,21 +173,27 @@ class CardsController < ApplicationController
 									card_id: params[:id].to_s
 								)
 							end # END: Check back image
+							if params[:cards]['cardname'] or params[:cards]['card_condition'] then
+								puts "Lets update card id=#{@card._id}"
+								update_card = Card.find(@card._id)
+							end
+							if params[:cards]['cardname'] then
+								if params[:cards]['cardname'].to_s.length > 1 then
+									update_card.update_attributes(cardname: params[:cards]['cardname'])
+								end
+							end
 							# If card condition not set
 							if params[:cards]['card_condition'] then
 								# Then update the card condition first
-								puts "Lets update card id=#{@card._id}"
-								update_card = Card.find(@card._id)
-								update_card.update_attributes(card_condition: params[:cards]['card_condition'])
-								# Store Cardcondition so we have a list of what people are entering
-								Cardcondition.create(
-									condition: params[:cards]['card_condition'].downcase
-								)
-								# Redirect on success
-								redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
-							else
-								redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
+								if params[:cards]['card_condition'].to_s.length > 1 then
+									update_card.update_attributes(card_condition: params[:cards]['card_condition'])									
+									# Store Cardcondition so we have a list of what people are entering
+									Cardcondition.create(
+										condition: params[:cards]['card_condition'].downcase
+									)
+								end
 							end
+							redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
 						else
 							# Or display an error
 							puts "Error encountered. Redirect back to #{request.original_fullpath}"
