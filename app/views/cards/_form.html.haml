@@ -21,7 +21,7 @@
 			-if @card.card_condition != "damaged"
 				%b Card condition:
 				%br
-				= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control"
+				= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control", value: @card.card_condition.to_s
 				%br
 				%br
 				%b As the condition you set is irreversible, please confirm the card condition by typing the condition name in the textbox below. You do not need to fill in this text field if you are NOT changing the condition:
