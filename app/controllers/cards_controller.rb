@@ -41,7 +41,7 @@ class CardsController < ApplicationController
 		flash[:info][:cardgame] = params[:cards]["game"]
 		flash[:info][:cardcollection] = params[:cards]["collection"]
 		flash[:info][:card_condition] = params[:cards]["card_condition"].to_s.capitalize
-		if CardsHelper::ValidateCardCondition.valid_condition(params[:cards]["card_condition"].to_s.downcase) and params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
+		if params[:cards]["card_condition"].to_s != "" and params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			# Front image is required
 			if params[:cards]["front_image"] then
 				card_created = Card.create(
