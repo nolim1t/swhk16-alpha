@@ -175,24 +175,16 @@ class CardsController < ApplicationController
 							end # END: Check back image
 							# If card condition not set
 							if params[:cards]['card_condition'] then
-								if params[:cards]['card_condition'].to_s.downcase != @card.card_condition.to_s.downcase then
-									if params[:cards]['card_condition'].to_s.downcase == params[:cards]['card_condition_verify'].to_s.downcase then
-										# No validation
-										puts "Lets update card id=#{@card._id}"
-										update_card = Card.find(@card._id)
-										update_card.update_attributes(card_condition: params[:cards]['card_condition'].downcase)
-										# Redirect on success
-										redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
-									else
-										# Doesn't match
-										flash[:error] = "Please type out the card condition name in the text box in order to change the condition"
-										puts flash[:error]
-										redirect_to request.original_fullpath
-									end
-								else
-									# Nothing to change
-									redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
-								end
+								# Then update the card condition first
+								puts "Lets update card id=#{@card._id}"
+								update_card = Card.find(@card._id)
+								update_card.update_attributes(card_condition: params[:cards]['card_condition'])
+								# Store Cardcondition so we have a list of what people are entering
+								Cardcondition.create(
+									condition: params[:cards]['card_condition'].downcase
+								)
+								# Redirect on success
+								redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
 							else
 								redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
 							end
