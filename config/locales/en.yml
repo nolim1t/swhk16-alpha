@@ -24,7 +24,7 @@ en:
   standard: "Collector"
   vendor: "Shopkeeper User"
   expertuser: "Expert User"
-  adminuser: "Vaultmaster"
+  admin: "Vaultmaster"
   settings: "Settings"
   logout: "Logout"
   login: "Login"
