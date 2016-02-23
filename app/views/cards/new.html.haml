@@ -21,10 +21,10 @@
 			= f.file_field "back_image", class: "btn btn-primary btn-purple "
 			%br
 		.col-lg-6.col-md-6
-			%b Name of card: <strong>(*required)</strong>
+			%b Name of card:
 			= f.text_field :name, placeholder: "Name of Card", class: "form-control", value: flash[:info]["cardname"]
 			%br
-			%b Card condition (Need an <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">idea</a> on what to use?): <strong>(*required)</strong>
+			%b Card condition (Need an <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">idea</a> on what to use?):
 			%br
 			= f.text_field :card_condition, placeholder: "Enter the card condition", class: "form-control", value: flash[:info]["card_condition"]
 			%br
