@@ -57,7 +57,7 @@
 						%th Checking status:
 						-case @card.validation_status
 							-when 0
-								%td Unverified ⚠️ (<a href="#{cards_validation_get_url_path(@card)}">Ask for Expert Check</a>)
+								%td Unverified ⚠️ (<a href="#{cards_validation_get_url_path(@card)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
 							-when 1
 								%td Awaiting Store Validation ⏳
 							-when 2
