@@ -21,16 +21,49 @@
     margin-bottom: 30px;
 }
 
+/*
 .thumbnail .row{
 	color: #5f3d72;
 	text-align: center;
-	height: 110px;
+	height: 90px;
 }
+*/
+// Small phone
+@media only screen and (max-width: 320px) {
+	a.thumbnail {
+		height: 50px;
+	}
+	.thumbnail .row{
+		color: #5f3d72;
+		text-align: center;
+		//height: 90px;
+	}
+}
+@media only screen and (max-width: 375px) {
+	a.thumbnail {
+		height: 220px;
+	}
+	.thumbnail .row{
+		color: #5f3d72;
+		text-align: center;
+		//height: 90px;
+	}
+}
+@media only screen and (max-width: 414px) {
+	a.thumbnail {
+		height: 260px;
+	}
+	.thumbnail .row{
+		color: #5f3d72;
+		text-align: center;
+		//height: 90px;
+	}
+}
+
 @media only screen and (min-width: 480px) {
 	.thumbnail .row{
 		color: #5f3d72;
 		text-align: center;
-		//width: 228px;
 		height: 150px;
 	}
 }
