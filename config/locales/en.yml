@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  # Basic stuff
   hello: "Hello world"
   standard: "Collector"
   vendor: "Shopkeeper User"
@@ -29,3 +30,26 @@ en:
   logout: "Logout"
   login: "Login"
   register: "Sign up"
+  # Defaul page
+  carddetailpagetitle: "Card detail"
+  addpicturesbutton: "Add Pictures"
+  transferownerbutton: "Transfer Ownership"
+  approvebutton: "Approve Card 👍"
+  rejectbutton: "Reject Card 👎"
+  deletebutton: "Delete card"
+  editnotesbutton: "Edit Notes"
+  cardname: "Card Name"
+  cardgame: "Card Game"
+  cardcondition: "Card Condition"
+  cardstatus: "Checking Status"
+  cardcreatedate: "Created"
+  cardowner: "Owner"
+  statusunchecked: "Unchecked"
+  statuspending: "Awaiting Expert Validation ⏳"
+  statusverified: "Verified ✅"
+  statusunknown: "Unknown Status"
+  noimagesfound: "No images found"
+  cardnote: "Card Note"
+  cardnotetime: "Card Note Time"
+  nonotesfound: "No notes on this card found"
+  showoriginalcard: "Show full card image"

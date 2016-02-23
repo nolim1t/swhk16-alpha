@@ -1,16 +1,16 @@
 %p
 -if @cardnote.length == 0 then
-	No notes on this card found
+	#{I18n.t('nonotesfound')}
 -else
 	.table-responsive
 		%table{width: "100%"}
 			%tbody
 			-@cardnote.each do |cardnote|
 				%tr
-					%th Card Note Time:
+					%th #{I18n.t('cardnotetime')}:
 					%td= "#{Time.at(cardnote.create_date).in_time_zone(@timezone).strftime "%a, %e %b %Y %H:%M:%S %z"}"
 				%tr
-					%th Card Note:
+					%th #{I18n.t('cardnote')}:
 					%td= "#{cardnote.text}"
 				%tr
 					%td &nbsp;
