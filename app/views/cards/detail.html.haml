@@ -6,18 +6,18 @@
 					%li #{key.capitalize}: #{value}
 .row
 	.col-lg-6.col-md-12.detail
-		%h2{style:"color:#5f3d72"} Cards Detail
+		%h2{style:"color:#5f3d72"} #{I18n.t('carddetailpagetitle')}
 
 		.row.top-buffer
 			.col-lg-12.col-md-12.col-sm-12
 				-if @card.owner_id == current_user._id.to_s
 					-if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
-						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } Add Pictures
-						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } Transfer Ownership
+						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } #{I18n.t('addpicturesbutton')}
+						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } #{I18n.t('transferownerbutton')}
 					/ =render "addnote"
 				-elsif current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
-					=link_to "Approve Card 👍", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
-					=link_to "Reject Card 👎", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
+					=link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
+					=link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
 
 
 .row.top-buffer
@@ -45,39 +45,39 @@
 			%table{width: "70%"}
 				%tbody
 					%tr
-						%th Card Name:
+						%th #{I18n.t('cardname')}:
 						%td #{@card.cardname}
 					%tr
-						%th Card Game:
+						%th #{I18n.t('cardgame')}:
 						%td #{@card.cardgame}
 					%tr
-						%th Card Condition:
+						%th #{I18n.t('cardcondition')}:
 						%td #{@card.card_condition.to_s.capitalize}
 					%tr
-						%th Checking status:
+						%th #{I18n.t('cardstatus')}:
 						-case @card.validation_status
 							-when 0
-								%td Unchecked (<a href="#{cards_validation_get_url_path(@card)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
+								%td #{I18n.t('statusunchecked')} (<a href="#{cards_validation_get_url_path(@card)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
 							-when 1
-								%td Awaiting Expert Validation ⏳ (<a href="#{cards_validation_cancel_url_path(@card)}">Cancel Expert Validation</a>)
+								%td #{I18n.t('statuspending')} (<a href="#{cards_validation_cancel_url_path(@card)}">Cancel Expert Validation</a>)
 							-when 2
-								%td Verified ✅
+								%td #{I18n.t('statusverified')}
 							-else
-								%td Unknown Validation Status
+								%td #{I18n.t('statusunknown')}
 					%tr
-						%th Created:
+						%th #{I18n.t('cardcreatedate')}:
 						%td #{Time.at(@card.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
 					%tr
-						%th Owner:
+						%th #{I18n.t('cardowner')}:
 						%td #{current_user.name}
 		.top-buffer
 		-if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2)
-			=link_to "Delete Card", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-purple"
+			=link_to "#{I18n.t('deletebutton')}", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-purple"
 
 %br
 
 -if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2)
-	=link_to "Edit Notes", cards_edit_path(@card), class: "btn btn-primary btn-purple"
+	=link_to "#{I18n.t('editnotesbutton')}", cards_edit_path(@card), class: "btn btn-primary btn-purple"
 
 .top-buffer
 	=render "listnote"
