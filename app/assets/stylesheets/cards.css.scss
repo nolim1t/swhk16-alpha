@@ -24,10 +24,16 @@
 .thumbnail .row{
 	color: #5f3d72;
 	text-align: center;
-	//width: 228px;
-	height: 150px;
+	height: 110px;
 }
-
+@media only screen and (min-width: 480px) {
+	.thumbnail .row{
+		color: #5f3d72;
+		text-align: center;
+		//width: 228px;
+		height: 150px;
+	}
+}
 
 .row .thumbnail .glyphicon{
 	top: 60px;
