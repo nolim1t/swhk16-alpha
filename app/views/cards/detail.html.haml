@@ -31,13 +31,13 @@
 					/ %h4 #{cardimage.image_type.capitalize} of card
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
 					%br
-					%a{:href => "#{cardimage.photo.url}", :target => "newpicture"} Download original card
+					%a{:href => "#{cardimage.photo.url}", :target => "newpicture"} #{I18n.t('showoriginalcard')}
 					%br
 			-else
 				.col-lg-4.col-sm-4
 					/ %h4 #{cardimage.image_type.capitalize} of card
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
-					%a{:href => "#{cardimage.photo.url}", :target => "newpicture"} Download original card
+					%a{:href => "#{cardimage.photo.url}", :target => "newpicture"} #{I18n.t('showoriginalcard')}
 					%br
 		%br
 	.col-lg-4.col-sm-4
