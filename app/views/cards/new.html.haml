@@ -24,9 +24,9 @@
 			%b Name of card: <strong>(*required)</strong>
 			= f.text_field :name, placeholder: "Name of Card", class: "form-control", value: flash[:info]["cardname"]
 			%br
-			%b Card condition:
+			%b Card condition (Need an <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">idea</a> on what to use?): <strong>(*required)</strong>
 			%br
-			= f.select :card_condition, ["Mint", "Slightly Worn", "Worn", "Damaged"], selected: "Mint", class: "form-control", selected: flash[:info]["card_condition"].to_s.capitalize
+			= f.text_field :card_condition, placeholder: "Enter the card condition", class: "form-control", value: flash[:info]["card_condition"]
 			%br
 			%br
 			// = f.text_field :game, placeholder: "Game", class: "form-control", value: flash[:info]["cardgame"]

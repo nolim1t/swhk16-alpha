@@ -40,8 +40,8 @@ class CardsController < ApplicationController
 		flash[:info][:cardname] = params[:cards]["name"]
 		flash[:info][:cardgame] = params[:cards]["game"]
 		flash[:info][:cardcollection] = params[:cards]["collection"]
-		flash[:info][:card_condition] = params[:cards]["card_condition"].to_s.capitalize
-		if CardsHelper::ValidateCardCondition.valid_condition(params[:cards]["card_condition"].to_s.downcase) and params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
+		flash[:info][:card_condition] = params[:cards]["card_condition"].to_s
+		if params[:cards]["card_condition"].to_s != "" and params[:cards]["userid"] != "" and params[:cards]["name"] != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			# Front image is required
 			if params[:cards]["front_image"] then
 				card_created = Card.create(
@@ -54,7 +54,10 @@ class CardsController < ApplicationController
 					update_date: Time.new(),
 					owner_id: params[:cards]["userid"].to_s
 				)
-				# Create other images
+				# Store Cardcondition so we have a list of what people are entering
+				Cardcondition.create(
+					condition: params[:cards]["card_condition"].to_s.downcase
+				)
 				Cardnote.create(
 					text: "Card initial upload complete",
 					create_date: Time.new(),
@@ -97,7 +100,7 @@ class CardsController < ApplicationController
 			flash[:info][:cardname] = ""
 			flash[:info][:cardgame] = "Magic: The Gathering"
 			flash[:info][:cardcollection] = "Default collection"
-			flash[:info][:card_condition] = "Mint"
+			flash[:info][:card_condition] = ""
 		end
 		puts flash.inspect
 		# Populate dropdowns
@@ -174,17 +177,12 @@ class CardsController < ApplicationController
 							if params[:cards]['card_condition'] then
 								if params[:cards]['card_condition'].to_s.downcase != @card.card_condition.to_s.downcase then
 									if params[:cards]['card_condition'].to_s.downcase == params[:cards]['card_condition_verify'].to_s.downcase then
-										if CardsHelper::ValidateCardCondition.change_condition(@card.card_condition.downcase, params[:cards]['card_condition'].downcase) then
-											puts "Lets update card id=#{@card._id}"
-											update_card = Card.find(@card._id)
-											update_card.update_attributes(card_condition: params[:cards]['card_condition'].downcase)
-											# Redirect on success
-											redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
-										else
-											flash[:error] = "Card condition not allowed to go from #{@card.card_condition.downcase} to #{params[:cards]['card_condition'].downcase}"
-											puts flash[:error]
-											redirect_to request.original_fullpath
-										end
+										# No validation
+										puts "Lets update card id=#{@card._id}"
+										update_card = Card.find(@card._id)
+										update_card.update_attributes(card_condition: params[:cards]['card_condition'].downcase)
+										# Redirect on success
+										redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
 									else
 										# Doesn't match
 										flash[:error] = "Please type out the card condition name in the text box in order to change the condition"
