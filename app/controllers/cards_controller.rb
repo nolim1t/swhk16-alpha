@@ -54,7 +54,10 @@ class CardsController < ApplicationController
 					update_date: Time.new(),
 					owner_id: params[:cards]["userid"].to_s
 				)
-				# Create other images
+				# Store Cardcondition so we have a list of what people are entering
+				Cardcondition.create(
+					condition: params[:cards]["card_condition"].to_s.downcase
+				)
 				Cardnote.create(
 					text: "Card initial upload complete",
 					create_date: Time.new(),
