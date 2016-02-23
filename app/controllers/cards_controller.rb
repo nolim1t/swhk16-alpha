@@ -203,7 +203,7 @@ class CardsController < ApplicationController
 							end # END: Check back image
 							if params[:cards]['cardname'] then
 								if params[:cards]['cardname'].to_s.length > 1 then
-									update_card.update_attributes(cardname: params[:cards]['cardname'])
+									update_card.update_attributes(cardname: params[:cards]['cardname'].to_s, searchable_name: params[:cards]['cardname'].to_s.downcase)
 								end
 							end
 							# If card condition not set
