@@ -144,8 +144,6 @@ class CardsController < ApplicationController
 						notes_text = ''
 						if params[:cards]['image_only_upload'] == 'true' then
 							notes_text = 'Replace card image'
-						else
-							notes_text = params[:cards]['notes_text']
 						end
 						if params[:cards]['cardname'] or params[:cards]['card_condition'] then
 							puts "Lets update card id=#{@card._id}"
@@ -153,17 +151,26 @@ class CardsController < ApplicationController
 							# Check if the entry is different
 							if params[:cards]['cardname'].to_s != update_card['cardname'] then
 								if params[:cards]['cardname'].to_s.length > 0 then
-									notes_text = "Change card name from \"#{update_card['cardname']}\" to \"#{params[:cards]['cardname'].to_s}\" "
+									notes_text = "Change card name from \"#{update_card['cardname']}\" to \"#{params[:cards]['cardname'].to_s}\""
 								end
 							end
 							if params[:cards]['card_condition'].to_s != update_card['card_condition'].to_s then
 								if params[:cards]['card_condition'].to_s.length > 0 then
-									notes_text = "#{notes_text}Change card condition from \"#{update_card['card_condition'].to_s}\" to \"#{params[:cards]['card_condition'].to_s}\""
+									if notes_text.to_s.length > 0
+										notes_text = "#{notes_text}, and c"
+									else
+										notes_text = "C"
+									end
+									notes_text = "#{notes_text}hange card condition from \"#{update_card['card_condition'].to_s}\" to \"#{params[:cards]['card_condition'].to_s}\""
 								end
 							end
 							if params[:cards]['notes_text'] then
 								if params[:cards]['notes_text'].to_s.length > 1 and params[:cards]['notes_text'].to_s.length <= 500 then
-									notes_text = "#{notes_text}. Comment by user \"#{params[:cards]['notes_text']}\""
+									if notes_text == '' then
+										notes_text = params[:cards]['notes_text'].to_s
+									else
+										notes_text = "#{notes_text}. User comment: \"#{params[:cards]['notes_text']}\""
+									end
 								end
 							end
 						end
