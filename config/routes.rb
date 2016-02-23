@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/cards/detail/:id' => 'cards#detail', as: :cards_detail_url
   post '/cards/detail/:id' => 'cards#detail', as: :cards_detail_post_url
   get '/cards/validate/:id' => 'cards#request_validation', as: :cards_validation_get_url
+  get '/cards/cancelvalidation/:id' => 'cards#cancelvalidation', as: :cards_validation_cancel_url
   get '/cards/delete/:id' => 'cards#deletecard', as: :cards_delete_url
   get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
 

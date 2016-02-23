@@ -265,6 +265,22 @@ class CardsController < ApplicationController
 		end
 	end
 
+	def cancelvalidation
+		card_to_cancel_validation = Card.find(params[:id])
+		if card_to_cancel_validation.owner_id.to_s == current_user._id.to_s then
+			puts "ID: #{params[:id]}\n\bInspect info: #{card_to_cancel_validation.inspect}"
+			card_to_cancel_validation.update_attributes(validation_status: 0)
+			validation_queue = Validationqueue.where(card_id: card_to_cancel_validation._id.to_s)
+			validation_queue.each {|v| puts v.delete}
+			Cardnote.create(
+				text: "User cancelled expert validation",
+				create_date: Time.new(),
+				card_id: params[:id].to_s
+			)
+		end
+		redirect_to cards_detail_url_path(card_to_cancel_validation)
+	end
+
 	def deletecard
 		card_to_update = Card.find(params[:id])
 		if (card_to_update.owner_id.to_s == current_user._id.to_s) or (current_user.accounttype == "vendor" or current_user.accounttype == "admin") then
