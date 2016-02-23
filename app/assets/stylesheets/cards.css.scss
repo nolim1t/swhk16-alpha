@@ -8,7 +8,7 @@
 	background-color:  #5f3d72;
 }
 .row .btn-purple:hover,
-.row .btn-purple:focus, 
+.row .btn-purple:focus,
 .row .btn-purple:active {
   color: white;
   background-color: #553666;
@@ -24,6 +24,8 @@
 .thumbnail .row{
 	color: #5f3d72;
 	text-align: center;
+	width: 228px;
+	height: 150px;
 }
 
 .row .thumbnail .glyphicon{
