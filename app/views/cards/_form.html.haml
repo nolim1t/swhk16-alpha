@@ -30,9 +30,9 @@
 				%b As your card is already in the damaged state, you can't change the condition for this
 				%br
 				%br
-			%b Notes (Required*):
+			%b Notes (Less than 500 characters. Optional: if not making a change to the card):
 			%br
-			= f.text_field :notes_text, placeholder: "Enter some notes", class: "form-control"
+			= f.text_field :notes_text, placeholder: "Enter a comment", maxlength: 500, class: "form-control"
 			%br
 			.top-buffer
 			= f.submit "Add comment to Card", class: "btn btn-primary btn-purple"
