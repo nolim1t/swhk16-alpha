@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   get '/cards/cancelvalidation/:id' => 'cards#cancelvalidation', as: :cards_validation_cancel_url
   get '/cards/delete/:id' => 'cards#deletecard', as: :cards_delete_url
   get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
-
+  get '/cards/graveyard' => 'cards#graveyard', as: :cards_graveyard_url
+  
   # Vendor/Shopkeeper functionality
   get '/vendor' => 'cardverify#menu', as: :cardverify_menu
   get '/vendor/verify' => 'cardverify#index', as: :cardverify_index

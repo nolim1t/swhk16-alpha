@@ -30,6 +30,10 @@ class CardsController < ApplicationController
 		# @cards_search = Cardnote.where({cardname: "#{params[:search_text]}"})
 	end
 
+	def graveyard
+		@cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 1).order_by([:create_date, :desc])
+	end
+
 	def edit
 		@card = Card.where(:id => params[:id].to_s)[0]
 	end
