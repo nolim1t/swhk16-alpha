@@ -15,6 +15,18 @@
   border-color: #5f3d72;
 }
 
+.row .btn-red{
+	color: white;
+	border-color: #8c0315;
+	background-color:  #8c0315;
+}
+.row .btn-red:hover,
+.row .btn-red:focus,
+.row .btn-red:active {
+	color: white;
+	border-color: #8c0315;
+	background-color:  #8c0315;
+}
 .top-buffer { margin-top: 40px; }
 
 .thumb {
