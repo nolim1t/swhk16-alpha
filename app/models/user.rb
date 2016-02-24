@@ -41,9 +41,9 @@ class User
   field :name, type: String
   field :timezone, type: String
   field :identity_verified, type: Integer # 1 if user identity is verified (for later implementations)
-  field :user_type, type: String # 'standard' or 'vendor'
   field :create_date, type: Date # For working out when the next billing day is
-  field :accounttype, type: String # What we signed up as
+  field :accounttype, type: String, default: "standard" # What we signed up as
+  field :billing_plan, type: Integer, default: 0 # Right now: 0 = limited plan, 1 = super early adopter, 2 = early adopter, 3 = standard
   # Types of fields
   # Array
   # BigDecimal
