@@ -36,6 +36,8 @@ en:
   transferownerbutton: "Transfer Ownership"
   approvebutton: "Approve Card 👍"
   rejectbutton: "Reject Card 👎"
+  approvetransferbutton: "Accept Transfer 👍"
+  rejecttransferbutton: "Reject Transfer 👎"
   deletebutton: "Delete card"
   editnotesbutton: "Edit Card Details"
   cardname: "Card Name"
