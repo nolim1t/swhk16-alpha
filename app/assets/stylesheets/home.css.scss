@@ -24,6 +24,21 @@ html, body {
   color: white;
   background-color: #5f3d72;
 }
+// Fix for footer with small screens
+@media only screen and (max-width: 479px) {
+  .footer{
+    height: 50px;
+    color: white;
+    background-color: #5f3d72;
+  }
+}
+@media only screen and (max-width: 260px) {
+  .footer{
+    height: 80px;
+    color: white;
+    background-color: #5f3d72;
+  }
+}
 
 .navbar-custom {
   background-color: #5f3d72;
@@ -31,13 +46,13 @@ html, body {
   margin-bottom: -20px;
   -webkit-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
   -moz-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
-  box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);  
+  box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
 }
 
 .navbar-logo
 {
   margin-top: 0px;
-  padding-left: 50px;
+  padding-left: 85px;
   padding-top: 10px;
   padding-bottom: 0;
 }
@@ -65,7 +80,7 @@ html, body {
 }
 
 .btn-purple:hover,
-.btn-purple:focus, 
+.btn-purple:focus,
 .btn-purple:active {
   color: white;
   background-color: #553666;

@@ -21,7 +21,7 @@
 			// %br
 			%br
 			-if @card.card_condition != "damaged"
-				%b Card condition:
+				%b Card condition (Need an <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">idea</a> on what to use?):
 				%br
 				= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control", value: @card.card_condition.to_s
 				%br

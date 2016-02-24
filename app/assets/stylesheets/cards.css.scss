@@ -8,7 +8,7 @@
 	background-color:  #5f3d72;
 }
 .row .btn-purple:hover,
-.row .btn-purple:focus, 
+.row .btn-purple:focus,
 .row .btn-purple:active {
   color: white;
   background-color: #553666;
@@ -24,6 +24,47 @@
 .thumbnail .row{
 	color: #5f3d72;
 	text-align: center;
+	//height: 90px;
+}
+
+// Small phone
+@media only screen and (max-width: 320px) {
+	a.thumbnail {
+		height: 50px;
+	}
+	.thumbnail .row{
+		color: #5f3d72;
+		text-align: center;
+		//height: 90px;
+	}
+}
+@media only screen and (max-width: 375px) {
+	a.thumbnail {
+		height: 220px;
+	}
+	.thumbnail .row{
+		color: #5f3d72;
+		text-align: center;
+		//height: 90px;
+	}
+}
+@media only screen and (max-width: 414px) {
+	a.thumbnail {
+		height: 260px;
+	}
+	.thumbnail .row{
+		color: #5f3d72;
+		text-align: center;
+		//height: 90px;
+	}
+}
+
+@media only screen and (min-width: 480px) {
+	.thumbnail .row{
+		color: #5f3d72;
+		text-align: center;
+		height: 150px;
+	}
 }
 
 .row .thumbnail .glyphicon{
