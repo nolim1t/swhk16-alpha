@@ -52,7 +52,7 @@
 						%td #{@card.cardgame}
 					%tr
 						%th #{I18n.t('cardcondition')}:
-						%td #{@card.card_condition.to_s.capitalize}
+						%td #{@card.card_condition.to_s}
 					%tr
 						%th #{I18n.t('cardstatus')}:
 						-case @card.validation_status
