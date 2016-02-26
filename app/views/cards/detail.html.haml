@@ -15,7 +15,7 @@
 						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } #{I18n.t('addpicturesbutton')}
 						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } #{I18n.t('transferownerbutton')}
 					/ =render "addnote"
-				-elsif current_user.accounttype == "vendor" and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
+				-elsif ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
 					=link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
 					=link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
 
@@ -62,7 +62,7 @@
 								-else
 									%td #{I18n.t('statusunchecked')}
 							-when 1
-								-if @card.transfer_status != 1
+								-if @card.transfer_status != 1 and (@card.owner_id.to_s == current_user._id.to_s)
 									%td #{I18n.t('statuspending')} (<a href="#{cards_validation_cancel_url_path(@card)}">Cancel Expert Validation</a>)
 								-else
 									%td #{I18n.t('statuspending')}
