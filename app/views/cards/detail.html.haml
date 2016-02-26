@@ -42,7 +42,7 @@
 		%br
 	.col-lg-4.col-sm-4
 		.table-responsive
-			%table{width: "70%"}
+			%table{width: "90%"}
 				%tbody
 					%tr
 						%th #{I18n.t('cardname')}:
@@ -78,7 +78,7 @@
 						%td #{current_user.name}
 		.top-buffer
 		-if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1)
-			=link_to "#{I18n.t('deletebutton')}", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-purple"
+			=link_to "#{I18n.t('deletebutton')}", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-red"
 
 %br
 
