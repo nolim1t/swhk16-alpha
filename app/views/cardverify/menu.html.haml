@@ -1,10 +1,10 @@
 .row
 	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		%h2{style:"color:#5f3d72"} Shopkeeper tools
+		%h2{style:"color:#5f3d72"} #{I18n.t(current_user.accounttype.to_s).capitalize} tools
 
 .row.top-buffer
 	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		%p Welcome to the shopkeeper console.
+		%p Welcome to the #{I18n.t(current_user.accounttype.to_s).capitalize} console.
 		%p You may do the following tasks here:
 .row.top-buffer
 	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
@@ -12,4 +12,9 @@
 		%br
 		%br
 		%a.btn.btn-success.btn-purple(href="/cards/new") Upload a card
-		%a.btn.btn-success.btn-purple(href="/vendor/verify")Validate a card
+		-if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert")
+			%a.btn.btn-success.btn-purple(href="/vendor/verify")Validate a card
+		-else
+			%br
+			%br
+			%a.btn.btn-success.disabled.btn-purple(href="#") Card Validation is only available to verified shopkeepers or users

@@ -18,12 +18,14 @@ Rails.application.routes.draw do
   get '/cards/delete/:id' => 'cards#deletecard', as: :cards_delete_url
   get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
   get '/cards/graveyard' => 'cards#graveyard', as: :cards_graveyard_url
-  
+
   # Vendor/Shopkeeper functionality
   get '/vendor' => 'cardverify#menu', as: :cardverify_menu
   get '/vendor/verify' => 'cardverify#index', as: :cardverify_index
   get '/vendor/reject/:id' => 'cardverify#rejectcard', as: :cardverify_reject
   get '/vendor/accept/:id' => 'cardverify#acceptcard', as: :cardverify_accept
+  # Expert user functionality
+  get '/expert' => 'cardverify#menu', as: :cardverify_menu_expert
 
   # Transfer functionality
   post '/cards/transfer' => 'transfer#outbound', as: :cardtransfer_outbound

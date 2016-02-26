@@ -2,7 +2,7 @@ class CardverifyController < ApplicationController
   before_action :authenticate_user!
 
   def index
-		if current_user.accounttype == "vendor" or current_user.accounttype == "admin" then
+		if current_user.accounttype == "vendor" or current_user.accounttype == "admin" or current_user.accounttype == "expert" then
       @cardlist = []
       if params[:cardverify] != nil then
         if params[:cardverify][:email] != nil then
@@ -25,7 +25,7 @@ class CardverifyController < ApplicationController
 	end
 
   def menu
-    if current_user.accounttype == "vendor" then
+    if (current_user.accounttype == "vendor") or (current_user.accounttype == "expert") then
       render :template => "cardverify/menu"
     else
       redirect_to "/"
@@ -33,7 +33,7 @@ class CardverifyController < ApplicationController
   end
 
   def rejectcard
-    if current_user.accounttype == "vendor" then
+    if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") then
       self.reject_or_approve("reject", params[:id])
       self.redirection
     else
@@ -42,7 +42,7 @@ class CardverifyController < ApplicationController
   end
 
   def acceptcard
-    if current_user.accounttype == "vendor" then
+    if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") then
       self.reject_or_approve("approve", params[:id])
       self.redirection
     else
