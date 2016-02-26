@@ -24,7 +24,7 @@ en:
   hello: "Hello world"
   standard: "Collector"
   vendor: "Shopkeeper User"
-  expertuser: "Expert User"
+  expert: "Expert User"
   admin: "Vaultmaster"
   settings: "Settings"
   logout: "Logout"
