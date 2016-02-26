@@ -27,18 +27,8 @@
 			%b Card condition (Need an <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">idea</a> on what to use?):
 			%br
 			= f.text_field :card_condition, placeholder: "Enter the card condition", class: "form-control", value: flash[:info]["card_condition"]
-			%br
-			%br
-			// = f.text_field :game, placeholder: "Game", class: "form-control", value: flash[:info]["cardgame"]
-			%b Select the game:
-			%br
-			= f.select :game, ["Magic: The Gathering"], class: "form-control", selected: flash[:info]["cardgame"]
-			%br
-			%br
-			// = f.text_field :collection, placeholder: "Collection", class: "form-control", value: flash[:info]["cardcollection"]
-			%b Select the game:
-			%br
-			= f.select :collection, ["Default collection"], class: "form-control", selected: flash[:info]["cardcollection"]
+			= f.hidden_field :game, value: "Magic: The Gathering"
+			= f.hidden_field :collection, value: "Default collection"
 			%br
 			%br
 			= f.submit "Add Card", class: "btn btn-primary btn-purple", data: {disable_with: "Submitting..."}
