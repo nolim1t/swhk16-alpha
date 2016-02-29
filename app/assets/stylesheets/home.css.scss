@@ -28,10 +28,24 @@ html, body {
 }
 
 .footer{
-  height: 30px;
+  padding-top: 15px;
+  padding-bottom: 30px;
   color: white;
   background-color: #5f3d72;
 }
+
+.footer, .list-unstyled, ul, li, a{
+  color: #ffffff;  
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: white;
+  border-color: #5f3d72;
+}
+
+
 // Fix for footer with small screens
 @media only screen and (max-width: 479px) {
   .footer{
