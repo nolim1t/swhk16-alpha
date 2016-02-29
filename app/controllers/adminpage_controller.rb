@@ -32,7 +32,7 @@ class AdminpageController < ApplicationController
         if user[:identity_verified] == 1 then
           verified = "yes"
         end
-        @userlist << {:id => user[:_id], :name => user[:name], :email => user[:email], :accounttype => user[:accounttype], :identity_verified => verified, :cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 0)}
+        @userlist << {:id => user[:_id], :name => user[:name], :email => user[:email], :accounttype => user[:accounttype], :identity_verified => verified, :cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 0), :deleted_cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 1)}
       }
     else
       redirect_to "/"
