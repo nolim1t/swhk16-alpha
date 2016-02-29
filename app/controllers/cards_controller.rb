@@ -356,8 +356,9 @@ class CardsController < ApplicationController
 		if request.location != nil then
 			if request.location.timezone != nil then
 				if request.location.timezone.to_s.length > 0 then
-					current_user.timezone = request.location.timezone
-					current_user.save					
+					user = User.find(current_user._id)
+					user.update_attributes(timezone: request.location.timezone)
+					user.save
 				end
 			end
 		end
