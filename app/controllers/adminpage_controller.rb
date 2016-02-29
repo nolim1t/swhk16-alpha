@@ -27,7 +27,7 @@ class AdminpageController < ApplicationController
   # Show user list
   def userlist
     if current_user.accounttype == "admin" then
-      @adminpage = User.all.paginate(:page => params[:page], :per_page => 7)
+      @adminpage = User.all.paginate(:page => params[:page], :per_page => 20)
       @userlist = []
       @export_CSV = "name,email,accounttype,verified,cards,deleted\n"
       @adminpage.each {|user|
