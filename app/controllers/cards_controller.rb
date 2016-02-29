@@ -348,4 +348,17 @@ class CardsController < ApplicationController
 			redirect_to "/"
 		end
 	end
+
+	# Helpers
+	def detect_and_set_timezone
+		if request.location != nil then
+			if request.location.timezone != nil then
+				if request.location.timezone.to_s.length > 0 then
+					user = User.find(current_user._id)
+					user.update_attributes(timezone: request.location.timezone)
+					user.save
+				end
+			end
+		end
+	end
 end

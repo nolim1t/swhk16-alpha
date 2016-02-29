@@ -9,9 +9,40 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
             <div class="field form-group">
+              <strong>Account type</strong> (contact <a href="mailto:support@vaultarch.com">support</a> if this is incorrect)<br />
+              <%= I18n.t(current_user.accounttype) %>
+            </div>
+            <div class="field form-group">
               <%= f.label :name %>
               <%= f.text_field :name, class: "form-control", autofocus: true %>
             </div>
+            <% if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then %>
+              <div class="field form-group">
+                <%= f.label :expert_contact_info %> (As an expert, enter in how you wish to be contacted. This will be made public)<br />
+                <%= f.text_area :expert_contact_info, class: "expert_contact_info", placeholder: "Enter details on how you wish to be contacted" %>
+              </div>
+              <div class="field form-group">
+                <strong>Location Details</strong> (Type in the address or just city and/or country where you can be found. Please be aware that this will be made public)<br />
+                <% if request.location != nil then %>
+                  <% if request.location.country_code != "RD" then %>
+                    <% if request.location.city.length > 0 then %>
+                      <strong>Detected Location:</strong> <%= request.location.city %>, <%= request.location.country %>
+                    <% else %>
+                      <strong>Detected Location:</strong> <%= request.location.country %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <%= f.text_field :expert_location_info, placeholder: "Enter Address Info" %>
+                <% if current_user.coordinates then %>
+                  <br />
+                  <strong>Location is currently set to:</strong> <a href="http://www.openstreetmap.org/search?query=<%=current_user.coordinates[1] %>%2C%20<%=current_user.coordinates[0] %>#map=16/<%=current_user.coordinates[1] %>/<%=current_user.coordinates[0] %>" target="mapview"><%=current_user.coordinates[1] %>, <%=current_user.coordinates[0] %></a>
+                <% end %>
+              </div>
+              <div class="field form-group">
+                <strong>Make my info publically available</strong>
+                <%= f.check_box :expert_is_available %>
+              </div>
+            <% end %>
             <br />
 
             <div class="field form-group">
@@ -25,6 +56,9 @@
             <div class="field form-group">
               <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
               <%= f.password_field :current_password, class: "form-control", autocomplete: "off" %>
+            </div>
+            <div class="actions  form-group">
+              <%= f.submit "Update", class: "btn btn-primary btn-purple btn-devise" %>
             </div>
             <br />
             <div class="field form-group">
