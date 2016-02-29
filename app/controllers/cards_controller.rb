@@ -127,7 +127,7 @@ class CardsController < ApplicationController
 
 	def detail
 		puts "ID: #{params[:id]}"
-		cards = Card.where(:id => params[:id].to_s, :deleted_status => 0)
+		cards = Card.where(:id => params[:id].to_s)
 		if cards.length == 1 then
 			@card = cards[0]
 			@cardnote = Cardnote.where(:card_id => @card._id.to_s).order_by([:create_date, :desc]).limit(5)

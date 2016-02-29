@@ -39,7 +39,8 @@ Rails.application.routes.draw do
   get '/admin/users' => 'adminpage#userlist', as: :adminpage_userlist
   get '/admin/transfers' => 'adminpage#transferlist', as: :adminpage_transferlist
   get '/admin/usercards/:id' => 'adminpage#usercards', as: :adminpage_usercards
-  
+  get '/admin/graveyard' => 'adminpage#graveyard', as: :adminpage_graveyard
+
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer
   get '/cards/transferred' => 'cards/transferred', as: :cards_transferred

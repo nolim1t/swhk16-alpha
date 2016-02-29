@@ -68,4 +68,21 @@ class AdminpageController < ApplicationController
       redirect_to "/"
     end
   end
+
+  def graveyard
+    if current_user.accounttype == "admin" then
+      @cards = Card.where(:transfer_status => 0, :deleted_status => 1).order_by([:create_date, :desc]).paginate(:page => params[:page], :per_page => 6)
+      @cardimages = []
+      @cards.each{|card|
+        cardimages_result = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc]).limit(2)
+        cardimages_result.each{|cardimage_result|
+  				@cardimages << cardimage_result
+  			}
+        @cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
+      }
+      render "adminpage/usercards"
+    else
+      redirect_to "/"
+    end
+	end
 end
