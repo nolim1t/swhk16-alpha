@@ -4,20 +4,17 @@
 			-flash.each do |key, value|
 				-if key == "error"
 					%li #{key.capitalize}: #{value}
-.row
-	.col-lg-6.col-md-12.detail
-		%h2{style:"color:#5f3d72"} #{I18n.t('carddetailpagetitle')}
 
-		.row.top-buffer
-			.col-lg-12.col-md-12.col-sm-12
-				-if @card.owner_id == current_user._id.to_s
-					-if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
-						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } #{I18n.t('addpicturesbutton')}
-						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } #{I18n.t('transferownerbutton')}
-					/ =render "addnote"
-				-elsif ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
-					=link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
-					=link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
+	.row
+		.col-lg-12.col-md-12.col-sm-12
+			-if @card.owner_id == current_user._id.to_s
+				-if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
+					%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } #{I18n.t('addpicturesbutton')}
+					%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } #{I18n.t('transferownerbutton')}
+				/ =render "addnote"
+			-elsif ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
+				=link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
+				=link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
 
 
 .row.top-buffer
