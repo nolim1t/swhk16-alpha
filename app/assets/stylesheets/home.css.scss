@@ -7,9 +7,9 @@ html {
 }
 
 html, body {
-  padding-top: 50px;
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
+  background-color: #5f3d72;
 }
 
 /* Wrapper for page content to push down footer */
@@ -20,8 +20,12 @@ html, body {
   margin: 0 auto -30px;
   /* Pad bottom by footer height */
   padding: 0 0 60px;
+  background-color: #ffffff;
 }
 
+.container-custom{
+  padding-top: 70px;
+}
 
 .footer{
   height: 30px;

@@ -3,11 +3,11 @@
 		.col-lg-6.col-md-12
 			%p You have <a href="/cards/transfer/incoming">incoming transfers</a> to accept
 .row
-	.col-lg-6.col-md-12.col-sm-12
+	.col-lg-6.col-md-6.col-sm-12
 		= will_paginate @cards
 
-	.col-lg-6.col-md-12.col-sm-12.search
-		%form{method: 'get'}
+	.col-lg-6.col-md-6.col-sm-12.search
+		%form.pull-right{method: 'get'}
 			%input{name: "search_text", size: "40", type: "text", value: @query}
 			%input{type: "submit", value: "Search", class: "btn btn-success btn-purple"}
 
