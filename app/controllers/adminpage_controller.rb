@@ -64,6 +64,8 @@ class AdminpageController < ApplicationController
   			}
         @cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
       }
+      @pagetitle = "User cards"
+      @pagedescription = "List of all cards for this user"
     else
       redirect_to "/"
     end
@@ -80,6 +82,8 @@ class AdminpageController < ApplicationController
   			}
         @cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
       }
+      @pagetitle = "The Graveyard 👻💀"
+      @pagedescription = "List of all deleted cards in the graveyard (deleted cards)"
       render "adminpage/usercards"
     else
       redirect_to "/"

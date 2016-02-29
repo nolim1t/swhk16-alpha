@@ -1,10 +1,10 @@
 .row
 	.col-lg-6.col-md-12
-		%h2{style:"color:#5f3d72"} User Card Detail
+		%h2{style:"color:#5f3d72"} #{@pagetitle}
 
 .row.top-buffer
 	.col-lg-6.col-md-12
-		%p List of all cards for this user
+		%p #{@pagedescription}
 	.col-lg-6.col-md-12
 		= will_paginate @cards
 .row.top-buffer
