@@ -27,6 +27,10 @@ html, body {
   padding-top: 70px;
 }
 
+.pagination a{
+  color: #5f3d72;
+}
+
 .footer{
   padding-top: 15px;
   padding-bottom: 30px;
@@ -34,14 +38,14 @@ html, body {
   background-color: #5f3d72;
 }
 
-.footer, .list-unstyled, ul, li, a{
+.footer a{
   color: #ffffff;  
 }
 
-a:hover,
-a:focus,
-a:active {
-  color: white;
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
+  color: rgba(0,0,0,0.2);
   border-color: #5f3d72;
 }
 
