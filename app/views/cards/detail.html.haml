@@ -41,41 +41,40 @@
 					%br
 		%br
 	.col-lg-4.col-sm-4
-		.table-responsive
-			%table{width: "90%"}
-				%tbody
-					%tr
-						%th #{I18n.t('cardname')}:
-						%td #{@card.cardname}
-					%tr
-						%th #{I18n.t('cardgame')}:
-						%td #{@card.cardgame}
-					%tr
-						%th #{I18n.t('cardcondition')}:
-						%td #{@card.card_condition.to_s}
-					%tr
-						%th #{I18n.t('cardstatus')}:
-						-case @card.validation_status
-							-when 0
-								-if @card.transfer_status != 1
-									%td #{I18n.t('statusunchecked')} (<a href="#{cards_validation_get_url_path(@card)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
-								-else
-									%td #{I18n.t('statusunchecked')}
-							-when 1
-								-if @card.transfer_status != 1 and (@card.owner_id.to_s == current_user._id.to_s)
-									%td #{I18n.t('statuspending')} (<a href="#{cards_validation_cancel_url_path(@card)}">Cancel Expert Validation</a>)
-								-else
-									%td #{I18n.t('statuspending')}
-							-when 2
-								%td #{I18n.t('statusverified')}
+		%table.borderless{width: "90%"}
+			%tbody
+				%tr
+					%th #{I18n.t('cardname')}:
+					%td #{@card.cardname}
+				%tr
+					%th #{I18n.t('cardgame')}:
+					%td #{@card.cardgame}
+				%tr
+					%th #{I18n.t('cardcondition')}:
+					%td #{@card.card_condition.to_s}
+				%tr
+					%th #{I18n.t('cardstatus')}:
+					-case @card.validation_status
+						-when 0
+							-if @card.transfer_status != 1
+								%td #{I18n.t('statusunchecked')} (<a href="#{cards_validation_get_url_path(@card)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
 							-else
-								%td #{I18n.t('statusunknown')}
-					%tr
-						%th #{I18n.t('cardcreatedate')}:
-						%td #{Time.at(@card.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
-					%tr
-						%th #{I18n.t('cardowner')}:
-						%td #{current_user.name}
+								%td #{I18n.t('statusunchecked')}
+						-when 1
+							-if @card.transfer_status != 1 and (@card.owner_id.to_s == current_user._id.to_s)
+								%td #{I18n.t('statuspending')} (<a href="#{cards_validation_cancel_url_path(@card)}">Cancel Expert Validation</a>)
+							-else
+								%td #{I18n.t('statuspending')}
+						-when 2
+							%td #{I18n.t('statusverified')}
+						-else
+							%td #{I18n.t('statusunknown')}
+				%tr
+					%th #{I18n.t('cardcreatedate')}:
+					%td #{Time.at(@card.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
+				%tr
+					%th #{I18n.t('cardowner')}:
+					%td #{current_user.name}
 		.top-buffer
 		-if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1)
 			=link_to "#{I18n.t('deletebutton')}", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-red"
