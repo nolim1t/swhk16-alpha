@@ -1,15 +1,25 @@
 .row
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+	.col-lg-6.col-md-12
 		%h2{style:"color:#5f3d72"} User Card Detail
 
 .row.top-buffer
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+	.col-lg-6.col-md-12
 		%p List of all cards for this user
 .row.top-buffer
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		-if @cards.count > 0
-			%ul
-				-@cards.each do |card|
-					%li #{card.inspect}
-		-else
-			%p No cards for this user found
+	-i = 0
+	-@cards.each do |card|
+		-i += 1
+		.col-lg-3.col-md-4.col-xs-6.thumb
+			%a.thumbnail{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
+				-card_image_count = 0
+				- @cardimages.each do |cardimage|
+					-if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
+						%img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
+						-card_image_count += 1
+		-if i == 3
+			.clearfix.visible-lg
+			.clearfix.visible-xs
+		-elsif i == 2
+			.clearfix.visible-md
+		-elsif i == 1
+			.clearfix.visible-xs

@@ -61,6 +61,7 @@ class AdminpageController < ApplicationController
       cardimages_result.each{|cardimage_result|
 				@cardimages << cardimage_result
 			}
+      @cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
     }
   end
 end
