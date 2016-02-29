@@ -57,7 +57,7 @@
 						%th #{I18n.t('cardstatus')}:
 						-case @card.validation_status
 							-when 0
-								-if @card.transfer_status != 1
+								-if @card.transfer_status != 1 and (@card.owner_id.to_s == current_user._id.to_s)
 									%td #{I18n.t('statusunchecked')} (<a href="#{cards_validation_get_url_path(@card)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
 								-else
 									%td #{I18n.t('statusunchecked')}
