@@ -51,4 +51,16 @@ class AdminpageController < ApplicationController
       redirect_to "/"
     end
   end
+
+  # Def show user cards (basically a page which shows the type of cards)
+  def usercards
+    @cards = Card.where(:owner_id => params[:id], :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
+    @cardimages = []
+    @cards.each{|card|
+      cardimages_result = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc]).limit(2)
+      cardimages_result.each{|cardimage_result|
+				@cardimages << cardimage_result
+			}
+    }
+  end
 end
