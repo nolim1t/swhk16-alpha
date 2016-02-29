@@ -16,10 +16,6 @@
               <%= f.label :name %>
               <%= f.text_field :name, class: "form-control", autofocus: true %>
             </div>
-            <div class="field form-group">
-              <%= f.label :timezone %><br />
-              <%=f.select :timezone, values=TZInfo::Timezone.all_country_zone_identifiers %>
-            </div>
             <% if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then %>
               <div class="field form-group">
                 <%= f.label :expert_contact_info %> (As an expert, enter in how you wish to be contacted. This will be made public)<br />
@@ -27,25 +23,10 @@
               </div>
               <div class="field form-group">
                 <strong>Location Details</strong> (This will be public)
-                <!-- Begin Location Detection code -->
-                <% if request.location then %>
-                  <% if request.location.country_code != "RD" then %>
-                    <%= request.location.latitude %>, <%= request.location.longitude %>
-                    <br />
-                    <% if request.location.country then %>
-                      <% if request.location.city then %>
-                        <br /><strong>Detected Location:</strong> <%= request.location.city %>, <%= request.location.country %><br />
-                      <% else %>
-                        <br /><strong>Detected Location:</strong> <%= request.location.country %><br />
-                      <% end>
-                    <% end %>
-                  <% end %>
-                <% end %>
-                <!-- End Location Detection code -->
                 <%= f.text_field :expert_location_info, placeholder: "Enter Address Info" %>
                 <% if current_user.coordinates then %>
-                <br />
-                <strong>Currently:</strong> <a href="http://www.openstreetmap.org/search?query=<%=current_user.coordinates[1] %>%2C%20<%=current_user.coordinates[0] %>#map=16/<%=current_user.coordinates[1] %>/<%=current_user.coordinates[0] %>" target="mapview"><%=current_user.coordinates[1] %>, <%=current_user.coordinates[0] %></a>
+                  <br />
+                  <strong>Currently:</strong> <a href="http://www.openstreetmap.org/search?query=<%=current_user.coordinates[1] %>%2C%20<%=current_user.coordinates[0] %>#map=16/<%=current_user.coordinates[1] %>/<%=current_user.coordinates[0] %>" target="mapview"><%=current_user.coordinates[1] %>, <%=current_user.coordinates[0] %></a>
                 <% end %>
               </div>
             <% end %>
