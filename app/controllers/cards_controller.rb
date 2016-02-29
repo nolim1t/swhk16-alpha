@@ -6,7 +6,6 @@ class CardsController < ApplicationController
 
 	def index
 		flash[:info] = nil # Remove any info stuff
-		detect_and_set_timezone
 		@listincoming = Transfer.where(receiver_email: current_user.email).count # Check i
 		@owner_cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
 		@cards = params[:search_text].present? ? @owner_cards.where(searchable_name:  /#{Regexp.escape(params[:search_text].downcase.to_s)}/).paginate(:page => params[:page], :per_page => 7) : @owner_cards.paginate(:page => params[:page], :per_page => 7)
@@ -127,7 +126,6 @@ class CardsController < ApplicationController
 	end
 
 	def detail
-		detect_and_set_timezone
 		puts "ID: #{params[:id]}"
 		cards = Card.where(:id => params[:id].to_s)
 		if cards.length == 1 then
