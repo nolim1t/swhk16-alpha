@@ -127,7 +127,7 @@ class CardsController < ApplicationController
 
 	def detail
 		puts "ID: #{params[:id]}"
-		cards = Card.where(:id => params[:id].to_s, :deleted_status => 0)
+		cards = Card.where(:id => params[:id].to_s)
 		if cards.length == 1 then
 			@card = cards[0]
 			@cardnote = Cardnote.where(:card_id => @card._id.to_s).order_by([:create_date, :desc]).limit(5)
@@ -149,6 +149,14 @@ class CardsController < ApplicationController
 					@timezone = current_user.timezone
 				end
 				if env['REQUEST_METHOD'] == "GET" then
+					# get Owner info
+					if @card.owner_id.to_s != current_user._id.to_s then
+						# if the owner doesnt match
+						@card_owner_info = User.find(@card.owner_id)
+					else
+						# If the owner matches
+						@card_owner_info = current_user
+					end
 					render :template => "cards/detail"
 				else
 					puts "POST detected"
