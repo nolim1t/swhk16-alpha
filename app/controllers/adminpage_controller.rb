@@ -1,3 +1,5 @@
+require 'csv'
+
 class AdminpageController < ApplicationController
   before_action :authenticate_user!
   # Index page
@@ -27,13 +29,20 @@ class AdminpageController < ApplicationController
     if current_user.accounttype == "admin" then
       @adminpage = User.all.paginate(:page => params[:page], :per_page => 7)
       @userlist = []
+      @export_CSV = "name,email,accounttype,verified,cards,deleted\n"
       @adminpage.each {|user|
         verified = "no"
         if user[:identity_verified] == 1 then
           verified = "yes"
         end
-        @userlist << {:id => user[:_id], :name => user[:name], :email => user[:email], :accounttype => user[:accounttype], :identity_verified => verified, :cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 0), :deleted_cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 1)}
+        to_insert = {:id => user[:_id], :name => user[:name], :email => user[:email], :accounttype => user[:accounttype], :identity_verified => verified, :cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 0), :deleted_cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 1)}
+        @userlist << to_insert
+        @export_CSV << "\"#{to_insert[:name]}\",\"#{to_insert[:email]}\",\"#{to_insert[:accounttype]}\",\"#{to_insert[:identity_verified]}\",\"#{to_insert[:cards].count}\",\"#{to_insert[:deleted_cards].count}\"\n"
       }
+      respond_to do |format|
+        format.html
+        format.csv {send_data @export_CSV}
+      end
     else
       redirect_to "/"
     end
