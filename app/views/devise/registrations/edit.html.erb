@@ -34,9 +34,9 @@
                     <br />
                     <% if request.location.country then %>
                       <% if request.location.city then %>
-                        <strong>Detected Location:</strong> <%= request.location.city %>, <%= request.location.country %>
+                        <br /><strong>Detected Location:</strong> <%= request.location.city %>, <%= request.location.country %><br />
                       <% else %>
-                        <strong>Detected Location:</strong> <%= request.location.country %>
+                        <br /><strong>Detected Location:</strong> <%= request.location.country %><br />
                       <% end>
                     <% end %>
                   <% end %>
