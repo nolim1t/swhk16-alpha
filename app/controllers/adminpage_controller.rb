@@ -25,14 +25,14 @@ class AdminpageController < ApplicationController
   # Show user list
   def userlist
     if current_user.accounttype == "admin" then
-      userlist = User.all
+      @adminpage = User.all.paginate(:page => params[:page], :per_page => 7)
       @userlist = []
-      userlist.each {|user|
+      @adminpage.each {|user|
         verified = "no"
         if user[:identity_verified] == 1 then
           verified = "yes"
         end
-        @userlist << {:name => user[:name], :email => user[:email], :accounttype => user[:accounttype], :identity_verified => verified, :cards => Card.where(owner_id: user[:_id].to_s)}
+        @userlist << {:id => user[:_id], :name => user[:name], :email => user[:email], :accounttype => user[:accounttype], :identity_verified => verified, :cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 0)}
       }
     else
       redirect_to "/"
