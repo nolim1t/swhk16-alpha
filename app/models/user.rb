@@ -1,7 +1,11 @@
 class User
   include Mongoid::Document
+  include Geocoder::Model::Mongoid
+
   store_in collection: "users"
   attr_accessor :invite_code
+  geocoded_by :expert_location_info
+  after_validation :geocode
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -51,6 +55,7 @@ class User
   # For experts and verified shopkeepers
   field :expert_contact_info, type: String # How experts prefer to be contacted
   field :expert_location_info, type: String # Location Info
+  field :coordinates, :type => Array
 
   # Types of fields
   # Array

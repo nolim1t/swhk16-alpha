@@ -44,6 +44,9 @@
               <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
               <%= f.password_field :current_password, class: "form-control", autocomplete: "off" %>
             </div>
+            <div class="actions  form-group">
+              <%= f.submit "Update", class: "btn btn-primary btn-purple btn-devise" %>
+            </div>
             <br />
             <div class="field form-group">
               <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
