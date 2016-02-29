@@ -150,8 +150,13 @@ class CardsController < ApplicationController
 				end
 				if env['REQUEST_METHOD'] == "GET" then
 					# get Owner info
-					@card_owner_info = User.find(@card.owner_id)
-					puts @card_owner_info.inspect
+					if @card.owner_id.to_s != current_user._id.to_s then
+						# if the owner doesnt match
+						@card_owner_info = User.find(@card.owner_id)
+					else
+						# If the owner matches
+						@card_owner_info = current_user
+					end
 					render :template => "cards/detail"
 				else
 					puts "POST detected"
