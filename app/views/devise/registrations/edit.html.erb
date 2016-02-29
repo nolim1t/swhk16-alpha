@@ -38,6 +38,10 @@
                   <strong>Location is currently set to:</strong> <a href="http://www.openstreetmap.org/search?query=<%=current_user.coordinates[1] %>%2C%20<%=current_user.coordinates[0] %>#map=16/<%=current_user.coordinates[1] %>/<%=current_user.coordinates[0] %>" target="mapview"><%=current_user.coordinates[1] %>, <%=current_user.coordinates[0] %></a>
                 <% end %>
               </div>
+              <div class="field form-group">
+                <strong>Make my info publically available</strong>
+                <%= f.check_box :expert_is_available %>
+              </div>
             <% end %>
             <br />
 
