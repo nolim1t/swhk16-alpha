@@ -149,6 +149,9 @@ class CardsController < ApplicationController
 					@timezone = current_user.timezone
 				end
 				if env['REQUEST_METHOD'] == "GET" then
+					# get Owner info
+					@card_owner_info = User.find(@card.owner_id)
+					puts @card_owner_info.inspect
 					render :template => "cards/detail"
 				else
 					puts "POST detected"
