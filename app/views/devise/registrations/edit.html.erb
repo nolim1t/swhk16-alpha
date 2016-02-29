@@ -12,6 +12,10 @@
               <%= f.label :name %>
               <%= f.text_field :name, class: "form-control", autofocus: true %>
             </div>
+            <div class="field form-group">
+              <%= f.label :timezone %><br />
+              <%=f.select :timezone, values=TZInfo::Timezone.all_country_zone_identifiers %>
+            </div>
             <% if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then %>
               <div class="field form-group">
                 <%= f.label :expert_contact_info %><br />
