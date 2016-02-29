@@ -36,6 +36,11 @@ class AdminpageController < ApplicationController
           verified = "yes"
         end
         to_insert = {:id => user[:_id], :name => user[:name], :email => user[:email], :accounttype => user[:accounttype], :identity_verified => verified, :cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 0), :deleted_cards => Card.where(owner_id: user[:_id].to_s, :transfer_status => 0, :deleted_status => 1)}
+        if params[:page]
+          @page = params[:page]
+        else
+          @page = 1
+        end
         @userlist << to_insert
         @export_CSV << "\"#{to_insert[:name]}\",\"#{to_insert[:email]}\",\"#{to_insert[:accounttype]}\",\"#{to_insert[:identity_verified]}\",\"#{to_insert[:cards].count}\",\"#{to_insert[:deleted_cards].count}\"\n"
       }
