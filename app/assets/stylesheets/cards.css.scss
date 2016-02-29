@@ -27,7 +27,7 @@
 	border-color: #f76a70;
 	background-color:  #f76a70;
 }
-.top-buffer { margin-top: 40px; }
+.top-buffer { margin-top: 25px; }
 
 .thumb {
     margin-bottom: 30px;
@@ -106,6 +106,16 @@
 	margin-bottm: 100px;
 }
 
-.borderless td, .borderless th {
-    border: none;
+.col-centered{
+  float: none;
+  margin: 0 auto;
 }
+
+.card-info-table, table{
+	width: 100%;
+}
+
+.card-table, table, tr{
+	height: 50px;
+}
+
