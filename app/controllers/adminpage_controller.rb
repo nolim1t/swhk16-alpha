@@ -55,7 +55,7 @@ class AdminpageController < ApplicationController
   # Def show user cards (basically a page which shows the type of cards)
   def usercards
     if current_user.accounttype == "admin" then
-      @cards = Card.where(:owner_id => params[:id], :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc]).paginate(:page => params[:page], :per_page => 7)
+      @cards = Card.where(:owner_id => params[:id], :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc]).paginate(:page => params[:page], :per_page => 6)
       @cardimages = []
       @cards.each{|card|
         cardimages_result = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc]).limit(2)
