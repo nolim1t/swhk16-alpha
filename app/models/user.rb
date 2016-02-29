@@ -53,6 +53,7 @@ class User
   field :credits, type: Integer, default: 0 # Integer
 
   # For experts and verified shopkeepers
+  field :expert_is_available, type: Boolean, default: false
   field :expert_contact_info, type: String # How experts prefer to be contacted
   field :expert_location_info, type: String # Location Info
   field :coordinates, :type => Array
