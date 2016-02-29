@@ -5,7 +5,7 @@
 				-if key == "error"
 					%li #{key.capitalize}: #{value}
 
-.row
+.row.top-buffer-2 
 	.col-lg-12.col-md-12.col-sm-12
 		-if @card.owner_id == current_user._id.to_s
 			-if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
