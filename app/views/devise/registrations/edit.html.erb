@@ -22,7 +22,14 @@
                 <%= f.text_area :expert_contact_info, class: "expert_contact_info", placeholder: "Enter details on how you wish to be contacted" %>
               </div>
               <div class="field form-group">
-                <strong>Location Details</strong> (This will be public)
+                <strong>Location Details</strong> (This will be public)<br />
+                <% if request.location.country_code != "RD" then %>
+                  <% if request.location.city.length > 0 then %>
+                    <strong>Detected Location:</strong> <%= request.location.city %>, <%= request.location.country %>
+                  <% else %>
+                    <strong>Detected Location:</strong> <%= request.location.country %>
+                  <% end %>                
+                <% end %>
                 <%= f.text_field :expert_location_info, placeholder: "Enter Address Info" %>
                 <% if current_user.coordinates then %>
                   <br />
