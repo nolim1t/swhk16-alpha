@@ -27,6 +27,12 @@
               </div>
               <div class="field form-group">
                 <strong>Location Details</strong> (This will be public)
+                <% if request.location then %>
+                <%= request.location.latitude %>, <%= request.location.longitude %>
+                <br />
+                <%= request.location.inspect %>
+                <%= request.location.country %>
+                <% end %>
                 <%= f.text_field :expert_location_info, placeholder: "Enter Address Info" %>
                 <% if current_user.coordinates then %>
                 <br />
