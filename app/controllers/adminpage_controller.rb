@@ -64,8 +64,8 @@ class AdminpageController < ApplicationController
   			}
         @cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
       }
-    end      
     else
       redirect_to "/"
     end
+  end
 end
