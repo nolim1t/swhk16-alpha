@@ -9,6 +9,10 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
             <div class="field form-group">
+              <strong>Account type</strong> (contact <a href="mailto:support@vaultarch.com">support</a> if this is incorrect)<br />
+              <%= I18n.t(current_user.accounttype) %>
+            </div>
+            <div class="field form-group">
               <%= f.label :name %>
               <%= f.text_field :name, class: "form-control", autofocus: true %>
             </div>
