@@ -5,6 +5,8 @@
 .row.top-buffer
 	.col-lg-6.col-md-12
 		%p List of all cards for this user
+	.col-lg-6.col-md-12
+		= will_paginate @cards
 .row.top-buffer
 	-i = 0
 	-@cards.each do |card|
