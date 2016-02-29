@@ -22,8 +22,12 @@
             </div>
             <% if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then %>
               <div class="field form-group">
-                <%= f.label :expert_contact_info %> (As an expert, enter in how you wish to be contacted)<br />
+                <%= f.label :expert_contact_info %> (As an expert, enter in how you wish to be contacted. This will be made public)<br />
                 <%= f.text_area :expert_contact_info, class: "expert_contact_info", placeholder: "Enter details on how you wish to be contacted" %>
+              </div>
+              <div class="field form-group">
+                <strong>Location Details<strong> (This will be public)
+                <%= f.text_area :expert_location_info, placeholder: "Enter Address Info" %>
               </div>
             <% end %>
             <br />
