@@ -11,6 +11,6 @@
 			= will_paginate
 			%ul
 				-@userlist.each do |user|
-					%li Name: #{user[:name]} Email: #{user[:email]} Verified: #{user[:identity_verified]} (Type: #{user[:accounttype]}) | Cards Owned: #{user[:cards].count} | <a href="/admin/users/#{user[:id]}">Show Detail</a>
+					%li Name: #{user[:name]} Email: #{user[:email]} Verified: #{user[:identity_verified]} (Type: #{user[:accounttype]}) | Cards Owned: #{user[:cards].count} | <a href="/admin/usercards/#{user[:id]}">Show Cards</a>
 		-else
 			%p No users found
