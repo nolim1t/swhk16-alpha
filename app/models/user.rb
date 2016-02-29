@@ -43,7 +43,14 @@ class User
   field :identity_verified, type: Integer # 1 if user identity is verified (for later implementations)
   field :create_date, type: Date # For working out when the next billing day is
   field :accounttype, type: String, default: "standard" # What we signed up as (accepted values is: 'standard', 'expert', 'vendor', 'admin')
+  
+  # Billing stuff
   field :billing_plan, type: Integer, default: 0 # Right now: 0 = limited plan, 1 = super early adopter, 2 = early adopter, 3 = standard
+  field :credits, type: Integer, default: 0 # Integer
+  
+  # For experts and verified shopkeepers
+  field :expert_contact_info, type: String # How experts prefer to be contacted
+  
   # Types of fields
   # Array
   # BigDecimal
