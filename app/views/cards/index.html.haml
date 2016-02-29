@@ -7,7 +7,7 @@
 		= will_paginate @cards
 
 	.col-lg-6.col-md-6.col-sm-12.search
-		%form.pull-right{method: 'get'}
+		%form{method: 'get'}
 			%input{name: "search_text", size: "40", type: "text", value: @query}
 			%input{type: "submit", value: "Search", class: "btn btn-success btn-purple"}
 

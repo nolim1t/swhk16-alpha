@@ -104,8 +104,8 @@ html, body {
 
 .btn-authentication, .btn-purple {
   color: white;
-  background-color: #5f3d72;
   border-color: #5f3d72;
+  background-color: #5f3d72;
 }
 .btn-authentication:hover,
 .btn-authentication:focus,
@@ -113,12 +113,22 @@ html, body {
   color: white;
   background-color: rgba(0,0,0,0.2);
   border-color: #5f3d72;
+  outline: 0;
 }
 
 .btn-purple:hover,
 .btn-purple:focus,
 .btn-purple:active {
   color: white;
-  background-color: #553666;
-  border-color: #5f3d72;
+  background-color: #5f3d66;
+  border-color: #5f3d66;
+  outline: 0;
+}
+
+.top-buffer-3{
+  padding-top: 50px;
+}
+
+.top-buffer-4{
+  padding-top: 120px;
 }

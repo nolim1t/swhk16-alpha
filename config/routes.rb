@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # Default to cards index
   root to: "cards#index"
 
+  #general pages
+  get '/contact_careers' => 'home#contact_careers', as: :contact_careers
+
   # Real Pages
   get '/cards/index' => 'cards#index', as: :cards_index
   get '/cards/edit/:id' => 'cards#edit', as: :cards_edit

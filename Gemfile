@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #ruby "2.2.4"
-ruby "2.3.0" # Lets go on the bleeding edge
+# ruby "2.3.0" # Lets go on the bleeding edge
 
 gem 'puma' # Gimme speed (rails s Puma)
 
