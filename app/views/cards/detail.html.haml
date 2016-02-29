@@ -4,20 +4,27 @@
 			-flash.each do |key, value|
 				-if key == "error"
 					%li #{key.capitalize}: #{value}
-.row
-	.col-lg-6.col-md-12.detail
-		%h2{style:"color:#5f3d72"} #{I18n.t('carddetailpagetitle')}
 
-		.row.top-buffer
-			.col-lg-12.col-md-12.col-sm-12
-				-if @card.owner_id == current_user._id.to_s
-					-if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
-						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } #{I18n.t('addpicturesbutton')}
-						%button#pop_up_btn.btn.btn-primary.btn-purple{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } #{I18n.t('transferownerbutton')}
-					/ =render "addnote"
-				-elsif ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
-					=link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
-					=link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
+.row.top-buffer-2 
+	.col-lg-12.col-md-12.col-sm-12
+		-if @card.owner_id == current_user._id.to_s
+			-if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
+				/ .btn-group
+				.col-lg-3.col-md-3.col-sm-6
+					%button#pop_up_btn.btn.btn-primary.btn-purple.btn-block{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } #{I18n.t('addpicturesbutton')}
+				.col-lg-3.col-md-3.col-sm-6
+					%button#pop_up_btn.btn.btn-primary.btn-purple.btn-block{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } #{I18n.t('transferownerbutton')}
+				.col-lg-3.col-md-3.col-sm-6
+					-if (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1)
+						=link_to "#{I18n.t('editnotesbutton')}", cards_edit_path(@card), class: "btn btn-primary btn-purple btn-block", role: "button"
+				.col-lg-3.col-md-3.col-sm-6
+					-if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1) and (@card.deleted_status == 0)
+						=link_to "#{I18n.t('deletebutton')}", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-red btn-block", role: "button"
+					-elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
+						=link_to "Undelete", cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
+		-elsif ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
+			=link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
+			=link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
 
 
 .row.top-buffer
@@ -27,22 +34,21 @@
 		-size = @cardimages.size
 		-@cardimages.each do |cardimage|
 			-if size == 1
-				.col-lg-8.col-sm-8
+				.col-lg-8.col-md-4.col-sm-8
 					/ %h4 #{cardimage.image_type.capitalize} of card
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
 					%br
 					%a{:href => "#{cardimage.photo.url}", :target => "newpicture"} #{I18n.t('showoriginalcard')}
 					%br
 			-else
-				.col-lg-4.col-sm-4
+				.col-lg-4.col-md-4.col-sm-4
 					/ %h4 #{cardimage.image_type.capitalize} of card
 					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
 					%a{:href => "#{cardimage.photo.url}", :target => "newpicture"} #{I18n.t('showoriginalcard')}
 					%br
-		%br
-	.col-lg-4.col-sm-4
-		.table-responsive
-			%table{width: "90%"}
+	.col-lg-4.col-md-4.col-sm-4
+		.card-info-table
+			%table
 				%tbody
 					%tr
 						%th #{I18n.t('cardname')}:
@@ -76,18 +82,9 @@
 					%tr
 						%th #{I18n.t('cardowner')}:
 						%td #{@card_owner_info.name}
-		.top-buffer
-		-if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1) and (@card.deleted_status == 0)
-			=link_to "#{I18n.t('deletebutton')}", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-red"
-		-elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
-			=link_to "Undelete", cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
+
 
 %br
-
--if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1)
-	=link_to "#{I18n.t('editnotesbutton')}", cards_edit_path(@card), class: "btn btn-primary btn-purple"
-
-.top-buffer
-	=render "listnote"
+=render "listnote"
 %br
 %br

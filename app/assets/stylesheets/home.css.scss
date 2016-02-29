@@ -2,10 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html {
+  font-family: 'Lato', sans-serif;
+}
+
 html, body {
-  padding-top: 50px;
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
+  background-color: #5f3d72;
 }
 
 /* Wrapper for page content to push down footer */
@@ -16,14 +20,36 @@ html, body {
   margin: 0 auto -30px;
   /* Pad bottom by footer height */
   padding: 0 0 60px;
+  background-color: #ffffff;
 }
 
+.container-custom{
+  padding-top: 70px;
+}
+
+.pagination a{
+  color: #5f3d72;
+}
 
 .footer{
-  height: 30px;
+  padding-top: 15px;
+  padding-bottom: 30px;
   color: white;
   background-color: #5f3d72;
 }
+
+.footer a{
+  color: #ffffff;  
+}
+
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
+  color: rgba(0,0,0,0.2);
+  border-color: #5f3d72;
+}
+
+
 // Fix for footer with small screens
 @media only screen and (max-width: 479px) {
   .footer{
@@ -59,6 +85,16 @@ html, body {
 
 .navbar-toggle{
   margin-top: 20px;
+}
+
+.navbar-title{
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  margin-top: 14px;
+  margin-left: 20px;
 }
 
 .authentication {
