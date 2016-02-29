@@ -23,7 +23,15 @@
               </div>
               <div class="field form-group">
                 <strong>Location Details</strong> (This will be public)<br />
-                <%= request.location.inspect %>
+                <% if request.location != nil then %>
+                  <% if request.location.country_code != "RD" then %>
+                    <% if request.location.city.length > 0 then %>
+                      <strong>Detected Location:</strong> <%= request.location.city %>, <%= request.location.country %>
+                    <% else %>
+                      <strong>Detected Location:</strong> <%= request.location.country %>
+                    <% end %>
+                  <% end %>
+                <% end %>
                 <%= f.text_field :expert_location_info, placeholder: "Enter Address Info" %>
                 <% if current_user.coordinates then %>
                   <br />
