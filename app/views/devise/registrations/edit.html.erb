@@ -39,14 +39,14 @@
                 <% end %>
               </div>
               <div class="field form-group">
-                <strong>Make my info publically available</strong>
+                <strong>Make my expert info publically available on <a href="/experts">this page</a></strong>
                 <%= f.check_box :expert_is_available %>
               </div>
             <% end %>
             <br />
 
             <div class="field form-group">
-              <%= f.label :email %>
+              <%= f.label :email %> <strong>(This field will always remain private)</strong> 
               <%= f.email_field :email, class: "form-control",autofocus: true %>
             </div>
             <br />
