@@ -33,7 +33,7 @@ class CardverifyController < ApplicationController
   end
 
   def rejectcard
-    if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") then
+    if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then
       self.reject_or_approve("reject", params[:id])
       self.redirection
     else
@@ -42,7 +42,7 @@ class CardverifyController < ApplicationController
   end
 
   def acceptcard
-    if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") then
+    if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then
       self.reject_or_approve("approve", params[:id])
       self.redirection
     else
@@ -70,13 +70,16 @@ class CardverifyController < ApplicationController
     validation_queue = Validationqueue.where(:card_id => id)
     if validation_queue.length > 0 then
       card = Card.find(id)
-      Cardnote.create(
-        text: "Expert user #{verb} card",
-        create_date: Time.new(),
-        card_id: id.to_s
-      )
-      validation_queue.delete
-      card.update_attributes(validation_status: card_new_status)
+      # Don't let users approve their own cards
+      if card.owner_id.to_s != current_user._id then
+        Cardnote.create(
+          text: "Expert user #{verb} card",
+          create_date: Time.new(),
+          card_id: id.to_s
+        )
+        validation_queue.delete
+        card.update_attributes(validation_status: card_new_status)
+      end
     end
   end
 end
