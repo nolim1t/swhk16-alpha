@@ -1,20 +1,8 @@
 /* -------------------------------- 
 
-Primary style
-
--------------------------------- */
-
-a {
-  color: #a9c056;
-  text-decoration: none;
-}
-
-/* -------------------------------- 
-
 Main components 
 
 -------------------------------- */
-
 .cd-faq {
   width: 90%;
   max-width: 1024px;
@@ -41,14 +29,22 @@ Main components
   height: 50px;
   line-height: 50px;
   padding: 0 28px 0 16px;
-  background-color: #4e5359;
+  background-color: #6C7279;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
   white-space: nowrap;
   border-bottom: 1px solid #555b61;
   text-overflow: ellipsis;
+  text-decoration: none;
 }
+
+.cd-faq-categories a:hover, 
+.cd-faq-categories a:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .cd-faq-categories a::before, .cd-faq-categories a::after {
   /* plus icon on the right */
   position: absolute;
@@ -77,7 +73,6 @@ Main components
   }
   .cd-faq-categories a {
     font-size: 13px;
-    font-size: 0.8125rem;
     font-weight: 600;
     padding-left: 24px;
     padding: 0 24px;
@@ -119,7 +114,7 @@ Main components
     transition: opacity 0.2s;
   }
   .cd-faq-categories .selected {
-    background: #42464b !important;
+    background: #585D63 !important;
   }
   .cd-faq-categories .selected::before {
     opacity: 1;
@@ -131,6 +126,17 @@ Main components
   .no-js .cd-faq-categories {
     position: relative;
   }
+}
+
+.cd-faq-items a{
+  color: #5f3d72;
+  text-decoration: none; 
+}
+
+.cd-faq-items a:hover, 
+.cd-faq-items a:focus {
+  color: #5f3d66;
+  text-decoration: none;
 }
 
 .cd-faq-items {
@@ -273,7 +279,6 @@ Main components
 .cd-faq-group .cd-faq-title h2 {
   text-transform: uppercase;
   font-size: 12px;
-  font-size: 0.75rem;
   font-weight: 700;
   color: #bbbbc7;
 }
@@ -310,10 +315,10 @@ Main components
   margin: 1.6em 0 .4em;
   line-height: 1.2;
 }
+
 @media only screen and (min-width: 768px) {
   .cd-faq-trigger {
     font-size: 24px;
-    font-size: 1.5rem;
     font-weight: 300;
     margin: 0;
     padding: 24px 72px 24px 24px;
@@ -368,7 +373,6 @@ Main components
 
 .cd-faq-content p {
   font-size: 14px;
-  font-size: 0.875rem;
   line-height: 1.4;
   color: #6c7d8e;
 }
