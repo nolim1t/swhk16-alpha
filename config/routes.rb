@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   #general pages
   get '/contact_careers' => 'home#contact_careers', as: :contact_careers
+  get '/faq' => 'home#faq', as: :faq
+  get '/experts' => 'home#showexperts', as: :experts_list_url
 
   # Real Pages
   get '/cards/index' => 'cards#index', as: :cards_index
@@ -22,8 +24,6 @@ Rails.application.routes.draw do
   get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
   get '/cards/graveyard' => 'cards#graveyard', as: :cards_graveyard_url
 
-  # experts
-  get '/experts' => 'home#showexperts', as: :experts_list_url
 
   # Vendor/Shopkeeper functionality
   get '/vendor' => 'cardverify#menu', as: :cardverify_menu
