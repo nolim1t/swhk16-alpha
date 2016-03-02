@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/contact_careers' => 'home#contact_careers', as: :contact_careers
   get '/faq' => 'home#faq', as: :faq
   get '/experts' => 'home#showexperts', as: :experts_list_url
+  get '/legal' => "home#legal", as: :legal
 
   # Real Pages
   get '/cards/index' => 'cards#index', as: :cards_index

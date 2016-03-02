@@ -2,7 +2,6 @@ class HomeController < ActionController::Base
  	layout 'application'
 
 	def index
-
 	end
 
   def new
@@ -12,7 +11,10 @@ class HomeController < ActionController::Base
   end
 
   def faq
-  	
+  end
+
+  def legal
+    
   end
   
   def showexperts
