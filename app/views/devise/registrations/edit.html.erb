@@ -19,7 +19,7 @@
             <% if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then %>
               <div class="field form-group">
                 <strong>Make my expert info publically available on <a href="/experts">this page</a></strong>
-                <%= f.check_box :expert_is_available %>
+                <%= f.check_box :expert_is_available, default: 1 %>
               </div>            
               <div class="field form-group">
                 <%= f.label :expert_contact_info %> (As an expert, enter in how you wish to be contacted. This will be made public)<br />
