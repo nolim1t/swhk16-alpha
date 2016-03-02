@@ -6,20 +6,20 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def set_locale
-    autoset_lang = 'en'
+    autoset_lang = nil
     begin
       autoset_lang = request.headers['Accept-language'].split(',')[0]
     rescue
       puts "Can't autoset language for #{request.headers['Accept-language']}"
     end
-    # Only if its supported
-    if autoset_lang.include? "en" or autoset_lang.include? "zh" then
-      if autoset_lang.include? "en" then
-        autoset_lang = "en"
-      end
-      if autoset_lang.include? "zh" then
-        autoset_lang = "zh"
-      end
+    if autoset_lang.include? "en" then
+      autoset_lang = "en"
+    end
+    if autoset_lang.include? "zh" then
+      autoset_lang = "zh"
+    end
+    if autoset_lang != "en" or autoset_lang != "zh" then
+      autoset_lang = nil
     end
     I18n.locale = autoset_lang || params[:locale] || I18n.default_locale
   end
