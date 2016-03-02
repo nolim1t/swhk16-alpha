@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
     if autoset_lang != "en" and autoset_lang != "zh" then
       autoset_lang = nil
     end
-    I18n.locale = autoset_lang || params[:locale] || I18n.default_locale
+    begin
+      I18n.locale = autoset_lang || params[:locale] || I18n.default_locale
+    rescue
+      I18n.locale = params[:locale] || I18n.default_locale
+    end
   end
 
   protected
