@@ -18,6 +18,10 @@
             </div>
             <% if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then %>
               <div class="field form-group">
+                <strong>Make my expert info publically available on <a href="/experts">this page</a></strong>
+                <%= f.check_box :expert_is_available %>
+              </div>            
+              <div class="field form-group">
                 <%= f.label :expert_contact_info %> (As an expert, enter in how you wish to be contacted. This will be made public)<br />
                 <%= f.text_area :expert_contact_info, class: "expert_contact_info", placeholder: "Enter details on how you wish to be contacted" %>
               </div>
@@ -37,10 +41,6 @@
                   <br />
                   <strong>Location is currently set to:</strong> <a href="http://www.openstreetmap.org/search?query=<%=current_user.coordinates[1] %>%2C%20<%=current_user.coordinates[0] %>#map=16/<%=current_user.coordinates[1] %>/<%=current_user.coordinates[0] %>" target="mapview"><%=current_user.coordinates[1] %>, <%=current_user.coordinates[0] %></a>
                 <% end %>
-              </div>
-              <div class="field form-group">
-                <strong>Make my expert info publically available on <a href="/experts">this page</a></strong>
-                <%= f.check_box :expert_is_available %>
               </div>
             <% end %>
             <br />
