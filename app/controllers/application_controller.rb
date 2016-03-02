@@ -12,11 +12,14 @@ class ApplicationController < ActionController::Base
     rescue
       puts "Can't autoset language for #{request.headers['Accept-language']}"
     end
-    if autoset_lang.include? "en" then
-      autoset_lang = "en"
-    end
-    if autoset_lang.include? "zh" then
-      autoset_lang = "zh"
+    # Only if its supported
+    if autoset_lang.include? "en" or autoset_lang.include? "zh" then
+      if autoset_lang.include? "en" then
+        autoset_lang = "en"
+      end
+      if autoset_lang.include? "zh" then
+        autoset_lang = "zh"
+      end
     end
     I18n.locale = autoset_lang || params[:locale] || I18n.default_locale
   end
