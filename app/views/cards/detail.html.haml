@@ -30,7 +30,7 @@
 			=link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
 		-elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
 			=link_to "Undelete", cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
-			=link_to "Banish", "#", data: { confirm: "This button will remove the card from the system PERMANENTLY. Are you sure?" }, class: "btn btn-primary btn-red btn-block", role: "button"
+			=link_to "Banish", "#", data: { confirm: "This button will remove the card from the system PERMANENTLY. Are you sure?" }, class: "btn btn-primary btn-red", role: "button"
 
 
 .row.top-buffer
