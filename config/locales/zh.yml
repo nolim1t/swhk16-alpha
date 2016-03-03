@@ -34,3 +34,7 @@ zh:
   cardnotetime: "Card Note Time"
   nonotesfound: "No notes on this card found"
   showoriginalcard: "Show full card image"
+
+  # Buttons (2016-03-03)
+  undelete: "Undelete"
+  permadelete: "Exile"
