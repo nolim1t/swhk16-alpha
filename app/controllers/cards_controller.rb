@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+	include CardsHelper
 	before_action :authenticate_user!
 	before_action :set_card_form, only: [:detail]
 	before_action :set_find_owner_form, only: [:detail]
@@ -344,6 +345,20 @@ class CardsController < ApplicationController
 			card_to_update.update_attributes(deleted_status: 0)
 
 			redirect_to cards_index_path
+		else
+			redirect_to "/"
+		end
+	end
+
+	def permadeletecard
+		if current_user.accounttype == "admin" then
+			if remove_card(params[:id]) then
+				puts "Gone"
+				redirect_to "/admin"
+			else
+				puts "Didn't delete"
+				redirect_to "/admin"
+			end
 		else
 			redirect_to "/"
 		end
