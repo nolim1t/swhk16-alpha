@@ -28,6 +28,10 @@ class CardsController < ApplicationController
 		}
 		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
 		# @cards_search = Cardnote.where({cardname: "#{params[:search_text]}"})
+		respond_to do |format|
+		  format.html
+		  format.js
+		end
 	end
 
 	def graveyard
