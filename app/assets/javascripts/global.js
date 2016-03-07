@@ -12,6 +12,6 @@ $(function () {
   //show faq content clicking on faqTrigger
 	carddetailsTrigger.on('click', function(event){
 		event.preventDefault();
-		$(this).next('.cd-carddetails-content').slideToggle(200).end().parent('li').toggleClass('content-visible');
+		$(this).next('.cd-carddetails-content').slideToggle(200).end().toggleClass('content-visible');
 	});
 })
