@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # Default to cards index
   root to: "cards#index"
 
+  get '/landing' => 'home#index', as: :landing
+
   #general pages
   get '/contact_careers' => 'home#contact_careers', as: :contact_careers
   get '/faq' => 'home#faq', as: :faq

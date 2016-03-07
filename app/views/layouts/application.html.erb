@@ -47,11 +47,19 @@
       </div>
     </nav>
 
-    <div id="wrap">
-      <div class="container container-custom">
-        <%= yield %>
-      </div><!--/.container-->
-    </div>
+    <% if params[:action] == "index" && params[:controller] == "home" %>
+      <div id="wrap">
+   <!--      <div class="container landing_container"> -->
+          <%= yield %>
+       <!--  </div> --><!--/.container-->
+      </div>
+    <% else %>
+      <div id="wrap">
+        <div class="container container-custom">
+          <%= yield %>
+        </div><!--/.container-->
+      </div>
+    <% end %>
 
     <%= render "layouts/footer" %>
     <!-- Begin Google Analytics Embed Code -->
