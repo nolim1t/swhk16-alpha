@@ -7,7 +7,7 @@
 // }
 $(function () {
   $('[data-toggle="popover"]').popover({ html: true });
-
+  $('[data-toggle="popover-detail"]').popover({ html: true });
   var carddetailsTrigger = $('.cd-carddetails-trigger');
   //show faq content clicking on faqTrigger
 	carddetailsTrigger.on('click', function(event){
