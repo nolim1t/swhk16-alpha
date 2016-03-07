@@ -10,6 +10,14 @@ Rails.application.config.assets.precompile += %w( main.js )
 Rails.application.config.assets.precompile += %w( modernizr.js )
 # Rails.application.config.assets.precompile += %w( landing_theme.css )
 Rails.application.config.assets.precompile += %w( landing_style.css )
+# Rails.application.config.assets.precompile += %w( masonry.css )
+# Rails.application.config.assets.precompile += %w( pushy.css )
+# Rails.application.config.assets.precompile += %w( animate.css )
+# Rails.application.config.assets.precompile += %w( magnific-popup.css )
+# Rails.application.config.assets.precompile += %w( odometer-theme-default.css )
+
+
+
 
 
 # Add additional assets to the asset load path
