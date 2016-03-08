@@ -2,6 +2,11 @@
 	.row
 		.col-lg-6.col-md-12
 			%p You have <a href="/cards/transfer/incoming">incoming transfers</a> to accept
+
+-if params[:search_text].length > 1 and @cards.length == 0 then
+	.row
+		.col-lg-6.col-md-12
+			%p No card results found
 .row
 	.col-lg-6.col-md-6.col-sm-12
 		= will_paginate @cards
