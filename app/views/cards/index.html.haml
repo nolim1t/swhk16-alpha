@@ -6,7 +6,7 @@
 -if params[:search_text].length > 1 and @cards.length == 0 then
 	.row
 		.col-lg-6.col-md-12
-			%p No card results found
+			%p #{I18n.t('nosearchresults')}
 .row
 	.col-lg-6.col-md-6.col-sm-12
 		= will_paginate @cards
