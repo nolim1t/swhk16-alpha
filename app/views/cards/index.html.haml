@@ -21,14 +21,22 @@
 	-i = 0
 	-@cards.each do |card|
 		-i += 1
-		-card.validation_status==2 ? @color_code = "#F34C15" : @color_code = "#dddddd"
+		-card.validation_status==1 ? @color_code = "#F34C15" : @color_code = "#dddddd"
 		.col-lg-3.col-md-4.col-xs-6.thumb
-			%a.thumbnail{:style => "border-color: #{@color_code}", :href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
-				-card_image_count = 0
-				- @cardimages.each do |cardimage|
-					-if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
-						%img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
-						-card_image_count += 1
+			-if card.validation_status==1
+				%a.thumbnail.red{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
+					-card_image_count = 0
+					- @cardimages.each do |cardimage|
+						-if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
+							%img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
+							-card_image_count += 1
+			-else 
+				%a.thumbnail{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
+					-card_image_count = 0
+					- @cardimages.each do |cardimage|
+						-if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
+							%img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
+							-card_image_count += 1
 		-if i == 3
 			.clearfix.visible-lg
 			.clearfix.visible-xs
