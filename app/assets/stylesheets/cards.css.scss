@@ -90,6 +90,22 @@
 	margin-top: 80px;
 }
 
+.thumb a.thumbnail:hover, 
+.thumb a.thumbnail:focus, 
+.thumb a.thumbnail:active {
+  border-color: #5f3d72;
+}
+
+.row a.thumbnail{
+	color: #5f3d72; 
+}
+
+.row a.thumbnail:hover, 
+.row a.thumbnail:focus, 
+.row a.thumbnail:active{
+  border-color: #5f3d72;
+}
+
 .search{
   margin-top: 20px;
   margin-bottom: 10px;
