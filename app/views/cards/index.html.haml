@@ -21,19 +21,8 @@
   
   #my-cards
     .page-delimiter.first-page{"data-page" => params[:page] || 1}
-    =render @cards
-    -i = 0
-    -@cards.count.times.each do |i|
-      -if i == 3
-        .clearfix.visible-lg
-        .clearfix.visible-xs
-      -elsif i == 2
-        .clearfix.visible-md
-      -elsif i == 1
-        .clearfix.visible-xs
+    =render partial: 'card', collection: @cards
 
 - if @cards.next_page
   #infinite-scrolling
     = will_paginate
-
-

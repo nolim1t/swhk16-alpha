@@ -94,6 +94,13 @@
 .thumb a.thumbnail:focus, 
 .thumb a.thumbnail:active {
   border-color: #5f3d72;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+}
+
+.row a.thumbnail.red{
+	border-color: #5f3d72;
 }
 
 .row a.thumbnail{
