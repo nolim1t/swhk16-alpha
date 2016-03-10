@@ -3,6 +3,7 @@ class CardsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_card_form, only: [:detail]
 	before_action :set_find_owner_form, only: [:detail]
+	#before_action :set_details_view, only: [:index]
 	layout 'application'
 
 	def index
@@ -293,6 +294,10 @@ class CardsController < ApplicationController
   def set_find_owner_form
   	@find_owner_form = render_to_string(:partial => '/cards/find_owner_form')
   end
+
+	def set_details_view
+		@detailsview = render_to_string(:partial => '/cards/detail_page')
+	end
 
 	def request_validation
 		puts "ID: #{params[:id]}"

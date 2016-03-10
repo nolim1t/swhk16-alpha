@@ -90,8 +90,8 @@
 	margin-top: 80px;
 }
 
-.thumb a.thumbnail:hover, 
-.thumb a.thumbnail:focus, 
+.thumb a.thumbnail:hover,
+.thumb a.thumbnail:focus,
 .thumb a.thumbnail:active {
   border-color: #5f3d72;
   -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
@@ -104,11 +104,11 @@
 }
 
 .row a.thumbnail{
-	color: #5f3d72; 
+	color: #5f3d72;
 }
 
-.row a.thumbnail:hover, 
-.row a.thumbnail:focus, 
+.row a.thumbnail:hover,
+.row a.thumbnail:focus,
 .row a.thumbnail:active{
   border-color: #5f3d72;
 }
@@ -116,10 +116,6 @@
 .search{
   margin-top: 20px;
   margin-bottom: 10px;
-}
-
-.popover{
-	width: 100%;
 }
 
 .btn-upload{
@@ -141,6 +137,70 @@
 
 .card-infor-table, table, tr{
 	height: 50px;
+}
+
+
+/* Cards Single page */
+.cd-carddetails-trigger {
+	font-size: 24px;
+	font-weight: 300;
+	margin: 0;
+	padding: 24px 72px 24px 24px;
+}
+.cd-carddetails-trigger::before, .cd-carddetails-trigger::after {
+	/* arrow icon on the right */
+	position: absolute;
+	right: 24px;
+	top: 50%;
+	height: 2px;
+	width: 13px;
+	background: #cfdca0;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transition-property: -webkit-transform;
+	-moz-transition-property: -moz-transform;
+	transition-property: transform;
+	-webkit-transition-duration: 0.2s;
+	-moz-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+}
+.cd-carddetails-trigger::before {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+	right: 32px;
+}
+.cd-carddetails-trigger::after {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.content-visible .cd-carddetails-trigger::before {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.content-visible .cd-carddetails-trigger::after {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.cd-carddetails-content {
+	display: none;
+	padding: 0 24px 30px;
+}
+.cd-carddetails-content p {
+	line-height: 1.6;
+	width: 300px;
 }
 
 .form-search:focus {

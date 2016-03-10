@@ -37,13 +37,15 @@
             -if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
               %img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
               -card_image_count += 1
-      -else 
-        %a.thumbnail{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
+      -else
+        %a.thumbnail{:href => "#0", class: "cd-carddetails-trigger", rel: "popover", data: {content: "#{render :partial => '/cards/detail_page', :locals => {card: card, id: card._id}}", toggle: "popover-detail", placement: "bottom"}}
           -card_image_count = 0
           - @cardimages.each do |cardimage|
             -if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
               %img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
               -card_image_count += 1
+              .cd-carddetails-content
+                Content
     -if i == 3
       .clearfix.visible-lg
       .clearfix.visible-xs
