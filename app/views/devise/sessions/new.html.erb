@@ -5,6 +5,15 @@
         <h2 class="panel-title  devise_form">Please Log In</h2>
       </div>
       <div class="panel-body">
+        <% if flash[:alert] then %>
+          <% if flash[:alert] != "You need to sign in or sign up before continuing." then %>
+            <ul>
+              <li>
+                <%= flash[:alert] %>
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field devise_form">
             <%= f.email_field :email, class: "form-control", placeholder: "Email", autofocus: true %>

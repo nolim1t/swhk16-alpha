@@ -2,11 +2,19 @@
   .row
     .col-lg-6.col-md-12
       %p You have <a href="/cards/transfer/incoming">incoming transfers</a> to accept
+
+-if params[:search_text]
+  -if params[:search_text].length > 1 and @cards.length == 0 then
+    .row
+      .col-lg-6.col-md-12
+        %p #{I18n.t('nosearchresults')}
+
 .row#static-pagination
   .col-lg-6.col-md-6.col-sm-12.search
     %form{method: 'get'}
       %input{name: "search_text", size: "30%", type: "text", value: @query}
-      %input{type: "submit", value: "Search", class: "btn btn-success btn-purple"}
+      %button.btn.btn-success.btn-purple{type: "submit"}
+        %i.glyphicon.glyphicon-search
 
   .col-lg-6.col-md-6.col-sm-12
     = will_paginate @cards
@@ -18,7 +26,7 @@
         %i.glyphicon.glyphicon-plus
       .row
         .h3 Add Card
-  
+
   #my-cards
     .page-delimiter.first-page{"data-page" => params[:page] || 1}
     =render partial: 'card', collection: @cards
