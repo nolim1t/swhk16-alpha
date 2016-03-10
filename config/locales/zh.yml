@@ -40,3 +40,6 @@ zh:
   permadelete: "Exile"
 
   nosearchresults: "不找卡片"
+
+  # New localized text (2016-03-10)
+  cardidentifier: "卡片 ID"
