@@ -72,6 +72,9 @@
       %table
         %tbody
           %tr
+            %th #{I18n.t('cardidentifier')}
+            %td #{@card.unique_identifier}
+          %tr
             %th #{I18n.t('cardname')}:
             %td #{@card.cardname}
           %tr

@@ -14,6 +14,8 @@ class Card
   field :transfer_status, type: Integer, default: 0 # 0 = not being transferred, 1 = Pending (lets filter by this)
   field :owner_id, type: String
 
+  field :unique_identifier, type: String, default: -> {s = "VA-" ; 7.times{|i| s+='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[rand(26), 1]} ; s = s + "-#{(Card.count + 1).to_s}"; s}
+
   # Deleted
   field :deleted_status, type: Integer, default: 0 # Not deleted, 1 = deleted
 

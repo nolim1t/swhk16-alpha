@@ -61,3 +61,6 @@ en:
   permadelete: "Exile"
 
   nosearchresults: "No card results found"
+
+  # New localized text (2016-03-10)
+  cardidentifier: "Card Identifier"
