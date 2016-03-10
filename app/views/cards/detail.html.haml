@@ -1,93 +1,111 @@
 -if flash
-	.row
-		%ul
-			-flash.each do |key, value|
-				-if key == "error"
-					%li #{key.capitalize}: #{value}
+  .row
+    %ul
+      -flash.each do |key, value|
+        -if key == "error"
+          %li #{key.capitalize}: #{value}
 
 .row.top-buffer-2
-	.col-lg-12.col-md-12.col-sm-12
-		-if @card.owner_id == current_user._id.to_s and @card.deleted_status != 1
-			-if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
-				/ .btn-group
-				.col-lg-3.col-md-3.col-sm-3
-					%button#pop_up_btn.btn.btn-primary.btn-purple.btn-block{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} } #{I18n.t('addpicturesbutton')}
-					&nbsp;
-				.col-lg-3.col-md-3.col-sm-3
-					%button#pop_up_btn.btn.btn-primary.btn-purple.btn-block{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } #{I18n.t('transferownerbutton')}
-					&nbsp;
-				.col-lg-3.col-md-3.col-sm-3
-					-if (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1)
-						=link_to "#{I18n.t('editnotesbutton')}", cards_edit_path(@card), class: "btn btn-primary btn-purple btn-block", role: "button"
-						&nbsp;
-				.col-lg-3.col-md-3.col-sm-3
-					-if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1) and (@card.deleted_status == 0)
-						=link_to "#{I18n.t('deletebutton')}", cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-red btn-block", role: "button"
-					-elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
-						=link_to "#{I18n.t('undelete')}", cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
-		-elsif ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
-			=link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
-			=link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
-		-elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
-			=link_to "#{I18n.t('undelete')}", cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
-			=link_to "#{I18n.t('permadelete')}", adminpage_permadelete_path(@card), data: { confirm: "This button will remove the card from the system PERMANENTLY. Are you sure?" }, class: "btn btn-primary btn-red", role: "button"
-
+  .col-lg-12.col-md-12.col-sm-12
+    -if @card.owner_id == current_user._id.to_s and @card.deleted_status != 1
+      -if @card.transfer_status != 1 and (@card.validation_status == 0 or @card.validation_status == 2)
+        / .btn-group
+        .col-lg-3.col-md-3.col-sm-6
+          %button#pop_up_btn.btn.btn-primary.btn-purple.btn-block{ rel: "popover", data: {content: "#{@card_form}", toggle: "popover", placement: "bottom", title: "Add Pictures"} }
+            %i.glyphicon.glyphicon-camera
+            &nbsp;
+            #{I18n.t('addpicturesbutton')}
+          &nbsp;
+        .col-lg-3.col-md-3.col-sm-6
+          %button#pop_up_btn.btn.btn-primary.btn-purple.btn-block{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} }
+            %i.glyphicon.glyphicon-send
+            &nbsp;
+            #{I18n.t('transferownerbutton')}
+          &nbsp;
+        .col-lg-3.col-md-3.col-sm-6
+          -if (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1)
+            =link_to cards_edit_path(@card), role: "button",  class: "btn btn-primary btn-purple btn-block" do
+              %i.glyphicon.glyphicon-pencil
+              &nbsp;
+              #{I18n.t('editnotesbutton')}
+            &nbsp;
+        .col-lg-3.col-md-3.col-sm-6
+          -if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1) and (@card.deleted_status == 0)
+            =link_to cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-red btn-block", role: "button" do
+              %i.glyphicon.glyphicon-fire
+              &nbsp;
+              #{I18n.t('deletebutton')}
+          -elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
+            =link_to I18n.t('undelete'), cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
+            =link_go I18n.t('permadelete'), adminpage_permadelete(@card), data: { confirm: "This card will permanently remove this card FOREVER" }, class: "btn btn-primary btn-purple"
+    -elsif ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
+      =link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
+      =link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
+    -elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
+      =link_to I18n.t('undelete'), cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
+      &nbsp;
+      =link_to I18n.t('permadelete'), adminpage_permadelete_path(@card), data: { confirm: "This card will permanently remove this card FOREVER" }, class: "btn btn-primary btn-purple"
 
 .row.top-buffer
-	-if @cardimages.length == 0 then
-		#{I18n.t('noimagesfound')}
-	-else
-		-size = @cardimages.size
-		-@cardimages.each do |cardimage|
-			-if size == 1
-				.col-lg-8.col-md-4.col-sm-8
-					/ %h4 #{cardimage.image_type.capitalize} of card
-					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
-					%br
-					%a{:href => "#{cardimage.photo.url}", :target => "newpicture"} #{I18n.t('showoriginalcard')}
-					%br
-			-else
-				.col-lg-4.col-md-4.col-sm-4
-					/ %h4 #{cardimage.image_type.capitalize} of card
-					%img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
-					%a{:href => "#{cardimage.photo.url}", :target => "newpicture"} #{I18n.t('showoriginalcard')}
-					%br
-	.col-lg-4.col-md-4.col-sm-4
-		.card-info-table
-			%table
-				%tbody
-					%tr
-						%th #{I18n.t('cardname')}:
-						%td #{@card.cardname}
-					%tr
-						%th #{I18n.t('cardgame')}:
-						%td #{@card.cardgame}
-					%tr
-						%th #{I18n.t('cardcondition')}:
-						%td #{@card.card_condition.to_s}
-					%tr
-						%th #{I18n.t('cardstatus')}:
-						-case @card.validation_status
-							-when 0
-								-if @card.transfer_status != 1 and (@card.owner_id.to_s == current_user._id.to_s) and (@card.deleted_status == 0)
-									%td #{I18n.t('statusunchecked')} (<a href="#{cards_validation_get_url_path(@card)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
-								-else
-									%td #{I18n.t('statusunchecked')}
-							-when 1
-								-if @card.transfer_status != 1 and (@card.owner_id.to_s == current_user._id.to_s) and (@card.deleted_status == 0)
-									%td #{I18n.t('statuspending')} (<a href="#{cards_validation_cancel_url_path(@card)}">Cancel Expert Validation</a>)
-								-else
-									%td #{I18n.t('statuspending')}
-							-when 2
-								%td #{I18n.t('statusverified')}
-							-else
-								%td #{I18n.t('statusunknown')}
-					%tr
-						%th #{I18n.t('cardcreatedate')}:
-						%td #{Time.at(@card.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
-					%tr
-						%th #{I18n.t('cardowner')}:
-						%td #{@card_owner_info.name}
+  -if @cardimages.length == 0 then
+    #{I18n.t('noimagesfound')}
+  -else
+    -size = @cardimages.size
+    -imgcounter = 0
+    -@cardimages.each do |cardimage|
+      -imgcounter += 1
+      -if size == 1
+        .col-lg-8.col-md-4.col-sm-8
+          / %h4 #{cardimage.image_type.capitalize} of card
+          %img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
+          %br
+          %a{:href => "#{cardimage.photo.url}", :target => "newpicture1"} #{I18n.t('showoriginalcard')}
+          %br
+      -else
+        .col-lg-4.col-md-4.col-sm-4
+          / %h4 #{cardimage.image_type.capitalize} of card
+          %img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
+          %a{:href => "#{cardimage.photo.url}", :target => "newpicture#{imgcounter.to_s}"} #{I18n.t('showoriginalcard')}
+          %br
+  .col-lg-4.col-md-4.col-sm-4
+    .card-info-table
+      %table
+        %tbody
+          %tr
+            %th #{I18n.t('cardidentifier')}
+            %td #{@card.unique_identifier}
+          %tr
+            %th #{I18n.t('cardname')}:
+            %td #{@card.cardname}
+          %tr
+            %th #{I18n.t('cardgame')}:
+            %td #{@card.cardgame}
+          %tr
+            %th #{I18n.t('cardcondition')}:
+            %td #{@card.card_condition.to_s}
+          %tr
+            %th #{I18n.t('cardstatus')}:
+            -case @card.validation_status
+              -when 0
+                -if @card.transfer_status != 1 and (@card.owner_id.to_s == current_user._id.to_s) and (@card.deleted_status == 0)
+                  %td #{I18n.t('statusunchecked')} (<a href="#{cards_validation_get_url_path(@card)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
+                -else
+                  %td #{I18n.t('statusunchecked')}
+              -when 1
+                -if @card.transfer_status != 1 and (@card.owner_id.to_s == current_user._id.to_s) and (@card.deleted_status == 0)
+                  %td #{I18n.t('statuspending')} (<a href="#{cards_validation_cancel_url_path(@card)}">Cancel Expert Validation</a>)
+                -else
+                  %td #{I18n.t('statuspending')}
+              -when 2
+                %td #{I18n.t('statusverified')}
+              -else
+                %td #{I18n.t('statusunknown')}
+          %tr
+            %th #{I18n.t('cardcreatedate')}:
+            %td #{Time.at(@card.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
+          %tr
+            %th #{I18n.t('cardowner')}:
+            %td #{@card_owner_info.name}
 
 =render "listnote"
 %br

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Custom pathnames
-  devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", :edit => "settings" }, :controllers => {:registrations => "registrations"}
+  devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", :edit => "settings" }, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   # Default to cards index
   root to: "cards#index"

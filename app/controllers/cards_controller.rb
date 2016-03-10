@@ -141,6 +141,20 @@ class CardsController < ApplicationController
 			cardimages_2.each{|card_2|
 				@cardimages << card_2
 			}
+			if @card[:unique_identifier] == nil then
+				if @card[:unique_identifier] == "" then
+					rs = "VA-"
+					7.times{|i| rs+='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[rand(26), 1]}
+					rs = rs + "-#{(Card.count + 1).to_s}"
+					@card.update_attributes(:unique_identifier => rs)
+					@card.save
+					@card[:unique_identifier] = rs
+				else
+					@card.update_attributes(:unique_identifier => @card[:unique_identifier])
+				end
+			else
+				@card.update_attributes(:unique_identifier => @card[:unique_identifier])
+			end
 			# Check if owner matches the database
 			if (@card.owner_id == current_user._id.to_s) or ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) then
 				@method = env['REQUEST_METHOD']

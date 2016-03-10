@@ -1,37 +1,53 @@
 -if @listincoming > 0
-	.row
-		.col-lg-6.col-md-12
-			%p You have <a href="/cards/transfer/incoming">incoming transfers</a> to accept
-.row
-	.col-lg-6.col-md-6.col-sm-12
-		= will_paginate @cards
+  .row
+    .col-lg-6.col-md-12
+      %p You have <a href="/cards/transfer/incoming">incoming transfers</a> to accept
 
-	.col-lg-6.col-md-6.col-sm-12.search
-		%form.pull-right{method: 'get'}
-			%input{name: "search_text", size: "30%", type: "text", value: @query}
-			%input{type: "submit", value: "Search", class: "btn btn-success btn-purple"}
+-if params[:search_text]
+  -if params[:search_text].length > 1 and @cards.length == 0 then
+    .row
+      .col-lg-6.col-md-12
+        %p #{I18n.t('nosearchresults')}
+
+.row
+  .col-lg-6.col-md-6.col-sm-12
+    = will_paginate @cards
+
+  .col-lg-6.col-md-6.col-sm-12.search
+    %form.pull-right{method: 'get'}
+      %input{name: "search_text", size: "30%", type: "text", value: @query, placeholder: "    Type Card Name", class: "form-search"}
+      %button.btn.btn-success.btn-purple{type: "submit"}
+        %i.glyphicon.glyphicon-search
 
 .row.top-buffer
-	.col-lg-3.col-md-4.col-xs-6.thumb
-		%a.thumbnail{:href => '/cards/new'}
-			.row
-				%i.glyphicon.glyphicon-plus
-			.row
-				.h3 Add Card
-	-i = 0
-	-@cards.each do |card|
-		-i += 1
-		.col-lg-3.col-md-4.col-xs-6.thumb
-			%a.thumbnail{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
-				-card_image_count = 0
-				- @cardimages.each do |cardimage|
-					-if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
-						%img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
-						-card_image_count += 1
-		-if i == 3
-			.clearfix.visible-lg
-			.clearfix.visible-xs
-		-elsif i == 2
-			.clearfix.visible-md
-		-elsif i == 1
-			.clearfix.visible-xs
+  .col-lg-3.col-md-4.col-xs-6.thumb
+    %a.thumbnail{:href => '/cards/new'}
+      .row
+        %i.glyphicon.glyphicon-plus
+      .row
+        .h3 Add Card
+  -i = 0
+  -@cards.each do |card|
+    -i += 1
+    .col-lg-3.col-md-4.col-xs-6.thumb
+      -if card.validation_status==2
+        %a.thumbnail.red{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
+          -card_image_count = 0
+          - @cardimages.each do |cardimage|
+            -if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
+              %img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
+              -card_image_count += 1
+      -else 
+        %a.thumbnail{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
+          -card_image_count = 0
+          - @cardimages.each do |cardimage|
+            -if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
+              %img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
+              -card_image_count += 1
+    -if i == 3
+      .clearfix.visible-lg
+      .clearfix.visible-xs
+    -elsif i == 2
+      .clearfix.visible-md
+    -elsif i == 1
+      .clearfix.visible-xs
