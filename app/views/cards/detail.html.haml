@@ -15,30 +15,36 @@
             %i.glyphicon.glyphicon-camera
             &nbsp;
             #{I18n.t('addpicturesbutton')}
+          &nbsp;
         .col-lg-3.col-md-3.col-sm-6
-          %button#pop_up_btn.btn.btn-primary.btn-purple.btn-block{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} } 
-            %i.glyphicon.glyphicon-send 
+          %button#pop_up_btn.btn.btn-primary.btn-purple.btn-block{ rel: "popover", data: {content: "#{@find_owner_form}", toggle: "popover", placement: "bottom", title: "Future Owner"} }
+            %i.glyphicon.glyphicon-send
             &nbsp;
             #{I18n.t('transferownerbutton')}
+          &nbsp;
         .col-lg-3.col-md-3.col-sm-6
           -if (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1)
             =link_to cards_edit_path(@card), role: "button",  class: "btn btn-primary btn-purple btn-block" do
-              %i.glyphicon.glyphicon-pencil 
+              %i.glyphicon.glyphicon-pencil
               &nbsp;
               #{I18n.t('editnotesbutton')}
+            &nbsp;
         .col-lg-3.col-md-3.col-sm-6
           -if @card.owner_id == current_user._id.to_s and (@card.validation_status == 0 or @card.validation_status == 2) and (@card.transfer_status != 1) and (@card.deleted_status == 0)
-            =link_to cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-red btn-block", role: "button" do 
+            =link_to cards_delete_url_path(@card), data: { confirm: "Really delete this card?" }, class: "btn btn-primary btn-red btn-block", role: "button" do
               %i.glyphicon.glyphicon-fire
               &nbsp;
               #{I18n.t('deletebutton')}
           -elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
-            =link_to "Undelete", cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
+            =link_to I18n.t('undelete'), cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
+            =link_go I18n.t('permadelete'), adminpage_permadelete(@card), data: { confirm: "This card will permanently remove this card FOREVER" }, class: "btn btn-primary btn-purple"
     -elsif ((current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin")) and @card.owner_id != current_user._id.to_s and @card.validation_status == 1
       =link_to "#{I18n.t('approvebutton')}", "/vendor/accept/#{@card.id}", class: 'btn btn-primary btn-purple'
       =link_to "#{I18n.t('rejectbutton')}", "/vendor/reject/#{@card.id}", class: 'btn btn-primary btn-purple'
     -elsif current_user.accounttype == "admin" and (@card.deleted_status == 1)
-      =link_to "Undelete", cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
+      =link_to I18n.t('undelete'), cards_undelete_url_path(@card), data: { confirm: "Please make sure you have the consent of the owning user before doing so. Really ressurrect this card from the graveyard?" }, class: "btn btn-primary btn-purple"
+      &nbsp;
+      =link_to I18n.t('permadelete'), adminpage_permadelete_path(@card), data: { confirm: "This card will permanently remove this card FOREVER" }, class: "btn btn-primary btn-purple"
 
 .row.top-buffer
   -if @cardimages.length == 0 then
