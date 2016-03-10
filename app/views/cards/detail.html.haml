@@ -51,19 +51,21 @@
     #{I18n.t('noimagesfound')}
   -else
     -size = @cardimages.size
+    -imgcounter = 0
     -@cardimages.each do |cardimage|
+      -imgcounter += 1
       -if size == 1
         .col-lg-8.col-md-4.col-sm-8
           / %h4 #{cardimage.image_type.capitalize} of card
           %img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
           %br
-          %a{:href => "#{cardimage.photo.url}", :target => "newpicture"} #{I18n.t('showoriginalcard')}
+          %a{:href => "#{cardimage.photo.url}", :target => "newpicture1"} #{I18n.t('showoriginalcard')}
           %br
       -else
         .col-lg-4.col-md-4.col-sm-4
           / %h4 #{cardimage.image_type.capitalize} of card
           %img.img-responsive{:src => "#{cardimage.photo.thumb.url}", alt: "#{cardimage.image_type}"}
-          %a{:href => "#{cardimage.photo.url}", :target => "newpicture"} #{I18n.t('showoriginalcard')}
+          %a{:href => "#{cardimage.photo.url}", :target => "newpicture#{imgcounter.to_s}"} #{I18n.t('showoriginalcard')}
           %br
   .col-lg-4.col-md-4.col-sm-4
     .card-info-table
