@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4 col-md-offset-4">
+  <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default login-panel">
       <div class="panel-heading">
         <h2 class="panel-title  devise_form">Edit My Account</h2>
@@ -18,8 +18,12 @@
             </div>
             <% if (current_user.accounttype == "vendor" and current_user.identity_verified == 1) or (current_user.accounttype == "expert") or (current_user.accounttype == "admin") then %>
               <div class="field form-group">
+                <strong>Make my expert info publically available on <a href="/experts">this page</a></strong>
+                <%= f.check_box :expert_is_available, default: 1 %>
+              </div>            
+              <div class="field form-group">
                 <%= f.label :expert_contact_info %> (As an expert, enter in how you wish to be contacted. This will be made public)<br />
-                <%= f.text_area :expert_contact_info, class: "expert_contact_info", placeholder: "Enter details on how you wish to be contacted" %>
+                <%= f.text_area :expert_contact_info, class: "form-control", placeholder: "Enter details on how you wish to be contacted" %>
               </div>
               <div class="field form-group">
                 <strong>Location Details</strong> (Type in the address or just city and/or country where you can be found. Please be aware that this will be made public)<br />
@@ -38,15 +42,11 @@
                   <strong>Location is currently set to:</strong> <a href="http://www.openstreetmap.org/search?query=<%=current_user.coordinates[1] %>%2C%20<%=current_user.coordinates[0] %>#map=16/<%=current_user.coordinates[1] %>/<%=current_user.coordinates[0] %>" target="mapview"><%=current_user.coordinates[1] %>, <%=current_user.coordinates[0] %></a>
                 <% end %>
               </div>
-              <div class="field form-group">
-                <strong>Make my info publically available</strong>
-                <%= f.check_box :expert_is_available %>
-              </div>
             <% end %>
             <br />
 
             <div class="field form-group">
-              <%= f.label :email %>
+              <%= f.label :email %> <strong>(This field will always remain private)</strong> 
               <%= f.email_field :email, class: "form-control",autofocus: true %>
             </div>
             <br />

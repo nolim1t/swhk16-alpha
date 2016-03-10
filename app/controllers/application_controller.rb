@@ -2,7 +2,28 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :set_locale
   before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  def set_locale
+    autoset_lang = nil
+    begin
+      autoset_lang = request.headers['Accept-language'].split(',')[0]
+    rescue
+      puts "Can't autoset language for #{request.headers['Accept-language']}"
+    end
+    if autoset_lang.include? "en" then
+      autoset_lang = "en"
+    end
+    if autoset_lang.include? "zh" then
+      autoset_lang = "zh"
+    end
+    begin
+      I18n.locale = autoset_lang || params[:locale] || I18n.default_locale
+    rescue
+      I18n.locale = params[:locale] || I18n.default_locale
+    end
+  end
 
   protected
 

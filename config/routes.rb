@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Custom pathnames
-  devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", :edit => "settings" }, :controllers => {:registrations => "registrations"}
+  devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", :edit => "settings" }, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   # Default to cards index
   root to: "cards#index"
@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get '/admin/transfers' => 'adminpage#transferlist', as: :adminpage_transferlist
   get '/admin/usercards/:id' => 'adminpage#usercards', as: :adminpage_usercards
   get '/admin/graveyard' => 'adminpage#graveyard', as: :adminpage_graveyard
+  get '/admin/permadelete/:id' => 'cards#permadeletecard', as: :adminpage_permadelete
 
   # Fake pages
   get '/cards/transfer' => 'cards/transfer', as: :cards_transfer

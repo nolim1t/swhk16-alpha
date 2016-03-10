@@ -1,0 +1,45 @@
+zh:
+  # Basic stuff
+  hello: "你好"
+  standard: "收藏家"
+  vendor: "掌櫃"
+  expert: "大拿"
+  admin: "天子"
+  settings: "選項"
+  logout: "登出"
+  login: "登入"
+  register: "註冊"
+  # Defaul page
+  carddetailpagetitle: "卡片 Details"
+  addpicturesbutton: "Add Pictures"
+  transferownerbutton: "Transfer Ownership"
+  approvebutton: "Approve Card 👍"
+  rejectbutton: "Reject Card 👎"
+  approvetransferbutton: "要 👍"
+  rejecttransferbutton: "不要 👎"
+  deletebutton: "Delete card"
+  editnotesbutton: "Edit Card Details"
+  cardname: "卡片名"
+  cardgame: "卡片 Game"
+  cardcondition: "卡片 Condition"
+  cardstatus: "Checking Status"
+  cardcreatedate: "Created"
+  cardowner: "Owner"
+  statusunchecked: "Unchecked"
+  statuspending: "Awaiting Expert Validation ⏳"
+  statusverified: "Verified ✅"
+  statusunknown: "Unknown Status"
+  noimagesfound: "No images found"
+  cardnote: "Card Note"
+  cardnotetime: "Card Note Time"
+  nonotesfound: "No notes on this card found"
+  showoriginalcard: "Show full card image"
+
+  # Buttons (2016-03-03)
+  undelete: "Undelete"
+  permadelete: "Exile"
+
+  nosearchresults: "不找卡片"
+
+  # New localized text (2016-03-10)
+  cardidentifier: "卡片 ID"
