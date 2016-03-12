@@ -5,6 +5,10 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( landing.css )
 Rails.application.config.assets.precompile += %w( logolight.png )
 
+Rails.application.config.assets.precompile += %w( 1.jpg )
+Rails.application.config.assets.precompile += %w( grid.js )
+Rails.application.config.assets.precompile += %w( modernizr.custom.js )
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 
