@@ -4935,7 +4935,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .pagination > li {
-  display: inline;
+  /*display: inline;*/
 }
 
 .pagination > li > a,

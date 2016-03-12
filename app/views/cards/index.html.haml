@@ -9,15 +9,15 @@
       .col-lg-6.col-md-12
         %p #{I18n.t('nosearchresults')}
 
-.row
-  .col-lg-6.col-md-6.col-sm-12
-    = will_paginate @cards
-
+.row#static-pagination
   .col-lg-6.col-md-6.col-sm-12.search
-    %form.pull-right{method: 'get'}
-      %input{name: "search_text", size: "30%", type: "text", value: @query, placeholder: "    Type Card Name", class: "form-search"}
+    %form{method: 'get'}
+      %input{name: "search_text", size: "30%", type: "text", value: @query}
       %button.btn.btn-success.btn-purple{type: "submit"}
         %i.glyphicon.glyphicon-search
+
+  .col-lg-6.col-md-6.col-sm-12
+    = will_paginate @cards
 
 .row.top-buffer
   .col-lg-3.col-md-4.col-xs-6.thumb
@@ -26,28 +26,11 @@
         %i.glyphicon.glyphicon-plus
       .row
         .h3 Add Card
-  -i = 0
-  -@cards.each do |card|
-    -i += 1
-    .col-lg-3.col-md-4.col-xs-6.thumb
-      -if card.validation_status==2
-        %a.thumbnail.red{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
-          -card_image_count = 0
-          - @cardimages.each do |cardimage|
-            -if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
-              %img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
-              -card_image_count += 1
-      -else 
-        %a.thumbnail{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
-          -card_image_count = 0
-          - @cardimages.each do |cardimage|
-            -if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
-              %img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
-              -card_image_count += 1
-    -if i == 3
-      .clearfix.visible-lg
-      .clearfix.visible-xs
-    -elsif i == 2
-      .clearfix.visible-md
-    -elsif i == 1
-      .clearfix.visible-xs
+
+  #my-cards
+    .page-delimiter.first-page{"data-page" => params[:page] || 1}
+    =render partial: 'card', collection: @cards
+
+- if @cards.next_page
+  #infinite-scrolling
+    = will_paginate
