@@ -163,11 +163,12 @@ $.fn.imagesLoaded = function( callback ) {
 
 var Grid = (function() {
 		// grid selector
-		var $selector = '#og-grid', 
+		var $selector = '#og-grid',
 		// list of items
 		$grid = $( $selector ),
 		// the items
 		$items = $grid.children( 'li' ),
+
 		// current expanded item's index
 		current = -1,
 		// position (top) of the expanded item
@@ -199,7 +200,7 @@ var Grid = (function() {
 		};
 
 	function init( config ) {
-		
+
 		// the settings..
 		settings = $.extend( true, {}, settings, config );
 		// preload all images

@@ -1,3 +1,5 @@
+=javascript_include_tag "modernizr.custom"
+
 -if @listincoming > 0
   .row
     .col-lg-6.col-md-12
@@ -19,7 +21,7 @@
       %button.btn.btn-success.btn-purple{type: "submit"}
         %i.glyphicon.glyphicon-search
 
-.row.top-buffer
+.row.top-buffer#og-grid
   .col-lg-3.col-md-4.col-xs-6.thumb
     %a.thumbnail{:href => '/cards/new'}
       .row
@@ -29,7 +31,7 @@
   -i = 0
   -@cards.each do |card|
     -i += 1
-    .col-lg-3.col-md-4.col-xs-6.thumb
+    %li.col-lg-3.col-md-4.col-xs-6.thumb
       -if card.validation_status==2
         %a.thumbnail.red{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
           -card_image_count = 0
@@ -38,7 +40,7 @@
               %img.img-responsive{:src => "#{cardimage.photo.thumb.url}"}
               -card_image_count += 1
       -else 
-        %a.thumbnail{:href => "#", onclick: "document.location.href='/cards/detail/#{card.id}';"}
+        %a.thumbnail{:href => "#", "data-description" => "Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.", "data-largesrc" => "assets/1.jpg", "data-title" => "Azuki bean"}
           -card_image_count = 0
           - @cardimages.each do |cardimage|
             -if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then
@@ -51,3 +53,9 @@
       .clearfix.visible-md
     -elsif i == 1
       .clearfix.visible-xs
+
+=javascript_include_tag "grid"
+:javascript
+  $(function() {
+    Grid.init();
+  });
