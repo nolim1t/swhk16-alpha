@@ -5,6 +5,22 @@ class CardsController < ApplicationController
 	before_action :set_find_owner_form, only: [:detail]
 	layout 'application'
 
+	def testing_display
+    @cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
+    # @cards = @cards + [@cards[0]]
+  	@cardimages = []
+		@cards.each{|card|
+			puts card.photo.url
+			puts card.photo.thumb.url
+
+			cardimages_result = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc]).limit(2)
+			cardimages_result.each{|cardimage_result|
+				@cardimages << cardimage_result
+			}
+		}
+		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
+  end
+
 	def index
 		flash[:info] = nil # Remove any info stuff
 		@listincoming = Transfer.where(receiver_email: current_user.email).count # Check i

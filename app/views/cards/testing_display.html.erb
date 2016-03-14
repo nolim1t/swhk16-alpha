@@ -1,0 +1,29 @@
+<%= javascript_include_tag "modernizr.custom" %>
+<!-- <div class="container">	 -->
+	<div class="main">
+		<!-- <ul id="og-grid" class="thumb og-grid"> -->
+		<ul id="og-grid" class="thumb og-grid">
+			<% @cards.each do |card| %> 
+				<li>
+					<a class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="assets/1.jpg" data-title="Azuki bean" href="#">
+					  <% card_image_count = 0 %>
+					  <% @cardimages.each do |cardimage| %>
+					    <% if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then %>
+					      <img class="img-responsive" src="<%= cardimage.photo.thumb.url %>"/>
+					      <% card_image_count += 1 %>
+					    <% end %>
+					  <% end %>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+<!-- </div>/container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- // <script src="javascripts/grid.js"></script> -->
+<%= javascript_include_tag "grid" %>
+<script>
+	$(function() {
+		Grid.init();
+	});
+</script>

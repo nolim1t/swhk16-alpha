@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   #general pages
   get '/contact_careers' => 'home#contact_careers', as: :contact_careers
-  get '/testing_display' => 'home#testing_display', as: :testing_display
 
   # Real Pages
   get '/cards/index' => 'cards#index', as: :cards_index
@@ -22,6 +21,7 @@ Rails.application.routes.draw do
   get '/cards/delete/:id' => 'cards#deletecard', as: :cards_delete_url
   get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
   get '/cards/graveyard' => 'cards#graveyard', as: :cards_graveyard_url
+  get '/cards/testing_display' => 'cards#testing_display', as: :testing_display
 
   # experts
   get '/experts' => 'home#showexperts', as: :experts_list_url

@@ -8,14 +8,14 @@
 
 .og-grid li {
 	display: inline-block;
-	margin: 10px 5px 0 5px;
+	margin: 10px 5px 0 25px;
 	vertical-align: top;
-	height: 250px;
+	height: 330px;
 }
 
 .og-grid li > a,
 .og-grid li > a img {
-	border: none;
+	/*border: none;*/
 	outline: none;
 	display: block;
 	position: relative;
