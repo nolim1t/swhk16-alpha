@@ -6,18 +6,21 @@ class CardsController < ApplicationController
 	layout 'application'
 
 	def testing_display
-    @cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
+    @cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])[0..6]
     # @cards = @cards + [@cards[0]]
   	@cardimages = []
 		@cards.each{|card|
 			puts card.photo.url
 			puts card.photo.thumb.url
 
-			cardimages_result = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc]).limit(2)
-			cardimages_result.each{|cardimage_result|
-				@cardimages << cardimage_result
-			}
+			cardimage_front = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc])[0]
+			cardimage_back = Cardimage.where(:card_id => card._id.to_s, :image_type => "back").order_by([:create_date, :desc])[0]
+			# cardimages_result.each{|cardimage_result|
+			# 	@cardimages << cardimage_result
+			# }
+			@cardimages << [cardimage_front, cardimage_back]
 		}
+
 		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
   end
 

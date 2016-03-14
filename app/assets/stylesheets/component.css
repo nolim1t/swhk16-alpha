@@ -45,6 +45,10 @@
 	text-align: left;
 	height: 0;
 	overflow: hidden;
+	  border-color: #5f3d72;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
 }
 
 .og-expander-inner {
@@ -86,8 +90,7 @@
 }
 
 .og-fullimg,
-.og-details {
-	width: 50%;
+.og-details {	
 	float: left;
 	height: 100%;
 	overflow: hidden;
@@ -96,10 +99,12 @@
 
 .og-details {
 	padding: 0 40px 0 20px;
+	width: 40%;
 }
 
 .og-fullimg {
 	text-align: center;
+	width: 30%;
 }
 
 .og-fullimg img {

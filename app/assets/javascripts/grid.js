@@ -354,8 +354,9 @@ var Grid = (function() {
 			this.$details = $( '<div class="og-details"></div>' ).append(detailAppends);
 			this.$loading = $( '<div class="og-loading"></div>' );
 			this.$fullimage = $( '<div class="og-fullimg"></div>' ).append( this.$loading );
+			this.$fullimage1 = $( '<div class="og-fullimg"></div>' ).append( this.$loading );
 			this.$closePreview = $( '<span class="og-close"></span>' );
-			this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$fullimage, this.$details );
+			this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$fullimage, this.$fullimage1, this.$details );
 			this.$previewEl = $( '<div class="og-expander"></div>' ).append( this.$previewInner );
 			// append preview element to the item
 			this.$item.append( this.getEl() );
@@ -403,20 +404,34 @@ var Grid = (function() {
 			if( typeof self.$largeImg != 'undefined' ) {
 				self.$largeImg.remove();
 			}
-
 			// preload large image and add it to the preview
 			// for smaller screens we don´t display the large image (the media query will hide the fullimage wrapper)
 			if( self.$fullimage.is( ':visible' ) ) {
 				this.$loading.show();
 				$( '<img/>' ).load( function() {
 					var $img = $( this );
-					if( $img.attr( 'src' ) === self.$item.children('a').data( 'largesrc' ) ) {
+					// console.log(self.$item.children('a').data( 'largesrc' ));
+					if( $img.attr( 'src' ) === self.$item.children('a').data( 'largesrc' )) {
 						self.$loading.hide();
 						self.$fullimage.find( 'img' ).remove();
 						self.$largeImg = $img.fadeIn( 350 );
 						self.$fullimage.append( self.$largeImg );
 					}
 				} ).attr( 'src', eldata.largesrc );	
+			}
+
+			if( self.$fullimage1.is( ':visible' ) ) {
+				this.$loading.show();
+				$( '<img/>' ).load( function() {
+					var $img = $( this );
+					// console.log(self.$item.children('a').data( 'largesrc' ));
+					if( $img.attr( 'src' ) === self.$item.children('a').data( 'smallsrc' )) {
+						self.$loading.hide();
+						self.$fullimage1.find( 'img' ).remove();
+						self.$largeImg = $img.fadeIn( 350 );
+						self.$fullimage1.append( self.$largeImg );
+					}
+				} ).attr( 'src', self.$item.children('a').data( 'smallsrc' ) );	
 			}
 
 		},

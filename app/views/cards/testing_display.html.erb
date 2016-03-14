@@ -3,16 +3,12 @@
 	<div class="main">
 		<!-- <ul id="og-grid" class="thumb og-grid"> -->
 		<ul id="og-grid" class="thumb og-grid">
-			<% @cards.each do |card| %> 
+			<% @cards_and_images.each do |card, cardimages| %> 
 				<li>
-					<a class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="assets/1.jpg" data-title="Azuki bean" href="#">
-					  <% card_image_count = 0 %>
-					  <% @cardimages.each do |cardimage| %>
-					    <% if card_image_count == 0 and cardimage.image_type == "front" and cardimage.card_id == card._id then %>
-					      <img class="img-responsive" src="<%= cardimage.photo.thumb.url %>"/>
-					      <% card_image_count += 1 %>
-					    <% end %>
-					  <% end %>
+					<%front = cardimages[0].present? ? cardimages[0].photo.url : nil %>
+					<%back = cardimages[1].present? ? cardimages[1].photo.url : nil %> 
+					<a class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="<%= front %>" data-smallsrc= "<%= back %>" data-title="Super cool card Display!" href="#">
+					    <img class="img-responsive" src="<%= cardimages[0].photo.thumb.url %>"/>
 					</a>
 				</li>
 			<% end %>
