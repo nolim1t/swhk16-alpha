@@ -50,15 +50,21 @@ class CardsController < ApplicationController
 		flash[:info][:cardgame] = params[:cards]["game"]
 		flash[:info][:cardcollection] = params[:cards]["collection"]
 		flash[:info][:card_condition] = params[:cards]["card_condition"].to_s
+		flash[:info][:card_condition_select] = params[:cards]["card_condition_select"].to_s
 		if params[:cards]["name"].to_s == "" then
 			cardname = "(not set)"
 		else
 			cardname = params[:cards]["name"].to_s
 		end
-		if params[:cards]["card_condition"].to_s == "" then
-			card_condition = "(not set)"
+		if params[:cards]["card_condition_select"].to_s == "Other" then
+			if params[:cards]["card_condition"].to_s == "" then
+				card_condition = "(not set)"
+			else
+				card_condition = params[:cards]["card_condition"].to_s
+			end
 		else
-			card_condition = params[:cards]["card_condition"].to_s
+			card_condition = params[:cards]["card_condition_select"]
+			flash[:info][:card_condition] = card_condition
 		end
 		if card_condition != "" and params[:cards]["userid"] != "" and cardname != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			# Front image is required
@@ -68,15 +74,17 @@ class CardsController < ApplicationController
 					cardgame: params[:cards]["game"].to_s,
 					searchable_name: cardname.downcase.to_s,
 					cardcollection: params[:cards]["collection"].to_s,
-					card_condition: card_condition.to_s.downcase,
+					card_condition: card_condition.to_s,
 					create_date: Time.new(),
 					update_date: Time.new(),
 					owner_id: params[:cards]["userid"].to_s
 				)
-				# Store Cardcondition so we have a list of what people are entering
-				Cardcondition.create(
-					condition: card_condition.to_s.downcase
-				)
+				if params[:cards]["card_condition_select"].to_s == "Other" then
+					# Store Cardcondition so we have a list of what people are entering if other is selected
+					Cardcondition.create(
+						condition: card_condition.to_s.downcase
+					)
+				end
 				Cardnote.create(
 					text: "Card initial upload complete",
 					create_date: Time.new(),
