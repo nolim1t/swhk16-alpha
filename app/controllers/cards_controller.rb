@@ -203,14 +203,19 @@ class CardsController < ApplicationController
 									notes_text = "Change card name from \"#{update_card['cardname']}\" to \"#{params[:cards]['cardname'].to_s}\""
 								end
 							end
-							if params[:cards]['card_condition'].to_s != update_card['card_condition'].to_s then
-								if params[:cards]['card_condition'].to_s.length > 0 then
+							if params[:cards]["card_condition_select"] != "Other" then
+								card_condition = params[:cards]["card_condition_select"].to_s
+							else
+								card_condition = params[:cards]["card_condition"].to_s
+							end
+							if card_condition.downcase != update_card['card_condition'].to_s.downcase then
+								if card_condition.to_s.length > 0 then
 									if notes_text.to_s.length > 0
 										notes_text = "#{notes_text}, and c"
 									else
 										notes_text = "C"
 									end
-									notes_text = "#{notes_text}hange card condition from \"#{update_card['card_condition'].to_s}\" to \"#{params[:cards]['card_condition'].to_s}\""
+									notes_text = "#{notes_text}hange card condition from \"#{update_card['card_condition'].to_s}\" to \"#{card_condition.to_s}\""
 								end
 							end
 							if params[:cards]['notes_text'] then
@@ -256,14 +261,16 @@ class CardsController < ApplicationController
 								end
 							end
 							# If card condition not set
-							if params[:cards]['card_condition'] then
+							if card_condition then
 								# Then update the card condition first
-								if params[:cards]['card_condition'].to_s.length > 1 then
-									update_card.update_attributes(card_condition: params[:cards]['card_condition'])
-									# Store Cardcondition so we have a list of what people are entering
-									Cardcondition.create(
-										condition: params[:cards]['card_condition'].downcase
-									)
+								if card_condition.to_s.length > 1 then
+									update_card.update_attributes(card_condition: card_condition)
+									if params[:cards]['card_condition_select'] == "Other" then
+										# Store Cardcondition so we have a list of what people are entering
+										Cardcondition.create(
+											condition: params[:cards]['card_condition'].downcase
+										)
+									end
 								end
 							end
 							redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
