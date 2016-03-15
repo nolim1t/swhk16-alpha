@@ -17,6 +17,7 @@ gem 'rmagick' # for image resizing
 gem "mini_magick" # Try out minimagick
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid' # MongoID carrierwave
 gem 'will_paginate', '~> 3.0.6' #pagination BE gem
+gem 'bootstrap-will_paginate'
 gem 'geocoder'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
