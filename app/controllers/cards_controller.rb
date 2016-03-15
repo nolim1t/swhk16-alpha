@@ -203,8 +203,14 @@ class CardsController < ApplicationController
 									notes_text = "Change card name from \"#{update_card['cardname']}\" to \"#{params[:cards]['cardname'].to_s}\""
 								end
 							end
-							if params[:cards]["card_condition_select"] != "Other" then
-								card_condition = params[:cards]["card_condition_select"].to_s
+							if params[:cards]["card_condition_select"] != "Other"  then
+								if update_card['card_condition'].to_s != params[:cards]["card_condition"].to_s then
+									# use the typed condition if the name is different
+									card_condition = params[:cards]["card_condition"].to_s
+								else
+									# If the name is the same then use the selectbox
+									card_condition = params[:cards]["card_condition_select"].to_s
+								end
 							else
 								card_condition = params[:cards]["card_condition"].to_s
 							end
