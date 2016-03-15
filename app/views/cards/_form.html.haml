@@ -21,7 +21,16 @@
 			// %br
 			%br
 			-if @card.card_condition != "damaged"
-				%b Card condition (Need an <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">idea</a> on what to use?):
+				%br
+				%b Card Condition (based on the <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">TCG Guidelines</a>)
+				&nbsp;
+				-default_condition = "Other"
+				-if ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"].join.to_s.include? @card.card_condition.to_s
+					-default_condition = @card.card_condition
+				= f.select :card_condition_select, ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"], class: "form-control", selected: default_condition
+				%br
+				%br
+				%b Card condition not listed or something else?:
 				%br
 				= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control", value: @card.card_condition.to_s
 				%br
