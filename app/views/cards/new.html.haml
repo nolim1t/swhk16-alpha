@@ -24,12 +24,12 @@
 			%b Name of card:
 			= f.text_field :name, placeholder: "Name of Card", class: "form-control", value: flash[:info]["cardname"]
 			%br
-			%b Card condition
+			%b Card condition (based on the <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">TCG Guidelines</a>)
 			%br
 			= f.select :card_condition_select, ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"], class: "form-control"
 			%br
 			%br
-			%b Other condition (Need an <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">idea</a> on what to use?):
+			%b Card condition not listed or something else?:
 			%br
 			= f.text_field :card_condition, placeholder: "Enter the card condition", class: "form-control", value: flash[:info]["card_condition"]
 			= f.hidden_field :game, value: "Magic: The Gathering"
