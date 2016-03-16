@@ -6,6 +6,10 @@
 	width: 100%;
 }
 
+.og-expander-inner .nav-tabs li{
+	height: 40%;
+}
+
 .og-grid li {
 	display: inline-block;
 	margin: 10px 5px 0 25px;
