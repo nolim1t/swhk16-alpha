@@ -344,9 +344,11 @@ var Grid = (function() {
 	Preview.prototype = {
 		create : function() {
 			// create Preview structure:
-			this.$title = $( '<h3></h3>' );
-			this.$description = $( '<p></p>' );
-			var detailAppends = [this.$title, this.$description];
+			// this.$title = $( '<h3></h3>' );
+			// this.$description = $( '<p></p>' );
+			this.$table = $( '<div></div>' )
+			// var detailAppends = [this.$title, this.$description, this.$table];
+			var detailAppends = [this.$table];
 			if (settings.showVisitButton === true) {
 				this.$href = $( '<a href="#">Visit website</a>' );
 				detailAppends.push(this.$href);
@@ -398,12 +400,14 @@ var Grid = (function() {
 				eldata = {
 					href : $itemEl.attr( 'href' ),
 					largesrc : $itemEl.data( 'largesrc' ),
-					title : $itemEl.data( 'title' ),
-					description : $itemEl.data( 'description' )
+					table: $itemEl.data('table'),
+					// title : $itemEl.data( 'title' ),
+					// description : $itemEl.data( 'description' )
 				};
 
-			this.$title.html( eldata.title );
-			this.$description.html( eldata.description );
+			// this.$title.html( eldata.title );
+			// this.$description.html( eldata.description );
+			this.$table.html( eldata.table );
 			if (settings.showVisitButton === true) {
 				this.$href.attr( 'href', eldata.href );
 			}

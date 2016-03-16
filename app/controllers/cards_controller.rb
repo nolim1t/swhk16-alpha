@@ -7,7 +7,7 @@ class CardsController < ApplicationController
 
 	def testing_display
     @cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])[0..6]
-    # @cards = @cards + [@cards[0]]
+    @card = @cards[0]
   	@cardimages = []
 		@cards.each{|card|
 			puts card.photo.url
