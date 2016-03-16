@@ -355,15 +355,17 @@ var Grid = (function() {
 			this.$loading = $( '<div class="og-loading"></div>' );
 			this.$fullimage = $( '<div class="og-fullimg"></div>' ).append( this.$loading );
 			this.$fullimage1 = $( '<div class="og-fullimg"></div>' ).append( this.$loading );
-			this.$tab1_content = $( '<div class="tab-pane active" id="card_detail">' ).append(this.$fullimage, this.$fullimage1, this.$details);
-			this.$tab2_content = $( '<div class="tab-pane" id="profile">PROFILE asdfafas</div>' );
-			this.$tab3_content = $( '<div class="tab-pane" id="messages">MESSAGES asdfdas</div>' );
-			this.$tabs_contents = $( '<div class="tab-content">' ).append( this.$tab1_content, this.$tab2_content, this.$tab3_content );
+			this.$tab1_content = $( '<div class="tab-pane active" id="card_detail"></div>' ).append(this.$fullimage, this.$fullimage1, this.$details);
+			this.$tab2_content = $( '<div class="tab-pane" id="card_history">Card History</div>' );
+			this.$tab3_content = $( '<div class="tab-pane" id="transfer_ownership">Transfer Ownership</div>' )
+			this.$tab4_content = $( '<div class="tab-pane" id="expert_check">Expert Check</div>' );
+			this.$tabs_contents = $( '<div class="tab-content">' ).append( this.$tab1_content, this.$tab2_content, this.$tab3_content, this.$tab4_content);
 			this.$tab1=$( '<li class="active"><a href="#card_detail" data-toggle="tab">Card Detail</a></li>' );
-			this.$tab2=$( '<li><a href="#profile" data-toggle="tab">Add pictures</a></li>' );
-			this.$tab3=$( '<li><a href="#messages" data-toggle="tab">Transfer Ownership</a></li>' );
+			this.$tab2=$( '<li><a href="#card_history" data-toggle="tab">Card History</a></li>' );
+			this.$tab3=$( '<li><a href="#transfer_ownership" data-toggle="tab">Transfer Ownership</a></li>' );
+			this.$tab4=$( '<li><a href="#expert_check" data-toggle="tab">Expert Check</a></li>' );
 			this.$closePreview = $( '<span class="og-close"></span>' );
-			this.$tabs = $( '<ul id="myTabs" class="nav nav-tabs">' ).append( this.$tab1, this.$tab2, this.$tab3 );
+			this.$tabs = $( '<ul id="myTabs" class="nav nav-tabs">' ).append( this.$tab1, this.$tab2, this.$tab3, this.$tab4 );
 			this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$tabs, this.$tabs_contents);
 			this.$previewEl = $( '<div class="og-expander"></div>' ).append( this.$previewInner );
 			// append preview element to the item
