@@ -15,5 +15,9 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require global
+//= require jquery.history.js
+//= require bind_with_delay
+//= require waypoints
+//= require pagination
 
 

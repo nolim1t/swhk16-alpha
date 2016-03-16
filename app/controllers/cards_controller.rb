@@ -48,6 +48,10 @@ class CardsController < ApplicationController
 		}
 		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
 		# @cards_search = Cardnote.where({cardname: "#{params[:search_text]}"})
+		respond_to do |format|
+		  format.html
+		  format.js
+		end
 	end
 
 	def graveyard
@@ -65,15 +69,21 @@ class CardsController < ApplicationController
 		flash[:info][:cardgame] = params[:cards]["game"]
 		flash[:info][:cardcollection] = params[:cards]["collection"]
 		flash[:info][:card_condition] = params[:cards]["card_condition"].to_s
+		flash[:info][:card_condition_select] = params[:cards]["card_condition_select"].to_s
 		if params[:cards]["name"].to_s == "" then
 			cardname = "(not set)"
 		else
 			cardname = params[:cards]["name"].to_s
 		end
-		if params[:cards]["card_condition"].to_s == "" then
-			card_condition = "(not set)"
+		if params[:cards]["card_condition_select"].to_s == "Other" then
+			if params[:cards]["card_condition"].to_s == "" then
+				card_condition = "(not set)"
+			else
+				card_condition = params[:cards]["card_condition"].to_s
+			end
 		else
-			card_condition = params[:cards]["card_condition"].to_s
+			card_condition = params[:cards]["card_condition_select"]
+			flash[:info][:card_condition] = card_condition
 		end
 		if card_condition != "" and params[:cards]["userid"] != "" and cardname != "" and params[:cards]["game"] != "" and params[:cards]["collection"] != "" then
 			# Front image is required
@@ -83,15 +93,17 @@ class CardsController < ApplicationController
 					cardgame: params[:cards]["game"].to_s,
 					searchable_name: cardname.downcase.to_s,
 					cardcollection: params[:cards]["collection"].to_s,
-					card_condition: card_condition.to_s.downcase,
+					card_condition: card_condition.to_s,
 					create_date: Time.new(),
 					update_date: Time.new(),
 					owner_id: params[:cards]["userid"].to_s
 				)
-				# Store Cardcondition so we have a list of what people are entering
-				Cardcondition.create(
-					condition: card_condition.to_s.downcase
-				)
+				if params[:cards]["card_condition_select"].to_s == "Other" then
+					# Store Cardcondition so we have a list of what people are entering if other is selected
+					Cardcondition.create(
+						condition: card_condition.to_s.downcase
+					)
+				end
 				Cardnote.create(
 					text: "Card initial upload complete",
 					create_date: Time.new(),
@@ -210,14 +222,25 @@ class CardsController < ApplicationController
 									notes_text = "Change card name from \"#{update_card['cardname']}\" to \"#{params[:cards]['cardname'].to_s}\""
 								end
 							end
-							if params[:cards]['card_condition'].to_s != update_card['card_condition'].to_s then
-								if params[:cards]['card_condition'].to_s.length > 0 then
+							if params[:cards]["card_condition_select"] != "Other"  then
+								if update_card['card_condition'].to_s != params[:cards]["card_condition"].to_s then
+									# use the typed condition if the name is different
+									card_condition = params[:cards]["card_condition"].to_s
+								else
+									# If the name is the same then use the selectbox
+									card_condition = params[:cards]["card_condition_select"].to_s
+								end
+							else
+								card_condition = params[:cards]["card_condition"].to_s
+							end
+							if card_condition.downcase != update_card['card_condition'].to_s.downcase then
+								if card_condition.to_s.length > 0 then
 									if notes_text.to_s.length > 0
 										notes_text = "#{notes_text}, and c"
 									else
 										notes_text = "C"
 									end
-									notes_text = "#{notes_text}hange card condition from \"#{update_card['card_condition'].to_s}\" to \"#{params[:cards]['card_condition'].to_s}\""
+									notes_text = "#{notes_text}hange card condition from \"#{update_card['card_condition'].to_s}\" to \"#{card_condition.to_s}\""
 								end
 							end
 							if params[:cards]['notes_text'] then
@@ -263,14 +286,16 @@ class CardsController < ApplicationController
 								end
 							end
 							# If card condition not set
-							if params[:cards]['card_condition'] then
+							if card_condition then
 								# Then update the card condition first
-								if params[:cards]['card_condition'].to_s.length > 1 then
-									update_card.update_attributes(card_condition: params[:cards]['card_condition'])
-									# Store Cardcondition so we have a list of what people are entering
-									Cardcondition.create(
-										condition: params[:cards]['card_condition'].downcase
-									)
+								if card_condition.to_s.length > 1 then
+									update_card.update_attributes(card_condition: card_condition)
+									if params[:cards]['card_condition_select'] == "Other" then
+										# Store Cardcondition so we have a list of what people are entering
+										Cardcondition.create(
+											condition: params[:cards]['card_condition'].downcase
+										)
+									end
 								end
 							end
 							redirect_to "/cards/detail/#{params[:id]}" # Redirect back to cards if successful
