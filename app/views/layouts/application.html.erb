@@ -71,7 +71,7 @@
               <% elsif params[:controller] == "cardverify" %>
               <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
               <% if params[:action] == "menu" %>
-                <li>Expert User</li>
+                <li><%=I18n.t(current_user.accounttype) %></li>
               <% elsif params[:action] == "index"  %>
                 <li><a href="#0" onclick="document.location.href='/<%=current_user.accounttype %>'; "><%=I18n.t(current_user.accounttype) %></a></li>
                 <li>Verify card</li>
