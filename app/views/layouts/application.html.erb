@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-fixed-top navbar-inverse navbar-custom" role="navigation">
+    <nav class="navbar navbar-inverse navbar-custom" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -32,16 +32,15 @@
           <p class='navbar-text'> My Cards </p>
         <% elsif params[:action] == "contact_careers" %>
           <p class='navbar-text'> Contact</p>
+        <% elsif params[:action] == "faq" %>
+          <p class='navbar-text'> FAQ </p>
+        <% elsif params[:action] == "legal" %>
+          <p class='navbar-text'> Legal </p>
         <% elsif params[:action] == "edit" && params[:controller] == "registrations" %>
           <p class='navbar-text'> Settings </p>
         <% end %>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
-  <!--       <ul class="nav navbar-nav">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Pricing</a></li>
-        </ul> -->
           <% if user_signed_in? %>
             <%= render "layouts/authenticated_header" %>
           <% else %>
@@ -51,11 +50,19 @@
       </div>
     </nav>
 
-    <div id="wrap">
-      <div class="container container-custom">
-        <%= yield %>
-      </div><!--/.container-->
-    </div>
+    <% if params[:action] == "index" && params[:controller] == "home" %>
+      <div id="wrap">
+   <!--      <div class="container landing_container"> -->
+          <%= yield %>
+       <!--  </div> --><!--/.container-->
+      </div>
+    <% else %>
+      <div id="wrap">
+        <div class="container container-custom">
+          <%= yield %>
+        </div><!--/.container-->
+      </div>
+    <% end %>
 
     <%= render "layouts/footer" %>
     <!-- Begin Google Analytics Embed Code -->

@@ -2,13 +2,19 @@ class HomeController < ActionController::Base
  	layout 'application'
 
 	def index
-
 	end
 
   def new
   end
 
   def contact_careers
+  end
+
+  def faq
+  end
+
+  def legal
+    
   end
   
   def showexperts
