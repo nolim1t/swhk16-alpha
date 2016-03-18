@@ -80,7 +80,7 @@ class User
       puts "#{attr}=\"#{value}\""
       codes = Invitecode.where(:code => value)
 
-      record.errors.add attr, "Please enter correct invite code" unless
+      record.errors.add attr, "is not correct or has been already used" unless
         value && codes.length == 1
   end
 end
