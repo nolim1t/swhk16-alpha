@@ -1,13 +1,17 @@
 -if @listincoming > 0
   .row
-    .col-lg-6.col-md-12
+    .alert.alert-info.alert-dismissible
       %p You have <a href="/cards/transfer/incoming">incoming transfers</a> to accept
+      %br
+      %a{"data-dismiss" => "alert", :href => "#0"} Hide
 
 -if params[:search_text]
   -if params[:search_text].length > 1 and @cards.length == 0 then
     .row
-      .col-lg-6.col-md-12
+      .alert.alert-warning.alert-dismissible
         %p #{I18n.t('nosearchresults')}
+        %br
+        %a{"data-dismiss" => "alert", :href => "#0"} Dismiss
 
 .row#static-pagination
   .col-lg-6.col-md-6.col-sm-12.search
