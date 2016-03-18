@@ -68,6 +68,14 @@
               <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
               <li><a href="#0" onclick="document.location.href='/cards/detail/<%=params[:id] %>'; ">Card Detail</a></li>
               <li class="active">Edit card info</li>
+              <% elsif params[:controller] == "cardverify" %>
+              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
+              <% if params[:action] == "menu" %>
+                <li>Expert User</li>
+              <% elsif params[:action] == "index"  %>
+                <li><a href="#0" onclick="document.location.href='/<%=current_user.accounttype %>'; "><%=I18n.t(current_user.accounttype) %></a></li>
+                <li>Verify card</li>
+              <% end %>
               <% elsif params[:controller] == "transfer" and params[:action] == "inbound" %>
               <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
               <li class="active">Card Transfer</li>
