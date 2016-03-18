@@ -14,9 +14,9 @@ class CardsController < ApplicationController
 		# .order_by([:updated_at, :asc])
 		# If no cards, show new card url
 		# If no cards and shopkeeper, show vendor url
-		if current_user.accounttype == "vendor" and @cards.length == 0 then
-			redirect_to "/vendor"
-		end
+		#if current_user.accounttype == "vendor" and @cards.length == 0 then
+		#	redirect_to "/vendor"
+		#end
 		@cardimages = []
 		@cards.each{|card|
 			puts card.photo.url
