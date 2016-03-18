@@ -58,6 +58,9 @@
             <ol class="breadcrumb">
               <% if params[:action] == "index" && params[:controller] == "cards" then %>
               <li class="active">Home</li>
+              <% elsif params[:action] == "new" && params[:controller] == "cards" %>
+              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
+              <li class="active">Add card</li>
               <% elsif params[:action] == "detail" && params[:controller] == "cards" %>
               <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
               <li class="active">Card Detail</li>
