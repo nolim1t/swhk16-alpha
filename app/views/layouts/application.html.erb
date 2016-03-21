@@ -43,36 +43,6 @@
 
     <div id="wrap">
       <div class="container container-custom">
-        <% if user_signed_in? %>
-          <% if params[:controller] != "adminpage" and params[:controller] != "registrations" and params[:controller] != "home" %>
-            <ol class="breadcrumb">
-              <% if params[:action] == "index" && params[:controller] == "cards" then %>
-              <li class="active">Home</li>
-              <% elsif params[:action] == "new" && params[:controller] == "cards" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <li class="active">Add card</li>
-              <% elsif params[:action] == "detail" && params[:controller] == "cards" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <li class="active">Card Detail</li>
-              <% elsif params[:action] == "edit" && params[:controller] == "cards" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <li><a href="#0" onclick="document.location.href='/cards/detail/<%=params[:id] %>'; ">Card Detail</a></li>
-              <li class="active">Edit card info</li>
-              <% elsif params[:controller] == "cardverify" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <% if params[:action] == "menu" %>
-                <li><%=I18n.t(current_user.accounttype) %></li>
-              <% elsif params[:action] == "index"  %>
-                <li><a href="#0" onclick="document.location.href='/<%=current_user.accounttype %>'; "><%=I18n.t(current_user.accounttype) %></a></li>
-                <li>Verify card</li>
-              <% end %>
-              <% elsif params[:controller] == "transfer" and params[:action] == "inbound" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <li class="active">Card Transfer</li>
-              <% end %>
-            </ol>
-          <% end %>
-        <% end %>
         <%= yield %>
       </div><!--/.container-->
     </div>
