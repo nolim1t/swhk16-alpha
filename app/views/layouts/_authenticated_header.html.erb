@@ -24,9 +24,9 @@
   	</ul>
   	 <!-- search form only for card view-->
   	<% if params[:action] == "index" && params[:controller] == "cards" %>   
-	  <form class="navbar-form navbar-left" role="search">
+	  <form class="navbar-form navbar-left" role="search" method="get">
 	    <div class="form-group">
-	      <input type="text" class="form-control" placeholder="Type card name">
+	      <input type="text" class="form-control" name="search_text" size="30" value="<%= @query %>" placeholder="Type card name">
 	    </div>
 	    <button type="submit" class="btn btn-default btn-purple-nav">
 	      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
