@@ -79,6 +79,9 @@ html, body {
       border-color: transparent;
       padding-left: 30px;
       padding-right: 30px;
+      -webkit-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
+      -moz-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
+      box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
     }
 
     .navbar-inverse .navbar-brand {
@@ -102,7 +105,7 @@ html, body {
     .navbar-inverse .navbar-nav > li > a:hover,
     .navbar-inverse .navbar-nav > li > a:focus {
       color: #ffffff;
-      background-color: #5f3d66;
+      background-color: #5f3d72;
     }
 
 .navbar-inverse .navbar-nav > .active > a,
