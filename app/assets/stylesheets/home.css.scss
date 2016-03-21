@@ -147,7 +147,7 @@ html, body {
   background-color: #5f3d72;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 991px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
     border-color: #080808;
   }
@@ -194,7 +194,7 @@ html, body {
 }
 
 
-@media (max-width: 991px) {
+/*@media (max-width: 991px) {
     .navbar-header {
         float: none;
     }
@@ -223,7 +223,7 @@ html, body {
         float: none;
         margin: 15px 0;
     }
-    /* since 3.1.0 */
+   
     .navbar-collapse.collapse.in { 
         display: block!important;
     }
@@ -231,7 +231,7 @@ html, body {
         overflow: hidden!important;
     }
 }
-
+*/
 
 
 
