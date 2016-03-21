@@ -194,6 +194,18 @@ html, body {
 }
 
 
+.btn-purple-nav {
+  color: #999999;
+  border-color: #5f3d72;
+  background-color: #5f3d72;
+}
+.btn-purple-nav:hover,
+.btn-purple-nav:focus,
+.btn-purple-nav:active {
+  color: white;
+  outline: 0;
+}
+
 /*@media (max-width: 991px) {
     .navbar-header {
         float: none;
