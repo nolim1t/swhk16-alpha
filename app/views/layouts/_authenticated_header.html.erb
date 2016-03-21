@@ -1,3 +1,103 @@
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+    
+  	<% if params[:action] == "index" && params[:controller] == "cards" %>        
+    <li class="active">  
+    <% else %>
+    <li>      
+    <% end %> 
+      <a href= "#0"  onclick="document.location.href='/cards/index'; ">
+        My Cards
+      </a>
+  	</li>
+
+      <!-- special button for special views-->
+	<% if current_user.accounttype == 'vendor' then %>
+		<li><a href="/vendor">Shop View</a></li> 
+	<% elsif current_user.accounttype == 'admin' then %>
+		<li><a href="/admin">Admin View</a></li> 
+	<% elsif current_user.accounttype == 'expert' then %>
+		<li><a href="/expert">Expert View</a></li> 
+	<% else %>
+	<% end %>
+	  <!-- end of special button for special views-->
+  </ul>
+
+
+  <% if params[:action] == "index" && params[:controller] == "cards" %>   
+	  <form class="navbar-form navbar-left" role="search">
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Type card name">
+	    </div>
+	    <button type="submit" class="btn btn-default btn-purple-nav">
+	      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	    </button>
+	  </form>
+  <% end %> 
+
+
+
+
+  <ul class="nav navbar-nav navbar-right">
+    
+
+	<% if params[:action] == "contact_careers" %>
+	    <li class="dropdown" class="active">
+	 <% else %>
+	    <li class="dropdown">
+	 <% end %>
+
+
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Legal</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </li>
+
+
+
+	 <% if params[:action] == "edit" && params[:controller] == "registrations" %>
+	    <li class="dropdown" class="active">
+	 <% else %>
+	    <li class="dropdown">
+	 <% end %>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/settings">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          &nbsp;
+          Settings
+        </a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="/logout">
+          <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+          &nbsp;
+          Logout
+        </a></li>
+      </ul>
+    </li>
+  </ul>
+</div><!-- /.navbar-collapse -->
+
+
+
+
+
+
+
+<!-- /.nav-collapse
+
 <ul class="nav navbar-nav navbar-right authentication">
 	<li>
 		<a href="<% if current_user.accounttype == 'vendor' then %>/vendor<% elsif current_user.accounttype == 'admin' then %>/admin<% elsif current_user.accounttype == 'expert' then %>/expert<% else %>/<% end %>">
@@ -26,4 +126,4 @@
   		</button>
   	</a>
   </li>
-</ul><!-- /.nav-collapse -->
+</ul> -->
