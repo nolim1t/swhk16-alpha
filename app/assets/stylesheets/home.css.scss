@@ -147,11 +147,12 @@ html, body {
   background-color: #5f3d72;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
     border-color: #080808;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+    color: #ffffff;
     background-color: #080808;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
