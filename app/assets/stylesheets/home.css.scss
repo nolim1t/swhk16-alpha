@@ -76,13 +76,13 @@ html, body {
 
 .navbar-inverse {
       background-color: #5f3d72;
-      border-color: #5f3d72;
+      border-color: transparent;
       padding-left: 30px;
       padding-right: 30px;
     }
 
     .navbar-inverse .navbar-brand {
-      color: #999999;
+      color: #ffffff;
     }
 
     .navbar-inverse .navbar-brand:hover,
@@ -108,8 +108,8 @@ html, body {
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #5f3d72;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #5f3d72;
 }
 
 .navbar-inverse .navbar-nav > .disabled > a,
@@ -125,7 +125,7 @@ html, body {
 
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #5f3d66;
+  background-color: #5f3d72;
 }
 
 .navbar-inverse .navbar-toggle .icon-bar {
