@@ -77,6 +77,8 @@ html, body {
 .navbar-inverse {
       background-color: #5f3d72;
       border-color: #5f3d72;
+      padding-left: 30px;
+      padding-right: 30px;
     }
 
     .navbar-inverse .navbar-brand {
@@ -106,8 +108,8 @@ html, body {
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #ffffff;
-  background-color: #5f3d66;
+  color: #5f3d72;
+  background-color: #ffffff;
 }
 
 .navbar-inverse .navbar-nav > .disabled > a,
