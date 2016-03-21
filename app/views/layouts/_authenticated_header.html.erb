@@ -1,7 +1,17 @@
 <ul class="nav navbar-nav navbar-right authentication">
 	<li>
+		<form class="navbar-form" role="search" method='get'>
+			<div class="form-group">
+				<input type="text" name="search_text" class="form-navbar-search" placeholder="Enter card name or part of a card name">
+			</div>
+			<button class='btn btn-success btn-purple' type='submit'>
+			        <i class='glyphicon glyphicon-search'></i>
+			</button>
+		</form>
+	</li>
+	<li>
 		<a href="<% if current_user.accounttype == 'vendor' then %>/vendor<% elsif current_user.accounttype == 'admin' then %>/admin<% elsif current_user.accounttype == 'expert' then %>/expert<% else %>/<% end %>">
-			<button class="btn btn-success btn-authentication"> 
+			<button class="btn btn-success btn-authentication">
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 				&nbsp;
 				<%=I18n.t(current_user.accounttype.to_s).capitalize %>
@@ -9,7 +19,7 @@
 		</a>
 	</li>
 	<li>
-		<a href="/settings">  
+		<a href="/settings">
 			<button class="btn btn-success btn-authentication">
 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 				&nbsp;
@@ -18,8 +28,8 @@
 		</a>
 	</li>
   <li>
-  	<a href="/logout"> 
-  		<button class="btn btn-success btn-authentication"> 
+  	<a href="/logout">
+  		<button class="btn btn-success btn-authentication">
   			<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
 				&nbsp;
   			<%= t('logout') %>
