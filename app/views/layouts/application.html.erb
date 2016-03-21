@@ -38,53 +38,9 @@
           <% else %>
             <%= render "layouts/unauthenticated_header" %>
           <% end %>
-           
-        </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
-    </nav>
+    </nav><!-- end of navbar -->
 
-
-  <!-- end of navbar -->
-
-
-    <!-- <nav class="navbar navbar-fixed-top navbar-inverse navbar-custom" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href= "#0"  onclick="document.location.href='/cards/index'; " class="navbar-brand navbar-logo">
-          <%= image_tag('logolight.png', width: "50") %>
-        </a>
-        <a href="/"><img style="position: absolute;  z-index: 0; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/vaultron-beta/alpha_logo.png" alt="Vaultron Alpha" data-canonical-src="https://s3.amazonaws.com/vaultron-beta/alpha_logo.png"></a>
-
-        <% if params[:id].present? %>
-          <p class='navbar-text'> Card Details </p>
-        <% elsif params[:action] == "index" && params[:controller] == "cards" %>
-          <p class='navbar-text'> My Cards </p>
-        <% elsif params[:action] == "contact_careers" %>
-          <p class='navbar-text'> Contact</p>
-        <% elsif params[:action] == "edit" && params[:controller] == "registrations" %>
-          <p class='navbar-text'> Settings </p>
-        <% end %>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-     <ul class="nav navbar-nav">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Pricing</a></li>
-        </ul> 
-          <% if user_signed_in? %>
-            <%= render "layouts/authenticated_header" %>
-          <% else %>
-            <%= render "layouts/unauthenticated_header" %>
-          <% end %>
-        </div>
-      </div>
-    </nav>
-    -->
     <div id="wrap">
       <div class="container container-custom">
         <% if user_signed_in? %>
