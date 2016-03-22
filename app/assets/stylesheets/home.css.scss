@@ -234,6 +234,32 @@ html, body {
   outline: 0;
 }
 
+
+.panel-group .panel {
+  margin-bottom: 0;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.panel-group .panel:hover {
+  border-color: #5f3d72;
+  margin-bottom: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
+      -moz-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
+      box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
+}
+
+
+
+
+
+
+
+
+
+
+
 .buffer-1{
   padding-top: 20px;
 }
