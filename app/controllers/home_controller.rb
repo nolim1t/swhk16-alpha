@@ -8,6 +8,9 @@ class HomeController < ActionController::Base
   def new
   end
 
+  def landing
+  end
+
   def contact_careers
   end
   
