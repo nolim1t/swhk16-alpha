@@ -257,8 +257,11 @@ html, body {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg.png) no-repeat center center;
+    /*background-color:#5f3d72 ; */
+    background-image: url('intro-bg.png'); 
+    background-repeat: no-repeat;  /* no-repeat center center*/
     background-size: cover;
+    height: 500px;
 }
 
 .spacebox70 {
