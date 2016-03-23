@@ -6,10 +6,17 @@
   padding: 10px 5px 0;
 }
 
+.og-grid li {
+  display: inline-block;
+  margin: 10px 5px 0 25px;
+  vertical-align: top;
+}
+
+
 .image__cell {
-  float: left;
+
   position: relative;
-  width: 20%;
+
 }
 
 .image--basic {
@@ -56,7 +63,7 @@
   max-height: 0;
   transition: max-height .3s ease-in-out,
               margin-bottom .1s .2s;
-  width: 500%;
+  width: 100%;
   overflow: hidden;
 }
 

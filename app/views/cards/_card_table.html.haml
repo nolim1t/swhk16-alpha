@@ -1,0 +1,39 @@
+-card_owner_info = User.find(card_table.owner_id)
+.card-info-table
+  %table
+    %tbody
+      %tr
+        %th #{I18n.t('cardidentifier')}
+        %td #{card_table.unique_identifier}
+      %tr
+        %th #{I18n.t('cardname')}:
+        %td #{card_table.cardname}
+      %tr
+        %th #{I18n.t('cardgame')}:
+        %td #{card_table.cardgame}
+      %tr
+        %th #{I18n.t('cardcondition')}:
+        %td #{card_table.card_condition.to_s}
+      %tr
+        %th #{I18n.t('cardstatus')}:
+        -case card_table.validation_status
+          -when 0
+            -if card_table.transfer_status != 1 and (card_table.owner_id.to_s == current_user._id.to_s) and (card_table.deleted_status == 0)
+              %td #{I18n.t('statusunchecked')} (<a href="#{cards_validation_get_url_path(card_table)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
+            -else
+              %td #{I18n.t('statusunchecked')}
+          -when 1
+            -if card_table.transfer_status != 1 and (card_table.owner_id.to_s == current_user._id.to_s) and (card_table.deleted_status == 0)
+              %td #{I18n.t('statuspending')} (<a href="#{cards_validation_cancel_url_path(card_table)}">Cancel Expert Validation</a>)
+            -else
+              %td #{I18n.t('statuspending')}
+          -when 2
+            %td #{I18n.t('statusverified')}
+          -else
+            %td #{I18n.t('statusunknown')}
+      %tr
+        %th #{I18n.t('cardcreatedate')}:
+        %td #{Time.at(card_table.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
+      %tr
+        %th #{I18n.t('cardowner')}:
+        %td #{card_owner_info.name}
