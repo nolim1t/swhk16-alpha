@@ -11,7 +11,7 @@ class HomeController < ActionController::Base
   def landing
   end
 
-  def contact_careers
+  def information
   end
   
   def showexperts

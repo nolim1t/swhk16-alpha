@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: "cards#index"
 
   #general pages
-  get '/contact_careers' => 'home#contact_careers', as: :contact_careers
+  get '/information' => 'home#information', as: :information
   get '/landing' => 'home#landing', as: :landing
 
   # Real Pages
