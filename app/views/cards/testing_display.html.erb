@@ -1,25 +1,48 @@
 <%= javascript_include_tag "modernizr.custom" %>
 <!-- <div class="container">	 -->
-	<div class="main">
+<section class="image-grid">
+	<div class="main image__cell is-collapsed">
 		<!-- <ul id="og-grid" class="thumb og-grid"> -->
 		<ul id="og-grid" class="thumb og-grid">
 			<% @cards_and_images.each do |card, cardimages| %> 
 				<li>
+					<%card_table= card %>
 					<%front = cardimages[0].present? ? cardimages[0].photo.url : nil %>
 					<%back = cardimages[1].present? ? cardimages[1].photo.url : nil %> 
-					<a class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="<%= front %>" data-smallsrc= "<%= back %>" data-table="<%= escape_javascript(render('card_table')) %>" data-title="Super cool card Display!" href="#">
-							<img class="img-responsive" src="<%= cardimages[0].photo.thumb.url %>"/>
-					</a>
+					<div class="image--basic">
+						<a class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="<%= front %>" data-smallsrc= "<%= back %>" data-table="#{@partial_table}" data-title="Super cool card Display!" href="#">
+								<img class="img-responsive" src="<%= cardimages[0].photo.thumb.url %>"/>
+						</a>
+						 <div class="arrow--up"></div>
+					</div>
 				</li>
+				<div class="image--expand">
+		      <a href="#close-jump-1" class="expand__close"></a>
+				    <ul class="nav nav-tabs">
+				      <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+				      <li><a href="#profile" data-toggle="tab">Profile</a></li>
+				      <li><a href="#messages" data-toggle="tab">Messages</a></li>
+				    </ul>
+				    
+					    <!-- Tab panes -->
+				    <div class="tab-content">
+				      <div class="tab-pane active" id="home">
+				      	<img class="img-responsive col-lg-3" src="<%= front %>"/>
+				      	<img class="img-responsive col-lg-3" src="<%= back %>"/>
+				      	<div class="col-lg-6">
+				      		<%= render 'card_table' %>
+				      	</div>
+				      </div>
+				      <div class="tab-pane" id="profile">PROFILE asdfafas</div>
+				      <div class="tab-pane" id="messages">MESSAGES asdfdas</div>
+				    </div>
+		    </div>
 			<% end %>
 		</ul>
 	</div>
 <!-- </div>/container -->
+</section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <!-- // <script src="javascripts/grid.js"></script> -->
-<%= javascript_include_tag "grid" %>
-<script>
-	$(function() {
-		Grid.init();
-	});
-</script>
+
+<%= javascript_include_tag 'expand', 'data-turbolinks-track' => true %>
