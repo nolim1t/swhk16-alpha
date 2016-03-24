@@ -17,14 +17,18 @@
   
 
   <%= form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f| %>
-    <div class="col-xs-12 col-md-6 col-lg-6">
+    <div class="col-xs-12 col-md-12 col-lg-12">
       <p>
         <b>Customer's Email Address</b>
       </p>
         <br>
-        <%= f.text_field :email, placeholder: "Enter email address here", size: 20, class: "form-control" %>
-        <br>
-        <%= f.submit "Show cards submitted for Expert Check", class: "btn btn-primary btn-purple" %>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+          <%= f.text_field :email, placeholder: "Enter email address here", size: 20, class: "form-control" %>
+        </div>
+        
+        <div class="col-xs-12 col-md-6 col-lg-6">
+          <%= f.submit "Show cards submitted for Expert Check", class: "btn btn-primary btn-purple" %>
+        </div>
     </div>
   <% end %>
 
