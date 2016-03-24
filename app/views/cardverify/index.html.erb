@@ -31,7 +31,7 @@
   <div class="col-xs-12 col-md-6 col-lg-6">
     <% if @cardlist.length > 0 %>
       <% user = User.where(email: params[:cardverify][:email])[0] %>
-      <p>Here are a list of cards related to <b> <%= user.class.human_attribute_name(user.name) params[:cardverify][:email] %></b></p>
+      <p>Here are a list of cards related to <b> <%= params[:cardverify][:email] %></b></p>
       <table width="80%">
         <thead>
           <tr>
