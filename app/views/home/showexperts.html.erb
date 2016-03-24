@@ -4,16 +4,30 @@
   </div>
 </div>
 <div class="row top-buffer">
-  <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4">
+  <div class="col-xs-12 col-md-12 col-lg-8 col-lg-offset-2">
     <% if @experts.count > 0 %>
       <%= will_paginate @experts %>
       <ul>
         <% @experts.each do |user| %>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                  <%= user[:name]%>
+              </h4>
+            </div>
+              <div class="panel-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+
+          </div>
+
           <li><%= user[:name]%></li>
           <ul>
             <li><%= user[:expert_contact_info]%></li>
             <li><a href="http://www.openstreetmap.org/search?query=#{user[:coordinates][1]}%2C%20#{user[:coordinates][0]}#map=16/#{user[:coordinates][1]}/#{user[:coordinates][0]}" target="showmap"> <%= user[:expert_location_info]%> </a></li>
           </ul>
+
         <% end %>
       </ul>
     <% else %>
