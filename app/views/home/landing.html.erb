@@ -13,9 +13,11 @@
                        
                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
                             <a href="#knowmore" type="button" class="btn btn-success btn-purple btn-lg btn-block">Wait. What?</a>
-                            <a href="/register" type="button" class="btn btn-success btn-purple btn-lg btn-block">Signup Now!</a>         
+                          <% if user_signed_in? %>
+                          <% else %>
+                            <a href="/register" type="button" class="btn btn-success btn-purple btn-lg btn-block">Signup Now!</a>    
+                          <% end %>         
                       </div>
-                    
                 </div>
             </div>
         </div>
