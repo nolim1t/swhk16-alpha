@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 text-center">
-    <h2>Expert List</h2>
+    <h3>Expert List</h3>
   </div>
 </div>
 <div class="row top-buffer">
@@ -12,19 +12,19 @@
 
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
+              <h3 class="panel-title">
                   <%= user[:name]%>
-              </h4>
+              </h3>
             </div>
               <div class="panel-body">
                 <div class="col-xs-6">
-                <h3>Contact</h3>
+                <h4>Contact</h4>
                 <p>
                   <%= user[:expert_contact_info]%>
                 </p>
                 </div>
                 <div class="col-xs-6">
-                <h3>Location</h3>
+                <h4>Location</h4>
                 <p>
                   <a href="http://www.openstreetmap.org/search?query=#{user[:coordinates][1]}%2C%20#{user[:coordinates][0]}#map=16/#{user[:coordinates][1]}/#{user[:coordinates][0]}" target="showmap"> <%= user[:expert_location_info]%> </a>
                 </p>
