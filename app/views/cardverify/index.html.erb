@@ -31,6 +31,7 @@
         </div>
     </div>
   <% end %>
+  <div class="spacebox80"> </div>
 
   <div class="col-xs-12 col-md-6 col-lg-6">
     <% if @cardlist.length > 0 %>
@@ -47,12 +48,12 @@
           <% @cardlist.each do |i| %>
             <tr>
               <td>
-                <a>(href="/cards/detail/#{i[:_id]}") #{i[:cardname]}</a>
+                <a href="/cards/detail/<%=i[:_id]%>"> #{i[:cardname]}</a>
               </td>
               <td>
-                <a>(href="/vendor/accept/#{i[:_id]}") Approve</a>
-                |
-                <a>(href="/vendor/reject/#{i[:_id]}") Reject</a>
+                <a href="/vendor/accept/<%=i[:_id]%>" > Approve</a>
+                or
+                <a href="/vendor/reject/<%=i[:_id]%>"> Reject</a>
               </td>
             </tr>
           <% end %>
@@ -71,6 +72,8 @@
     <% end %>
   </div>
 </div>
+
+<div class="spacebox80"> </div>
 
 
 
