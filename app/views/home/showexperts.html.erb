@@ -9,7 +9,7 @@
       <%= will_paginate @experts %>
       <ul>
         <% @experts.each do |user| %>
-          <li>#{user[:name]}</li>
+          <li><%= user[:name]} %></li>
           <ul>
             <li>#{user[:expert_contact_info]}</li>
             <li><a href="http://www.openstreetmap.org/search?query=#{user[:coordinates][1]}%2C%20#{user[:coordinates][0]}#map=16/#{user[:coordinates][1]}/#{user[:coordinates][0]}" target="showmap">#{user[:expert_location_info]}</a></li>
