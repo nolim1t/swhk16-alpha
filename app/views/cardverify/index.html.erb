@@ -1,0 +1,123 @@
+
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <h3>Check Cards</h3>
+  </div>
+</div>
+
+
+<div class="row top-buffer"></div>
+<div class="col-xs-12">
+  <p>Enter in the person's email to get a list of cards which they have submitted for Expert Check.</p>
+  <p>You can check a card one of two ways.<br>
+    You can ask the user to bring you the card to your contact address or to a meeting place, and do tests on it. This is what we recommend in order to maximize your ability to detect possible counterfeits, and ensure that the card in the system is the same as the physical card. <br>
+    Or <br>
+    You are confident enough for checking cards based only on pictures, and you can check it here only, without seing the physical card. We do not recommend it, as you can check less, but we understand your time is valuable.
+  </p>
+  
+
+  <%= form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f| %>
+    <div class="col-lg-6 col-md-6">
+      <p>
+        <b>Customer's Email Address</b>
+      </p>
+        <br>
+        <%= f.text_field :email, placeholder: "Enter email address here", size: 20, class: "form-control" %>
+        <br>
+        <%= f.submit "Show cards submitted for Expert Check", class: "btn btn-primary btn-purple" %>
+    </div>
+  <% end %>
+
+  <div class="col-lg-6 col-md-6">
+    <% if @cardlist.length > 0 %>
+      <% user = User.where(email: params[:cardverify][:email])[0] %>
+      <p>Here are a list of cards related to <b>#{user.class.human_attribute_name(user.name)} (#{params[:cardverify][:email]})</b></p>
+      <table width="80%">
+        <thead>
+          <tr>
+            <th>Card Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cardlist.each do |i| %>
+            <tr>
+              <td>
+                <a>(href="/cards/detail/#{i[:_id]}") #{i[:cardname]}</a>
+              </td>
+              <td>
+                <a>(href="/vendor/accept/#{i[:_id]}") Approve</a>
+                |
+                <a>(href="/vendor/reject/#{i[:_id]}") Reject</a>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% elsif @cardlist.length == 0 and params[:cardverify] %>
+      <% if params[:cardverify][:email] %>
+        <table width="80%">
+          <tr>
+            <td>
+              <p>There are no cards needing validation found for <b>#{params[:cardverify][:email]}</b></p>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+<!--
+.row
+  .col-lg-6.col-md-6
+    %h2{style:"color:#5f3d72"} Verify cards
+
+.row.top-buffer
+.col-lg-6.col-md-6
+  %p Enter in the person's email to get a list of cards which they have requested a shopkeeper to verify.
+  %p Only cards which are not in the transfer process can be verified. So the receiver needs to either take possession of the card in the system or reject it.
+  %br
+  = form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f|
+    .col-lg-6.col-md-6
+      %b Customer's Email Address
+      %br
+      = f.text_field :email, placeholder: "Enter email address here", size: 20, class: "form-control"
+      %br
+      = f.submit "Show list of cards", class: "btn btn-primary btn-purple"
+      %br
+      %br
+  .col-lg-6.col-md-6
+    -if @cardlist.length > 0
+      -user = User.where(email: params[:cardverify][:email])[0]
+      %p Here are a list of cards related to <b>#{user.class.human_attribute_name(user.name)} (#{params[:cardverify][:email]})</b>
+      %table{width: "80%"}
+        %thead
+          %tr
+            %th Card Name
+            %th Actions
+        %tbody
+
+          -@cardlist.each do |i|
+            %tr
+              %td
+                %a(href="/cards/detail/#{i[:_id]}") #{i[:cardname]}
+              %td
+                %a(href="/vendor/accept/#{i[:_id]}") Approve
+                |
+                %a(href="/vendor/reject/#{i[:_id]}") Reject
+
+    -elsif @cardlist.length == 0 and params[:cardverify]
+      -if params[:cardverify][:email]
+        %table{width: "80%"}
+          %tr
+            %td
+              %p There are no cards needing validation found for <b>#{params[:cardverify][:email]}</b>
+
+
+            -->
