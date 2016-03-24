@@ -48,7 +48,7 @@
           <% @cardlist.each do |i| %>
             <tr>
               <td>
-                <a href="/cards/detail/<%=i[:_id]%>"> #{i[:cardname]}</a>
+                <a href="/cards/detail/<%=i[:_id]%>"> <%=i[:cardname]%></a>
               </td>
               <td>
                 <a href="/vendor/accept/<%=i[:_id]%>" > Approve</a>
