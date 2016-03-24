@@ -7,6 +7,7 @@
 
 
 <div class="row top-buffer"></div>
+
 <div class="col-xs-12">
   <p>Enter in the person's email to get a list of cards which they have submitted for Expert Check.</p>
   <p>You can check a card one of two ways.<br>
@@ -15,6 +16,7 @@
     You are confident enough for checking cards based only on pictures, and you can check it here only, without seing the physical card. We do not recommend it, as you can check less, but we understand your time is valuable.
   </p>
   
+  <div class="spacebox80"> </div>
 
   <%= form_for :cardverify, url: cardverify_index_path, method: :get, role: "form", class: "form-horizontal" do |f| %>
     <div class="col-xs-12 col-md-12 col-lg-12">
@@ -32,6 +34,7 @@
         <br>
     </div>
   <% end %>
+
   <div class="spacebox80"> </div>
 
   <div class="col-xs-12 col-md-12 col-lg-12">
