@@ -46,9 +46,11 @@
 					      </div>
 					      <div class="tab-pane" id="edit-tab-<%=index %>">Edit tab super cool</div>
 					      <div class="tab-pane" id="transfer-tab-<%=index %>">
-					      	<%= render partial: 'find_owner_form' %>
+					      	<%= render partial: 'find_owner_form', locals: { :card => card_table } %>
 					      </div>
-					      <div class="tab-pane" id="expert-tab-<%=index %>">MESSAGES asdfdas</div>
+					      <div class="tab-pane" id="expert-tab-<%=index %>">
+					      	<%= render partial: 'expert_check_form', locals: { :card_table => card_table } %>
+					      </div>
 					      <div class="tab-pane" id="history-tab-<%=index %>">historyyyyydfdas</div>
 					    </div>
 			    </div>
