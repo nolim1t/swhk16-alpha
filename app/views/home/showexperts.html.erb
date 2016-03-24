@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4">
+    <h2 style="color:#5f3d72">List of experts</h2>
+  </div>
+</div>
+<div class="row top-buffer">
+  <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4">
+    <% if @experts.count > 0 %>
+      <%= will_paginate @experts %>
+      <ul>
+        <% @experts.each do |user| %>
+          <li>#{user[:name]}</li>
+          <ul>
+            <li>#{user[:expert_contact_info]}</li>
+            <li><a href="http://www.openstreetmap.org/search?query=#{user[:coordinates][1]}%2C%20#{user[:coordinates][0]}#map=16/#{user[:coordinates][1]}/#{user[:coordinates][0]}" target="showmap">#{user[:expert_location_info]}</a></li>
+          </ul>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No Experts found</p>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+/ .row
+/ 	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+/ 		%h2{style:"color:#5f3d72"} List of experts
+
+/ .row.top-buffer
+/ 	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+/ 		-if @experts.count > 0
+/ 			= will_paginate @experts
+/ 			%ul
+/ 				-@experts.each do |user|
+/ 					%li #{user[:name]}
+/ 					%ul
+/ 						%li #{user[:expert_contact_info]}
+/ 						%li <a href="http://www.openstreetmap.org/search?query=#{user[:coordinates][1]}%2C%20#{user[:coordinates][0]}#map=16/#{user[:coordinates][1]}/#{user[:coordinates][0]}" target="showmap">#{user[:expert_location_info]}</a>
+/ 		-else
+/ 			%p No Experts found
