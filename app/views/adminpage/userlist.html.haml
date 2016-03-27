@@ -1,16 +1,61 @@
-.row
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		%h2{style:"color:#5f3d72"} Admin tools
 
-.row.top-buffer
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		%p List of all users on the system. You can download a copy by going <a href="#{adminpage_userlist_url}.csv?page=#{@page}">here</a>
-.row.top-buffer
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		-if @userlist.count > 0
-			= will_paginate
-			%ul
-				-@userlist.each do |user|
-					%li Name: #{user[:name]} Email: #{user[:email]} Verified: #{user[:identity_verified]} (Type: #{user[:accounttype]}) | Cards Owned: #{user[:cards].count} | Cards deleted: #{user[:deleted_cards].count} | <a href="/admin/usercards/#{user[:id]}">Show Cards</a>
-		-else
-			%p No users found
+
+
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <h3>Admin Tools</h3>
+  </div>
+</div>
+
+
+<div class="row top-buffer"></div>
+
+<div class="col-xs-12">
+  <p>List of all users on the system. You can download a copy by going
+  <a href="#{adminpage_userlist_url}.csv?page=#{@page}">here</a>   
+  </p>
+  
+  <div class="spacebox80"> </div>
+
+
+<div class="col-xs-12 col-md-12 col-lg-12">
+    <% if @userlist.count > 0 %>
+      <%= will_paginate @userlist %>
+      <ul>
+        <% @userlist.each do |user| %>
+
+          <div class="panel panel-default panel-expert">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h3 class="panel-title">
+                  <%= user[:name]%>
+              </h3>
+            </div>
+              <div class="panel-body">
+                <div class="col-xs-6">
+                <h4>Account</h4>
+                <p>
+                  Email: <%= user[:email]%> <br>
+                  Account Type: <%= user[:accounttype]%> <br>
+                  Verified: <%= user[:identity_verified]%>
+                </p>
+                </div>
+                <div class="col-xs-6">
+                <h4>Cards</h4>
+                <p>
+                 Number of Cards Owned: <%= user[:cards].count%><br>
+                 Number of Cards Deleted: <%= user[:deleted_cards].count%><br>
+                 <a href="/admin/usercards/#{user[:id]}">Show Cards</a>
+
+                </p>
+                </div>
+              </div>
+          </div>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No user found</p>
+    <% end %>
+  </div>
+
+
+
