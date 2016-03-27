@@ -101,6 +101,7 @@ html {
   &.is-expanded .image--expand {
     /*max-height: 500px;*/
     margin-bottom: $pad;
+    height:700px;
     border-color: #5f3d72;
   -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
   -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
@@ -188,20 +189,18 @@ html {
   }
   
   &:hover {
-    color: #fff;
-    border-color: #5f3d72;
+    color: #5f3d72;
   }
   
 }
 
 .tab-card{
-  height:700px;
   
 }
 @media (max-width: 767px) {
 .tab-card{
-  height:1200px;
-  border-color: #5f3d72;
+
+
 }
 
 
