@@ -1,0 +1,16 @@
+.row
+    .col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+        %h3 Admin tools
+
+.row.top-buffer
+    .col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+        %p List of all users on the system. You can download a copy by going <a href="#{adminpage_userlist_url}.csv?page=#{@page}">here</a>
+.row.top-buffer
+    .col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
+        -if @userlist.count > 0
+            = will_paginate
+            %ul
+                -@userlist.each do |user|
+                    %li Name: #{user[:name]} Email: #{user[:email]} Verified: #{user[:identity_verified]} (Type: #{user[:accounttype]}) | Cards Owned: #{user[:cards].count} | Cards deleted: #{user[:deleted_cards].count} | <a href="/admin/usercards/#{user[:id]}">Show Cards</a>
+        -else
+            %p No users found
