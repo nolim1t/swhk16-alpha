@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
   get '/cards/graveyard' => 'cards#graveyard', as: :cards_graveyard_url
   get '/cards/testing_display' => 'cards#testing_display', as: :testing_display
+  post '/cards/testing_display' => 'cards#testing_display', as: :post_testing_display
 
   # experts
   get '/experts' => 'home#showexperts', as: :experts_list_url

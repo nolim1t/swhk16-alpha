@@ -22,6 +22,11 @@ class CardsController < ApplicationController
 		}
 
 		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
+		
+		respond_to do |format|
+		  format.html
+		  format.js
+		end
   end
 
 	def index

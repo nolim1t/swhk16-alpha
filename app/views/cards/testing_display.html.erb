@@ -44,7 +44,9 @@
 						      </div>
 
 					      </div>
-					      <div class="tab-pane" id="edit-tab-<%=index %>">Edit tab super cool</div>
+					      <div class="tab-pane" id="edit-tab-<%=index %>" class="edit">
+					      	<%= render partial: 'card_edit_form', locals: { :card_table => card_table } %>
+					      </div>
 					      <div class="tab-pane" id="transfer-tab-<%=index %>">
 					      	<%= render partial: 'find_owner_form', locals: { :card => card_table } %>
 					      </div>
