@@ -8,8 +8,8 @@
   </ul>
 <% end %>
 
-<%= form_for @new_card, :authenticity_token => true, url: new_card_form_path, method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
-
+<%= form_for @new_card, remote: true, :authenticity_token => true, url: new_card_form_path, method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
+	<%= f.hidden_field :owner_id, value: current_user.id %>
 	<div class = "row" >
 		<div class="col-lg-6">
 		  <p>Front of card (Optional: if already have back image):</p>
@@ -37,7 +37,8 @@
 	    <p>Card condition not listed or something else?:</p>
 	 
 	    <%= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control" %>
-
+	    <%= f.hidden_field :game, value: "Magic: The Gathering" %>
+			<%= f.hidden_field :collection, value: "Default collection" %>
 
 		</div>	
 	</div>
