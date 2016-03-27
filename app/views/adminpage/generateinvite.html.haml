@@ -3,15 +3,15 @@
     %h2 Generate Invite code
 
 .row.top-buffer
-.col-lg-6.col-md-6
+.col-xs-12.col-md-12.col-lg-12
   %br
   = form_for :generateinvite, url: adminpage_generateinvite_path, method: :get, role: "form", class: "form-horizontal" do |f|
-    .col-lg-6.col-md-6
+    .col-xs-12.col-md-6.col-lg-6
       = f.hidden_field :invitecode, value: "yes"
       %br
       = f.submit "Generate Invite code", class: "btn btn-success btn-purple btn-lg btn-block"
       %br
       %br
-  .col-lg-6.col-md-6
+  .col-xs-12.col-md-6.col-lg-6
     -if @invitecode
       %p You can register with the following invite code: #{@invitecode}
