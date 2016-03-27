@@ -36,7 +36,7 @@
 		    <% if ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"].join.to_s.include? card_table.card_condition.to_s %>
 		      <% default_condition = card_table.card_condition %>
 		    <% end %>
-		    <%= f.select :card_condition_select, ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"], class: "form-control", selected: default_condition %>
+		    <%= f.select :card_condition_select, ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"], class: "form-control", selected: @default_condition %>
 
 		    <p>Card condition not listed or something else?:</p>
 		 
