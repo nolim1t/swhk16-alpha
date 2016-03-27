@@ -6,8 +6,7 @@ class CardsController < ApplicationController
 	layout 'application'
 
 	def testing_display
-    @cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])[0..6]
-    @card = @cards[0]
+    @cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
   	@cardimages = []
 		@cards.each{|card|
 			puts card.photo.url
@@ -23,7 +22,42 @@ class CardsController < ApplicationController
 
 		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
 
+		@new_card = Card.new
+  end
 
+  def new_card 
+  	@new_card = Card.new
+  	# if card_params[:id].present?
+	  	# if card.update_attributes(cardname: card_params[:cardname], cardgame: card_params[:cardgame], card_condition: card_params[:card_condition])
+			if @new_card.update_attributes(card_params)
+				# raise params.inspect
+				# Create Front image
+				if params[:card][:front_image].present? then
+					Cardimage.create(create_date: Time.new(), photo: params[:card][:front_image], image_type: "front",image_note: "Front image uploaded",card_id: @new_card._id.to_s)
+				end
+				# Create back image if exists
+				if params[:card][:back_image].present? then
+					Cardimage.create(create_date: Time.new(),photo: params[:card][:back_image],image_type: "back",image_note: "Back image uploaded",card_id: @new_card._id.to_s)
+				end
+				unless Cardcondition.where(cardid: @new_card._id).last == params[:card][:card_condition_select]
+					Cardcondition.create(condition: params[:card][:card_condition_select].downcase)
+				end
+		  	respond_to do |format|
+				  format.html { redirect_to testing_display_path, notice: 'the card is successfully updated.' }
+				  format.js { @success = true }
+				end
+			else
+				respond_to do |format|
+					format.html { redirect_to  testing_display_path, notice: 'the card is not successfully updated.' }
+					format.js { @success = false }
+				end
+			end
+		# else
+		# 	respond_to do |format|
+		# 		format.html { redirect_to  testing_display_path, notice: 'Sorry, we could not find the card.' }
+		# 		format.js { @success = false }
+		# 	end
+		# end
   end
 
   def edit_card
@@ -463,6 +497,6 @@ class CardsController < ApplicationController
 
 private
 	def card_params
-		params.require(:card).permit(:id, :card_condition, :cardname, :cardgame)
+		params.require(:card).permit(:id, :card_condition, :cardname, :cardgame, :owner_id)
 	end
 end

@@ -1,6 +1,23 @@
 <%= javascript_include_tag "modernizr.custom" %>
 <!-- <div class="container">	 -->
 <section class="image-grid">
+		<div class="image__cell is-collapsed">
+			<div class="image--basic">
+				  <a class="thumbnail" href="#expand-jump-0">
+				    <div class="row">
+				      <i class="glyphicon glyphicon-plus"></i>
+				    </div>
+				    <div class="row">
+				      <div class="h3">Add Card</div>
+				    </div>
+				  </a>
+				  <div class="arrow--up"></div>
+			</div>
+			<div class="image--expand">
+			  <a href="#close-jump-0" class="expand__close" id="#close-jump-0"></a>
+			  <%= render "card_new_form" %>
+			</div>
+		</div>
 		<!-- <ul id="og-grid" class="thumb og-grid"> -->
 		<% @cards_and_images.each_with_index do |(card, cardimages), index| %> 
 			
@@ -9,14 +26,14 @@
 				<%back = cardimages[1].present? ? cardimages[1].photo.url : nil %> 
 				<div class="image__cell is-collapsed">
 					<div class="image--basic">
-						<a href="#expand-jump-<%=index %>" class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="<%= front %>" data-smallsrc= "<%= back %>" data-table="#{@partial_table}" data-title="Super cool card Display!" href="#">
-								<img id="expand-jump-<%=index %>" class="img-responsive" src="<%= cardimages[0].photo.thumb.url %>"/>
+						<a href="#expand-jump-<%=index+1 %>" class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="<%= front %>" data-smallsrc= "<%= back %>" data-table="#{@partial_table}" data-title="Super cool card Display!" href="#">
+								<img id="expand-jump-<%=index+1 %>" class="img-responsive" src="<%= cardimages[0].photo.thumb.url %>"/>
 						</a>
 						 <div class="arrow--up"></div>
 					</div>
 			
 					<div class="image--expand">
-			      <a href="#close-jump-<%=index %>" class="expand__close"></a>
+			      <a href="#close-jump-<%=index+1 %>" class="expand__close"></a>
 					    <ul class="nav nav-tabs">
 					      <li class="active"><a href="#card_detail-tab-<%=index %>" data-toggle="tab">Card Detail</a></li>
 					      <li><a href="#edit-tab-<%=index %>" data-toggle="tab">Edit Card</a></li>
