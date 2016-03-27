@@ -1,0 +1,9 @@
+%h3 Transfer Card
+= form_for :transfer, url: outbound_card_path(card_table.id), method: :put, html: {role: "form", class: "form-horizontal"}do |f|
+  = f.hidden_field :cardid, value: card_table.id
+  = f.text_field :receiver_email, placeholder: "Recipient Email", class: "form-control"
+  %br
+  = f.check_box :agree
+  %b &nbsp; I accept that after hitting transfer, that the new card owner is the owner of the above e-mail address.
+  .top-buffer
+  = f.submit "Transfer", class: "btn btn-primary btn-purple"

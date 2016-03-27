@@ -1,0 +1,26 @@
+-card_owner_info = User.find(card_table.owner_id)
+.card-info-table
+  %table
+    %tbody
+      %tr
+        %th #{I18n.t('cardidentifier')}
+        %td #{card_table.unique_identifier}
+      %tr
+        %th #{I18n.t('cardname')}:
+        %td #{card_table.cardname}
+      %tr
+        %th #{I18n.t('cardgame')}:
+        %td #{card_table.cardgame}
+      %tr
+        %th 
+          %p Card Condition (based on TCG Guidelines)
+        %td TBD
+      %tr
+        %th #{I18n.t('cardcondition')}:
+        %td #{card_table.card_condition.to_s}
+      %tr
+        %th #{I18n.t('cardcreatedate')}:
+        %td #{Time.at(card_table.create_date).in_time_zone(@timezone).strftime "%e %b %Y %H:%M %z"}
+      %tr
+        %th #{I18n.t('cardowner')}:
+        %td #{card_owner_info.name}
