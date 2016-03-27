@@ -6,7 +6,7 @@
     .col-xs-12.text-center
         %p List of all users on the system. You can download a copy by going <a href="#{adminpage_userlist_url}.csv?page=#{@page}">here</a>
 .row.top-buffer
-    .col-xs-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
+    .col-xs-12.col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1
         -if @userlist.count > 0
             = will_paginate
             %ul
