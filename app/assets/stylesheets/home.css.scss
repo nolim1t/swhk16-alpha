@@ -54,50 +54,157 @@ html, body {
 // Fix for footer with small screens
 @media only screen and (max-width: 479px) {
   .footer{
-    height: 50px;
+    height: 20px;
     color: white;
     background-color: #5f3d72;
   }
 }
 @media only screen and (max-width: 260px) {
   .footer{
-    height: 80px;
+    height: 20px;
     color: white;
     background-color: #5f3d72;
   }
 }
 
-.navbar-custom {
-  background-color: #5f3d72;
-  border-color: #5f3d72;
-  margin-bottom: -20px;
-  -webkit-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
-  -moz-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
-  box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
-}
 
-.navbar-logo
-{
-  margin-top: 0px;
-  padding-left: 85px;
-  padding-top: 10px;
-  padding-bottom: 0;
-}
 
-.navbar-toggle{
-  margin-top: 20px;
-}
 
-.navbar-header .navbar-text{
+.navbar-inverse {
+      background-color: #5f3d72;
+      border-color: transparent;
+      padding-left: 30px;
+      padding-right: 30px;
+      -webkit-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
+      -moz-box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
+      box-shadow: 0px 5px 23px 0px rgba(0,0,0,0.61);
+    }
+
+    .navbar-inverse .navbar-brand {
+      color: #ffffff;
+    }
+
+    .navbar-inverse .navbar-brand:hover,
+    .navbar-inverse .navbar-brand:focus {
+      color: #ffffff;
+      background-color: transparent;
+    }
+
+    .navbar-inverse .navbar-text {
+      color: #ffffff;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+      color: #ffffff;
+    }
+
+    .navbar-inverse .navbar-nav > li > a:hover,
+    .navbar-inverse .navbar-nav > li > a:focus {
+      color: #ffffff;
+      background-color: #5f3d72;
+    }
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
   color: #ffffff;
-  text-align: center;
-  font-size: 24px;
-  font-weight: normal;
-  line-height: 1.428571429;
-  margin-top: 14px;
-  margin-left: 150px;
-  position: absolute;
+  background-color: #5f3d72;
 }
+
+.navbar-inverse .navbar-nav > .disabled > a,
+.navbar-inverse .navbar-nav > .disabled > a:hover,
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+  color: #444444;
+  background-color: transparent;
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: #5f3d72;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #5f3d72;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: #5f3d72;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #5f3d72;
+}
+
+@media (max-width: 768px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
+    border-color: #080808;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+    color: #ffffff;
+    background-color: #080808;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    background-color: transparent;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #080808;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #444444;
+    background-color: transparent;
+  }
+
+  .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+
+
+.navbar-inverse .navbar-link {
+  color: #ffffff;
+}
+
+.navbar-inverse .navbar-link:hover {
+  color: #ffffff;
+}
+
+
+.btn-purple-nav {
+  color: #999999;
+  border-color: #5f3d72;
+  background-color: #5f3d72;
+}
+.btn-purple-nav:hover,
+.btn-purple-nav:focus,
+.btn-purple-nav:active {
+  color: white;
+  border-color: #5f3d72;
+  background-color: #5f3d72;
+  outline: 0;
+}
+
+
 
 .authentication {
   margin-top: 0px;
@@ -127,6 +234,58 @@ html, body {
   outline: 0;
 }
 
+
+.panel-group .panel {
+  margin-bottom: 0;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.panel-group .panel:hover {
+  border-color: #5f3d72;
+  margin-bottom: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+      -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+      box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+}
+
+
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #5f3d72;
+    /*background-color:#5f3d72 ; */
+    /*background-image: url('intro-bg.png'); */
+    background-repeat: no-repeat;  /* no-repeat center center*/
+    background-size: cover;
+    height: 500px;
+}
+
+.spacebox70 {
+  height: 70px;
+}
+.spacebox80 {
+  height: 80px;
+}
+
+.panel-expert:hover{
+border-color: #5f3d72;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+      -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+      box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+
+}
+
+
+
+.buffer-1{
+  padding-top: 20px;
+}
+
 .top-buffer-3{
   padding-top: 50px;
 }
@@ -140,4 +299,4 @@ html, body {
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(95, 61, 114, 0.6);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(95, 61, 114, 0.6);
-}
+} 

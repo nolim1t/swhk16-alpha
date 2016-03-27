@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   root to: "cards#index"
 
   #general pages
-  get '/contact_careers' => 'home#contact_careers', as: :contact_careers
+  get '/information' => 'home#information', as: :information
+  get '/landing' => 'home#landing', as: :landing
 
   # Real Pages
   get '/cards/index' => 'cards#index', as: :cards_index
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
   # Admin page
   get '/admin' => 'adminpage#index', as: :adminpage_index
   get '/admin/generateinvite' => 'adminpage#generateinvite', as: :adminpage_generateinvite
-  get '/admin/users' => 'adminpage#userlist', as: :adminpage_userlist
+  get '/admin/userlist' => 'adminpage#userlist', as: :adminpage_userlist
   get '/admin/transfers' => 'adminpage#transferlist', as: :adminpage_transferlist
   get '/admin/usercards/:id' => 'adminpage#usercards', as: :adminpage_usercards
   get '/admin/graveyard' => 'adminpage#graveyard', as: :adminpage_graveyard

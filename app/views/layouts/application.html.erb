@@ -13,76 +13,37 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-fixed-top navbar-inverse navbar-custom" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href= "#0"  onclick="document.location.href='/cards/index'; " class="navbar-brand navbar-logo">
-          <%= image_tag('logolight.png', width: "50") %>
-        </a>
-        <a href="/"><img style="position: absolute;  z-index: 0; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/vaultron-beta/alpha_logo.png" alt="Vaultron Alpha" data-canonical-src="https://s3.amazonaws.com/vaultron-beta/alpha_logo.png"></a>
 
-        <% if params[:id].present? %>
-          <p class='navbar-text'> Card Details </p>
-        <% elsif params[:action] == "index" && params[:controller] == "cards" %>
-          <p class='navbar-text'> My Cards </p>
-        <% elsif params[:action] == "contact_careers" %>
-          <p class='navbar-text'> Contact</p>
-        <% elsif params[:action] == "edit" && params[:controller] == "registrations" %>
-          <p class='navbar-text'> Settings </p>
-        <% end %>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-  <!--       <ul class="nav navbar-nav">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Pricing</a></li>
-        </ul> -->
+    <!-- <navigation bar -->
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/landing">
+            Vaultarch
+            <span class="badge">BETA</span>
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
           <% if user_signed_in? %>
             <%= render "layouts/authenticated_header" %>
           <% else %>
             <%= render "layouts/unauthenticated_header" %>
           <% end %>
-        </div>
-      </div>
-    </nav>
+      </div><!-- /.container-fluid -->
+    </nav><!-- end of navbar -->
 
     <div id="wrap">
       <div class="container container-custom">
-        <% if user_signed_in? %>
-          <% if params[:controller] != "adminpage" and params[:controller] != "registrations" and params[:controller] != "home" %>
-            <ol class="breadcrumb">
-              <% if params[:action] == "index" && params[:controller] == "cards" then %>
-              <li class="active">Home</li>
-              <% elsif params[:action] == "new" && params[:controller] == "cards" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <li class="active">Add card</li>
-              <% elsif params[:action] == "detail" && params[:controller] == "cards" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <li class="active">Card Detail</li>
-              <% elsif params[:action] == "edit" && params[:controller] == "cards" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <li><a href="#0" onclick="document.location.href='/cards/detail/<%=params[:id] %>'; ">Card Detail</a></li>
-              <li class="active">Edit card info</li>
-              <% elsif params[:controller] == "cardverify" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <% if params[:action] == "menu" %>
-                <li><%=I18n.t(current_user.accounttype) %></li>
-              <% elsif params[:action] == "index"  %>
-                <li><a href="#0" onclick="document.location.href='/<%=current_user.accounttype %>'; "><%=I18n.t(current_user.accounttype) %></a></li>
-                <li>Verify card</li>
-              <% end %>
-              <% elsif params[:controller] == "transfer" and params[:action] == "inbound" %>
-              <li><a href="#0" onclick="document.location.href='/cards/index'; ">Home</a></li>
-              <li class="active">Card Transfer</li>
-              <% end %>
-            </ol>
-          <% end %>
-        <% end %>
         <%= yield %>
       </div><!--/.container-->
     </div>
