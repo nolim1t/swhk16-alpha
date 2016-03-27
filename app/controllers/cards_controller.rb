@@ -22,10 +22,35 @@ class CardsController < ApplicationController
 		}
 
 		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
-		
-		respond_to do |format|
-		  format.html
-		  format.js
+
+
+  end
+
+  def edit_card
+  	# raise card_params.inspect
+  	if card_params[:id].present?
+  		card = Card.find(card_params[:id])
+	  	if card.update_attributes(cardname: card_params[:cardname], cardgame: card_params[:cardgame], card_condition: card_params[:card_condition])
+				# Create Front image
+				Cardimage.create(create_date: Time.new(),photo: card_params[:front_image],image_type: "front",image_note: "Front image uploaded",card_id: card._id.to_s)
+				# Create back image if exists
+				if card_params[:back_image] then
+					Cardimage.create(create_date: Time.new(),photo: card_params[:back_image],image_type: "back",image_note: "Back image uploaded",card_id: card._id.to_s)
+				end
+				Cardcondition.create(condition: card_params[:card_condition_select].downcase)
+		  	respond_to do |format|
+				  format.html { redirect_to testing_display_path, notice: 'the card is successfully updated.' }
+				  format.js { @success = true }
+				end
+			else
+				respond_to do |format|
+					format.js { @success = false }
+				end
+			end
+		else
+			respond_to do |format|
+				format.html { redirect_to  testing_display_path, notice: 'Sorry, we could not find the card.' }
+			end
 		end
   end
 
@@ -438,5 +463,10 @@ class CardsController < ApplicationController
 				end
 			end
 		end
+	end
+
+private
+	def card_params
+		params.require(:card).permit(:id, :card_condition, :cardnage, :cardgame, :front_image, :back_image, :card_condition_select)
 	end
 end
