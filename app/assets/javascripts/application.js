@@ -19,4 +19,5 @@
 //= require bind_with_delay
 //= require waypoints
 //= require pagination
-//= require_tree .
+
+

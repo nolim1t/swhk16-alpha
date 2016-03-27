@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   root to: "cards#index"
 
   #general pages
-  get '/contact_careers' => 'home#contact_careers', as: :contact_careers
+  get '/information' => 'home#information', as: :information
+  get '/landing' => 'home#landing', as: :landing
 
   # Real Pages
   get '/cards/index' => 'cards#index', as: :cards_index
@@ -21,6 +22,9 @@ Rails.application.routes.draw do
   get '/cards/delete/:id' => 'cards#deletecard', as: :cards_delete_url
   get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
   get '/cards/graveyard' => 'cards#graveyard', as: :cards_graveyard_url
+  get '/cards/testing_display' => 'cards#testing_display', as: :testing_display
+  put '/cards/:id/edit' => 'cards#edit_card', as: :edit_card_form
+  put '/cards/new_card' => 'cards#new_card', as: :new_card_form
 
   # experts
   get '/experts' => 'home#showexperts', as: :experts_list_url
@@ -34,6 +38,7 @@ Rails.application.routes.draw do
   get '/expert' => 'cardverify#menu', as: :cardverify_menu_expert
 
   # Transfer functionality
+  put '/cards/transfer/:cardid' => 'transfer#outbound_card', as: :outbound_card
   post '/cards/transfer' => 'transfer#outbound', as: :cardtransfer_outbound
   get '/cards/transfer/reject/:id' => 'transfer#rejecttransfer', as: :cardtransfer_reject
   get '/cards/transfer/accept/:id' => 'transfer#acceptransfer', as: :cardtransfer_accept
@@ -42,7 +47,7 @@ Rails.application.routes.draw do
   # Admin page
   get '/admin' => 'adminpage#index', as: :adminpage_index
   get '/admin/generateinvite' => 'adminpage#generateinvite', as: :adminpage_generateinvite
-  get '/admin/users' => 'adminpage#userlist', as: :adminpage_userlist
+  get '/admin/userlist' => 'adminpage#userlist', as: :adminpage_userlist
   get '/admin/transfers' => 'adminpage#transferlist', as: :adminpage_transferlist
   get '/admin/usercards/:id' => 'adminpage#usercards', as: :adminpage_usercards
   get '/admin/graveyard' => 'adminpage#graveyard', as: :adminpage_graveyard

@@ -1,0 +1,84 @@
+<%= javascript_include_tag "modernizr.custom" %>
+<!-- <div class="container">	 -->
+<section class="image-grid">
+		<div class="image__cell is-collapsed">
+			<div class="image--basic">
+				  <a class="thumbnail" href="#expand-jump-0">
+				    <div class="row">
+				      <i class="glyphicon glyphicon-plus"></i>
+				    </div>
+				    <div class="row">
+				      <div class="h3">Add Card</div>
+				    </div>
+				  </a>
+				  <div class="arrow--up"></div>
+			</div>
+			<div class="image--expand">
+			  <a href="#close-jump-0" class="expand__close" id="#close-jump-0"></a>
+			  <%= render "card_new_form" %>
+			</div>
+		</div>
+		<!-- <ul id="og-grid" class="thumb og-grid"> -->
+		<% @cards_and_images.each_with_index do |(card, cardimages), index| %> 
+			
+				<%card_table= card %>
+				<%front = cardimages[0].present? ? cardimages[0].photo.url : nil %>
+				<%back = cardimages[1].present? ? cardimages[1].photo.url : nil %> 
+				<div class="image__cell is-collapsed">
+					<div class="image--basic">
+						<a href="#expand-jump-<%=index+1 %>" class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="<%= front %>" data-smallsrc= "<%= back %>" data-table="#{@partial_table}" data-title="Super cool card Display!" href="#">
+								<img id="expand-jump-<%=index+1 %>" class="img-responsive" src="<%= cardimages[0].photo.thumb.url %>"/>
+						</a>
+						 <div class="arrow--up"></div>
+					</div>
+			
+					<div class="image--expand">
+			      <a href="#close-jump-<%=index+1 %>" class="expand__close"></a>
+					    <ul class="nav nav-tabs">
+					      <li class="active"><a href="#card_detail-tab-<%=index %>" data-toggle="tab">Card Detail</a></li>
+					      <li><a href="#edit-tab-<%=index %>" data-toggle="tab">Edit Card</a></li>
+					      <li><a href="#transfer-tab-<%=index %>" data-toggle="tab">Transfer Ownership</a></li>
+					      <li><a href="#expert-tab-<%=index %>" data-toggle="tab">Expert Check</a></li>
+					      <li><a href="#history-tab-<%=index %>" data-toggle="tab">Card History</a></li>
+					    </ul>
+						    <!-- Tab panes -->
+					    <div class="tab-content">
+					      <div class="tab-pane active" id="card_detail-tab-<%=index %>">
+					      	<div class="col-xs-6 col-md-3 col-lg-3" >
+										<img class="img-responsive" src="<%= front %>"/>
+									</div>
+
+									<div class="col-xs-6 col-md-3 col-lg-3" >
+						      	<% if back.present? %>
+						      		<img class="img-responsive" src="<%= back %>"/>
+						      	<% else %>
+						      		<p> No Back Image </p>
+						      	<% end %>
+						      </div>
+
+							    <div class="col-xs-6 col-md-3 col-lg-3" >
+						      	<%= render partial: 'card_table', locals: { :card_table => card_table } %>
+						      </div>
+
+					      </div>
+					      <div class="tab-pane" id="edit-tab-<%=index %>" class="edit">
+					      	<%= render partial: 'card_edit_form', locals: { :card_table => card_table } %>
+					      </div>
+					      <div class="tab-pane" id="transfer-tab-<%=index %>">
+					      	<%= render partial: 'transfer_ownership_form', locals: { :card_table => card_table } %>
+					      </div>
+					      <div class="tab-pane" id="expert-tab-<%=index %>">
+					      	<%= render partial: 'expert_check_form', locals: { :card_table => card_table } %>
+					      </div>
+					      <div class="tab-pane" id="history-tab-<%=index %>">historyyyyydfdas</div>
+					    </div>
+			    </div>
+			  </div>
+		<% end %>
+	
+<!-- </div>/container -->
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- // <script src="javascripts/grid.js"></script> -->
+
+<%= javascript_include_tag 'expand', 'data-turbolinks-track' => true %>

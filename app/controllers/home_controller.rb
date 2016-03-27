@@ -8,7 +8,10 @@ class HomeController < ActionController::Base
   def new
   end
 
-  def contact_careers
+  def landing
+  end
+
+  def information
   end
   
   def showexperts

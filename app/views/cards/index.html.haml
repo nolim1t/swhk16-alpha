@@ -1,3 +1,5 @@
+=javascript_include_tag "modernizr.custom"
+
 -if @listincoming > 0
   .row
     .alert.alert-info.alert-dismissible
@@ -13,17 +15,10 @@
         %br
         %a{"data-dismiss" => "alert", :href => "#0"} Dismiss
 
-.row#static-pagination
-  .col-lg-6.col-md-6.col-sm-12.search
-    %form{method: 'get'}
-      %input{name: "search_text", size: "30", type: "text", value: @query, class: "form-search"}
-      %button.btn.btn-success.btn-purple{type: "submit"}
-        %i.glyphicon.glyphicon-search
-
   .col-lg-6.col-md-6.col-sm-12
     = will_paginate @cards
 
-.row.top-buffer
+.row.top-buffer#og-grid
   .col-lg-3.col-md-4.col-xs-6.thumb
     %a.thumbnail{:href => '/cards/new'}
       .row
@@ -38,3 +33,10 @@
 - if @cards.next_page
   #infinite-scrolling
     = will_paginate
+
+=javascript_include_tag "grid"
+:javascript
+  $(function() {
+    Grid.init();
+  });
+
