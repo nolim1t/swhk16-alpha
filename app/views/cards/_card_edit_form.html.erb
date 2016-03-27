@@ -8,7 +8,7 @@
   </ul>
 <% end %>
 
-<%= form_for card_table, :authenticity_token => true, url: edit_card_form_path(card_table.id), method: :get, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
+<%= form_for card_table, remote: true, :authenticity_token => true, url: edit_card_form_path(card_table.id), method: :get, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
 	
 	<%= f.hidden_field :id, value: card_table.id %>
 	<div class = "row" >
