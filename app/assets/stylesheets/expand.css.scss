@@ -5,7 +5,7 @@
 $pad: 12px; // enter desired padding between images
 $img-width: 250px; // enter max-width of images
 $min-per-row: 2; // enter minimum items per row
-$max-per-row: 8; // enter maximum items per row
+$max-per-row: 3; // enter maximum items per row
 $transition-time: .3s;
 
 @mixin mq($min-width,$max-width) {
@@ -99,7 +99,8 @@ html {
   }
   
   &.is-expanded .image--expand {
-    max-height: 500px;
+    max-height: 2000px;
+    min-height: 600px;
     margin-bottom: $pad;
   }
 
@@ -175,8 +176,8 @@ html {
   top: 10px;
   right: 20px;
   color: #454545;
-  font-size: 50px;
-  line-height: 50px;
+  font-size: 20px;
+  line-height: 20px;
   text-decoration: none;
   
   &:before {
@@ -184,16 +185,30 @@ html {
   }
   
   &:hover {
-    color: #fff;
+    color: #5f3d72;
   }
   
 }
+
+.spacebox30 {
+  height:30px;
+}
+
+.image--basic a.thumbnail:hover,
+.image--basic a.thumbnail:focus,
+.image--basic a.thumbnail:active {
+  border-color: #5f3d72;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+}
+
 
 .image--large {
   max-width: 100%;
   height: auto;
   display: block;
-  padding: 40px;
+  padding: 20px;
   margin: 0 auto;
   box-sizing: border-box;
 }

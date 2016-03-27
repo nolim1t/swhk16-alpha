@@ -8,7 +8,7 @@ Rails.application.config.assets.precompile += %w( landing1.png )
 Rails.application.config.assets.precompile += %w( landing2.png )
 Rails.application.config.assets.precompile += %w( landing3.png )
 Rails.application.config.assets.precompile += %w( landing4.png )
-Rails.application.config.assets.precompile += %w( intro-bg.png )
+Rails.application.config.assets.precompile += %w( addcardpicture.png )
 
 Rails.application.config.assets.precompile += %w( 1.jpg )
 Rails.application.config.assets.precompile += %w( grid.js )
