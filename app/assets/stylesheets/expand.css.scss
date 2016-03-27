@@ -1,0 +1,199 @@
+// experimental
+// the below SASS will calculate media queries based
+// on the info entered below
+
+$pad: 12px; // enter desired padding between images
+$img-width: 250px; // enter max-width of images
+$min-per-row: 2; // enter minimum items per row
+$max-per-row: 8; // enter maximum items per row
+$transition-time: .3s;
+
+@mixin mq($min-width,$max-width) {
+  
+  @if $min-width and $max-width {
+    @media screen and (min-width: $min-width) and (max-width: $max-width) {
+      @content;
+    }
+  }
+  @else if $min-width and not $max-width {
+    @media screen and (min-width: $min-width) {
+      @content;
+    }
+  }
+  @else if $max-width and not $min-width {
+    @media screen and (max-width: $max-width) {
+      @content;
+    }
+  }
+  
+}
+
+body {
+  margin: 0;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.image-grid {
+  width: 100%;
+  overflow: hidden;
+  padding: $pad $pad/2 0;
+}
+
+.image__cell {
+  float: left;
+  position: relative;
+  
+  // loop through instances of no. of items per row
+  @for $i from $max-per-row through $min-per-row {
+    // init vars
+    $max-width: null;
+    $min-width: null;
+    
+    // if not first index
+    @if $min-per-row != $i {
+      // this is essentially previous breakpoint max-width + 1
+      $min-width: ($img-width * ($i - 1)) + (($pad * $i) + 1);
+    } 
+    // if not last index
+    @if $max-per-row != $i {
+      // (max img width * img per row) + (padding value * instances of padding per row)
+      $max-width: ($img-width * $i) + ($pad * ($i + 1));
+    }
+    
+    @include mq($min-width, $max-width) {
+      
+      $i1: $i + 1; 
+      width: 100% / $i;
+      
+      // inner loop to populate nth-of-types
+      @for $j from 2 through $i1 {
+        
+        @if $i1 == $j {
+          &:nth-of-type(#{$i}n+#{$i1}) {
+            clear:left;
+          }
+        } 
+        @else {
+          &:nth-of-type(#{$i}n+#{$j}) .image--expand {
+            margin-left: -#{($j - 1) * 100%};
+          }
+        }
+        
+      }
+
+    
+    }
+  }
+  
+  &.is-collapsed .image--basic {
+    cursor: pointer;
+  }
+  
+  &.is-expanded .image--expand {
+    max-height: 500px;
+    margin-bottom: $pad;
+  }
+
+  &.is-collapsed .arrow--up {
+    height: $pad;
+    width: 100%;
+  }
+  
+  &.is-expanded .arrow--up {
+    border-bottom: $pad - $pad/4 solid #222;
+    border-left: $pad - $pad/4 solid transparent;
+    border-right: $pad - $pad/4 solid transparent;
+    height: 0;
+    width: 0;
+    padding-top: $pad/4;
+    margin: 0 auto 0;
+    opacity: 1;
+    transition: opacity $transition-time * .75;
+    transition-delay: $transition-time;
+  }
+}
+
+ .arrow--up {
+   opacity: 0;
+ }
+
+.image--basic {
+  padding: 0 $pad/2;
+}
+
+.basic__img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.image--expand {
+  position: relative;
+  left: -$pad/2;
+  padding: 0 $pad/2;
+  margin-bottom: $pad;
+  box-sizing: content-box;
+  overflow: hidden;
+  background: #ffffff;
+  max-height: 0;
+  transition: max-height $transition-time ease-in-out,margin-bottom $transition-time * .25 $transition-time * .75;
+  
+  @for $i from $max-per-row through $min-per-row {
+    
+    $max-width: null;
+    $min-width: null;
+    
+    @if $min-per-row != $i {
+      $min-width: $img-width * ($i - 1) + $pad * $i + 1;
+    } 
+    @if $max-per-row != $i {
+      $max-width: $img-width * $i + $pad * ($i + 1);
+    }
+    
+    @include mq($min-width, $max-width) {
+      width: $i * 100%;
+    }
+  }
+  
+  .is-collapsed & {
+    margin-bottom: 0;
+  }
+}
+
+.expand__close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #454545;
+  font-size: 50px;
+  line-height: 50px;
+  text-decoration: none;
+  
+  &:before {
+    content: '×';
+  }
+  
+  &:hover {
+    color: #fff;
+  }
+  
+}
+
+.image--large {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  padding: 40px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
