@@ -49,7 +49,7 @@ class CardsController < ApplicationController
 				end
 			else
 				respond_to do |format|
-					format.html { redirect_to  testing_display_path, notice: 'Sorry, the record doesn not exit' }
+					format.js { @success = false }
 				end
 			end
 		else
