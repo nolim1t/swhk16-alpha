@@ -189,6 +189,24 @@ html {
   
 }
 
+.tab-card{
+  height:700px;
+  border-color: #5f3d72;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+}
+@media (max-width: 767px) {
+.tab-card{
+  height:1200px;
+  border-color: #5f3d72;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.61);
+}
+
+
+
 .image--large {
   max-width: 100%;
   height: auto;
