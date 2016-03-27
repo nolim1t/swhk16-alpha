@@ -27,20 +27,21 @@ class CardsController < ApplicationController
   end
 
   def edit_card
-  	# raise card_params.inspect
+  	# raise params[:card][:id].inspect
   	if card_params[:id].present?
   		card = Card.find(card_params[:id])
-	  	if card.update_attributes(cardname: card_params[:cardname], cardgame: card_params[:cardgame], card_condition: card_params[:card_condition])
+	  	# if card.update_attributes(cardname: card_params[:cardname], cardgame: card_params[:cardgame], card_condition: card_params[:card_condition])
+			if card.update_attributes(card_params)
 				# Create Front image
-				if card_params[:front_image] then
-					Cardimage.create(create_date: Time.new(),photo: card_params[:front_image],image_type: "front",image_note: "Front image uploaded",card_id: card._id.to_s)
+				if params[:card][:front_image].present? then
+					Cardimage.create(create_date: Time.new(),photo: params[:card][:front_image],image_type: "front",image_note: "Front image uploaded",card_id: card._id.to_s)
 				end
 				# Create back image if exists
-				if card_params[:back_image] then
-					Cardimage.create(create_date: Time.new(),photo: card_params[:back_image],image_type: "back",image_note: "Back image uploaded",card_id: card._id.to_s)
+				if params[:card][:back_image].present? then
+					Cardimage.create(create_date: Time.new(),photo: params[:card][:back_image],image_type: "back",image_note: "Back image uploaded",card_id: card._id.to_s)
 				end
-				unless Cardcondition.where(cardid:card._id).last == card_params[:card_condition_select]
-					Cardcondition.create(condition: card_params[:card_condition_select].downcase)
+				unless Cardcondition.where(cardid:card._id).last == params[:card][:card_condition_select]
+					Cardcondition.create(condition: params[:card][:card_condition_select].downcase)
 				end
 		  	respond_to do |format|
 				  format.html { redirect_to testing_display_path, notice: 'the card is successfully updated.' }
@@ -462,6 +463,6 @@ class CardsController < ApplicationController
 
 private
 	def card_params
-		params.require(:card).permit(:id, :card_condition, :cardname, :cardgame, :front_image, :back_image, :card_condition_select)
+		params.require(:card).permit(:id, :card_condition, :cardname, :cardgame)
 	end
 end
