@@ -54,6 +54,10 @@ class CardsController < ApplicationController
 		end
   end
 
+  def transfer_card
+  	
+  end
+
 	def index
 		flash[:info] = nil # Remove any info stuff
 		@listincoming = Transfer.where(receiver_email: current_user.email).count # Check i
@@ -345,15 +349,6 @@ class CardsController < ApplicationController
 		end
 	end
 
-	def transfer
-
-	end
-
-	def transferred
-
-	end
-
-
   def set_card_form
     @card = Card.where(:id => params[:id].to_s)[0]
     @card_form = render_to_string(
@@ -467,6 +462,6 @@ class CardsController < ApplicationController
 
 private
 	def card_params
-		params.require(:card).permit(:id, :card_condition, :cardnage, :cardgame, :front_image, :back_image, :card_condition_select)
+		params.require(:card).permit(:id, :card_condition, :cardname, :cardgame, :front_image, :back_image, :card_condition_select)
 	end
 end
