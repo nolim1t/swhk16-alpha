@@ -1,6 +1,6 @@
 .row
   .col-lg-6.col-md-6
-    %h2{style:"color:#5f3d72"} Generate Invite code
+    %h2 Generate Invite code
 
 .row.top-buffer
 .col-lg-6.col-md-6
@@ -9,7 +9,7 @@
     .col-lg-6.col-md-6
       = f.hidden_field :invitecode, value: "yes"
       %br
-      = f.submit "Generate Invite code", class: "btn btn-primary btn-purple"
+      = f.submit "Generate Invite code", class: "btn btn-success btn-purple btn-lg btn-block"
       %br
       %br
   .col-lg-6.col-md-6
