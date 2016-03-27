@@ -5,35 +5,43 @@ class TransferController < ActionController::Base
   def outbound_card
     recepient_email =  transfer_params[:receiver_email]
     card = Card.find(transfer_params[:cardid])
-    # raise transfer_params.inspect
+# raise User.where(receiver_email: recepient_email).present?.inspect
     if User.where(receiver_email: recepient_email).present?
+
       if card[:transfer_status] != 1
         if transfer_params[:agree] == "1" then
           transfer_info_msg = TransferHelper::Outgoing.send(current_user.email, transfer_params[:receiver_email].to_s, transfer_params[:cardid].to_s, "card")
-          respond_to do |format|
-            format.html { redirect_to testing_display_path, notice: "Your card will be transferred" }
-            # format.js { @success = true } 
+          if transfer_info_msg[:error] != ""
+            flash[:error] = transfer_info_msg[:error]
+            self.goback
+          else
+            puts "Transfer request: Card ID=#{params[:transfer][:cardid]} / Name of card: #{params[:transfer][:cardname]}/ To: #{params[:transfer][:email]} / Agreed: #{params[:transfer][:agree]}"
+            @transfer_id = transfer_info_msg[:info]
+            respond_to do |format|
+              format.html { redirect_to testing_display_path, notice: "Your card will be transferred" }
+              format.js { @success = true } 
+            end
           end
         else
           respond_to do |format|
             format.html { redirect_to testing_display_path, notice: "Your card will be transferred"}
-            # format.js { @success = false }
+            format.js { @success = false }
           end
           # flash[:error] = "You must accept the terms before you can transfer this card"
         end
       else
         respond_to do |format|
           format.html { redirect_to testing_display_path, notice: "Your card will be transferred" }
-          # format.js { @success = false }
+          format.js { @success = false }
         end
       # flash[:error] = "Card is currently being transferred"
       end
     else
       respond_to do |format|
-        format.html { redirect_to testing_display_path, notice: "Your card will be transferred" }
-        # format.js { @success = false }
+        format.html { redirect_to testing_display_path }
+        format.js { @success = false }
       end
-      # flash[:error] = "Sorry We can't find this user in our database, do you want us to send him an invitation email? ... (to be refined)" 
+      flash[:error] = "Sorry We can't find this user in our database, do you want us to send him an invitation email? ... (to be refined)" 
     end
   end
 

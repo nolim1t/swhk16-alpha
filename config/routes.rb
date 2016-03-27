@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get '/expert' => 'cardverify#menu', as: :cardverify_menu_expert
 
   # Transfer functionality
-  get '/cards/transfer/:cardid' => 'transfer#outbound_card', as: :outbound_card
+  put '/cards/transfer/:cardid' => 'transfer#outbound_card', as: :outbound_card
   post '/cards/transfer' => 'transfer#outbound', as: :cardtransfer_outbound
   get '/cards/transfer/reject/:id' => 'transfer#rejecttransfer', as: :cardtransfer_reject
   get '/cards/transfer/accept/:id' => 'transfer#acceptransfer', as: :cardtransfer_accept
