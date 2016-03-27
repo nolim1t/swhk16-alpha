@@ -4,46 +4,19 @@
   </div>
 </div>
 <div class="row top-buffer">
-  <div class="col-xs-12 col-md-12 col-lg-12">
-    <p>Welcome to the admin console.<br>
-    You may do the following tasks here:
-    </p>
-    <div class="container col-xs-6">
+  <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+    <p>Welcome to the admin console.You may do the following tasks here:</p>
+    <div class="container col-xs-12 col-md-6 col-lg-6">
+    	<h4> Card Management </h4>
     	<a href="/cards/new" type="button" class="btn btn-success btn-purple btn-lg btn-block">Upload a card</a>
     	<a href="/vendor/verify" type="button" class="btn btn-success btn-purple btn-lg btn-block">Validate cards</a>
     	<a href="/admin/transfers" type="button" class="btn btn-success btn-purple btn-lg btn-block">View All card transfers</a>
     	<a href="/admin/graveyard" type="button" class="btn btn-success btn-purple btn-lg btn-block">View All deleted cards</a>
     </div>
-    <div class="container col-xs-6">
+    <div class="container col-xs-12 col-md-6 col-lg-6">
+    	<h4> User Management </h4>
     	<a href="/admin/users" type="button" class="btn btn-success btn-purple btn-lg btn-block">User list</a>
     	<a href="/admin/generateinvite" type="button" class="btn btn-success btn-purple btn-lg btn-block">Generate Invite Code</a>
     </div>
-
   </div>
 </div>
-
-<!--
-
-.row
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		%h2{style:"color:#5f3d72"} Admin tools
-
-.row.top-buffer
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		%p Welcome to the admin console.
-		%p You may do the following tasks here:
-.row.top-buffer
-	.col-lg-4.col-md-4.col-lg-offset-4.col-md-offset-4
-		%a.btn.btn-success.btn-purple(href="/admin/transfers") View ALL card transfers
-		%br
-		%br
-		%a.btn.btn-success.btn-purple(href="/cards/new") Upload a card
-		%a.btn.btn-success.btn-purple(href="/vendor/verify")Validate a card
-		%br
-		%br
-		%a.btn.btn-success.btn-purple(href="/admin/users")User Management
-		%a.btn.btn-success.btn-purple(href="/admin/generateinvite")Generate Invite code
-		%br
-		%br
-		%a.btn.btn-success.btn-purple(href="/admin/graveyard") All Deleted cards
-		-->
