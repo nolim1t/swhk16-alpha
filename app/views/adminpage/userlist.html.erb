@@ -1,66 +1,12 @@
 
 
 
-<div class="row">
+<div class="container">
   <div class="col-xs-12 text-center">
     <h3>Admin Tools</h3>
   </div>
 </div>
 
-
-<div class="row top-buffer"></div>
-
-<div class="col-xs-12">
-  <p>List of all users on the system. You can download a copy by going
-  <!-- <a href="#{adminpage_userlist_url}.csv?page=#{@page}">here</a>   -->
-  </p>
-  
-  <div class="spacebox80"> </div>
-
-<!--
-  <div class="col-xs-12 col-md-12 col-lg-12">
-	<% if @userlist.count > 0 %>
-	<%= will_paginate @userlist %>
-	<ul>
-		<% @userlist.each do |user| %>
-
-		<div class="panel panel-default panel-expert">
-		  <div class="panel-heading" role="tab" id="headingOne">
-		    <h3 class="panel-title"><%= user[:name]%></h3>		    
-		  </div>
-
-		  <div class="panel-body">
-		    <div class="col-xs-6">
-		     <h4>Account</h4>
-			  <p>
-			   Email: <%= user[:email]%> <br>
-			   Account Type: <%= user[:accounttype]%> <br>
-			   Verified: <%= user[:identity_verified]%>
-			  </p>
-		    </div>
-
-		    <div class="col-xs-6">
-		     <h4>Cards</h4>
-		     <p>
-		     
-
-		     Number of Cards Owned: <%= user[:cards].count%><br>
-		      Number of Cards Deleted: <%= user[:deleted_cards].count%><br>
-		      <a href="/admin/usercards/#{user[:id]}">Show Cards</a> 
-		     </p>
-		    </div>
-
-		  </div>
-		</div>
-	</ul>
-	<% end %>
-		
-	<% else %>
-	  <p>No user found</p>
-	<% end %>
-  </div>
--->
-</div>
 
 
 
