@@ -10,7 +10,7 @@
 				<div class="image__cell is-collapsed">
 					<div class="image--basic">
 						<a href="#expand-jump-<%=index %>" class="thumbnail" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot." data-largesrc="<%= front %>" data-smallsrc= "<%= back %>" data-table="#{@partial_table}" data-title="Super cool card Display!" href="#">
-								<img id="expand-jump-<%=index %>" class="img-responsive" src="<%= cardimages[0].photo.thumb.url %>"/>
+						  <img id="expand-jump-<%=index %>" class="img-responsive" src="<%= cardimages[0].photo.thumb.url %>"/>
 						</a>
 						 <div class="arrow--up"></div>
 					</div>
@@ -25,24 +25,22 @@
 					      <li><a href="#history-tab-<%=index %>" data-toggle="tab">Card History</a></li>
 					    </ul>
 						    <!-- Tab panes -->
-					    <div class="tab-content">
-					      <div class="tab-pane active" id="card_detail-tab-<%=index %>">
-					      	<div class="col-xs-6 col-md-3 col-lg-3" >
+					    <div class="tab-content tab-card">
+					      <div class="tab-pane active col-xs-12 col-md-12 col-lg-12" id="card_detail-tab-<%=index %>">
+					      	<div class="col-xs-6 col-md-4 col-lg-4" >
 										<img class="img-responsive" src="<%= front %>"/>
 									</div>
 
-									<div class="col-xs-6 col-md-3 col-lg-3" >
+									<div class="col-xs-6 col-md-4 col-lg-4" >
 						      	<% if back.present? %>
 						      		<img class="img-responsive" src="<%= back %>"/>
 						      	<% else %>
-						      		<p> No Back Image </p>
+						      		<p class="text-center"> No Back Image </p>
 						      	<% end %>
 						      </div>
-
-							    <div class="col-xs-6 col-md-3 col-lg-3" >
+							    <div class="col-xs-12 col-md-4 col-lg-4" >
 						      	<%= render partial: 'card_table', locals: { :card_table => card_table } %>
 						      </div>
-
 					      </div>
 					      <div class="tab-pane" id="edit-tab-<%=index %>" class="edit">
 					      	<%= render partial: 'card_edit_form', locals: { :card_table => card_table } %>
@@ -53,7 +51,9 @@
 					      <div class="tab-pane" id="expert-tab-<%=index %>">
 					      	<%= render partial: 'expert_check_form', locals: { :card_table => card_table } %>
 					      </div>
-					      <div class="tab-pane" id="history-tab-<%=index %>">historyyyyydfdas</div>
+					      <div class="tab-pane" id="history-tab-<%=index %>">
+					      	<p class="text-center"> Place Holder text for notes </p>
+					      	</div>
 					    </div>
 			    </div>
 			  </div>
