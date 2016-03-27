@@ -1,0 +1,49 @@
+<% if flash %>
+  <ul>
+    <% flash.each do |key, value| %>
+      <% if key == "error" %>
+        <li>#{key.capitalize}: #{value}</li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @new_card, :authenticity_token => true, url: new_card_form_path, method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
+
+	<div class = "row" >
+		<div class="col-lg-6">
+		  <p>Front of card (Optional: if already have back image):</p>
+		  <%= f.file_field :front_image, class: "btn btn-primary btn-purple btn-upload" %>
+		  <div class="top-buffer"></div>
+		  <p>Back of card (Optional: if already have front image):</p>
+
+		  <%= f.file_field :back_image, class: "btn btn-primary btn-purple btn-upload" %>
+
+		</div>
+		<div class="col-lg-6">
+			<p>Card Name:</p>
+
+		  <%= f.text_field :cardname, placeholder: "Name of Card", class: "form-control" %>
+		  <p>Card Game:</p>
+
+		  <%= f.text_field :cardgame, placeholder: "Name of Card", class: "form-control" %>
+
+	 		<p>Card Condition (based on the <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">TCG Guidelines</a>)</p>
+	    &nbsp;
+	    <% default_condition = "Other" %>
+
+	    <%= f.select :card_condition_select, ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"], class: "form-control", selected: default_condition %>
+
+	    <p>Card condition not listed or something else?:</p>
+	 
+	    <%= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control" %>
+
+
+		</div>	
+	</div>
+
+	<div class="row">
+  	<%= f.submit "Submit", class: "btn btn-primary btn-purple" %>
+  </div>
+<% end %>
+
