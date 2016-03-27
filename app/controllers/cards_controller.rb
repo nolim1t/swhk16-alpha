@@ -32,12 +32,16 @@ class CardsController < ApplicationController
   		card = Card.find(card_params[:id])
 	  	if card.update_attributes(cardname: card_params[:cardname], cardgame: card_params[:cardgame], card_condition: card_params[:card_condition])
 				# Create Front image
-				Cardimage.create(create_date: Time.new(),photo: card_params[:front_image],image_type: "front",image_note: "Front image uploaded",card_id: card._id.to_s)
+				if card_params[:front_image] then
+					Cardimage.create(create_date: Time.new(),photo: card_params[:front_image],image_type: "front",image_note: "Front image uploaded",card_id: card._id.to_s)
+				end
 				# Create back image if exists
 				if card_params[:back_image] then
 					Cardimage.create(create_date: Time.new(),photo: card_params[:back_image],image_type: "back",image_note: "Back image uploaded",card_id: card._id.to_s)
 				end
-				Cardcondition.create(condition: card_params[:card_condition_select].downcase)
+				unless Cardcondition.where(cardid:card._id).last == card_params[:card_condition_select]
+					Cardcondition.create(condition: card_params[:card_condition_select].downcase)
+				end
 		  	respond_to do |format|
 				  format.html { redirect_to testing_display_path, notice: 'the card is successfully updated.' }
 				  format.js { @success = true }
@@ -52,10 +56,6 @@ class CardsController < ApplicationController
 				format.html { redirect_to  testing_display_path, notice: 'Sorry, we could not find the card.' }
 			end
 		end
-  end
-
-  def transfer_card
-  	
   end
 
 	def index
