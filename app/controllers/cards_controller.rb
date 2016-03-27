@@ -5,6 +5,59 @@ class CardsController < ApplicationController
 	before_action :set_find_owner_form, only: [:detail]
 	layout 'application'
 
+	def testing_display
+    @cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])[0..6]
+    @card = @cards[0]
+  	@cardimages = []
+		@cards.each{|card|
+			puts card.photo.url
+			puts card.photo.thumb.url
+
+			cardimage_front = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc])[0]
+			cardimage_back = Cardimage.where(:card_id => card._id.to_s, :image_type => "back").order_by([:create_date, :desc])[0]
+			# cardimages_result.each{|cardimage_result|
+			# 	@cardimages << cardimage_result
+			# }
+			@cardimages << [cardimage_front, cardimage_back]
+		}
+
+		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
+
+
+  end
+
+  def edit_card
+  	# raise card_params.inspect
+  	if card_params[:id].present?
+  		card = Card.find(card_params[:id])
+	  	if card.update_attributes(cardname: card_params[:cardname], cardgame: card_params[:cardgame], card_condition: card_params[:card_condition])
+				# Create Front image
+				if card_params[:front_image] then
+					Cardimage.create(create_date: Time.new(),photo: card_params[:front_image],image_type: "front",image_note: "Front image uploaded",card_id: card._id.to_s)
+				end
+				# Create back image if exists
+				if card_params[:back_image] then
+					Cardimage.create(create_date: Time.new(),photo: card_params[:back_image],image_type: "back",image_note: "Back image uploaded",card_id: card._id.to_s)
+				end
+				unless Cardcondition.where(cardid:card._id).last == card_params[:card_condition_select]
+					Cardcondition.create(condition: card_params[:card_condition_select].downcase)
+				end
+		  	respond_to do |format|
+				  format.html { redirect_to testing_display_path, notice: 'the card is successfully updated.' }
+				  format.js { @success = true }
+				end
+			else
+				respond_to do |format|
+					format.js { @success = false }
+				end
+			end
+		else
+			respond_to do |format|
+				format.html { redirect_to  testing_display_path, notice: 'Sorry, we could not find the card.' }
+			end
+		end
+  end
+
 	def index
 		flash[:info] = nil # Remove any info stuff
 		@listincoming = Transfer.where(receiver_email: current_user.email).count # Check i
@@ -296,15 +349,6 @@ class CardsController < ApplicationController
 		end
 	end
 
-	def transfer
-
-	end
-
-	def transferred
-
-	end
-
-
   def set_card_form
     @card = Card.where(:id => params[:id].to_s)[0]
     @card_form = render_to_string(
@@ -414,5 +458,10 @@ class CardsController < ApplicationController
 				end
 			end
 		end
+	end
+
+private
+	def card_params
+		params.require(:card).permit(:id, :card_condition, :cardname, :cardgame, :front_image, :back_image, :card_condition_select)
 	end
 end

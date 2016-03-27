@@ -1,0 +1,7 @@
+<% if @success == true  %>
+	window.location.reload();
+<% else %>
+	$('#transfer-tab-<%=index %>').parent().html("<%= escape_javascript(render partial: 'cards/find_owrner_form', locals: { card_table: card_table }) %>")
+         .css({ backgroundColor: '#ffff99' });
+    // notify_msg('#add_scenario_select_btn', "<%=@case.errors.full_messages.join('\\n').html_safe %>", "error", "bottom right")
+<% end %>

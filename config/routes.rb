@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/cards/delete/:id' => 'cards#deletecard', as: :cards_delete_url
   get '/cards/undelete/:id' => 'cards#undeletecard', as: :cards_undelete_url
   get '/cards/graveyard' => 'cards#graveyard', as: :cards_graveyard_url
+  get '/cards/testing_display' => 'cards#testing_display', as: :testing_display
+  post '/cards/:id' => 'cards#edit_card', as: :edit_card
 
   # experts
   get '/experts' => 'home#showexperts', as: :experts_list_url
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
   get '/expert' => 'cardverify#menu', as: :cardverify_menu_expert
 
   # Transfer functionality
+  get '/cards/transfer/:cardid' => 'transfer#outbound_card', as: :outbound_card
   post '/cards/transfer' => 'transfer#outbound', as: :cardtransfer_outbound
   get '/cards/transfer/reject/:id' => 'transfer#rejecttransfer', as: :cardtransfer_reject
   get '/cards/transfer/accept/:id' => 'transfer#acceptransfer', as: :cardtransfer_accept

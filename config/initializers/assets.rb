@@ -10,6 +10,12 @@ Rails.application.config.assets.precompile += %w( landing3.png )
 Rails.application.config.assets.precompile += %w( landing4.png )
 Rails.application.config.assets.precompile += %w( intro-bg.png )
 
+Rails.application.config.assets.precompile += %w( 1.jpg )
+Rails.application.config.assets.precompile += %w( grid.js )
+Rails.application.config.assets.precompile += %w( modernizr.custom.js )
+Rails.application.config.assets.precompile += %w( component.css )
+Rails.application.config.assets.precompile += %w( expand.js )
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 
