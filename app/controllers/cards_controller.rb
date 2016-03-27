@@ -388,9 +388,9 @@ class CardsController < ApplicationController
 					update_card.update_attributes(validation_status: 1)
 				end
 			end
-			redirect_to cards_detail_url_path(@card)
+			redirect_to testing_display_path(@card)
 		else
-			redirect_to cards_detail_url_path(@card)
+			redirect_to testing_display_path(@card)
 		end
 	end
 
@@ -407,7 +407,7 @@ class CardsController < ApplicationController
 				card_id: params[:id].to_s
 			)
 		end
-		redirect_to cards_detail_url_path(card_to_cancel_validation)
+		redirect_to testing_display_path(card_to_cancel_validation)
 	end
 
 	def deletecard
