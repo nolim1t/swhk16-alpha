@@ -20,7 +20,7 @@ class CardsController < ApplicationController
 			@cardimages << [cardimage_front, cardimage_back]
 		}
 
-		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}
+		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}.paginate(:page => params[:page])
 
 		@new_card = Card.new
   end

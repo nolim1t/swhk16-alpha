@@ -1,5 +1,9 @@
 <%= javascript_include_tag "modernizr.custom" %>
-<!-- <div class="container">	 -->
+
+<div id="static-pagination" >
+	<%= will_paginate @cards_and_images %>
+</div>
+
 <section class="image-grid">
 		<div class="image__cell is-collapsed">
 			<div class="image--basic">
@@ -15,7 +19,8 @@
 			  <%= render "card_new_form" %>
 			</div>
 		</div>
-		<!-- <ul id="og-grid" class="thumb og-grid"> -->
+
+
 		<% @cards_and_images.each_with_index do |(card, cardimages), index| %> 
 			
 				<%card_table= card %>
@@ -79,9 +84,13 @@
 			    </div>
 			  </div>
 		<% end %>
-
 </section>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
 <!-- // <script src="javascripts/grid.js"></script> -->
 
 <%= javascript_include_tag 'expand', 'data-turbolinks-track' => true %>
