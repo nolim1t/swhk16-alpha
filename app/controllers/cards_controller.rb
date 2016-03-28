@@ -20,9 +20,14 @@ class CardsController < ApplicationController
 			@cardimages << [cardimage_front, cardimage_back]
 		}
 
-		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}.paginate(:page => params[:page])
+		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}.paginate(:page => params[:page],  :per_page => 5)
 
 		@new_card = Card.new
+		
+		respond_to do |format|
+		  format.html
+		  format.js
+		end
   end
 
   def new_card 
@@ -102,9 +107,9 @@ class CardsController < ApplicationController
 		# .order_by([:updated_at, :asc])
 		# If no cards, show new card url
 		# If no cards and shopkeeper, show vendor url
-		#if current_user.accounttype == "vendor" and @cards.length == 0 then
-		#	redirect_to "/vendor"
-		#end
+		if current_user.accounttype == "vendor" and @cards.length == 0 then
+			redirect_to "/vendor"
+		end
 		@cardimages = []
 		@cards.each{|card|
 			puts card.photo.url
