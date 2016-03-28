@@ -10,7 +10,7 @@
 
 <%= form_for card, remote: true, :authenticity_token => true, url: edit_card_form_path(card.id), method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
 
-	<%= f.hidden_field :id, value: card_table.id %>
+	<%= f.hidden_field :id, value: card.id %>
 	
 	<div class = "container-fluid" >
 	<div class="col-xs-12 col-md-6 col-lg-6">
@@ -38,7 +38,7 @@
 	</div>
 	<div class="col-xs-12 col-md-6 col-lg-6">
 	  <div class="col-xs-12">
-	    <%= f.text_field :cardname, placeholder: "Type Card Name", class: "form-control", value: card_table[:cardname] %>
+	    <%= f.text_field :cardname, placeholder: "Type Card Name", class: "form-control", value: card[:cardname] %>
 	  </div>
 	  <div class="spacebox30 col-xs-12"></div>
 	  <div class="col-xs-12">
@@ -79,57 +79,5 @@
 
 
 
-<!--
 
-<%= form_for card_table, remote: true, :authenticity_token => true, url: edit_card_form_path(card_table.id), method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
->>>>>>> cssdropdown
-	
-	<%= f.hidden_field :id, value: card.id %>
-	<div class = "row" >
-		<div class="col-lg-6">
-		  <p>Front of card (Optional: if already have back image):</p>
-		  <%= f.file_field :front_image, class: "btn btn-primary btn-purple btn-upload" %>
-		  <div class="top-buffer"></div>
-		  <p>Back of card (Optional: if already have front image):</p>
-
-		  <%= f.file_field :back_image, class: "btn btn-primary btn-purple btn-upload" %>
-
-		</div>
-		<div class="col-lg-6">
-			<p>Card Name:</p>
-
-		  <%= f.text_field :cardname, placeholder: "Name of Card", class: "form-control", value: card.cardname.to_s %>
-		  <p>Card Game:</p>
-
-		  <%= f.text_field :cardgame, placeholder: "Name of Card", class: "form-control", value: card.cardgame.to_s %>
-
-		  <% if card.card_condition != "damaged" %>
-		 		<p>Card Condition (based on the <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">TCG Guidelines</a>)</p>
-		    &nbsp;
-		    <% default_condition = "Other" %>
-		    <% if ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"].join.to_s.include? card.card_condition.to_s %>
-		      <% default_condition = card.card_condition %>
-		    <% end %>
-		    <%= f.select :card_condition_select, ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"], class: "form-control", selected: @default_condition %>
-
-		    <p>Card condition not listed or something else?:</p>
-		 
-		    <%= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control", value: card.card_condition.to_s %>
-		 
-		 
-		  <% else %>
-		    <p>As your card is already in the damaged state, you can't change the condition for this</p>
-		 
-		 
-		  <% end %>
-
-		</div>	
-	</div>
-
-	<div class="row">
-  	<%= f.submit "Submit", class: "btn btn-primary btn-purple" %>
-  </div>
-<% end %>
-
--->
 
