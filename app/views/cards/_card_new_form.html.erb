@@ -1,33 +1,25 @@
-<% if flash %>
-  <ul>
-    <% flash.each do |key, value| %>
-      <% if key == "error" %>
-        <li>#{key.capitalize}: #{value}</li>
-      <% end %>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_for @new_card, remote: true, :authenticity_token => true, url: new_card_form_path, method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
 	<%= f.hidden_field :owner_id, value: current_user[:id] %>
 	<div class = "container-fluid" >
 	  <div class="col-xs-12 col-md-6 col-lg-6">
-	  <div class="col-xs-12 text-center">
-	  	<h5>Front Picture</h5>
-	  </div>
-	   <div class="spacebox30 col-xs-12"></div>
-	  <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-		<input id="card_front_image" type="file" class="btn btn-primary btn-purple btn-upload btn-block">
-	  </div>
-	   <div class="spacebox30 col-xs-12"></div>
-	  <div class="col-xs-12 text-center">
-	  	<h5>Back Picture</h5>
-	  </div>
-	  <div class="spacebox30 col-xs-12"></div>
-	  <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-		<input id="card_back_image" type="file" class="btn btn-primary btn-purple btn-upload btn-block">
-	  </div>
-	  <div class="spacebox30 col-xs-12"></div>
+	  <div class="row">
+		  <div class="col-xs-12 col-md-3 col-lg-3 text-center">
+		  	<h5>Front Picture</h5>
+		  </div>
+		  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0">
+			<input id="card_front_image" type="file" class="btn btn-primary btn-purple btn-upload btn-block">
+		  </div>
+		</div>
+	    <div class="spacebox30 col-xs-12"></div>
+		<div class="row">
+		  <div class="col-xs-12 col-md-3 col-lg-3 text-center">
+		  	<h5>Back Picture</h5>
+		  </div>
+		  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0">
+			<input id="card_back_image" type="file" class="btn btn-primary btn-purple btn-upload btn-block">
+		  </div>
+		</div>
+	    <div class="spacebox30 col-xs-12"></div>
 	</div>
 	<div class="col-xs-12 col-md-6 col-lg-6">
 	  <div class="col-xs-12">
