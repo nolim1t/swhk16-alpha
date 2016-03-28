@@ -1,0 +1,61 @@
+<%= form_for :transfer, url: outbound_card_path(card_table.id), method: :put, html: { role: "form", class: "form-horizontal"} do |f| %>
+
+	<%= f.hidden_field :cardid, value: card_table[:id] %>
+
+	<div class = "container-fluid" >
+	<div class="col-xs-12 col-md-6 col-lg-6">
+	  <div class="col-xs-12  col-md-8 col-md-offset-2">
+		<label class="btn btn-primary btn-purple btn-upload  btn-block" for="my-file-selector">
+			<input id="my-file-selector" type="file" style="display:none;">
+			Choose Front Card Picture
+		</label>
+	  </div>
+	  <div class="spacebox30 col-xs-12"></div>
+	  <div class="col-xs-12 text-center">
+	  	<h5> No Front Card Picture chosen yet</h5>
+	  </div>
+	  <div class="spacebox30 col-xs-12"></div>
+	  <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+		<label class="btn btn-primary btn-purple btn-upload  btn-block" for="my-file-selector">
+			<input id="my-file-selector" type="file" style="display:none;">
+			Choose Back Card Picture
+		</label>
+	  </div>
+	  <div class="spacebox30 col-xs-12"></div>
+	  <div class="col-xs-12 text-center">
+	  	<h5> No Back Card Picture chosen yet</h5>
+	  </div>
+	</div>
+
+	<div class="col-xs-12 col-md-6 col-lg-6">
+	  <div class="col-xs-12">
+	    <%= f.text_field :receiver_email, placeholder: "E-mail of the recipient of the card", class: "form-control" %>
+	  </div>
+	</div>	
+	<div class="spacebox20 col-xs-12"></div>
+	<div class="col-xs-12">
+		<div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+		 		<%= f.submit "Submit", class: "btn btn-primary btn-purple btn-block btn-lg" %>
+		 	</div>
+	    </div>
+	</div>
+<% end %>
+
+
+
+
+
+
+<!--
+
+%h3 Transfer Card
+= form_for :transfer, url: outbound_card_path(card_table.id), method: :put, html: {role: "form", class: "form-horizontal"}do |f|
+  = f.hidden_field :cardid, value: card_table.id
+  = f.text_field :receiver_email, placeholder: "Recipient Email", class: "form-control"
+  %br
+  = f.check_box :agree
+  %b &nbsp; I accept that after hitting transfer, that the new card owner is the owner of the above e-mail address.
+  .top-buffer
+  = f.submit "Transfer", class: "btn btn-primary btn-purple"
+
+  -->
