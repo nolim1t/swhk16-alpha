@@ -8,9 +8,9 @@
   </ul>
 <% end %>
 
-<%= form_for card_table, remote: true, :authenticity_token => true, url: edit_card_form_path(card_table.id), method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
+<%= form_for card, remote: true, :authenticity_token => true, url: edit_card_form_path(card.id), method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
 	
-	<%= f.hidden_field :id, value: card_table.id %>
+	<%= f.hidden_field :id, value: card.id %>
 	<div class = "row" >
 		<div class="col-lg-6">
 		  <p>Front of card (Optional: if already have back image):</p>
@@ -24,23 +24,23 @@
 		<div class="col-lg-6">
 			<p>Card Name:</p>
 
-		  <%= f.text_field :cardname, placeholder: "Name of Card", class: "form-control", value: card_table.cardname.to_s %>
+		  <%= f.text_field :cardname, placeholder: "Name of Card", class: "form-control", value: card.cardname.to_s %>
 		  <p>Card Game:</p>
 
-		  <%= f.text_field :cardgame, placeholder: "Name of Card", class: "form-control", value: card_table.cardgame.to_s %>
+		  <%= f.text_field :cardgame, placeholder: "Name of Card", class: "form-control", value: card.cardgame.to_s %>
 
-		  <% if card_table.card_condition != "damaged" %>
+		  <% if card.card_condition != "damaged" %>
 		 		<p>Card Condition (based on the <a href="https://help.tcgplayer.com/hc/en-us/articles/201432037-Magic-the-Gathering-Card-Conditions" target="cardconditon">TCG Guidelines</a>)</p>
 		    &nbsp;
 		    <% default_condition = "Other" %>
-		    <% if ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"].join.to_s.include? card_table.card_condition.to_s %>
-		      <% default_condition = card_table.card_condition %>
+		    <% if ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"].join.to_s.include? card.card_condition.to_s %>
+		      <% default_condition = card.card_condition %>
 		    <% end %>
 		    <%= f.select :card_condition_select, ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"], class: "form-control", selected: @default_condition %>
 
 		    <p>Card condition not listed or something else?:</p>
 		 
-		    <%= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control", value: card_table.card_condition.to_s %>
+		    <%= f.text_field :card_condition, placeholder: "Type in the new card condition here", class: "form-control", value: card.card_condition.to_s %>
 		 
 		 
 		  <% else %>

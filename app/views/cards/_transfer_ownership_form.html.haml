@@ -1,6 +1,6 @@
 %h3 Transfer Card
-= form_for :transfer, url: outbound_card_path(card_table.id), method: :put, html: {role: "form", class: "form-horizontal"}do |f|
-  = f.hidden_field :cardid, value: card_table.id
+= form_for :transfer, url: outbound_card_path(card.id), method: :put, html: {role: "form", class: "form-horizontal"}do |f|
+  = f.hidden_field :cardid, value: card.id
   = f.text_field :receiver_email, placeholder: "Recipient Email", class: "form-control"
   %br
   = f.check_box :agree

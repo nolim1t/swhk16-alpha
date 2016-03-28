@@ -6,9 +6,9 @@ class CardsController < ApplicationController
 	layout 'application'
 
 	def testing_display
-    @cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
+    @owner_cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
   	@cardimages = []
-		@cards.each{|card|
+		@owner_cards.each{|card|
 			puts card.photo.url
 			puts card.photo.thumb.url
 
@@ -20,10 +20,10 @@ class CardsController < ApplicationController
 			@cardimages << [cardimage_front, cardimage_back]
 		}
 
-		@cards_and_images = @cards.zip(@cardimages).map{|c,i| [c,i]}.paginate(:page => params[:page],  :per_page => 5)
+		@cards = @owner_cards.paginate(:page => params[:page],  :per_page => 5)
 
 		@new_card = Card.new
-		
+
 		respond_to do |format|
 		  format.html
 		  format.js
