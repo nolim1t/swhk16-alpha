@@ -41,7 +41,7 @@ class CardsController < ApplicationController
 			if params[:card][:back_image].present? then
 				Cardimage.create(create_date: Time.new(),photo: params[:card][:back_image],image_type: "back",image_note: "Back image uploaded",card_id: @new_card._id.to_s)
 			end
-			unless Cardcondition.where(cardid: @new_card._id).last.condition == params[:card][:card_condition_select]
+			if params[:card][:card_condition_select].present? then
 				Cardcondition.create(condition: params[:card][:card_condition_select].downcase)
 			end
 	  	respond_to do |format|
@@ -68,7 +68,7 @@ class CardsController < ApplicationController
 				if params[:card][:back_image].present? then
 					Cardimage.create(create_date: Time.new(),photo: params[:card][:back_image],image_type: "back",image_note: "Back image uploaded",card_id: card._id.to_s)
 				end
-				unless Cardcondition.where(cardid:card._id).last == params[:card][:card_condition_select]
+				unless Cardcondition.where(cardid:card._id).last.condition == params[:card][:card_condition_select]
 					Cardcondition.create(condition: params[:card][:card_condition_select].downcase)
 				end
 		  	respond_to do |format|

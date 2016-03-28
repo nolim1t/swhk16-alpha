@@ -18,5 +18,8 @@
 //= require bind_with_delay
 //= require waypoints
 //= require pagination
+//= require bootstrap-filestyle.min.js
+//= require global
+
 
 
