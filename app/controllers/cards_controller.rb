@@ -20,7 +20,7 @@ class CardsController < ApplicationController
 			@cardimages << [cardimage_front, cardimage_back]
 		}
 
-		@cards = @owner_cards.paginate(:page => params[:page],  :per_page => 5)
+		@cards = @owner_cards.paginate(:page => params[:page],  :per_page => 9)
 
 		@new_card = Card.new
 
