@@ -11,7 +11,8 @@
 	</div>
 
 	<div class="image--expand">
-    <a href="#close-jump-<%=card_counter+1 %>" class="expand__close"></a>
+    <!-- <a href="#close-jump-<%=card_counter+1 %>" class="expand__close"></a> -->
+    	<div class="spacebox10 col-xs-12"></div>
 	    <ul class="nav nav-tabs">
 	      <li class="active"><a href="#card_detail-tab-<%=card_counter %>" data-toggle="tab">Card Detail</a></li>
 	      <li><a href="#edit-tab-<%=card_counter %>" data-toggle="tab">Edit Card</a></li>
@@ -23,11 +24,11 @@
 	    <div class="tab-content">
 	      <div class="tab-pane active" id="card_detail-tab-<%=card_counter %>">
 	      	<div class="spacebox30"></div>
-	      	<div class="col-xs-6 col-md-3 col-lg-4" >
+	      	<div class="col-xs-6 col-md-3 col-lg-3" >
 						<img class="img-responsive" src="<%= front %>"/>
 					</div>
 
-					<div class="col-xs-6 col-md-3 col-lg-4" >
+					<div class="col-xs-6 col-md-3 col-lg-3" >
 		      	<% if back.present? %>
 		      		<img class="img-responsive" src="<%= back %>"/>
 		      	<% else %>
@@ -35,7 +36,7 @@
 		      	<% end %>
 		      </div>
 
-			    <div class="col-xs-12 col-md-6 col-lg-4" >
+			    <div class="col-xs-12 col-md-6 col-lg-6" >
 		      	<%= render partial: 'card_table', locals: { :card => card } %>
 		      </div>
 		      <div class="spacebox30 col-xs-12"></div>

@@ -8,13 +8,16 @@
 		<div class="image__cell is-collapsed">
 			<div class="image--basic">
 				  <a class="thumbnail" href="#expand-jump-0">
-				      <!-- <img id="expand-jump-0 %>" class="img-responsive" src="addcardpicture.png"/> -->
 				      <%= image_tag("addcardpicture.png", :alt => "Add Button", class: "img-responsive image-button", id: "expand-jump-0") %>
 				  </a>
 				  <div class="arrow--up"></div>
 			</div>
 			<div class="image--expand">
-			  <a href="#close-jump-0" class="expand__close" id="#close-jump-0"></a>
+			  <!-- <a href="#close-jump-0" class="expand__close" id="#close-jump-0"></a> -->
+			  <div class="spacebox10 col-xs-12"></div>
+			  <ul class="nav nav-tabs">
+			    <li class="active"><a data-toggle="tab">Add New Card</a></li>	 
+			  </ul>
 			  <div class="spacebox30 col-xs-12"></div>
 			  <%= render "card_new_form" %>
 			</div>
@@ -24,7 +27,6 @@
 			<div class="page-delimiter first-page" data-page="<%= params[:page] || 1 %>"  ></div>
 			<%= render partial: "card", collection: @cards %>
 		</div>
-
 </section>
 
 <% if @cards.next_page %>
