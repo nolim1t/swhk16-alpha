@@ -5,7 +5,7 @@
 $pad: 12px; // enter desired padding between images
 $img-width: 250px; // enter max-width of images
 $min-per-row: 2; // enter minimum items per row
-$max-per-row: 3; // enter maximum items per row
+$max-per-row: 5; // enter maximum items per row
 $transition-time: .3s;
 
 @mixin mq($min-width,$max-width) {
@@ -110,12 +110,13 @@ html {
   }
   
   &.is-expanded .arrow--up {
-    border-bottom: $pad - $pad/4 solid #222;
+    border-bottom: $pad - $pad/4 solid #5f3d72;
     border-left: $pad - $pad/4 solid transparent;
     border-right: $pad - $pad/4 solid transparent;
     height: 0;
     width: 0;
     padding-top: $pad/4;
+    padding-bottom: $pad/4;
     margin: 0 auto 0;
     opacity: 1;
     transition: opacity $transition-time * .75;
@@ -175,7 +176,7 @@ html {
   position: absolute;
   top: 10px;
   right: 20px;
-  color: #454545;
+  color: #5f3d72;
   font-size: 20px;
   line-height: 20px;
   text-decoration: none;
@@ -190,6 +191,13 @@ html {
   
 }
 
+
+.spacebox10 {
+  height:10px;
+}
+.spacebox20 {
+  height:20px;
+}
 .spacebox30 {
   height:30px;
 }

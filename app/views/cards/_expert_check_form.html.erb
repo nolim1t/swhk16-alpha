@@ -1,0 +1,75 @@
+<div class = "container-fluid" >
+  <div class="col-xs-12 col-md-4 col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h5 class="panel-title text-center">Status</h5>
+      </div>
+      <div class="panel-body text-center">
+        <% case card_table[:validation_status] when 0 %><h5>No Expert Check</h5>
+          <% when 1 %><h5>Submitted for Expert Check</h5>
+          <% when 2 %><h5>Validated Expert Check</h5>
+          <% else %><h5>Status Unknown</h5>
+        <% end %>
+      </div>
+    </div>  
+    <div class="spacebox30 col-xs-12"></div>      
+  </div>   
+  <div class="col-xs-12 col-md-8 col-lg-9">
+    <p>
+      Having an Expert validation of your cards does not fully guarantee they are genuine, but adds a layer of trust and protection of your assets. <br><br>
+      When you Submit a card for Expert Check, you deactivate other possible actions such as transfer or editiing, until the Expert has checked the card or until you cancel the submission. <br><br>
+      Once a card is submitted, go see an Expert and give him your e-mail address, he should be able to see the cards you submitted and compare their digital identity with their physical one. <br><br>
+    </p>
+    <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+      <a href="/experts" type="button" target="_blank" class="btn btn-primary btn-purple btn-block">Expert List</a>
+    </div> 
+  </div>  
+  <div class="spacebox30 col-xs-12"></div> 
+  <% if card_table[:transfer_status] == 0 and (card_table[:owner_id] == current_user[:_id]) %>
+    <div class="col-xs-12">  
+      <% case card_table[:validation_status] when 0 %>
+          <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+            <a href="#{cards_validation_get_url_path(card_table)}" type="button" class="btn btn-primary btn-purple btn-block btn-lg">Submit</a>
+          </div>
+        <% when 1 %>
+          <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+            <a href="#{cards_validation_cancel_url_path(card_table)}" type="button" class="btn btn-primary btn-purple btn-block btn-lg">Cancel</a>
+          </div>
+        <% when 2 %>
+          <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+            <a href="#{cards_validation_get_url_path(card_table)}" type="button" class="btn btn-primary btn-purple btn-block btn-lg">Submit Again</a>
+          </div>
+        <% else %>
+      <% end %>
+    </div>
+  <% end %>
+</div>      
+
+
+
+
+
+
+<!--
+
+.card-info-table
+  %table
+    %tbody
+      %tr
+        %th #{I18n.t('cardstatus')}:
+        -case card_table.validation_status
+          -when 0
+            -if card_table.transfer_status != 1 and (card_table.owner_id.to_s == current_user._id.to_s) and (card_table.deleted_status == 0)
+              %td #{I18n.t('statusunchecked')} (<a href="#{cards_validation_get_url_path(card_table)}" data-confirm="This process will PREVENT you from making further changes to the card until it is validated. Are you sure?">Ask for Expert Check</a>)
+            -else
+              %td #{I18n.t('statusunchecked')}
+          -when 1
+            -if card_table.transfer_status != 1 and (card_table.owner_id.to_s == current_user._id.to_s) and (card_table.deleted_status == 0)
+              %td #{I18n.t('statuspending')} (<a href="#{cards_validation_cancel_url_path(card_table)}">Cancel Expert Validation</a>)
+            -else
+              %td #{I18n.t('statuspending')}
+          -when 2
+            %td #{I18n.t('statusverified')}
+          -else
+            %td #{I18n.t('statusunknown')}
+-->

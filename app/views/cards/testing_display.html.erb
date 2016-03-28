@@ -4,20 +4,22 @@
 		<div class="image__cell is-collapsed">
 			<div class="image--basic">
 				  <a class="thumbnail" href="#expand-jump-0">
-				      <!-- <img id="expand-jump-0 %>" class="img-responsive" src="addcardpicture.png"/> -->
 				      <%= image_tag("addcardpicture.png", :alt => "Add Button", class: "img-responsive image-button", id: "expand-jump-0") %>
 				  </a>
 				  <div class="arrow--up"></div>
 			</div>
 			<div class="image--expand">
-			  <a href="#close-jump-0" class="expand__close" id="#close-jump-0"></a>
+			  <!-- <a href="#close-jump-0" class="expand__close" id="#close-jump-0"></a> -->
+			  <div class="spacebox10 col-xs-12"></div>
+			  <ul class="nav nav-tabs">
+			    <li class="active"><a data-toggle="tab">Add New Card</a></li>	 
+			  </ul>
 			  <div class="spacebox30 col-xs-12"></div>
 			  <%= render "card_new_form" %>
 			</div>
 		</div>
 		<!-- <ul id="og-grid" class="thumb og-grid"> -->
-		<% @cards_and_images.each_with_index do |(card, cardimages), index| %> 
-			
+		<% @cards_and_images.each_with_index do |(card, cardimages), index| %> 		
 				<%card_table= card %>
 				<%front = cardimages[0].present? ? cardimages[0].photo.url : nil %>
 				<%back = cardimages[1].present? ? cardimages[1].photo.url : nil %> 
@@ -28,9 +30,9 @@
 						</a>
 						 <div class="arrow--up"></div>
 					</div>
-			
 					<div class="image--expand">
-			      <a href="#close-jump-<%=index+1 %>" class="expand__close"></a>
+			      		<!-- <a href="#close-jump-<%=index+1 %>" class="expand__close"></a> -->
+					    <div class="spacebox10 col-xs-12"></div>
 					    <ul class="nav nav-tabs">
 					      <li class="active"><a href="#card_detail-tab-<%=index %>" data-toggle="tab">Card Detail</a></li>
 					      <li><a href="#edit-tab-<%=index %>" data-toggle="tab">Edit Card</a></li>
@@ -42,11 +44,11 @@
 					    <div class="tab-content">
 					      <div class="tab-pane active" id="card_detail-tab-<%=index %>">
 					      	<div class="spacebox30"></div>
-					      	<div class="col-xs-6 col-md-3 col-lg-4" >
+					      	<div class="col-xs-6 col-md-3 col-lg-3" >
 										<img class="img-responsive" src="<%= front %>"/>
 									</div>
 
-									<div class="col-xs-6 col-md-3 col-lg-4" >
+									<div class="col-xs-6 col-md-3 col-lg-3" >
 						      	<% if back.present? %>
 						      		<img class="img-responsive" src="<%= back %>"/>
 						      	<% else %>
@@ -54,7 +56,7 @@
 						      	<% end %>
 						      </div>
 
-							    <div class="col-xs-12 col-md-6 col-lg-4" >
+							    <div class="col-xs-12 col-md-6 col-lg-6" >
 						      	<%= render partial: 'card_table', locals: { :card_table => card_table } %>
 						      </div>
 						      <div class="spacebox30 col-xs-12"></div>
