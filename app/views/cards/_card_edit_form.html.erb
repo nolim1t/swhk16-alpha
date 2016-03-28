@@ -1,3 +1,4 @@
+<!-- 
 <% if flash %>
   <ul>
     <% flash.each do |key, value| %>
@@ -7,6 +8,7 @@
     <% end %>
   </ul>
 <% end %>
+-->
 
 <%= form_for card, remote: true, :authenticity_token => true, url: edit_card_form_path(card.id), method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
 
