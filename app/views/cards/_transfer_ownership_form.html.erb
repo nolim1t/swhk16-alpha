@@ -3,41 +3,37 @@
 	<%= f.hidden_field :cardid, value: card[:id] %>
 
 	<div class = "container-fluid" >
-	<div class="col-xs-12 col-md-6 col-lg-6">
-	  <div class="col-xs-12  col-md-8 col-md-offset-2">
-		<label class="btn btn-primary btn-purple btn-upload  btn-block" for="my-file-selector">
-			<input id="my-file-selector" type="file" style="display:none;">
-			Choose Front Card Picture
-		</label>
-	  </div>
-	  <div class="spacebox30 col-xs-12"></div>
-	  <div class="col-xs-12 text-center">
-	  	<h5> No Front Card Picture chosen yet</h5>
-	  </div>
-	  <div class="spacebox30 col-xs-12"></div>
-	  <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-		<label class="btn btn-primary btn-purple btn-upload  btn-block" for="my-file-selector">
-			<input id="my-file-selector" type="file" style="display:none;">
-			Choose Back Card Picture
-		</label>
-	  </div>
-	  <div class="spacebox30 col-xs-12"></div>
-	  <div class="col-xs-12 text-center">
-	  	<h5> No Back Card Picture chosen yet</h5>
-	  </div>
-	</div>
+		<div class="col-xs-12 col-md-6 col-lg-6">
+		  <p>
+		  	You are about to Transfer Ownership of this card. This cannot be cancelled once done, so take some time to make sure everything is in order. <br><br>
+		  	You can not Transfer Ownership is the card is currently submitted for Expert Check. You need to cancel the Expert Check submission, or proceed with it to get back the ability to Transfer Ownership of the card. <br><br>
+		  	Usually, Transfer Ownership of the card once the physical card has been passed on.
+		  </p>
+		</div>
+		<div class="col-xs-12 col-md-6 col-lg-6">
+		  <div class="col-xs-12">
+		    <%= f.text_field :receiver_email, placeholder: "E-mail of the recipient of the card", class: "form-control" %>
+		    <div class="spacebox20 col-xs-12"></div>
+		   <div class="col-xs-12">
 
-	<div class="col-xs-12 col-md-6 col-lg-6">
-	  <div class="col-xs-12">
-	    <%= f.text_field :receiver_email, placeholder: "E-mail of the recipient of the card", class: "form-control" %>
-	  </div>
-	</div>	
-	<div class="spacebox20 col-xs-12"></div>
-	<div class="col-xs-12">
-		<div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-		 		<%= f.submit "Submit", class: "btn btn-primary btn-purple btn-block btn-lg" %>
-		 	</div>
-	    </div>
+		    <div class="checkbox">
+  			<label>
+    			<input type="checkbox" value="">
+   					 I acknowledge that after clicking the Submit button, the new Owner of the card will be the person using the above e-mail address.
+  			</label>
+			</div>
+			</div>
+
+
+		  </div>
+		</div>	
+		<div class="spacebox20 col-xs-12"></div>
+		<div class="spacebox20 col-xs-12"></div>
+		<div class="col-xs-12">
+			<div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+			 	<%= f.submit "Submit", class: "btn btn-primary btn-purple btn-block btn-lg" %>
+		    </div>
+		</div>
 	</div>
 <% end %>
 
