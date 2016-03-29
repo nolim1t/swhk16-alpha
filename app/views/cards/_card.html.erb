@@ -2,6 +2,8 @@
 <% cardimage_back = Cardimage.where(:card_id => card._id.to_s, :image_type => "back").order_by([:create_date, :desc])[0] %>
 <%front = cardimage_front.present? ? cardimage_front.photo.thumb.url : nil %>
 <%back = cardimage_back.present? ? cardimage_back.photo.thumb.url : nil %> 
+<%front_big = cardimage_front.present? ? cardimage_front.photo.url : nil %>
+<%back_big = cardimage_back.present? ? cardimage_back.photo.url : nil %> 
 
 <div class="image__cell is-collapsed">
 	<div class="image--basic">
@@ -37,9 +39,8 @@
 			
 			  <div class="spacebox30"></div>
 			  <div class="col-xs-12">
-			    <a href="" type="button" class="btn btn-success btn-purple btn-block">Full Picture</a>
+			    <a href="<%= front_big %>" type="button" target="_blank" class="btn btn-success btn-purple btn-block">Full Picture</a>
 			  </div>
-
 			</div>
 
 
@@ -50,9 +51,8 @@
 
 		        <div class="spacebox30"></div>
 			    <div class="col-xs-12">
-			      <a href="" type="button" class="btn btn-success btn-purple btn-block">Full Picture</a>
+			      <a href="<%= back_big %>" type="button" target="_blank" class="btn btn-success btn-purple btn-block">Full Picture</a>
 			    </div>
-
 		      <% else %>
 		      	<p> No Back Image </p>
 		      <% end %>
