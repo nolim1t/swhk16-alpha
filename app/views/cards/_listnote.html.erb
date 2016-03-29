@@ -1,15 +1,19 @@
 <p>
   <% if @cardnote.length == 0 %>
-  <td> 
+
   		Stuff if no note
-  	</td>
+
 
   <% else %>
+  <table>
   	<% @cardnote.each do |cardnote| %>
+  	<tr>
   	<td> 
   		Stuff
   	</td>
+  	</tr>
   	<% end %>
+  </table>
 
 
 

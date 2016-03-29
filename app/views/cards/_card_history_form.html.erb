@@ -1,5 +1,4 @@
 <%= form_for :stolenorlostordestroyed_status, method: :put, html: { role: "form", class: "form-horizontal"} do |f| %>
-
 	<%= f.hidden_field :id, value: card.id %>
 	
 <div class = "container-fluid" >
@@ -11,9 +10,8 @@
 	    <div class="spacebox30 col-xs-12"></div>
 	    <div class="col-xs-12 text-center">
 	    	<div class="notesblock">
-	    	
-	    	</p>
-	    </div>
+	    		<!-- render the notes here as a list -->
+	    	</div>
 	    </div>
 
 	</div>
@@ -25,13 +23,15 @@
 	    		To revert it, please contact Support.</p>
 		  </div>
 		  <div class="spacebox30 col-xs-12"></div>
-	  <div class="col-xs-12">	  
+	  <div class="col-xs-12"> 
 			<select class="form-control" name="loststolendestroyed-select">
 			<option value="0" selected>No problem</option>
 			<option value="1">Report as Lost</option>
 			<option value="2">Report as Stolen</option>
 			<option value="3">Report as Destroyed</option>
 			</select>
+
+
 			<div class="spacebox30 col-xs-12"></div>
 			<div class="col-xs-12">
 			    <div class="col-xs-8 col-xs-offset-2 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
@@ -48,6 +48,5 @@
 	  <div class="spacebox30 col-xs-12"></div>
 	</div>	
 	<div class="spacebox20 col-xs-12"></div>
-
 </div>
 <% end %>

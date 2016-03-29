@@ -32,12 +32,27 @@
 	    <div class="tab-content">
 	      <div class="tab-pane active" id="card_detail-tab-<%=card.id %>">
 	      	<div class="spacebox30"></div>
-	      	<div class="col-xs-6 col-md-3 col-lg-3" >
-			  <img class="img-responsive" src="<%= front %>"/>
+	      	<div class="col-xs-6 col-md-3 col-lg-3 text-center" >
+			  <img class="img-responsive center-block" src="<%= front %>"/>
+			
+			  <div class="spacebox30"></div>
+			  <div class="col-xs-12">
+			    <a href="" type="button" class="btn btn-success btn-purple btn-block">Show original Picture</a>
+			  </div>
+
 			</div>
+
+
+
 			<div class="col-xs-6 col-md-3 col-lg-3" >
 		      <% if back.present? %>
-		      	<img class="img-responsive" src="<%= back %>"/>
+		      	<img class="img-responsive center-block" src="<%= back %>"/>
+
+		        <div class="spacebox30"></div>
+			    <div class="col-xs-12">
+			      <a href="" type="button" class="btn btn-success btn-purple btn-block">Show original Picture</a>
+			    </div>
+
 		      <% else %>
 		      	<p> No Back Image </p>
 		      <% end %>
