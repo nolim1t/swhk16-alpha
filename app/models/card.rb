@@ -12,8 +12,7 @@ class Card
   field :card_condition, type: String # Should be either 'mint', 'slightly worn', 'damaged'
   field :validation_status, type: Integer, default: 0 # 0 = Unverified, 1 = Pending, 2 = Validated
   field :transfer_status, type: Integer, default: 0 # 0 = not being transferred, 1 = Pending (lets filter by this)
-  field :stolenorlost_status, type: Integer, default: 0 # 0 = not stolen or lost, 1=stolen or lost
-  field :destroyed_status, type: Integer, default: 0 # 0 = not destroyed, 1 = destroyed
+  field :stolenorlostordestroyed_status, type: Integer, default: 0 # 0 = normal, 1 =lost, 2= stolen , 3=destroyed
   field :owner_id, type: String
 
   field :unique_identifier, type: String, default: -> {s = "VA-" ; 7.times{|i| s+='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[rand(26), 1]} ; s = s + "-#{(Card.count + 1).to_s}"; s}
