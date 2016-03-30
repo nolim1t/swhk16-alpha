@@ -1,0 +1,32 @@
+<% card_owner_info = User.find(card.owner_id) %>
+<div class="card-info-table">
+  <table>
+    <tbody>
+      <tr>
+        <th class="purpletext">Unique ID</th>
+        <td> <%= card[:id]  %></td>
+      </tr>
+      <tr>
+        <th class="purpletext">Name</th>
+        <td> <%= card[:cardname] %></td>
+      </tr>
+      <tr>
+        <th class="purpletext">Game</th>
+        <td> <%= card[:cardgame] %></td>
+      </tr>
+      <tr>
+        <th class="purpletext">Condition</th>
+        <td> <%= card[:card_condition]  %></td>
+      </tr>
+      
+      <tr>
+        <th class="purpletext">Creation Date</th>
+        <td><%= card[:create_date] %></td>
+      </tr>
+      <tr>
+        <th class="purpletext">Owner</th>
+        <td> <%= card_owner_info.name %>  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

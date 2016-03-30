@@ -2,6 +2,8 @@
 <% cardimage_back = Cardimage.where(:card_id => card._id.to_s, :image_type => "back").order_by([:create_date, :desc])[0] %>
 <%front = cardimage_front.present? ? cardimage_front.photo.thumb.url : nil %>
 <%back = cardimage_back.present? ? cardimage_back.photo.thumb.url : nil %> 
+<%front_big = cardimage_front.present? ? cardimage_front.photo.url : nil %>
+<%back_big = cardimage_back.present? ? cardimage_back.photo.url : nil %> 
 
 <div class="image__cell is-collapsed">
 	<div class="image--basic">
@@ -16,8 +18,15 @@
     	<div class="spacebox10 col-xs-12"></div>
 	    <ul class="nav nav-tabs">
 	      <li class="active"><a href="#card_detail-tab-<%=card.id %>" data-toggle="tab">Card Detail</a></li>
-	      <li><a href="#edit-tab-<%=card.id %>" data-toggle="tab">Edit Card</a></li>
-	      <li><a href="#transfer-tab-<%=card.id %>" data-toggle="tab">Transfer Ownership</a></li>
+	      
+	      <% if card[:validation_status] == 1 %>
+	        <li class="disabled"><a href="#expand-jump-<%=card.id %>">Edit Card</a></li>
+	        <li class="disabled"><a href="#expand-jump-<%=card.id %>">Transfer Ownership</a></li>
+	      <% else %>
+	        <li><a href="#edit-tab-<%=card.id %>" data-toggle="tab">Edit Card</a></li>
+	        <li><a href="#transfer-tab-<%=card.id %>" data-toggle="tab">Transfer Ownership</a></li>
+	      <% end %>
+
 	      <li><a href="#expert-tab-<%=card.id %>" data-toggle="tab">Expert Check</a></li>
 	      <li><a href="#history-tab-<%=card.id %>" data-toggle="tab">Card History</a></li>
 	    </ul>
@@ -25,25 +34,35 @@
 	    <div class="tab-content">
 	      <div class="tab-pane active" id="card_detail-tab-<%=card.id %>">
 	      	<div class="spacebox30"></div>
-	      	<div class="col-xs-6 col-md-3 col-lg-3" >
-						<img class="img-responsive" src="<%= front %>"/>
-					</div>
+	      	<div class="col-xs-6 col-md-3 col-lg-3 text-center" >
+			  <img class="img-responsive center-block" src="<%= front %>"/>
+			
+			  <div class="spacebox30"></div>
+			  <div class="col-xs-12">
+			    <a href="<%= front_big %>" type="button" target="_blank" class="btn btn-success btn-purple btn-block">Full Picture</a>
+			  </div>
+			</div>
 
-					<div class="col-xs-6 col-md-3 col-lg-3" >
-		      	<% if back.present? %>
-		      		<img class="img-responsive" src="<%= back %>"/>
-		      	<% else %>
-		      		<p> No Back Image </p>
-		      	<% end %>
-		      </div>
 
-			    <div class="col-xs-12 col-md-6 col-lg-6" >
-		      	<%= render partial: 'card_table', locals: { :card => card } %>
-		      </div>
-		      <div class="spacebox30 col-xs-12"></div>
-	
 
+			<div class="col-xs-6 col-md-3 col-lg-3" >
+		      <% if back.present? %>
+		      	<img class="img-responsive center-block" src="<%= back %>"/>
+
+		        <div class="spacebox30"></div>
+			    <div class="col-xs-12">
+			      <a href="<%= back_big %>" type="button" target="_blank" class="btn btn-success btn-purple btn-block">Full Picture</a>
+			    </div>
+		      <% else %>
+		      	<p> No Back Image </p>
+		      <% end %>
+		    </div>
+			<div class="col-xs-12 col-md-6 col-lg-6" >
+		      <%= render partial: 'card_table', locals: { :card => card } %>
+		    </div>
+		    <div class="spacebox30 col-xs-12"></div>
 	      </div>
+
 	      <div class="tab-pane" id="edit-tab-<%=card.id %>">
 	      	<div class="spacebox30"></div>
 	      	<%= render partial: 'card_edit_form', locals: { :card => card } %>
@@ -56,8 +75,10 @@
 	      	<div class="spacebox30"></div>
 	      	<%= render partial: 'expert_check_form', locals: { :card => card } %>
 	      </div>
-	      <div class="spacebox30"></div>
-	      <div class="tab-pane" id="history-tab-<%=card.id %>">Placeholdertext for notes</div>
+	      <div class="tab-pane" id="history-tab-<%=card.id %>">
+	      	<div class="spacebox30"></div>
+	      	<%= render partial: 'card_history_form', locals: { :card => card } %>
+	      </div>
 	    </div>
   </div>
 </div>

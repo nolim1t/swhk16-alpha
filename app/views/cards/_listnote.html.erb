@@ -1,3 +1,34 @@
+<p>
+  <% if @cardnote.length == 0 %>
+
+  		Stuff if no note
+
+
+  <% else %>
+  <table>
+  	<% @cardnote.each do |cardnote| %>
+  	<tr>
+  	<td> 
+  		Stuff
+  	</td>
+  	</tr>
+  	<% end %>
+  </table>
+
+
+
+  <% end %>
+
+
+</p>
+
+
+
+
+
+<!--
+
+
 %p
 -if @cardnote.length == 0 then
 	#{I18n.t('nonotesfound')}
@@ -11,3 +42,5 @@
 			%tr
 				%td= "#{Time.at(cardnote.create_date).in_time_zone(@timezone).strftime "%a, %e %b %Y %H:%M:%S %z"}"
 				%td= "#{cardnote.text}"
+
+-->
