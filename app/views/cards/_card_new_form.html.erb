@@ -7,7 +7,7 @@
 		  	<h5>Front Picture</h5>
 		  </div>
 		  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0">
-			<input id="card_front_image" type="file" class="btn btn-primary btn-purple btn-upload btn-block">
+				<%= f.file_field :front_image, class: "btn btn-primary btn-purple btn-upload btn-block" %>
 		  </div>
 		</div>
 	    <div class="spacebox30 col-xs-12"></div>
@@ -16,7 +16,7 @@
 		  	<h5>Back Picture</h5>
 		  </div>
 		  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0">
-			<input id="card_back_image" type="file" class="btn btn-primary btn-purple btn-upload btn-block">
+				<%= f.file_field :back_image, class: "btn btn-primary btn-purple btn-upload btn-block" %>
 		  </div>
 		</div>
 	    <div class="spacebox30 col-xs-12"></div>

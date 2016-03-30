@@ -68,8 +68,8 @@ class CardsController < ApplicationController
 				if params[:card][:back_image].present? then
 					Cardimage.create(create_date: Time.new(),photo: params[:card][:back_image],image_type: "back",image_note: "Back image uploaded",card_id: card._id.to_s)
 				end
-				unless Cardcondition.where(cardid:card._id).last.condition == params[:card][:card_condition_select]
-					Cardcondition.create(condition: params[:card][:card_condition_select].downcase)
+				unless Cardcondition.where(cardid:card._id).present? && Cardcondition.where(cardid:card._id).last.condition == params[:card][:card_condition_select]
+					Cardcondition.create(condition: params[:card][:card_condition_select].present? ? params[:card][:card_condition_select].downcase : "" )
 				end
 		  	respond_to do |format|
 				  format.html { redirect_to testing_display_path, notice: 'the card is successfully updated.' }
