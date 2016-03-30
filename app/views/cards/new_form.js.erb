@@ -1,0 +1,7 @@
+<% if @success == true  %>
+	window.location.reload();
+<% else %>
+	$('#close-jump-0').parent().html("<%= escape_javascript(render partial: 'card_new_form'}) %>")
+         .css({ backgroundColor: '#ffff99' });
+    // notify_msg('#add_scenario_select_btn', "<%=@case.errors.full_messages.join('\\n').html_safe %>", "error", "bottom right")
+<% end %>
