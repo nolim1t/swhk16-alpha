@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   #general pages
   get '/contact_careers' => 'home#contact_careers', as: :contact_careers
+  get '/landing' => 'home#landing', as: :landing
 
   # Real Pages
   get '/cards/index' => 'cards#index', as: :cards_index
