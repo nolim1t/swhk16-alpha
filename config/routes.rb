@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", :edit => "settings" }, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   # Default to cards index
-  root to: "cards#index"
+  root to: "home#landing"
 
   #general pages
   get '/contact_careers' => 'home#contact_careers', as: :contact_careers
