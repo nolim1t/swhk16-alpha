@@ -9,9 +9,10 @@ class Card
   field :cardcollection, type: String
   field :create_date, type: DateTime, default: ->{ Time.new }
   field :update_date, type: DateTime, default: ->{ Time.new }
-  field :card_condition, type: String, default: 'mint' # Should be either 'mint', 'slightly worn', 'damaged'
+  field :card_condition, type: String # Should be either 'mint', 'slightly worn', 'damaged'
   field :validation_status, type: Integer, default: 0 # 0 = Unverified, 1 = Pending, 2 = Validated
   field :transfer_status, type: Integer, default: 0 # 0 = not being transferred, 1 = Pending (lets filter by this)
+  field :stolenorlostordestroyed_status, type: Integer, default: 0 # 0 = normal, 1 =lost, 2= stolen , 3=destroyed
   field :owner_id, type: String
 
   field :unique_identifier, type: String, default: -> {s = "VA-" ; 7.times{|i| s+='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[rand(26), 1]} ; s = s + "-#{(Card.count + 1).to_s}"; s}

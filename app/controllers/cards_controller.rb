@@ -5,6 +5,88 @@ class CardsController < ApplicationController
 	before_action :set_find_owner_form, only: [:detail]
 	layout 'application'
 
+	def testing_display
+    @owner_cards = Card.where(:owner_id => current_user.id.to_s, :transfer_status => 0, :deleted_status => 0).order_by([:create_date, :desc])
+  	@cardimages = []
+		@owner_cards.each{|card|
+			puts card.photo.url
+			puts card.photo.thumb.url
+
+			cardimage_front = Cardimage.where(:card_id => card._id.to_s, :image_type => "front").order_by([:create_date, :desc])[0]
+			cardimage_back = Cardimage.where(:card_id => card._id.to_s, :image_type => "back").order_by([:create_date, :desc])[0]
+			# cardimages_result.each{|cardimage_result|
+			# 	@cardimages << cardimage_result
+			# }
+			@cardimages << [cardimage_front, cardimage_back]
+		}
+
+		@cards = @owner_cards.paginate(:page => params[:page],  :per_page => 9)
+
+		@new_card = Card.new
+
+		respond_to do |format|
+		  format.html
+		  format.js
+		end
+  end
+
+  def new_card 
+  	@new_card = Card.new
+		if @new_card.update_attributes(card_params)
+			# Create Front image
+			if params[:card][:front_image].present? then
+				Cardimage.create(create_date: Time.new(), photo: params[:card][:front_image], image_type: "front",image_note: "Front image uploaded",card_id: @new_card._id.to_s)
+			end
+			# Create back image if exists
+			if params[:card][:back_image].present? then
+				Cardimage.create(create_date: Time.new(),photo: params[:card][:back_image],image_type: "back",image_note: "Back image uploaded",card_id: @new_card._id.to_s)
+			end
+			if params[:card][:card_condition_select].present? then
+				Cardcondition.create(condition: params[:card][:card_condition_select].downcase)
+			end
+	  	respond_to do |format|
+			  format.html { redirect_to testing_display_path, notice: 'the card is successfully updated.' }
+			  format.js { @success = true }
+			end
+		else
+			respond_to do |format|
+				format.html { redirect_to  testing_display_path, notice: 'the card is not successfully updated.' }
+				format.js { @success = false }
+			end
+		end
+  end
+
+  def edit_card
+  	if card_params[:id].present?
+  		card = Card.find(card_params[:id])
+			if card.update_attributes(card_params)
+				# Create Front image
+				if params[:card][:front_image].present? then
+					Cardimage.create(create_date: Time.new(),photo: params[:card][:front_image],image_type: "front",image_note: "Front image uploaded",card_id: card._id.to_s)
+				end
+				# Create back image if exists
+				if params[:card][:back_image].present? then
+					Cardimage.create(create_date: Time.new(),photo: params[:card][:back_image],image_type: "back",image_note: "Back image uploaded",card_id: card._id.to_s)
+				end
+				unless Cardcondition.where(cardid:card._id).last.condition == params[:card][:card_condition_select]
+					Cardcondition.create(condition: params[:card][:card_condition_select].downcase)
+				end
+		  	respond_to do |format|
+				  format.html { redirect_to testing_display_path, notice: 'the card is successfully updated.' }
+				  format.js { @success = true }
+				end
+			else
+				respond_to do |format|
+					format.js { @success = false }
+				end
+			end
+		else
+			respond_to do |format|
+				format.html { redirect_to  testing_display_path, notice: 'Sorry, we could not find the card.' }
+			end
+		end
+  end
+
 	def index
 		flash[:info] = nil # Remove any info stuff
 		@listincoming = Transfer.where(receiver_email: current_user.email).count # Check i
@@ -14,9 +96,9 @@ class CardsController < ApplicationController
 		# .order_by([:updated_at, :asc])
 		# If no cards, show new card url
 		# If no cards and shopkeeper, show vendor url
-		#if current_user.accounttype == "vendor" and @cards.length == 0 then
-		#	redirect_to "/vendor"
-		#end
+		if current_user.accounttype == "vendor" and @cards.length == 0 then
+			redirect_to "/vendor"
+		end
 		@cardimages = []
 		@cards.each{|card|
 			puts card.photo.url
@@ -296,15 +378,6 @@ class CardsController < ApplicationController
 		end
 	end
 
-	def transfer
-
-	end
-
-	def transferred
-
-	end
-
-
   def set_card_form
     @card = Card.where(:id => params[:id].to_s)[0]
     @card_form = render_to_string(
@@ -343,9 +416,9 @@ class CardsController < ApplicationController
 					update_card.update_attributes(validation_status: 1)
 				end
 			end
-			redirect_to cards_detail_url_path(@card)
+			redirect_to testing_display_path(@card)
 		else
-			redirect_to cards_detail_url_path(@card)
+			redirect_to testing_display_path(@card)
 		end
 	end
 
@@ -362,7 +435,7 @@ class CardsController < ApplicationController
 				card_id: params[:id].to_s
 			)
 		end
-		redirect_to cards_detail_url_path(card_to_cancel_validation)
+		redirect_to testing_display_path(card_to_cancel_validation)
 	end
 
 	def deletecard
@@ -414,5 +487,10 @@ class CardsController < ApplicationController
 				end
 			end
 		end
+	end
+
+private
+	def card_params
+		params.require(:card).permit(:id, :card_condition, :cardname, :cardgame, :owner_id)
 	end
 end

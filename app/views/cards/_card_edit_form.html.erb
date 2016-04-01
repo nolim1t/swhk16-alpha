@@ -1,0 +1,83 @@
+<%= form_for card, remote: true, :authenticity_token => true, url: edit_card_form_path(card.id), method: :put, html: { role: "form", class: "form-horizontal add_picture_form"} do |f| %>
+
+	<%= f.hidden_field :id, value: card.id %>
+	
+	<div class = "container-fluid" >
+
+	<div class="col-xs-12 col-md-6 col-lg-6 purpletext">
+		<div class="row">
+		  <div class="col-xs-12 col-md-3 col-lg-3 text-center">
+		  	<h5>Front Picture</h5>
+		  </div>
+		  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0">
+			<input id="card_front_image" type="file" class="btn btn-primary btn-purple btn-upload btn-block">
+		  </div>
+		</div>
+	    <div class="spacebox30 col-xs-12"></div>
+		<div class="row">
+		  <div class="col-xs-12 col-md-3 col-lg-3 text-center">
+		  	<h5>Back Picture</h5>
+		  </div>
+		  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0">
+			<input id="card_back_image" type="file" class="btn btn-primary btn-purple btn-upload btn-block">
+		  </div>
+		</div>
+	    <div class="spacebox30 col-xs-12"></div>
+	    <div class="row">
+		  <div class="col-xs-12 col-md-3 col-lg-3 text-center">
+		  	<h5>Enter a note</h5>
+		  </div>
+		  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0">
+			<%= f.text_field :cardname, placeholder: "Type a Note", class: "form-control", value: card[:cardname] %>
+		  </div>
+		</div>
+		<div class="spacebox30 col-xs-12"></div>
+	</div>
+
+	<div class="col-xs-12 col-md-6 col-lg-6">
+	  <div class="col-xs-12">
+	    <%= f.text_field :cardname, placeholder: "Type Card Name", class: "form-control", value: card[:cardname] %>
+	  </div>
+	  <div class="spacebox30 col-xs-12"></div>
+	  <div class="col-xs-12">
+	    <%= f.text_field :cardgame, placeholder: "Type Card Game", class: "form-control" %>
+	  </div>
+	  <div class="spacebox30 col-xs-12"></div>
+	  <div class="col-xs-12">
+	    <%= f.text_field :card_condition, placeholder: "Type Card Condition", class: "form-control" %>
+	  </div>
+	  <div class="spacebox30 col-xs-12"></div>
+	  <div class="col-xs-12">	  
+			<select class="form-control" name="condition-select">
+			<option value="Other" selected>Or select default TCG Condition</option>
+			<option value="Near Mint">Near Mint</option>
+			<option value="Lightly Played">Lightly Played</option>
+			<option value="Moderately Played">Moderately Played</option>
+			<option value="Heavily Played">Heavily Played</option>
+			<option value="Damaged">Damaged</option>
+			</select>
+	  </div>
+	  <div class="spacebox30 col-xs-12"></div>
+	  <% default_condition = "Other" %>
+	  <!--
+	  <%= f.select :card_condition_select, ["Other", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"], class: "form-control", selected: default_condition %>
+	  -->
+	  <%= f.hidden_field :game, value: "Magic: The Gathering" %>
+	  <%= f.hidden_field :collection, value: "Default collection" %>
+	</div>	
+	<div class="spacebox20 col-xs-12"></div>
+	<div class="col-xs-12">
+		<div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+		 		<%= f.submit "Submit", class: "btn btn-primary btn-purple btn-block btn-lg" %>
+		 	</div>
+	    </div>
+	</div>
+<% end %>
+
+
+
+
+
+
+
+
